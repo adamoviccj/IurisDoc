@@ -1,0 +1,108 @@
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0/WD17" xsi:schemaLocation="https://docs.oasis-open.org/legaldocml/akn-core/v1.0/os/part2-specs/schemas/akomantoso30.xsd">
+    <act name="Zakon o krivičnom zakoniku">
+        <meta>
+            <identification source="#crnagora">
+                <FRBRWork>
+                    <FRBRthis value="/akn/me/act/2023-10-01/!main"/>
+                    <FRBRuri value="/akn/me/act/2023-10-01"/>
+                    <FRBRdate date="2023-10-01"/>
+                    <FRBRauthor href="#ns" as="#author"/>
+                    <FRBRcountry value="me"/>
+                    <FRBRsubtype value="act"/>
+                    <FRBRnumber value="2023-10-01"/>                    
+                    <FRBRname value="Zakon o krivičnom zakoniku"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value="/akn/me/act/2023-10-01/sr@2023-10-01/!main"/>
+                    <FRBRuri value="/akn/me/act/2023-10-01/sr@2023-10-01"/>
+                    <FRBRdate date="2023-10-01"/>
+                    <FRBRauthor href="#sg" as="#editor"/>
+                    <FRBRlanguage language="sr"/>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value="/akn/me/act/2023-10-01/sr@2023-10-01/!main.xml"/>
+                    <FRBRuri value="/akn/me/act/2023-10-01/sr@2023-10-01/!main.akn"/>
+                    <FRBRdate date="2023-10-01"/>
+                    <FRBRauthor href="#crnagora" as="#generator"/>
+                    <FRBRformat value="xml"/>
+                </FRBRManifestation>
+            </identification>
+            <publication name="sg" date="2023-10-01" showAs="Službeni list Crne Gore" number="2023/10"/>
+            <classification source="#crnagora">
+                <keyword value="criminal law" showAs="Krivično pravo" dictionary="ME"/>
+            </classification>
+            <references source="#crnagora">
+                <TLCRole eId="author" href="/akn/me/ontology/role/author" showAs="Author"/>
+                <TLCRole eId="editor" href="/akn/me/ontology/role/editor" showAs="Editor"/>
+                <TLCRole eId="generator" href="/akn/me/ontology/role/generator" showAs="Generator"/>
+                <TLCOrganization eId="ns" href="/akn/me/ontology/organization/ns" showAs="Narodna skupština Crne Gore"/>
+                <TLCOrganization eId="sg" href="/akn/me/ontology/organization/sg" showAs="Službeni list Crne Gore"/>
+                <TLCPerson eId="crnagora" href="/akn/me/ontology/person/somebody" showAs="Crna Gora"/>
+            </references>
+        </meta>
+        <body>
+            <chapter eId="chp_1">
+                <num>I.</num>
+                <heading>Nasilje u porodici ili u porodičnoj zajednici</heading>
+                <article eId="art_220">
+                    <num>Član 220</num>
+                    <paragraph eId="art_220__para_1">
+                        <content eId="art_220__para_1__content">
+                            <p>(1) Ko primjenom grubog nasilja naruši tjelesni ili duševni integritet člana svoje porodice ili porodične zajednice, kazniće se novčanom kaznom ili zatvorom do dvije godine.</p>
+                        </content>
+                    </paragraph>
+                    <paragraph eId="art_220__para_2">
+                        <content eId="art_220__para_2__content">
+                            <p>(2) Ako je pri izvršenju djela <ref href="#art_220__para_1">iz stava 1 ovog člana</ref> korišćeno oružje, opasno oruđe ili drugo sredstvo podobno da tijelo teško povrijedi ili zdravlje teško naruši, učinilac će se kazniti zatvorom od tri mjeseca do tri godine.</p>
+                        </content>
+                    </paragraph>
+                    <paragraph eId="art_220__para_3">
+                        <content eId="art_220__para_3__content">
+                            <p>(3) Ako je usljed djela <ref href="#art_220__para_1">iz st. 1</ref> i <ref href="#art_220__para_2">2 ovog člana</ref> nastupila teška tjelesna povreda ili teško narušavanje zdravlja ili su učinjena prema maloljetnom licu, učinilac će se kazniti zatvorom od jedne do pet godina.</p>
+                        </content>
+                    </paragraph>
+                    <paragraph eId="art_220__para_4">
+                        <content eId="art_220__para_4__content">
+                            <p>(4) Ako je usljed djela <ref href="#art_220__para_1">iz st. 1</ref>, <ref href="#art_220__para_2">2</ref> i <ref href="#art_220__para_3">3 ovog člana</ref> nastupila smrt člana porodice ili porodične zajednice, učinilac će se kazniti zatvorom od tri do dvanaest godina.</p>
+                        </content>
+                    </paragraph>
+                    <paragraph eId="art_220__para_5">
+                        <content eId="art_220__para_5__content">
+                            <p>(5) Ko prekrši mjere zaštite od nasilja u porodici koje mu je sud ili drugi državni organ odredio na osnovu zakona, kazniće se novčanom kaznom ili zatvorom do jedne godine.</p>
+                        </content>
+                    </paragraph>
+                </article>
+            </chapter>
+            <chapter eId="chp_2">
+                <num>II.</num>
+                <heading>Nedavanje izdržavanja</heading>
+                <article eId="art_221">
+                    <num>Član 221</num>
+                    <paragraph eId="art_221__para_1">
+                        <content eId="art_221__para_1__content">
+                            <p>(1) Ko ne daje izdržavanje za lice koje je po zakonu dužan da izdržava, a ta dužnost je utvrđena izvršnom sudskom odlukom ili izvršnim poravnanjem pred sudom ili drugim nadležnim organom, u iznosu i na način kako je to odlukom odnosno poravnanjem utvrđeno kazniće se novčanom kaznom ili zatvorom do dvije godine.</p>
+                        </content>
+                    </paragraph>
+                    <paragraph eId="art_221__para_2">
+                        <content eId="art_221__para_2__content">
+                            <p>(2) Neće se kazniti učinilac djela <ref href="#art_221__para_1">iz stava 1 ovog člana</ref>, ako iz opravdanih razloga nije davao izdržavanje.</p>
+                        </content>
+                    </paragraph>
+                    <paragraph eId="art_221__para_3">
+                        <content eId="art_221__para_3__content">
+                            <p>(3) Ako su usled djela <ref href="#art_221__para_1">iz stava 1 ovog člana</ref> nastupile teške posljedice za izdržavano lice, učinilac će se kazniti zatvorom od šest mjeseci do pet godina.</p>
+                        </content>
+                    </paragraph>
+                    <paragraph eId="art_221__para_4">
+                        <content eId="art_221__para_4__content">
+                            <p>(4) U sudskoj odluci sud određuje obavezu učiniocu da izmiri dospjele obaveze i da uredno daje izdržavanje.</p>
+                        </content>
+                    </paragraph>
+                </article>
+            </chapter>
+        </body>
+    </act>
+</akomaNtoso>
+```

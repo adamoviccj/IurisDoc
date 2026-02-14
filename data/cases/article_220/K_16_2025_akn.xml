@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-16-2025"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudBerane">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-berane/K-16-2025"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-berane/K-16-2025"/>
+          <FRBRdate date="2025-02-11" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudBerane" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-berane/K-16-2025/2025-02-11@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-berane/K-16-2025/2025-02-11"/>
+          <FRBRdate date="2025-02-11" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-berane/K-16-2025/2025-02-11.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-berane/K-16-2025/2025-02-11.xml"/>
+          <FRBRdate date="2025-02-11" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudBerane">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudBerane"
+                         id="org.osnovniSudBerane"
+                         showAs="Osnovni sud u Beranama"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.ivanDosljak"
+                   id="person.ivanDosljak"
+                   showAs="Došljak V. Ivan"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.momirkaFatic"
+                   id="person.momirkaFatic"
+                   showAs="Fatić Momirka"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.draganBabovic"
+                   id="person.draganBabovic"
+                   showAs="Babović Dragan"/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.andjelaScepovic"
+                   id="person.andjelaScepovic"
+                   showAs="Šćepović Anđela"/>
+
+        <!-- OŠTEĆENI -->
+        <TLCPerson eId="person.aleksandarBabovic"
+                   id="person.aleksandarBabovic"
+                   showAs="Aleksandar Babović"/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.ivanDosljak"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.momirkaFatic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudBerane">Osnovni sud u Beranama</ref>,
+          sudija <ref href="#person.ivanDosljak">Došljak V. Ivan</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.momirkaFatic">Fatić Momirke</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.draganBabovic"
+                 role="accused">Babović Dragana</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnice optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.andjelaScepovic"
+                 role="prosecutor"/>,
+          dana 11.02.2025. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.draganBabovic">Babović Dragan</ref> oglašava se krivim
+            zbog krivičnog djela
+            nasilje u porodici ili u porodičnoj zajednici iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se uslovna osuda kojom se utvrđuje kazna zatvora
+            u trajanju od 6 mjeseci,
+            sa rokom provjeravanja od 2 godine.
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni je dužan da plati troškove postupka
+            u iznosu od 30,00 eura,
+            shodno <ref href="#law.ZKP">čl. 226 ZKP</ref>.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da okrivljeni dana 22.01.2025. godine,
+            u porodičnoj kući u selu Jošanica, opština Andrijevica,
+            ugrozio sigurnost člana porodice brata Aleksandra Babovića,
+            prijetnjom da će napasti na život i tijelo,
+            uputivši mu riječi prijetnje i uvrede:
+            „zaklaću te, otkinući ti nos i uši, udaviću te, ti si najveća mizerija, ološ, sprdnja, jad, bogalj, najviša bijeda“,
+            koje riječi su kod njega izazvale osjećaj straha i ugroženosti.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnog djela iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Kao olakšavajuće okolnosti sud je cijenio
+            siromašno imovno stanje i raniju neosuđivanost okrivljenog.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U BERANAMA
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.momirkaFatic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.ivanDosljak"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

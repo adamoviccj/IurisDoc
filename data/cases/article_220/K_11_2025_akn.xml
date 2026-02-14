@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-11-2025"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudCetinje">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-cetinje/K-11-2025"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-cetinje/K-11-2025"/>
+          <FRBRdate date="2025-02-10" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudCetinje" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-cetinje/K-11-2025/2025-02-10@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-cetinje/K-11-2025/2025-02-10"/>
+          <FRBRdate date="2025-02-10" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-cetinje/K-11-2025/2025-02-10.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-cetinje/K-11-2025/2025-02-10.xml"/>
+          <FRBRdate date="2025-02-10" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudCetinje">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudCetinje"
+                         id="org.osnovniSudCetinje"
+                         showAs="Osnovni sud u Cetinju"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.branislavLekovic"
+                   id="person.branislavLekovic"
+                   showAs="Branislav Leković"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.aleksandraMartinovic"
+                   id="person.aleksandraMartinovic"
+                   showAs="Aleksandra Martinović"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.LB"
+                   id="person.LB"
+                   showAs="Lj. B."/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.jelenaBlecić"
+                   id="person.jelenaBlecić"
+                   showAs="Jelena Blečić"/>
+
+        <!-- OŠTEĆENA -->
+        <TLCPerson eId="person.LJN"
+                   id="person.LJN"
+                   showAs="Lj. N."/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.branislavLekovic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.aleksandraMartinovic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudCetinje">Osnovni sud u Cetinju</ref>,
+          sudija <ref href="#person.branislavLekovic">Branislav Leković</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.aleksandraMartinovic">Aleksandre Martinović</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.LB"
+                 role="accused">Lj. B.</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnice optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.jelenaBlecić"
+                 role="prosecutor"/>,
+          dana 10.02.2025. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.LB">Lj. B.</ref> oglašava se krivim
+            zbog krivičnog djela
+            nasilje u porodici ili u porodičnoj zajednici iz čl. 220 st. 4 u vezi st. 1
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Okrivljeni se osuđuje na kaznu zatvora u trajanju od 1 (jedne) godine.
+          </p>
+          <p eId="sec.decision.sanction.p2">
+            Na osnovu člana 72 <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref> okrivljenom Lj. B. se izriče:
+            MJERA BEZBIJEDNOSTI OBAVEZNO LIJEČENJE ALKOHOLIČARA
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni je obavezan da plati na ime troškova krivičnog postupka iznos od 217,00 €, u roku od 15 dana
+            po pravosnažnosti presude, pod prijetnjom izvršenja.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da je okrivljeni dana ........ godine, oko 10,00 časova, u porodičnoj kući u u. B. P. br...., u C.,
+            svjestan svog djela i zabranjenosti istog, upaljačem kao sredstvom podobnim da tijelo teško povrijedi ili
+            zdravlje teško naruši, lako tjelesno povrijedio člana svoje porodice-svoju majku oštećenu
+            <ref href="#person.LJN">Lj. N.</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja krivičnog djela iz čl. 220 st. 4 u vezi st. 1
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Sud je cijenio olakšavajuće okolnosti kao što su loše imovno stanje okrivljenog, izraženo kajanje i
+            činjenicu da se oštećena nije pridružila krivičnom gonjenju.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U CETINJU
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.aleksandraMartinovic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.branislavLekovic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

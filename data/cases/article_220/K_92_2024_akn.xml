@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-92-2024"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudBerane">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-berane/K-92-2024"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-berane/K-92-2024"/>
+          <FRBRdate date="2024-05-16" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudBerane" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-berane/K-92-2024/2024-05-16@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-berane/K-92-2024/2024-05-16"/>
+          <FRBRdate date="2024-05-16" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-berane/K-92-2024/2024-05-16.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-berane/K-92-2024/2024-05-16.xml"/>
+          <FRBRdate date="2024-05-16" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudBerane">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudBerane"
+                         id="org.osnovniSudBerane"
+                         showAs="Osnovni sud u Beranama"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.ivanDosljak"
+                   id="person.ivanDosljak"
+                   showAs="Došljak V. Ivan"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.anitaMihajlovic"
+                   id="person.anitaMihajlovic"
+                   showAs="Mihajlović Anita"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.KA"
+                   id="person.KA"
+                   showAs="K. A."/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.SA"
+                   id="person.SA"
+                   showAs="S. A."/>
+
+        <!-- OŠTEĆENI -->
+        <TLCPerson eId="person.KS"
+                   id="person.KS"
+                   showAs="K. S."/>
+        <TLCPerson eId="person.KD"
+                   id="person.KD"
+                   showAs="K. D."/>
+
+        <!-- BRANILAC -->
+        <TLCPerson eId="person.KN"
+                   id="person.KN"
+                   showAs="K. N."/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.ivanDosljak"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.anitaMihajlovic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudBerane">Osnovni sud u Beranama</ref>,
+          sudija <ref href="#person.ivanDosljak">Došljak V. Ivan</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.anitaMihajlovic">Mihajlović Anite</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.KA"
+                 role="accused">K. A.</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnice optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.SA"
+                 role="prosecutor"/>,
+          dana 16.05.2024. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.KA">K. A.</ref> oglašava se krivim
+            zbog krivičnih djela
+            nasilje u porodici ili u porodičnoj zajednici iz <ref href="#art_220__para_1">čl. 220 st. 1</ref> i
+            nasilje u porodici ili u porodičnoj zajednici iz <ref href="#art_220__para_5">čl. 220 st. 7</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Sud utvrđuje kaznu zatvora u trajanju od 6 mjeseci za
+            krivično djelo iz <ref href="#art_220__para_1">čl. 220 st. 1</ref> i
+            kaznu zatvora u trajanju od 30 dana za krivično djelo iz
+            <ref href="#art_220__para_5">čl. 220 st. 7</ref>.
+          </p>
+          <p eId="sec.decision.sanction.p2">
+            Okrivljeni se osuđuje na jedinstvenu kaznu zatvora u trajanju od 6 mjeseci.
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni je dužan da plati troškove postupka
+            u iznosu od 484,00 eura i sudski paušal
+            u iznosu od 30,00 eura,
+            shodno čl. 226 i 229
+            <ref href="#law.ZKP">ZKP</ref>.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da je okrivljeni dana 18.03.2024. godine,
+            ispred svoje porodične kuće u R...., ugrozio sigurnost člana svoje porodice
+            – brata <ref href="#person.KS">K. S.</ref> prijetnjom da će napasti na njegov život i tijelo,
+            na način što ga je dohvatio rukom za odjeću u predjelu grudi,
+            dok je u drugoj ruci držao sjekiru, kojom prilikom mu je uputio prijeteće riječi
+            „groba mi majčinog, ubiću te, ili ti ili ja jedan neće biti živ“.
+          </p>
+          <p eId="sec.motivation.facts.p2">
+            Takođe, prekršio je mjere zaštite od nasilja u porodici koje mu je
+            S... za prekršaje B... P... – Odjeljenje R.... odredio na osnovu zakona,
+            rješenjem PP.br...../24 od 17.03.2024. godine, i to zaštitnu mjeru zabrane
+            uznemiravanja i uhođenja žrtve nasilja – sinovca <ref href="#person.KD">K. D.</ref>,
+            na način što mu je uputio riječi „jebem ti sve, nemoj da se miješaš u naše probleme“.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnih djela iz <ref href="#art_220__para_1">čl. 220 st. 1</ref> i
+            <ref href="#art_220__para_5">čl. 220 st. 7</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Kao olakšavajuće okolnosti sud je cijenio
+            da je okrivljeni otac jednog djeteta i da je siromašnog imovnog stanja,
+            dok je kao otežavajuću okolnost cijenio njegovu raniju osuđivanost.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U BERANAMA
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.anitaMihajlovic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.ivanDosljak"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

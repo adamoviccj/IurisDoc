@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-149-2024"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudBijeloPolje">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-bijelo-polje/K-149-2024"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-bijelo-polje/K-149-2024"/>
+          <FRBRdate date="2024-10-09" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudBijeloPolje" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-bijelo-polje/K-149-2024/2024-10-09@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-bijelo-polje/K-149-2024/2024-10-09"/>
+          <FRBRdate date="2024-10-09" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-bijelo-polje/K-149-2024/2024-10-09.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-bijelo-polje/K-149-2024/2024-10-09.xml"/>
+          <FRBRdate date="2024-10-09" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudBijeloPolje">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudBijeloPolje"
+                         id="org.osnovniSudBijeloPolje"
+                         showAs="Osnovni sud u Bijelom Polju"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.radomirKljajevic"
+                   id="person.radomirKljajevic"
+                   showAs="Radomir Kljajević"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.draginjaBoskovic"
+                   id="person.draginjaBoskovic"
+                   showAs="Draginja Bošković"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.GN"
+                   id="person.GN"
+                   showAs="G. N."/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.DM"
+                   id="person.DM"
+                   showAs="D. M."/>
+
+        <!-- OŠTEĆENI -->
+        <TLCPerson eId="person.SN"
+                   id="person.SN"
+                   showAs="S. N."/>
+
+        <TLCPerson eId="person.MN"
+                   id="person.MN"
+                   showAs="M. N."/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.radomirKljajevic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.draginjaBoskovic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudBijeloPolje">Osnovni sud u Bijelom Polju</ref>,
+          sudija <ref href="#person.radomirKljajevic">Radomir Kljajević</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.draginjaBoskovic">Draginje Bošković</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.GN"
+                 role="accused">G. N.</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnika optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.DM"
+                 role="prosecutor"/>,
+          dana 09.10.2024. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.GN">G. N.</ref> oglašava se krivim
+            zbog dva krivična djela
+            nasilje u porodici ili u porodičnoj zajednici iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se jedinstvena kazna zatvora u trajanju od 10 (deset) mjeseci,
+            u koju kaznu mu se ima uračunati vrijeme provedeno u pritvoru,
+            u vremenu od 22. 08. 2024. godine, do 09.10. 2024. godine.
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni se obavezuje da plati ovom sudu na ime paušala iznos od 30,00 eura,
+            kao i na ime ostalih troškova krivičnog postupka iznos od 270,00 eura,
+            koje iznose će uplatiti na račun Budžeta Crne Gore, broj: 832-151-35,
+            u roku od 15 dana po pravosnažnosti presude, pod prijetnjom prinudnog izvršenja.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da okrivljeni dana 21. 08. 2024. godine, oko 12:00h,
+            na svom imanju u mjestu B., opština B. P., ugrozio sigurnost
+            članovima svoje porodice, na način što je nakon kraće verbalne rasprave
+            svojoj supruzi, oštećenoj <ref href="#person.SN">S. N.</ref>,
+            uputio riječi prijetnje i psovke, a zatim je glavicom kupusa udario
+            u predjelu glave i uputio prijetnje. Takođe, dana 22. 08. 2024. godine,
+            u jutarnjim časovima u porodičnoj kući, oštećenom <ref href="#person.MN">M. N.</ref>
+            uputio prijetnje, što je kod oštećenih izazvalo osjećaj ugroženosti.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnog djela iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Sud je cijenio sve okolnosti iz čl. 42 Kz-a CG, pa je na strani okrivljenog
+            od olakšavajućih okolnosti u okviru njegovih ličnih prilika cijenio
+            njegove imovinske prilike i stim u vezi njegovo loše imovno stanje,
+            dok je od otežavajućih okolnosti cijenio činjenicu da je isti u ranijem
+            periodu više puta krivično osuđivan.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U BIJELOM POLJU
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.draginjaBoskovic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.radomirKljajevic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

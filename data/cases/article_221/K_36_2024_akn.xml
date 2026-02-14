@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-36-2024"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudBerane">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-berane/K-36-2024"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-berane/K-36-2024"/>
+          <FRBRdate date="2024-07-22" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudBerane" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-berane/K-36-2024/2024-07-22@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-berane/K-36-2024/2024-07-22"/>
+          <FRBRdate date="2024-07-22" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-berane/K-36-2024/2024-07-22.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-berane/K-36-2024/2024-07-22.xml"/>
+          <FRBRdate date="2024-07-22" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudBerane">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudBerane"
+                         id="org.osnovniSudBerane"
+                         showAs="Osnovni sud u Beranama"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.anaKenjicDjukic"
+                   id="person.anaKenjicDjukic"
+                   showAs="Ana Kenjić Đukić"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.magdalenaVukotic"
+                   id="person.magdalenaVukotic"
+                   showAs="Magdalena Vukotić"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.SD"
+                   id="person.SD"
+                   showAs="S. Đ."/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.milenaBojovic"
+                   id="person.milenaBojovic"
+                   showAs="Milena Bojović"/>
+
+        <!-- OŠTEĆENI -->
+        <TLCPerson eId="person.VD"
+                   id="person.VD"
+                   showAs="V. Đ."/>
+
+        <TLCPerson eId="person.ND"
+                   id="person.ND"
+                   showAs="N. Đ."/>
+
+        <!-- MAJKA - ZAKONSKI ZASTUPNIK -->
+        <TLCPerson eId="person.VP"
+                   id="person.VP"
+                   showAs="V. P."/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.anaKenjicDjukic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.magdalenaVukotic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudBerane">Osnovni sud u Beranama</ref>,
+          sudija <ref href="#person.anaKenjicDjukic">Ana Kenjić Đukić</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.magdalenaVukotic">Magdalene Vukotić</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.SD"
+                 role="accused">S. Đ.</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnice optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.milenaBojovic"
+                 role="prosecutor"/>,
+          dana 22.07.2024. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.SD">S. Đ.</ref> oglašava se krivim
+            zbog dva krivična djela
+            nedavanje izdržavanja iz <ref href="#art_221__para_1">čl. 221 st. 1</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se jedinstvena kazna zatvora
+            u trajanju od 45 dana, koju će okrivljeni izdržavati
+            u prostorijama u kojima stanuje.
+          </p>
+        </article>
+
+        <article eId="sec.decision.compensation">
+          <heading>Imovinskopravna obaveza</heading>
+          <p eId="sec.decision.compensation.p1">
+            Zakonska zastupnica oštećenih maloljetnih
+            <ref href="#person.VD">V. Đ.</ref> i <ref href="#person.ND">N. Đ.</ref>,
+            majka <ref href="#person.VP">V. P.</ref>,
+            upućuje se na parnicu radi naknade dospjelih obaveza izdržavanja.
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni se obavezuje da na ime troškova krivičnog postupka
+            isplati paušalni iznos od 30,00 eura,
+            u korist budžeta Crne Gore.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da okrivljeni u periodu
+            od 06.06.2018. do 30.01.2024. godine
+            nije davao izdržavanje za svoju djecu
+            <ref href="#person.VD">V. Đ.</ref> i <ref href="#person.ND">N. Đ.</ref>,
+            iako je ta obaveza utvrđena
+            pravosnažnom presudom.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnog djela iz <ref href="#art_221__para_1">čl. 221 st. 1</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Sud je kao olakšavajuću okolnost cijenio
+            siromašno imovno stanje okrivljenog,
+            dok je kao otežavajuću okolnost cijenio
+            njegovu raniju osuđivanost.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U BERANAMA
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.magdalenaVukotic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.anaKenjicDjukic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

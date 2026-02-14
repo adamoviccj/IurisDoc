@@ -1,2 +1,5 @@
 openai
 dotenv
+pytesseract
+Pillow
+pdf2image

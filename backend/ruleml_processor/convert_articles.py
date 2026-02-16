@@ -25,7 +25,7 @@ def convert_articles_to_ruleml(article_txt_path, output_ruleml_path):
         " - Ako stav predstavlja teži oblik dela (npr. Čl. 220 st. 3 u odnosu na st. 1), kreiraj pomoćno pravilo koje negira osnovno delo." \
         " -  Na kraju dokumenta obavezno generiši 'OverrideStatement' blokove koji definišu prioritet specifičnijih pravila." \
         " - Koristi 'defeasible' snagu za sva pravila kako bi omogućio pobitno zaključivanje." \
-        " - Svakom stavu zakona dodeli PenaltyStatement"
+        " - Svakom stavu zakona dodeli PenaltyStatement. Trajanje kazni navedite u formatu broja i karaktera pri cemu karakter oznacava dan (d), mesec (m) i godinu (g), a broj oznacava trajanje"
     )
 
     try:

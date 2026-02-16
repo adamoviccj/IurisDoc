@@ -13,7 +13,7 @@
                         <ruleml:Atom>
                             <ruleml:Rel iri="lc:violates_integrity"/>
                             <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-                            <ruleml:Var type="lc:family_member">FamilyMember</ruleml:Var>
+                            <ruleml:Data xsi:type="xs:string">family_member</ruleml:Data>
                         </ruleml:Atom>
                     </ruleml:And>
                 </ruleml:if>
@@ -56,15 +56,11 @@
                 <ruleml:if>
                     <ruleml:And>
                         <ruleml:Atom>
-                            <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
+                            <ruleml:Rel>is_guilty_of_family_violence_lv2</ruleml:Rel>
                             <ruleml:Var type=":defendant">Defendant</ruleml:Var>
                         </ruleml:Atom>
                         <ruleml:Atom>
                             <ruleml:Rel iri="lc:causes_serious_injury"/>
-                            <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-                        </ruleml:Atom>
-                        <ruleml:Atom>
-                            <ruleml:Rel iri="lc:against_minor"/>
                             <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
                         </ruleml:Atom>
                     </ruleml:And>
@@ -84,7 +80,7 @@
                 <ruleml:if>
                     <ruleml:And>
                         <ruleml:Atom>
-                            <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
+                            <ruleml:Rel>is_guilty_of_family_violence_lv3</ruleml:Rel>
                             <ruleml:Var type=":defendant">Defendant</ruleml:Var>
                         </ruleml:Atom>
                         <ruleml:Atom>
@@ -130,17 +126,13 @@
                         <ruleml:Atom>
                             <ruleml:Rel iri="lc:fails_to_provide_support"/>
                             <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-                            <ruleml:Var type="lc:supported_person">SupportedPerson</ruleml:Var>
-                        </ruleml:Atom>
-                        <ruleml:Atom>
-                            <ruleml:Rel iri="lc:obligation_established"/>
-                            <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+                            <ruleml:Data xsi:type="xs:string">court_order</ruleml:Data>
                         </ruleml:Atom>
                     </ruleml:And>
                 </ruleml:if>
                 <ruleml:then>
                     <ruleml:Atom>
-                        <ruleml:Rel>is_guilty_of_failing_to_provide_support</ruleml:Rel>
+                        <ruleml:Rel>is_guilty_of_failing_to_provide_support_lv1</ruleml:Rel>
                         <ruleml:Var type=":defendant">Defendant</ruleml:Var>
                     </ruleml:Atom>
                 </ruleml:then>
@@ -153,7 +145,7 @@
                 <ruleml:if>
                     <ruleml:And>
                         <ruleml:Atom>
-                            <ruleml:Rel>is_guilty_of_failing_to_provide_support</ruleml:Rel>
+                            <ruleml:Rel>is_guilty_of_failing_to_provide_support_lv1</ruleml:Rel>
                             <ruleml:Var type=":defendant">Defendant</ruleml:Var>
                         </ruleml:Atom>
                         <ruleml:Atom>
@@ -165,7 +157,7 @@
                 <ruleml:then>
                     <ruleml:Negation>
                         <ruleml:Atom>
-                            <ruleml:Rel>is_guilty_of_failing_to_provide_support</ruleml:Rel>
+                            <ruleml:Rel>is_guilty_of_failing_to_provide_support_lv1</ruleml:Rel>
                             <ruleml:Var type=":defendant">Defendant</ruleml:Var>
                         </ruleml:Atom>
                     </ruleml:Negation>
@@ -179,13 +171,12 @@
                 <ruleml:if>
                     <ruleml:And>
                         <ruleml:Atom>
-                            <ruleml:Rel>is_guilty_of_failing_to_provide_support</ruleml:Rel>
+                            <ruleml:Rel>is_guilty_of_failing_to_provide_support_lv1</ruleml:Rel>
                             <ruleml:Var type=":defendant">Defendant</ruleml:Var>
                         </ruleml:Atom>
                         <ruleml:Atom>
                             <ruleml:Rel iri="lc:causes_serious_consequences"/>
                             <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-                            <ruleml:Var type="lc:supported_person">SupportedPerson</ruleml:Var>
                         </ruleml:Atom>
                     </ruleml:And>
                 </ruleml:if>
@@ -198,33 +189,13 @@
             </ruleml:Rule>
         </lrml:PrescriptiveStatement>
         
-        <!-- Član 221, stav 4 -->
-        <lrml:PrescriptiveStatement key="ps221_4">
-            <ruleml:Rule key=":rule221_4" closure="universal" strength="defeasible">
-                <ruleml:if>
-                    <ruleml:And>
-                        <ruleml:Atom>
-                            <ruleml:Rel>is_guilty_of_failing_to_provide_support</ruleml:Rel>
-                            <ruleml:Var type=":defendant">Defendant</ruleml:Var>
-                        </ruleml:Atom>
-                    </ruleml:And>
-                </ruleml:if>
-                <ruleml:then>
-                    <ruleml:Atom>
-                        <ruleml:Rel>court_orders_payment</ruleml:Rel>
-                        <ruleml:Var type=":defendant">Defendant</ruleml:Var>
-                    </ruleml:Atom>
-                </ruleml:then>
-            </ruleml:Rule>
-        </lrml:PrescriptiveStatement>
-        
         <!-- Penalty Statements -->
         <lrml:PenaltyStatement key="pen220_1">
             <lrml:SuborderList>
                 <lrml:Obligation>
                     <ruleml:Atom>
-                        <ruleml:Rel iri=":to_pay_or_imprisonment"/>
-                        <ruleml:Var>Duration</ruleml:Var>
+                        <ruleml:Rel iri=":max_imprisonment"/>
+                        <ruleml:Var>Years</ruleml:Var>
                         <ruleml:Ind>2</ruleml:Ind>
                     </ruleml:Atom>
                 </lrml:Obligation>
@@ -235,8 +206,13 @@
             <lrml:SuborderList>
                 <lrml:Obligation>
                     <ruleml:Atom>
-                        <ruleml:Rel iri=":imprisonment"/>
-                        <ruleml:Var>Duration</ruleml:Var>
+                        <ruleml:Rel iri=":min_imprisonment"/>
+                        <ruleml:Var>Months</ruleml:Var>
+                        <ruleml:Ind>3</ruleml:Ind>
+                    </ruleml:Atom>
+                    <ruleml:Atom>
+                        <ruleml:Rel iri=":max_imprisonment"/>
+                        <ruleml:Var>Years</ruleml:Var>
                         <ruleml:Ind>3</ruleml:Ind>
                     </ruleml:Atom>
                 </lrml:Obligation>
@@ -247,8 +223,13 @@
             <lrml:SuborderList>
                 <lrml:Obligation>
                     <ruleml:Atom>
-                        <ruleml:Rel iri=":imprisonment"/>
-                        <ruleml:Var>Duration</ruleml:Var>
+                        <ruleml:Rel iri=":min_imprisonment"/>
+                        <ruleml:Var>Years</ruleml:Var>
+                        <ruleml:Ind>1</ruleml:Ind>
+                    </ruleml:Atom>
+                    <ruleml:Atom>
+                        <ruleml:Rel iri=":max_imprisonment"/>
+                        <ruleml:Var>Years</ruleml:Var>
                         <ruleml:Ind>5</ruleml:Ind>
                     </ruleml:Atom>
                 </lrml:Obligation>
@@ -259,8 +240,13 @@
             <lrml:SuborderList>
                 <lrml:Obligation>
                     <ruleml:Atom>
-                        <ruleml:Rel iri=":imprisonment"/>
-                        <ruleml:Var>Duration</ruleml:Var>
+                        <ruleml:Rel iri=":min_imprisonment"/>
+                        <ruleml:Var>Years</ruleml:Var>
+                        <ruleml:Ind>3</ruleml:Ind>
+                    </ruleml:Atom>
+                    <ruleml:Atom>
+                        <ruleml:Rel iri=":max_imprisonment"/>
+                        <ruleml:Var>Years</ruleml:Var>
                         <ruleml:Ind>12</ruleml:Ind>
                     </ruleml:Atom>
                 </lrml:Obligation>
@@ -271,8 +257,8 @@
             <lrml:SuborderList>
                 <lrml:Obligation>
                     <ruleml:Atom>
-                        <ruleml:Rel iri=":to_pay_or_imprisonment"/>
-                        <ruleml:Var>Duration</ruleml:Var>
+                        <ruleml:Rel iri=":max_imprisonment"/>
+                        <ruleml:Var>Years</ruleml:Var>
                         <ruleml:Ind>1</ruleml:Ind>
                     </ruleml:Atom>
                 </lrml:Obligation>
@@ -283,8 +269,8 @@
             <lrml:SuborderList>
                 <lrml:Obligation>
                     <ruleml:Atom>
-                        <ruleml:Rel iri=":to_pay_or_imprisonment"/>
-                        <ruleml:Var>Duration</ruleml:Var>
+                        <ruleml:Rel iri=":max_imprisonment"/>
+                        <ruleml:Var>Years</ruleml:Var>
                         <ruleml:Ind>2</ruleml:Ind>
                     </ruleml:Atom>
                 </lrml:Obligation>
@@ -295,24 +281,82 @@
             <lrml:SuborderList>
                 <lrml:Obligation>
                     <ruleml:Atom>
-                        <ruleml:Rel iri=":imprisonment"/>
-                        <ruleml:Var>Duration</ruleml:Var>
+                        <ruleml:Rel iri=":min_imprisonment"/>
+                        <ruleml:Var>Months</ruleml:Var>
+                        <ruleml:Ind>6</ruleml:Ind>
+                    </ruleml:Atom>
+                    <ruleml:Atom>
+                        <ruleml:Rel iri=":max_imprisonment"/>
+                        <ruleml:Var>Years</ruleml:Var>
                         <ruleml:Ind>5</ruleml:Ind>
                     </ruleml:Atom>
                 </lrml:Obligation>
             </lrml:SuborderList>
         </lrml:PenaltyStatement>
         
+        <!-- Reparation Statements -->
+        <lrml:ReparationStatement>
+            <lrml:Reparation>
+                <lrml:appliesPenalty keyref="#pen220_1"/>
+                <lrml:toPrescriptiveStatement keyref="#ps220_1"/>
+            </lrml:Reparation>
+        </lrml:ReparationStatement>
+        
+        <lrml:ReparationStatement>
+            <lrml:Reparation>
+                <lrml:appliesPenalty keyref="#pen220_2"/>
+                <lrml:toPrescriptiveStatement keyref="#ps220_2"/>
+            </lrml:Reparation>
+        </lrml:ReparationStatement>
+        
+        <lrml:ReparationStatement>
+            <lrml:Reparation>
+                <lrml:appliesPenalty keyref="#pen220_3"/>
+                <lrml:toPrescriptiveStatement keyref="#ps220_3"/>
+            </lrml:Reparation>
+        </lrml:ReparationStatement>
+        
+        <lrml:ReparationStatement>
+            <lrml:Reparation>
+                <lrml:appliesPenalty keyref="#pen220_4"/>
+                <lrml:toPrescriptiveStatement keyref="#ps220_4"/>
+            </lrml:Reparation>
+        </lrml:ReparationStatement>
+        
+        <lrml:ReparationStatement>
+            <lrml:Reparation>
+                <lrml:appliesPenalty keyref="#pen220_5"/>
+                <lrml:toPrescriptiveStatement keyref="#ps220_5"/>
+            </lrml:Reparation>
+        </lrml:ReparationStatement>
+        
+        <lrml:ReparationStatement>
+            <lrml:Reparation>
+                <lrml:appliesPenalty keyref="#pen221_1"/>
+                <lrml:toPrescriptiveStatement keyref="#ps221_1"/>
+            </lrml:Reparation>
+        </lrml:ReparationStatement>
+        
+        <lrml:ReparationStatement>
+            <lrml:Reparation>
+                <lrml:appliesPenalty keyref="#pen221_3"/>
+                <lrml:toPrescriptiveStatement keyref="#ps221_3"/>
+            </lrml:Reparation>
+        </lrml:ReparationStatement>
+        
         <!-- Override Statements -->
         <lrml:OverrideStatement>
             <lrml:Override under="#ps220_1" over="#ps220_2"/>
         </lrml:OverrideStatement>
+        
         <lrml:OverrideStatement>
             <lrml:Override under="#ps220_2" over="#ps220_3"/>
         </lrml:OverrideStatement>
+        
         <lrml:OverrideStatement>
             <lrml:Override under="#ps220_3" over="#ps220_4"/>
         </lrml:OverrideStatement>
+        
         <lrml:OverrideStatement>
             <lrml:Override under="#ps221_1" over="#ps221_3"/>
         </lrml:OverrideStatement>

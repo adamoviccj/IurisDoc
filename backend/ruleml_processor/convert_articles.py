@@ -24,7 +24,8 @@ def convert_articles_to_ruleml(article_txt_path, output_ruleml_path):
         " - Svaki stav zakona pretvori u 'PrescriptiveStatement'." \
         " - Ako stav predstavlja teži oblik dela (npr. Čl. 220 st. 3 u odnosu na st. 1), kreiraj pomoćno pravilo koje negira osnovno delo." \
         " -  Na kraju dokumenta obavezno generiši 'OverrideStatement' blokove koji definišu prioritet specifičnijih pravila." \
-        " - Koristi 'defeasible' snagu za sva pravila kako bi omogućio pobitno zaključivanje."
+        " - Koristi 'defeasible' snagu za sva pravila kako bi omogućio pobitno zaključivanje." \
+        " - Svakom stavu zakona dodeli PenaltyStatement"
     )
 
     try:

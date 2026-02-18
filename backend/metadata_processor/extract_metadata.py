@@ -1,4 +1,6 @@
 import os
+import pathlib
+from fastapi import FastAPI, Path as FastAPIPath
 import pandas as pd
 import xml.etree.ElementTree as ET
 from tqdm import tqdm
@@ -12,10 +14,15 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 OPENAI_MODEL = "gpt-4o"
 
+BASE_DIR = pathlib.Path(__file__).resolve().parent
+PROJECT_ROOT = BASE_DIR.parents[1]
+
+
 INPUT_FOLDERS = [
-    r"C:\Users\USER\Desktop\IurisDoc\data\cases\article_220",
-    r"C:\Users\USER\Desktop\IurisDoc\data\cases\article_221"
+    PROJECT_ROOT / "data" / "cases" / "article_220",
+    PROJECT_ROOT / "data" / "cases" / "article_221"
 ]
+
 
 NS = {"akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"}
 

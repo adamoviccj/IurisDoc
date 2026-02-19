@@ -1,14 +1,48 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-        xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-        xmlns:lc="http://informatika.ftn.uns.ac.rs/legal-case.rdf#">
-    <lc:case rdf:about="http://informatika.ftn.uns.ac.rs/legal-case.rdf#case01">
-        <lc:name>case 01</lc:name>
-        <lc:defendant>John</lc:defendant>
-        <lc:speed rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">110</lc:speed>
-	<lc:allowed_speed rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</lc:allowed_speed>
-	<lc:driving_on>town_road</lc:driving_on>
-	<lc:caused_accident>yes</lc:caused_accident>
-    </lc:case>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:lc="http://example.org/lc#">
+
+  <!-- ===== PROPERTIES ===== -->
+
+  <rdf:Property rdf:about="http://example.org/lc#defendant">
+    <rdfs:domain rdf:resource="http://example.org/lc#case"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://example.org/lc#uses_gross_violence"/>
+  <rdf:Property rdf:about="http://example.org/lc#violates_integrity"/>
+  <rdf:Property rdf:about="http://example.org/lc#uses_weapon"/>
+  <rdf:Property rdf:about="http://example.org/lc#causes_serious_injury"/>
+  <rdf:Property rdf:about="http://example.org/lc#causes_death"/>
+  <rdf:Property rdf:about="http://example.org/lc#violates_protection_measures"/>
+  <rdf:Property rdf:about="http://example.org/lc#fails_to_provide_support"/>
+  <rdf:Property rdf:about="http://example.org/lc#causes_serious_consequences"/>
+
+  <!-- ===== CASE INSTANCE ===== -->
+
+  <lc:case rdf:about="http://example.org/lc#case01">
+    <rdf:type rdf:resource="http://example.org/lc#case"/>
+
+    <lc:defendant>Marko M.</lc:defendant>
+
+    <!-- Family violence chain -->
+    <lc:uses_gross_violence>true</lc:uses_gross_violence>
+    <lc:violates_integrity>family_member</lc:violates_integrity>
+    <lc:uses_weapon>true</lc:uses_weapon>
+    <lc:causes_serious_injury>true</lc:causes_serious_injury>
+    <lc:causes_death>true</lc:causes_death>
+
+    <!-- Protection measures -->
+    <lc:violates_protection_measures>true</lc:violates_protection_measures>
+
+    <!-- Support offense -->
+    <lc:fails_to_provide_support>court_order</lc:fails_to_provide_support>
+    <lc:causes_serious_consequences>true</lc:causes_serious_consequences>
+
+  </lc:case>
+
 </rdf:RDF>

@@ -875,40 +875,7 @@
 )
 
 (deffunction not-nil-slots ($?slots)
-	(bind $?result (create$))
-	(while (> (length$ $?slots) 0)
-	   do
-	   	(bind ?p2 (get-token $?slots))
-		(bind $?first-slot (subseq$ $?slots 1 ?p2))
-		(if (neq (nth$ 1 $?first-slot) "(")
-		   then
-			(bind ?class (nth$ 1 $?first-slot))
-			(bind $?first-slot (rest$ $?first-slot))
-		)
-		(bind ?slot-name (nth$ 2 $?first-slot))
-		(bind ?var-or-else (nth$ 3 $?first-slot))
-		(if (and (is-var ?var-or-else) (= (length$ $?first-slot) 4))
-		   then
-		   	(if (slot-existp ?class ?slot-name inherit)
-		   	   then
-		   	   	(bind ?default-value (slot-default-value ?class ?slot-name))
-		   	   else
-		   	   	(bind ?default-value nil)
-		   	)
-			(if (eq ?default-value (create$))
-			   then
-			   	(bind ?default-value "(create$)")
-			   else
-			   	(if (eq ?default-value 0)
-			   	   then
-			   	   	(bind ?default-value nil)
-			   	)
-			)
-			(bind $?result (create$ $?result "(" neq ?var-or-else ?default-value ")"))
-		)
-		(bind $?slots (subseq$ $?slots (+ ?p2 1) (length$ $?slots)))
-	)
-	$?result
+	(create$)
 )
 
 (deffunction collect-condition-slots ($?condition)

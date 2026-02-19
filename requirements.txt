@@ -3,3 +3,4 @@ dotenv
 pytesseract
 Pillow
 pdf2image
+pandas

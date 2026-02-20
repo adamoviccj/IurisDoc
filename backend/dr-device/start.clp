@@ -1,12 +1,4 @@
 
-(printout t "CWD TEST" crlf)
-(load* ".\\DR-DEVICE-source\\defeasible.clp")
-(open "rulebase.clp" test "r")
-(printout t "RULEBASE FOUND" crlf)
-(close test)
-(open "where.txt" f "w")
-(printout f "Hello from CLIPS" crlf)
-(close f)
 (dribble-on "rulebase.log")
 (batch* "bin\\dr-device.bat")
 (set-verbose on)

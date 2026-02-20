@@ -65,21 +65,51 @@
 </export:is_guilty_of_family_violence_lv2>
 
 <export:min_imprisonment rdf:about='&export;min_imprisonment1'>
-     <export:value>3</export:value>
+     <export:value>1</export:value>
      <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof3</defeasible:proof>
 </export:min_imprisonment>
 
-<export:max_imprisonment rdf:about='&export;max_imprisonment1'>
-     <export:value>2</export:value>
-     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
-     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof4</defeasible:proof>
-</export:max_imprisonment>
-
-<export:max_imprisonment rdf:about='&export;max_imprisonment2'>
+<export:min_imprisonment rdf:about='&export;min_imprisonment2'>
      <export:value>3</export:value>
      <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof5</defeasible:proof>
+</export:min_imprisonment>
+
+<export:min_imprisonment rdf:about='&export;min_imprisonment3'>
+     <export:value>6</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof6</defeasible:proof>
+</export:min_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment1'>
+     <export:value>1</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof9</defeasible:proof>
+</export:max_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment2'>
+     <export:value>2</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof11</defeasible:proof>
+</export:max_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment3'>
+     <export:value>3</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof12</defeasible:proof>
+</export:max_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment4'>
+     <export:value>12</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof13</defeasible:proof>
+</export:max_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment5'>
+     <export:value>5</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof15</defeasible:proof>
 </export:max_imprisonment>
 
 </rdf:RDF>

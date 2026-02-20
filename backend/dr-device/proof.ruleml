@@ -127,34 +127,27 @@
 </Literal>
 <Defeasible_Proof>
 <supportive_rule>
-<rule_ref rule='pen220_2_min'/>
+<rule_ref rule='pen220_3_min'/>
 </supportive_rule>
 <defeasible_body_grounds>
-<proof_ref proof='&proof-export;proof2'/>
-</defeasible_body_grounds>
-<not_strongly_attacked/>
-<defeasible_attackers_blocked>
-<Blocked>
-<Blocked_Defeasible_rule>
-<rule_ref rule='nil'/>
-<Attacked_by_not_Inferior>
-<rule_ref rule='pen220_2_min'/>
-</Attacked_by_not_Inferior>
-</Blocked_Defeasible_rule>
-</Blocked>
-</defeasible_attackers_blocked>
-</Defeasible_Proof>
-</Defeasibly_Proved>
 <Defeasibly_Proved>
 <oid>
 <Ind uri='&proof-export;proof4'>proof4</Ind>
 </oid>
 <Literal>
-<RDF_resource uri='&export;max_imprisonment1'/>
+<Atom>
+<op>
+<Rel>is_guilty_of_family_violence_lv3</Rel>
+</op>
+<slot>
+<Ind>defendant</Ind>
+<Data xsi:type='xs:string'>Marko M.</Data>
+</slot>
+</Atom>
 </Literal>
 <Defeasible_Proof>
 <supportive_rule>
-<rule_ref rule='pen220_1'/>
+<rule_ref rule='rule220_3'/>
 </supportive_rule>
 <defeasible_body_grounds>
 <proof_ref proof='&proof-export;proof1'/>
@@ -163,9 +156,34 @@
 <defeasible_attackers_blocked>
 <Blocked>
 <Blocked_Defeasible_rule>
+<rule_ref rule='rule220_2'/>
+<Attacked_by_Superior>
+<rule_ref rule='rule220_3'/>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof1'/>
+</defeasible_body_grounds>
+</Attacked_by_Superior>
+</Blocked_Defeasible_rule>
+</Blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
 <rule_ref rule='nil'/>
 <Attacked_by_not_Inferior>
-<rule_ref rule='pen220_1'/>
+<rule_ref rule='rule220_3'/>
+</Attacked_by_not_Inferior>
+</Blocked_Defeasible_rule>
+</Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='nil'/>
+<Attacked_by_not_Inferior>
+<rule_ref rule='pen220_3_min'/>
 </Attacked_by_not_Inferior>
 </Blocked_Defeasible_rule>
 </Blocked>
@@ -177,7 +195,282 @@
 <Ind uri='&proof-export;proof5'>proof5</Ind>
 </oid>
 <Literal>
+<RDF_resource uri='&export;min_imprisonment2'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='pen220_2_min'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof2'/>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof6'>proof6</Ind>
+</oid>
+<Literal>
+<RDF_resource uri='&export;min_imprisonment3'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='pen221_3_min'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof7'>proof7</Ind>
+</oid>
+<Literal>
+<Atom>
+<op>
+<Rel>is_guilty_of_nonpayment_of_support_lv2</Rel>
+</op>
+<slot>
+<Ind>defendant</Ind>
+<Data xsi:type='xs:string'>Marko M.</Data>
+</slot>
+</Atom>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='rule221_3'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof8'>proof8</Ind>
+</oid>
+<Literal>
+<Atom>
+<op>
+<Rel>is_guilty_of_nonpayment_of_support_lv1</Rel>
+</op>
+<slot>
+<Ind>defendant</Ind>
+<Data xsi:type='xs:string'>Marko M.</Data>
+</slot>
+</Atom>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='rule221_1'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;case01'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;case01'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;case01'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;case01'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;case01'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;case01'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='nil'/>
+<Attacked_by_not_Inferior>
+<rule_ref rule='rule221_1'/>
+</Attacked_by_not_Inferior>
+</Blocked_Defeasible_rule>
+</Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;case01'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;case01'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='rule221_1'/>
+<Attacked_by_Superior>
+<rule_ref rule='rule221_3'/>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof8'/>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;case01'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;case01'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+</defeasible_body_grounds>
+</Attacked_by_Superior>
+</Blocked_Defeasible_rule>
+</Blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='nil'/>
+<Attacked_by_not_Inferior>
+<rule_ref rule='rule221_3'/>
+</Attacked_by_not_Inferior>
+</Blocked_Defeasible_rule>
+</Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='nil'/>
+<Attacked_by_not_Inferior>
+<rule_ref rule='pen221_3_min'/>
+</Attacked_by_not_Inferior>
+</Blocked_Defeasible_rule>
+</Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof9'>proof9</Ind>
+</oid>
+<Literal>
+<RDF_resource uri='&export;max_imprisonment1'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='pen220_5'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof10'>proof10</Ind>
+</oid>
+<Literal>
+<Atom>
+<op>
+<Rel>is_guilty_of_violating_measures</Rel>
+</op>
+<slot>
+<Ind>defendant</Ind>
+<Data xsi:type='xs:string'>Marko M.</Data>
+</slot>
+</Atom>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='rule220_5'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;case01'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;case01'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='nil'/>
+<Attacked_by_not_Inferior>
+<rule_ref rule='rule220_5'/>
+</Attacked_by_not_Inferior>
+</Blocked_Defeasible_rule>
+</Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='nil'/>
+<Attacked_by_not_Inferior>
+<rule_ref rule='pen220_5'/>
+</Attacked_by_not_Inferior>
+</Blocked_Defeasible_rule>
+</Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof11'>proof11</Ind>
+</oid>
+<Literal>
 <RDF_resource uri='&export;max_imprisonment2'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='pen220_1'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof1'/>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof12'>proof12</Ind>
+</oid>
+<Literal>
+<RDF_resource uri='&export;max_imprisonment3'/>
 </Literal>
 <Defeasible_Proof>
 <supportive_rule>
@@ -196,6 +489,121 @@
 </Attacked_by_not_Inferior>
 </Blocked_Defeasible_rule>
 </Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof13'>proof13</Ind>
+</oid>
+<Literal>
+<RDF_resource uri='&export;max_imprisonment4'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='pen220_4_max'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof14'>proof14</Ind>
+</oid>
+<Literal>
+<Atom>
+<op>
+<Rel>is_guilty_of_family_violence_lv4</Rel>
+</op>
+<slot>
+<Ind>defendant</Ind>
+<Data xsi:type='xs:string'>Marko M.</Data>
+</slot>
+</Atom>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='rule220_4'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof1'/>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;case01'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;case01'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='rule220_3'/>
+<Attacked_by_Superior>
+<rule_ref rule='rule220_4'/>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof1'/>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;case01'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;case01'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+</defeasible_body_grounds>
+</Attacked_by_Superior>
+</Blocked_Defeasible_rule>
+</Blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='nil'/>
+<Attacked_by_not_Inferior>
+<rule_ref rule='rule220_4'/>
+</Attacked_by_not_Inferior>
+</Blocked_Defeasible_rule>
+</Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='nil'/>
+<Attacked_by_not_Inferior>
+<rule_ref rule='pen220_4_max'/>
+</Attacked_by_not_Inferior>
+</Blocked_Defeasible_rule>
+</Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof15'>proof15</Ind>
+</oid>
+<Literal>
+<RDF_resource uri='&export;max_imprisonment5'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='pen220_3_max'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof4'/>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
 </defeasible_attackers_blocked>
 </Defeasible_Proof>
 </Defeasibly_Proved>

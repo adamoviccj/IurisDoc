@@ -28,15 +28,19 @@ echo (load-dr-device "%NAME%.clp") >> run.clp
 echo (run) >> run.clp
 echo (exit) >> run.clp
 
+if exist %NAME%.log del %NAME%.log
+
 REM --- pokretanje CLIPS DOS ---
 if exist ".\CLIPSDOS\clipsdos64.exe" (
   echo Starting CLIPS DOS 64...
-  .\CLIPSDOS\clipsdos64.exe -f2 run.clp
+  .\CLIPSDOS\clipsdos64.exe -f2 run.clp > %NAME%.log 2>&1
 ) else if exist ".\clipsdos64.exe" (
   echo Starting CLIPS DOS 64...
-  .\clipsdos64.exe -f2 run.clp
+  .\clipsdos64.exe -f2 run.clp > %NAME%.log 2>&1
 ) else (
   echo ERROR: clipsdos64.exe not found
 )
+
+echo DR-DEVICE execution finished. Check %NAME%.log for details.
 
 pause

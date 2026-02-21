@@ -27,7 +27,6 @@ def process_xml_file(xml_path):
 
 
 if __name__ == "__main__":
-    process_xml_file("../data/cases/article_221/K_90_2024_akn.xml")
   
     # convert_law_to_akoma_ntoso(
     #     "../data/laws/02_ZBSP_akn.xml",
@@ -36,7 +35,9 @@ if __name__ == "__main__":
     # )
 
 
-    # extract_text_from_pdf("../data/cases")
+    extract_text_from_pdf("../data/cases/article_221/K_90_2024.pdf")
+    convert_case_to_akoma_ntoso('../data/cases/article_221/K_90_2024.txt', '../data/cases/article_221/K_90_2024_akn.xml', 'article_221')
+
 
   
     # target_folders = ["article_220", "article_221"]
@@ -59,47 +60,48 @@ if __name__ == "__main__":
 
     #metadata and facts extraction
   
-    # target_folders = ["article_220", "article_221"]
+    target_folders = ["article_220", "article_221"]
 
-    # try:
-    #     for folder_name in target_folders:
-    #         article_folder = os.path.join("../data/cases", folder_name)
-    #         if not os.path.exists(article_folder):
-    #             print(f"Folder {article_folder} does not exist. Skipping.")
-    #             continue
+  
+    try:
+        for folder_name in target_folders:
+            article_folder = os.path.join("../data/cases", folder_name)
+            if not os.path.exists(article_folder):
+                print(f"Folder {article_folder} does not exist. Skipping.")
+                continue
 
-    #         for filename in os.listdir(article_folder):
+            for filename in os.listdir(article_folder):
              
-    #             if not filename.lower().endswith("_akn.xml"):
-    #                 continue
+                if not filename.lower().endswith("_akn.xml"):
+                    continue
 
-    #             output_akn_path = os.path.join(article_folder, filename)
-    #             try:
-    #                 result = process_xml_file(output_akn_path)
-    #             except ET.ParseError:
-    #                 print(f" Greška parsiranja XML-a: {filename}. Preskačem fajl.")
-    #                 continue
+                output_akn_path = os.path.join(article_folder, filename)
+                try:
+                    result = process_xml_file(output_akn_path)
+                except ET.ParseError:
+                    print(f" Greška parsiranja XML-a: {filename}. Preskačem fajl.")
+                    continue
 
-    #             if result is None:
-    #                 print(f" Greška prilikom obrade fajla: {filename}")
-    #                 continue
+                if result is None:
+                    print(f" Greška prilikom obrade fajla: {filename}")
+                    continue
 
-    #             metadata, facts = result
-    #             base_name = os.path.splitext(filename)[0]
+                metadata, facts = result
+                base_name = os.path.splitext(filename)[0]
 
                
-    #             metadata_csv_path = os.path.join(article_folder, f"{base_name}_metadata.csv")
-    #             facts_csv_path = os.path.join(article_folder, f"{base_name}_facts.csv")
+                metadata_csv_path = os.path.join(article_folder, f"{base_name}_metadata.csv")
+                facts_csv_path = os.path.join(article_folder, f"{base_name}_facts.csv")
 
       
-    #             pd.DataFrame([metadata]).to_csv(metadata_csv_path, index=False, encoding="utf-8-sig")
-    #             pd.DataFrame([facts]).to_csv(facts_csv_path, index=False, encoding="utf-8-sig")
+                pd.DataFrame([metadata]).to_csv(metadata_csv_path, index=False, encoding="utf-8-sig")
+                pd.DataFrame([facts]).to_csv(facts_csv_path, index=False, encoding="utf-8-sig")
 
-    #             print(f"✔ Kreirani CSV fajlovi za: {filename}")
+                print(f"✔ Kreirani CSV fajlovi za: {filename}")
 
-    # except KeyboardInterrupt:
-    #     print("\nProcess interrupted by user. Exiting.")
-    #     sys.exit(0)
+    except KeyboardInterrupt:
+        print("\nProcess interrupted by user. Exiting.")
+        sys.exit(0)
 
   
     # convert_articles_to_ruleml(

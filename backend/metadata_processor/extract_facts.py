@@ -1,90 +1,249 @@
 import json
 import xml.etree.ElementTree as ET
 import os
+import re
 from dotenv import load_dotenv
 import openai
+import glob
+import csv
+
 
 load_dotenv()
-
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 OPENAI_MODEL = "gpt-4o"
 
 NS = {"akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"}
 
-def extract_relevant_sections(root):
-    facts_section = root.find(".//akn:section[@eId='sec.motivation.facts']", NS)
-    legal_section = root.find(".//akn:section[@eId='sec.motivation.legal']", NS)
 
-    texts = []
-    for section in [facts_section, legal_section]:
-        if section is not None:
-            for elem in section.iter():
-                if elem.text and elem.text.strip():
-                    texts.append(elem.text.strip())
-                if elem.tail and elem.tail.strip():
-                    texts.append(elem.tail.strip())
-    relevant_text = " ".join(texts)
+
+def extract_relevant_sections(root):
+    def extract_section(eid):
+        sec = root.find(f".//akn:section[@eId='{eid}']", NS)
+        if sec is None:
+            return ""
+        return " ".join(
+            "".join(p.itertext()).strip()
+            for p in sec.findall(".//akn:p", NS)
+        )
+
+    facts_text = extract_section("sec.motivation.facts")
+    legal_text = extract_section("sec.motivation.legal")
+
+    guilt_section = root.find(".//akn:article[@eId='sec.decision.guilt']", NS)
+    guilt_text = (
+        " ".join("".join(p.itertext()).strip() for p in guilt_section.findall(".//akn:p", NS))
+        if guilt_section is not None else ""
+    )
 
     sanction_section = root.find(".//akn:article[@eId='sec.decision.sanction']", NS)
-    penalty_text = ""
-    if sanction_section is not None:
-        paragraphs = ["".join(p.itertext()).strip() for p in sanction_section.findall(".//akn:p", NS)]
-        penalty_text = " ".join([p for p in paragraphs if p])
+    sanction_text = (
+        " ".join("".join(p.itertext()).strip() for p in sanction_section.findall(".//akn:p", NS))
+        if sanction_section is not None else ""
+    )
 
-    security_section = root.find(".//akn:article[@eId='sec.decision.securityMeasure']", NS)
-    security_text = ""
-    if security_section is not None:
-        paragraphs = ["".join(p.itertext()).strip() for p in security_section.findall(".//akn:p", NS)]
-        security_text = " ".join([p for p in paragraphs if p])
+    # razdvajanje kazne i mjere bezbjednosti
+    parts = re.split(r"\bMJERA BEZBIJEDNOSTI\b", sanction_text, flags=re.IGNORECASE)
+    penalty = parts[0].strip()
+    security = "MJERA BEZBIJEDNOSTI " + parts[1].strip() if len(parts) > 1 else ""
 
-    return relevant_text, penalty_text, security_text
+    return facts_text, legal_text + " " + guilt_text, penalty, security
 
-def call_openai_for_facts(relevant_text):
+
+
+def extract_victim(root, facts_text):
+    ref = root.find(".//akn:section[@eId='sec.motivation.facts']//akn:ref", NS)
+    if ref is not None and ref.text:
+        return ref.text.strip()
+
+    m = re.search(
+        r"(oštećen[auo]?\s+[A-ZČĆŠĐŽ]\.\s*[A-ZČĆŠĐŽ]\.|"
+        r"člana porodice\s+[A-ZČĆŠĐŽ][a-zčćđšž]+\s+[A-ZČĆŠĐŽ][a-zčćđšž]+)",
+        facts_text
+    )
+    return m.group(1) if m else ""
+
+def extract_time_period(text):
+    patterns = [
+        r"\d{1,2}\.\d{1,2}\.\d{4}\s*[–-]\s*\d{1,2}\.\d{1,2}\.\d{4}",
+        r"\d{1,2}\.\d{1,2}\.\d{4}",
+        r"\d{1,2}\.\s*[a-zčćđšž]+\s*\d{4}\.\s*godine"
+    ]
+    for p in patterns:
+        m = re.search(p, text, re.IGNORECASE)
+        if m:
+            return m.group(0)
+    return ""
+
+
+
+def extract_means_llm(facts_text):
+    if not facts_text.strip():
+        return ""
+
+    prompt = f"""
+Iz sledećeg teksta izdvoji ISKLJUČIVO sredstvo ili način izvršenja krivičnog dela.
+
+PRAVILA:
+- 1–5 riječi
+- Bez kazne
+- Bez mjere bezbjednosti
+- Ako nije eksplicitno navedeno → ""
+
+PRIMJERI:
+"prijetnjom"
+"putem društvenih mreža"
+"fizičkom silom"
+
+TEKST:
+{facts_text}
+
+Vrati validan JSON:
+{{ "means_of_commission": "" }}
+"""
+
     response = client.chat.completions.create(
         model=OPENAI_MODEL,
-        messages=[
-            {
-                "role": "system",
-                "content": """
-Ti si ekspert za analizu sudskih presuda.
-Tvoj zadatak je STRIKTNA EKSTRAKCIJA.
-NE parafraziraj.
-NE tumači.
-NE zaključuj.
-NE popunjavaj pretpostavke.
-Izvlači ISKLJUČIVO ono što je eksplicitno navedeno u tekstu.
-Ako podatak ne postoji, vrati praznu vrijednost "".
-Vrati isključivo validan JSON:
-
-{
-  "act_description": "",
-  "victim": "",
-  "time_period": "",
-  "means_of_commission": "",
-  "legal_qualification": ""
-}
-"""
-            },
-            {
-                "role": "user",
-                "content": f"Ekstrahuj podatke iz sljedećeg teksta:\n\n{relevant_text}"
-            }
-        ],
+        messages=[{"role": "user", "content": prompt}],
         temperature=0,
         response_format={"type": "json_object"}
     )
-    return response.choices[0].message.content
+
+    data = json.loads(response.choices[0].message.content)
+    return data.get("means_of_commission", "").strip()
+
+
+
+def extract_injury_severity_llm(facts_text):
+    if not facts_text.strip():
+        return ""
+
+    prompt = f"""
+Utvrdi da li je u tekstu EKSPPLICITNO navedena tjelesna povreda.
+
+DOZVOLJENE VRIJEDNOSTI:
+- "laka tjelesna povreda"
+- "teška tjelesna povreda"
+- "nema tjelesne povrede"
+- ""
+
+PRAVILA:
+- Ne zaključuj
+- Ne koristi član zakona
+- Ako se pominju samo prijetnje → "nema tjelesne povrede"
+- Ako nije jasno → ""
+
+TEKST:
+{facts_text}
+
+Vrati validan JSON:
+{{ "injury_severity": "" }}
+"""
+
+    response = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"}
+    )
+
+    data = json.loads(response.choices[0].message.content)
+    return data.get("injury_severity", "").strip()
+
+
+def call_openai_core(facts_text, legal_text):
+    if not facts_text.strip():
+        return {"act_description": "", "legal_qualification": ""}
+
+    prompt = f"""
+Ti si ekspert za analizu krivičnih presuda u Crnoj Gori.
+
+ZADATAK:
+Ekstrahuj ISKLJUČIVO eksplicitno navedene podatke.
+
+OGRANIČENJA:
+- Bez imena oštećenog
+- Bez kazne
+- Bez člana zakona u opisu
+
+POLJA:
+1. act_description
+2. legal_qualification
+
+ČINJENICE:
+{facts_text}
+
+PRAVNA KVALIFIKACIJA:
+{legal_text}
+
+Vrati ISKLJUČIVO JSON.
+"""
+
+    response = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"}
+    )
+
+    return json.loads(response.choices[0].message.content)
 
 def extract_facts(root):
-    relevant_text, penalty_text, security_text = extract_relevant_sections(root)
-    ai_response = call_openai_for_facts(relevant_text)
-    try:
-        facts = json.loads(ai_response)
-    except json.JSONDecodeError:
-        raise ValueError("NLP greška: nevalidan JSON")
-    
-    # Dodavanje kazne i sigurnosne mere
-    facts["penalty"] = penalty_text
-    facts["security_measure"] = security_text
-    return facts
+    facts_text, legal_text, penalty, security = extract_relevant_sections(root)
+
+    data = call_openai_core(facts_text, legal_text)
+
+    data["victim"] = extract_victim(root, facts_text)
+    data["time_period"] = extract_time_period(facts_text)
+    data["means_of_commission"] = extract_means_llm(facts_text)
+    data["injury_severity"] = extract_injury_severity_llm(facts_text)
+    data["penalty"] = penalty
+    data["security_measure"] = security
+
+    for k in [
+        "act_description",
+        "legal_qualification",
+        "victim",
+        "time_period",
+        "means_of_commission",
+        "injury_severity",
+        "penalty",
+        "security_measure"
+    ]:
+        data.setdefault(k, "")
+
+    return data
+
+
+def process_folder(folder_path, output_csv="output.csv"):
+    rows = []
+
+    for file in glob.glob(os.path.join(folder_path, "*.xml")):
+        try:
+            tree = ET.parse(file)
+            root = tree.getroot()
+            row = extract_facts(root)
+            row["file_name"] = os.path.basename(file)
+            rows.append(row)
+        except Exception as e:
+            print(f"Greška u fajlu {file}: {e}")
+
+    with open(output_csv, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=[
+                "file_name",
+                "act_description",
+                "legal_qualification",
+                "victim",
+                "time_period",
+                "means_of_commission",
+                "injury_severity",
+                "penalty",
+                "security_measure"
+            ]
+        )
+        writer.writeheader()
+        writer.writerows(rows)
+
+    print("✔ CSV generisan:", output_csv)

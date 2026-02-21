@@ -108,3 +108,6 @@ if __name__ == "__main__":
     #     "../data/laws/law.xml",
     #     "../data/rulebase/rulebase.lrml"
     # )
+
+
+#NAPRAVITI SKRIPTU DA SPOJI 2 CSV FAJLA

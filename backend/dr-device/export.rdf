@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+     <!ENTITY defeasible "http://lpis.csd.auth.gr/systems/dr-device/defeasible.rdfs#">
+     <!ENTITY export "http://startrek.csd.auth.gr/dr-device/export/export.rdf#"> 
+     <!ENTITY proof-export "http://startrek.csd.auth.gr/dr-device/proof/proof.ruleml#"> 
+]>
+
+<rdf:RDF
+     xmlns:rdf='&rdf;'
+     xmlns:rdfs='&rdfs;'
+     xmlns:defeasible='&defeasible;'
+     xmlns:export='&export;'
+>
+
+<rdfs:Class rdf:about='&export;is_guilty_of_family_violence_lv1'>
+     <rdfs:label rdf:resource='is_guilty_of_family_violence_lv1'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;is_guilty_of_family_violence_lv2'>
+     <rdfs:label rdf:resource='is_guilty_of_family_violence_lv2'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;min_imprisonment'>
+     <rdfs:label rdf:resource='min_imprisonment'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;max_imprisonment'>
+     <rdfs:label rdf:resource='max_imprisonment'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+
+<rdf:Property rdf:about='&export;defendant'>
+     <rdfs:domain rdf:resource='&export;is_guilty_of_family_violence_lv1'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;defendant'>
+     <rdfs:domain rdf:resource='&export;is_guilty_of_family_violence_lv2'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;value'>
+     <rdfs:domain rdf:resource='&export;min_imprisonment'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;value'>
+     <rdfs:domain rdf:resource='&export;max_imprisonment'/>
+</rdf:Property>
+
+<export:is_guilty_of_family_violence_lv1 rdf:about='&export;is_guilty_of_family_violence_lv11'>
+     <export:defendant>Marko M.</export:defendant>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof1</defeasible:proof>
+</export:is_guilty_of_family_violence_lv1>
+
+<export:is_guilty_of_family_violence_lv2 rdf:about='&export;is_guilty_of_family_violence_lv21'>
+     <export:defendant>Marko M.</export:defendant>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof2</defeasible:proof>
+</export:is_guilty_of_family_violence_lv2>
+
+<export:min_imprisonment rdf:about='&export;min_imprisonment1'>
+     <export:value>1</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof3</defeasible:proof>
+</export:min_imprisonment>
+
+<export:min_imprisonment rdf:about='&export;min_imprisonment2'>
+     <export:value>3</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof5</defeasible:proof>
+</export:min_imprisonment>
+
+<export:min_imprisonment rdf:about='&export;min_imprisonment3'>
+     <export:value>6</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof6</defeasible:proof>
+</export:min_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment1'>
+     <export:value>1</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof9</defeasible:proof>
+</export:max_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment2'>
+     <export:value>2</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof11</defeasible:proof>
+</export:max_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment3'>
+     <export:value>3</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof12</defeasible:proof>
+</export:max_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment4'>
+     <export:value>12</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof13</defeasible:proof>
+</export:max_imprisonment>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment5'>
+     <export:value>5</export:value>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof15</defeasible:proof>
+</export:max_imprisonment>
+
+</rdf:RDF>

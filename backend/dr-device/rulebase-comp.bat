@@ -1,0 +1,5 @@
+(import-rdf )
+(import-rdf-files facts.rdf)
+(load-compiled-dr-device rulebase.clp)
+(go-dr-device)
+(dr-device_export_rdf rulebase.ruleml export.rdf proof.ruleml is_guilty_of_family_violence_lv1 is_guilty_of_family_violence_lv2 min_imprisonment max_imprisonment)

@@ -1,13 +1,26 @@
 
-
 (dribble-on "rulebase.log")
 (batch* "bin\\dr-device.bat")
 (set-verbose on)
-(set-debug off)
+(set-debug on)
 (set-time-report off)
 (set-compact-proofs on)
 (set-export-non-proved off)
-(load-ruleml-dr-device-local "rulebase" "rulebase.ruleml")
+(watch facts)
+(watch rules)
+(watch activations)
+(watch focus)
+(watch compilations)
+(open "rulebase.clp" in "r")
+(open "copy.clp" out "w")
+
+(while (neq (bind ?line (readline in)) EOF)
+   do
+   (printout out ?line crlf))
+
+(close in)
+(close out)
+(load-dr-device "rulebase.clp")
 (dribble-off)
 (exit)
 (exit)

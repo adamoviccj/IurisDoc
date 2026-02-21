@@ -35,7 +35,9 @@ if __name__ == "__main__":
     # )
 
 
-    # extract_text_from_pdf("../data/cases")
+    extract_text_from_pdf("../data/cases/article_221/K_90_2024.pdf")
+    convert_case_to_akoma_ntoso('../data/cases/article_221/K_90_2024.txt', '../data/cases/article_221/K_90_2024_akn.xml', 'article_221')
+
 
   
     # target_folders = ["article_220", "article_221"]
@@ -60,6 +62,7 @@ if __name__ == "__main__":
   
     target_folders = ["article_220", "article_221"]
 
+  
     try:
         for folder_name in target_folders:
             article_folder = os.path.join("../data/cases", folder_name)

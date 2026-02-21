@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-38-2024"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudBar">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-bar/K-38-2024"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-bar/K-38-2024"/>
+          <FRBRdate date="2024-04-09" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudBar" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-bar/K-38-2024/2024-04-09@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-bar/K-38-2024/2024-04-09"/>
+          <FRBRdate date="2024-04-09" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-bar/K-38-2024/2024-04-09.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-bar/K-38-2024/2024-04-09.xml"/>
+          <FRBRdate date="2024-04-09" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudBar">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudBar"
+                         id="org.osnovniSudBar"
+                         showAs="Osnovni sud u Baru"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.tamaraSpasojevic"
+                   id="person.tamaraSpasojevic"
+                   showAs="Tamara Spasojević"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.anaStanisic"
+                   id="person.anaStanisic"
+                   showAs="Ana Stanišić"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.MK"
+                   id="person.MK"
+                   showAs="M. K."/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.SB"
+                   id="person.SB"
+                   showAs="S. B."/>
+
+        <!-- ZAKONSKI ZASTUPNIK -->
+        <TLCPerson eId="person.ASK"
+                   id="person.ASK"
+                   showAs="A. S. K."/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.tamaraSpasojevic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.anaStanisic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudBar">Osnovni sud u Baru</ref>,
+          sudija <ref href="#person.tamaraSpasojevic">Tamara Spasojević</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.anaStanisic">Ane Stanišić</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.MK"
+                 role="accused">M. K.</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnika optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.SB"
+                 role="prosecutor"/>,
+          dana 09.04.2024. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.MK">M. K.</ref> oglašava se krivim
+            zbog dva krivična djela
+            nedavanje izdržavanja iz <ref href="#art_221__para_1">čl. 221 st. 1</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se jedinstvena novčana kazna u iznosu od 400,00 eura,
+            koju kaznu je dužan da plati u roku od 3 mjeseca od dana pravosnažnosti presude,
+            pod prijetnjom izvršenja.
+          </p>
+        </article>
+
+        <article eId="sec.decision.compensation">
+          <heading>Imovinskopravna obaveza</heading>
+          <p eId="sec.decision.compensation.p1">
+            Okrivljeni je dužan da na ime dospjelih obaveza na ime izdržavanja
+            malodobnih A. K. i B. K., zakonskoj zastupnici
+            <ref href="#person.ASK">A. S. K.</ref> isplati iznos od 1.706,25 eura
+            koje je dužan da isplati u roku od 15 dana od dana pravosnažnosti presude
+            pod prijetnjom prinudnog izvršenja.
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni je dužan da plati troškove krivičnog postupka
+            u iznosu od 82,50 eura, kao i sudski paušal
+            u iznosu od 50,00 eura,
+            shodno <ref href="#art_229">čl. 229</ref>
+            <ref href="#law.ZKP">ZKP</ref>.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da okrivljeni u periodu
+            05.06.2022–05.02.2024.
+            nije davao izdržavanje za svoju maloljetnu djecu
+            A. K. i B. K.,
+            iako je ta obaveza utvrđena
+            pravosnažnom presudom.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnog djela iz <ref href="#art_221__para_1">čl. 221 st.1</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Kao olakšavajuće okolnosti sud je cijenio
+            raniju neosuđivanost i porodične prilike.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U BARU
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.anaStanisic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.tamaraSpasojevic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

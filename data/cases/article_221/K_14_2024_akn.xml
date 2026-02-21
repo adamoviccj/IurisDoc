@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-14-2024"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudHercegNovi">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-herceg-novi/K-14-2024"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-herceg-novi/K-14-2024"/>
+          <FRBRdate date="2024-09-23" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudHercegNovi" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-herceg-novi/K-14-2024/2024-09-23@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-herceg-novi/K-14-2024/2024-09-23"/>
+          <FRBRdate date="2024-09-23" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-herceg-novi/K-14-2024/2024-09-23.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-herceg-novi/K-14-2024/2024-09-23.xml"/>
+          <FRBRdate date="2024-09-23" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudHercegNovi">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudHercegNovi"
+                         id="org.osnovniSudHercegNovi"
+                         showAs="Osnovni sud u Herceg Novom"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.vesnaGazdic"
+                   id="person.vesnaGazdic"
+                   showAs="Vesna Gazdić"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.katarinaRistic"
+                   id="person.katarinaRistic"
+                   showAs="Katarina Ristić"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.VM"
+                   id="person.VM"
+                   showAs="V. M."/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.ristoStijovic"
+                   id="person.ristoStijovic"
+                   showAs="Risto Stijović"/>
+
+        <!-- OŠTEĆENI -->
+        <TLCPerson eId="person.VA"
+                   id="person.VA"
+                   showAs="V. A."/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.vesnaGazdic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.katarinaRistic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudHercegNovi">Osnovni sud u Herceg Novom</ref>,
+          sudija <ref href="#person.vesnaGazdic">Vesna Gazdić</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.katarinaRistic">Katarine Ristić</ref>,
+          po optužnom predlogu ODT Herceg Novi,
+          protiv <party eId="party.accused"
+                 refersTo="#person.VM"
+                 role="accused">V. M.</party>,
+          zbog dva krivična djela nedavanje izdržavanja iz
+          <ref href="#law.KZCG">čl. 221 st. 1 Krivičnog zakonika CG</ref>,
+          donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.VM">V. M.</ref> oglašava se krivim
+            zbog dva krivična djela nedavanje izdržavanja iz
+            <ref href="#law.KZCG">čl. 221 st. 1 Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se uslovna osuda kojom se utvrđuje jedinstvena kazna zatvora
+            u trajanju od 40 dana, sa rokom provjeravanja od 1 godine.
+          </p>
+        </article>
+
+        <article eId="sec.decision.compensation">
+          <heading>Imovinskopravna obaveza</heading>
+          <p eId="sec.decision.compensation.p1">
+            Okrivljeni je dužan da zakonskoj zastupnici oštećenih
+            <ref href="#person.VA">V. A.</ref>,
+            isplati iznos od 1.650,00 eura.
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni se obavezuje da naknadi troškove krivičnog postupka
+            u iznosu od 66,00 eura i troškove paušala u iznosu od 30,00 eura.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Obrazloženje je izostalo na osnovu
+            <ref href="#law.ZKP">čl. 458 st. 7 ZKP-a</ref>,
+            jer su se stranke odrekle prava žalbe i ne zahtjevaju pisani otpravak presude.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U HERCEG NOVOM
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.katarinaRistic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.vesnaGazdic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-107-2024"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudBijeloPolje">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-bijelo-polje/K-107-2024"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-bijelo-polje/K-107-2024"/>
+          <FRBRdate date="2024-07-30" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudBijeloPolje" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-bijelo-polje/K-107-2024/2024-07-30@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-bijelo-polje/K-107-2024/2024-07-30"/>
+          <FRBRdate date="2024-07-30" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-bijelo-polje/K-107-2024/2024-07-30.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-bijelo-polje/K-107-2024/2024-07-30.xml"/>
+          <FRBRdate date="2024-07-30" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudBijeloPolje">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudBijeloPolje"
+                         id="org.osnovniSudBijeloPolje"
+                         showAs="Osnovni sud u Bijelom Polju"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.bojanaRadovic"
+                   id="person.bojanaRadovic"
+                   showAs="Bojana Radović"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.koviljkaLjesnjak"
+                   id="person.koviljkaLjesnjak"
+                   showAs="Koviljka Lješnjak"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.MZ"
+                   id="person.MZ"
+                   showAs="M. Ž."/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.ljubisaJokic"
+                   id="person.ljubisaJokic"
+                   showAs="Ljubiša Jokić"/>
+
+        <!-- OŠTEĆENA -->
+        <TLCPerson eId="person.AZ"
+                   id="person.AZ"
+                   showAs="A. Ž."/>
+
+        <!-- OŠTEĆENI -->
+        <TLCPerson eId="person.DV"
+                   id="person.DV"
+                   showAs="D. V."/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.bojanaRadovic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.koviljkaLjesnjak"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudBijeloPolje">Osnovni sud u Bijelom Polju</ref>,
+          sudija <ref href="#person.bojanaRadovic">Bojana Radović</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.koviljkaLjesnjak">Koviljke Lješnjak</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.MZ"
+                 role="accused">M. Ž.</party>,
+          po optužnom predlogu ODT,
+          u prisustvu savjetnika u Osnovnom državnom tužilaštvu u Bijelom Polju,
+          <ref href="#person.ljubisaJokic">Ljubiše Jokića</ref>,
+          dana 30.07.2024. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.MZ">M. Ž.</ref> oglašava se krivim
+            zbog krivičnog djela
+            nasilje u porodici ili u porodičnoj zajednici iz
+            <ref href="#art_220__para_1">čl. 220 st. 1</ref> i
+            <ref href="#art_220__para_3">3</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>
+            u odnosu na oštećenu <ref href="#person.AZ">A. Ž.</ref> i
+            krivičnog djela nasilje u porodici ili u porodičnoj zajednici iz
+            <ref href="#art_220__para_3">čl. 220 st. 3</ref>
+            <ref href="#law.KZCG">KZ</ref> u odnosu na oštećenog
+            <ref href="#person.DV">D. V.</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Za krivično djelo nasilje u porodici ili u porodičnoj zajednici iz
+            <ref href="#art_220__para_1">čl. 220 st. 1</ref> i
+            <ref href="#art_220__para_3">3</ref>
+            <ref href="#law.KZCG">KZ</ref>, u odnosu na oštećenu
+            <ref href="#person.AZ">A. Ž.</ref>, kazna zatvora od pet mjeseci,
+            a za krivično djelo nasilje u porodici ili u porodičnoj zajednici iz
+            <ref href="#art_220__para_3">čl. 220 st. 3</ref>
+            <ref href="#law.KZCG">KZ</ref>, u odnosu na oštećenog
+            <ref href="#person.DV">D. V.</ref>, kazna zatvora od tri mjeseca,
+            pa mu se na osnovu člana 48 Krivičnog zakonika izriče
+            uslovna osuda kojom mu se utvrđuje jedinstvena kazna zatvora
+            od sedam mjeseci i istovremeno određuje da se ista neće izvršiti,
+            ukoliko okrivljeni u roku od dvije godine, po pravosnažnosti presude,
+            ne izvrši novo krivično djelo.
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni se obavezuje da plati ovom sudu na ime paušala iznos od 30,00 eura,
+            kao i da plati na ime troškova vještačenja iznos od 60,50 eura i troškove
+            krivičnog postupka nastale angažovanjem branioca po službenoj dužnosti,
+            o čemu će se odlučiti posebnim rješenjem.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da je okrivljeni dana 08.07.2024. godine oko 20,00 h
+            u mjestu P., opština M., u porodičnoj kući, svjestan svog djela čije je
+            izvršenje htio, znajući da je isto zabranjeno, lako tjelesno povrijedio
+            člana svoje porodice – suprugu <ref href="#person.AZ">A. Ž.</ref>,
+            te prema istoj više puta primijenio nasilje i istoj drskim i bezobzirnim
+            ponašanjem ugrozio duševni integritet i drskim i bezobzirnim ponašanjem
+            ugrozio tjelesni integritet člana svoje porodice - tasta oštećenog
+            <ref href="#person.DV">D. V.</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja krivičnog djela iz
+            <ref href="#art_220__para_1">čl. 220 st. 1</ref> i
+            <ref href="#art_220__para_3">3</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Kao olakšavajuće okolnosti sud je cijenio raniju neosuđivanost,
+            činjenicu da je okrivljeni otac jednog maloljetnog djeteta,
+            te da se oštećeni nisu pridružili krivičnom gonjenju.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U BIJELOM POLJU
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.koviljkaLjesnjak"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.bojanaRadovic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

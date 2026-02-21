@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-12-2024"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudCetinje">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-cetinje/K-12-2024"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-cetinje/K-12-2024"/>
+          <FRBRdate date="2024-06-25" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudCetinje" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-cetinje/K-12-2024/2024-06-25@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-cetinje/K-12-2024/2024-06-25"/>
+          <FRBRdate date="2024-06-25" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-cetinje/K-12-2024/2024-06-25.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-cetinje/K-12-2024/2024-06-25.xml"/>
+          <FRBRdate date="2024-06-25" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudCetinje">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudCetinje"
+                         id="org.osnovniSudCetinje"
+                         showAs="Osnovni sud u Cetinju"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.branislavLekovic"
+                   id="person.branislavLekovic"
+                   showAs="Branislav Leković"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.aleksandraMartinovic"
+                   id="person.aleksandraMartinovic"
+                   showAs="Aleksandra Martinović"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.VV"
+                   id="person.VV"
+                   showAs="V. V."/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.sanjaRadunovic"
+                   id="person.sanjaRadunovic"
+                   showAs="Sanja Radunović"/>
+
+        <!-- BRANILAC -->
+        <TLCPerson eId="person.SB"
+                   id="person.SB"
+                   showAs="S. B."/>
+
+        <!-- OŠTEĆENA -->
+        <TLCPerson eId="person.MJ"
+                   id="person.MJ"
+                   showAs="M. J."/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.branislavLekovic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.aleksandraMartinovic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudCetinje">Osnovni sud u Cetinju</ref>,
+          sudija <ref href="#person.branislavLekovic">Branislav Leković</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.aleksandraMartinovic">Aleksandre Martinović</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.VV"
+                 role="accused">V. V.</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnice optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.sanjaRadunovic"
+                 role="prosecutor"/>,
+          dana 29.05.2024. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.VV">V. V.</ref> oglašava se krivim
+            zbog krivičnog djela
+            nedavanje izdržavanja iz <ref href="#art_221__para_1">čl. 221 st. 1</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se kazna zatvora u trajanju od 3 (tri) mjeseca.
+          </p>
+        </article>
+
+        <article eId="sec.decision.compensation">
+          <heading>Imovinskopravna obaveza</heading>
+          <p eId="sec.decision.compensation.p1">
+            Okrivljeni je dužan da zakonskoj zastupnici maloljetnog oštećenog
+            <party eId="party.victim"
+                   refersTo="#person.MJ"
+                   role="victim">mldb. V. N.</party>,
+            isplati iznos od 720,00 eura.
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni je dužan da plati troškove postupka
+            u iznosu od 132,00 eura,
+            shodno <ref href="#art_229">čl. 229</ref>
+            <ref href="#law.ZKP">ZKP</ref>.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da okrivljeni u periodu
+            od 17.07.2021. godine do 15.04.2022. godine
+            nije davao izdržavanje za svog sina
+            <ref href="#person.MJ">V. N.</ref>,
+            iako je ta obaveza utvrđena
+            pravosnažnom presudom.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnog djela iz <ref href="#art_221__para_1">čl. 221 st. 1</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Sud je cijenio raniju višestruku osuđivanost okrivljenog
+            i izrekao kaznu zatvora u trajanju od tri mjeseca.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U CETINJU
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.aleksandraMartinovic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.branislavLekovic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

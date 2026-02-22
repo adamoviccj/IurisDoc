@@ -23,7 +23,7 @@ for directory in directories:
 
         facts_path = os.path.join(directory, facts_file)
         metadata_path = os.path.join(directory, metadata_file)
-        output_path = os.path.join(directory, base_name + ".csv")
+        output_path = os.path.join(BASE_DIR, "backend", "presude-cbr", "src", "main", "resources", f"{base_name}.csv")
 
   
         if not os.path.exists(metadata_path):

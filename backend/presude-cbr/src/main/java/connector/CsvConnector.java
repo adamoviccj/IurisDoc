@@ -5,13 +5,11 @@ import java.nio.file.*;
 import java.util.*;
 
 import com.opencsv.CSVReader;
-
 import es.ucm.fdi.gaia.jcolibri.cbrcore.*;
 import model.CaseDescription;
 
 public class CsvConnector implements Connector {
 
-	// folder gdje se nalaze svi case CSV fajlovi
 	private static final String CASES_PATH = "src/main/resources";
 
 	@Override
@@ -25,35 +23,16 @@ public class CsvConnector implements Connector {
 					.filter(p -> p.toString().endsWith(".csv"))
 					.forEach(path -> {
 
-						// preskoči eventualni master fajl
-						if (path.getFileName().toString().equals("presude_master.csv"))
-							return;
-
 						try (CSVReader reader = new CSVReader(new FileReader(path.toFile()))) {
-
-							String[] values;
 
 							reader.readNext(); // header
 
-							// svaki fajl = jedan case → čitamo prvi podatak red
-							values = reader.readNext();
+							String[] values = reader.readNext();
 
-							if (values != null && values.length >= 9) {
+							if (values != null && values.length >= 20) {
 
 								CBRCase cbrCase = new CBRCase();
 								CaseDescription cd = new CaseDescription();
-
-								// MAPIRANJE PREMA TVOM FORMATU:
-								// 0 act_description
-								// 1 legal_qualification
-								// 2 victim
-								// 3 time_period
-								// 4 means_of_commission
-								// 5 injury_severity
-								// 6 penalty
-								// 7 security_measure
-								// 8 case_id
-								// ostale kolone ignorisemo
 
 								cd.setActDescription(values[0]);
 								cd.setLegalQualification(values[1]);
@@ -61,9 +40,14 @@ public class CsvConnector implements Connector {
 								cd.setTimePeriod(values[3]);
 								cd.setMeansOfCommission(values[4]);
 								cd.setInjurySeverity(values[5]);
-								cd.setPenalty(values[6]);
-								cd.setSecurityMeasure(values[7]);
-								cd.setCaseId(values[8]);
+								cd.setNumberOfVictims(values[6]);
+								cd.setRepetition(values[7]);
+								cd.setPreviousConviction(values[8]);
+								cd.setMitigatingFactors(values[9]);
+								cd.setAggravatingFactors(values[10]);
+								cd.setPenalty(values[11]);
+								cd.setSecurityMeasure(values[12]);
+								cd.setCaseId(values[13]);
 
 								cbrCase.setDescription(cd);
 								cases.add(cbrCase);
@@ -82,20 +66,9 @@ public class CsvConnector implements Connector {
 		return cases;
 	}
 
-	@Override
-	public void close() {}
-
-	@Override
-	public void deleteCases(Collection<CBRCase> cases) {}
-
-	@Override
-	public void storeCases(Collection<CBRCase> cases) {}
-
-	@Override
-	public Collection<CBRCase> retrieveSomeCases(CaseBaseFilter filter) {
-		return null;
-	}
-
-	@Override
-	public void initFromXMLfile(java.net.URL url) {}
+	@Override public void close() {}
+	@Override public void deleteCases(Collection<CBRCase> cases) {}
+	@Override public void storeCases(Collection<CBRCase> cases) {}
+	@Override public Collection<CBRCase> retrieveSomeCases(CaseBaseFilter filter) { return null; }
+	@Override public void initFromXMLfile(java.net.URL url) {}
 }

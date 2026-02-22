@@ -10,7 +10,6 @@ directories = [
 ]
 for directory in directories:
     print(f"\nObrada direktorijuma: {directory}")
-
  
     files = os.listdir(directory)
 

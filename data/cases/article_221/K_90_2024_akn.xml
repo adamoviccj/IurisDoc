@@ -52,7 +52,7 @@
         <!-- OKRIVLJENI -->
         <TLCPerson eId="person.radosavSpalevic"
                    id="person.radosavSpalevic"
-                   showAs="Radosav Spalević"/>
+                   showAs="Spalević Radosav"/>
 
         <!-- TUŽILAC -->
         <TLCPerson eId="person.amraSujkovic"
@@ -62,16 +62,16 @@
         <!-- OŠTEĆENI -->
         <TLCPerson eId="person.ferdAsslani"
                    id="person.ferdAsslani"
-                   showAs="Ferd Asslani"/>
+                   showAs="Asslani Ferd"/>
 
         <TLCPerson eId="person.nikolaTrkulja"
                    id="person.nikolaTrkulja"
-                   showAs="Nikola Trkulja"/>
+                   showAs="Trkulja Nikola"/>
 
         <!-- BRANILAC -->
         <TLCPerson eId="person.ratkoRmus"
                    id="person.ratkoRmus"
-                   showAs="Ratko Rmuš"/>
+                   showAs="Rmuš Ratko"/>
 
         <!-- PROPISI -->
         <TLCLaw eId="law.KZCG"
@@ -112,7 +112,7 @@
           u krivičnom predmetu protiv
           <party eId="party.accused"
                  refersTo="#person.radosavSpalevic"
-                 role="accused">Radosav Spalević</party>,
+                 role="accused">Spalević Radosava</party>,
           po optužnom predlogu ODT,
           u prisustvu zastupnice optužbe
           <party eId="party.prosecutor"
@@ -129,7 +129,7 @@
         <article eId="sec.decision.guilt">
           <heading>Okrivljeni</heading>
           <p eId="sec.decision.guilt.p1">
-            <ref href="#person.radosavSpalevic">Radosav Spalević</ref> oglašava se krivim
+            <ref href="#person.radosavSpalevic">Spalević Radosav</ref> oglašava se krivim
             zbog krivičnog djela
             ugrožavanje sigurnosti iz <ref href="#law.KZCG">čl. 168 st. 2 u vezi st. 1 Krivičnog zakonika Crne Gore</ref>.
           </p>
@@ -164,8 +164,7 @@
             Sud je utvrdio da okrivljeni dana 10.03.2024. godine,
             oko 11,30 časova, u zgradi u ulici Osme Crnogorske brigade broj 9/5,
             u Beranama, prijetnjom da će napasti na život i tijelo oštećenih
-            <ref href="#person.ferdAsslani">Asslani Ferda</ref> i
-            <ref href="#person.nikolaTrkulja">Trkulja Nikole</ref>,
+            <ref href="#person.ferdAsslani">Asslani Ferda</ref> i <ref href="#person.nikolaTrkulja">Trkulja Nikole</ref>,
             ugrozio njihovu sigurnost.
           </p>
         </section>

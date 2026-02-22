@@ -1,4 +1,4 @@
-﻿act_description,legal_qualification,victim,time_period,means_of_commission,injury_severity,penalty,security_measure
-"Okrivljeni u periodu od 01.01.2023. do 29.07.2024. nije davao izdržavanje za svoju maloljetnu djecu, iako je ta obaveza utvrđena pravosnažnom presudom.",nedavanje izdržavanja,J. L.,01.01.2023,,,"Izriče se uslovna osuda kojom se utvrđuje jedinstvena kazna zatvora
+﻿act_description,legal_qualification,victim,time_period,means_of_commission,injury_severity,number_of_victims,repetition,previous_conviction,mitigating_factors,aggravating_factors,penalty,security_measure
+"Okrivljeni u periodu od 01.01.2023. do 29.07.2024. nije davao izdržavanje za svoju maloljetnu djecu, iako je ta obaveza utvrđena pravosnažnom presudom.",nedavanje izdržavanja,J. L.,01.01.2023,,,2,,,,,"Izriče se uslovna osuda kojom se utvrđuje jedinstvena kazna zatvora
             u trajanju od 3 (tri) mjeseca,
             sa rokom provjeravanja od 1 godine.",

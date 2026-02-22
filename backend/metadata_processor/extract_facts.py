@@ -188,33 +188,6 @@ Vrati ISKLJUČIVO JSON.
 
     return json.loads(response.choices[0].message.content)
 
-def extract_facts(root):
-    facts_text, legal_text, penalty, security = extract_relevant_sections(root)
-
-    data = call_openai_core(facts_text, legal_text)
-
-    data["victim"] = extract_victim(root, facts_text)
-    data["time_period"] = extract_time_period(facts_text)
-    data["means_of_commission"] = extract_means_llm(facts_text)
-    data["injury_severity"] = extract_injury_severity_llm(facts_text)
-    data["penalty"] = penalty
-    data["security_measure"] = security
-
-    for k in [
-        "act_description",
-        "legal_qualification",
-        "victim",
-        "time_period",
-        "means_of_commission",
-        "injury_severity",
-        "penalty",
-        "security_measure"
-    ]:
-        data.setdefault(k, "")
-
-    return data
-
-
 def process_folder(folder_path, output_csv="output.csv"):
     rows = []
 
@@ -247,3 +220,252 @@ def process_folder(folder_path, output_csv="output.csv"):
         writer.writerows(rows)
 
     print("✔ CSV generisan:", output_csv)
+
+
+def extract_number_of_victims_llm(facts_text):
+    prompt = f"""
+Iz teksta izvuci broj oštećenih lica.
+
+Ako nije eksplicitno navedeno → vrati 1 ako se pominje jedno lice.
+Ako nije jasno → vrati "".
+
+Vrati JSON:
+{{ "number_of_victims": "" }}
+
+TEKST:
+{facts_text}
+"""
+
+    response = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"}
+    )
+
+    return json.loads(response.choices[0].message.content).get("number_of_victims", "")
+
+def extract_repetition_llm(facts_text):
+
+    if not facts_text.strip():
+        return ""
+
+    prompt = f"""
+Utvrdi da li je krivično djelo EKSPPLICITNO navedeno kao:
+
+- izvršeno više puta
+- u kontinuitetu
+- ponovljeno
+
+DOZVOLJENE VRIJEDNOSTI:
+- "jednom"
+- "više puta"
+- ""
+
+PRAVILA:
+- Ne zaključuj
+- Ako nije jasno navedeno → ""
+- Ako se pominje samo jedan događaj → "jednom"
+
+TEKST:
+{facts_text}
+
+Vrati ISKLJUČIVO JSON:
+{{ "repetition": "" }}
+"""
+
+    response = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"}
+    )
+
+    return json.loads(response.choices[0].message.content).get("repetition", "").strip()
+
+def extract_aggravating_llm(text):
+
+    if not text.strip():
+        return ""
+
+    prompt = f"""
+Iz teksta izdvoji ISKLJUČIVO eksplicitno navedene OTEŽAVAJUĆE OKOLNOSTI.
+
+Otežavajuće okolnosti mogu biti:
+- ranija osuđivanost
+- izvršenje pred djecom
+- višestruko izvršenje
+- posebno drsko ponašanje
+- upotreba oružja
+
+Ako nema eksplicitno navedenih → vrati "".
+
+Vrati kao kratku listu odvojenu zarezom.
+
+TEKST:
+{text}
+
+Vrati ISKLJUČIVO JSON:
+{{ "aggravating_factors": "" }}
+"""
+
+    response = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"}
+    )
+
+    return json.loads(response.choices[0].message.content)\
+             .get("aggravating_factors", "").strip()
+
+def extract_previous_conviction_llm(full_text):
+    if not full_text.strip():
+        return ""
+
+    prompt = f"""
+Utvrdi da li se u tekstu EKSPPLICITNO navodi da je okrivljeni ranije osuđivan.
+
+VAŽNO:
+- Ako piše "ranije neosuđivan" → odgovor je "ne"
+- Ne zaključuj
+- Ne pretpostavljaj
+- Gledaj samo eksplicitnu formulaciju
+
+DOZVOLJENE VRIJEDNOSTI:
+- "da"
+- "ne"
+- ""
+
+Ako nije jasno ili nije pomenuto → vrati ""
+
+Vrati ISKLJUČIVO JSON:
+{{ "previous_conviction": "" }}
+
+TEKST:
+{full_text}
+"""
+
+    response = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"}
+    )
+
+    data = json.loads(response.choices[0].message.content)
+    return data.get("previous_conviction", "").strip()
+
+def extract_mitigating_llm(text):
+    if not text.strip():
+        return ""
+
+    prompt = f"""
+Iz teksta izdvoji SAMO olakšavajuće okolnosti.
+
+Vrati kao kratku listu odvojenju zarezom.
+Ako nema → vrati "".
+
+TEKST:
+{text}
+
+Vrati JSON:
+{{ "mitigating_factors": "" }}
+"""
+
+    response = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"}
+    )
+
+    return json.loads(response.choices[0].message.content)\
+             .get("mitigating_factors", "")
+
+
+
+def extract_mitigating_factors(root):
+    """
+    Izvlači tekst iz dijela presude gdje se navode
+    olakšavajuće okolnosti (sec.motivation.sanction).
+    """
+
+    section = root.find(".//akn:section[@eId='sec.motivation.sanction']", NS)
+
+    if section is None:
+        return ""
+
+    text = " ".join(
+        "".join(p.itertext()).strip()
+        for p in section.findall(".//akn:p", NS)
+    )
+
+    return text.strip()
+
+def extract_aggravating_factors(root):
+    """
+    Izvlači kompletan motivacioni dio presude,
+    kako bi LLM mogao da detektuje otežavajuće okolnosti.
+    """
+
+    motivation = root.find(".//akn:motivation", NS)
+
+    if motivation is None:
+        return ""
+
+    text = " ".join(
+        "".join(p.itertext()).strip()
+        for p in motivation.findall(".//akn:p", NS)
+    )
+
+    return text.strip()
+
+def extract_facts(root):
+
+    
+    facts_text, legal_text, penalty, security = extract_relevant_sections(root)
+
+    data = call_openai_core(facts_text, legal_text)
+
+    data["victim"] = extract_victim(root, facts_text)
+    data["time_period"] = extract_time_period(facts_text)
+    data["means_of_commission"] = extract_means_llm(facts_text)
+    data["injury_severity"] = extract_injury_severity_llm(facts_text)
+
+
+    data["number_of_victims"] = extract_number_of_victims_llm(facts_text)
+    data["repetition"] = extract_repetition_llm(facts_text)
+    data["previous_conviction"] = extract_previous_conviction_llm(facts_text)
+
+ 
+    mitigation_text = extract_mitigating_factors(root)
+    data["mitigating_factors"] = extract_mitigating_llm(mitigation_text)
+
+    aggravation_text = extract_aggravating_factors(root)
+    data["aggravating_factors"] = extract_aggravating_llm(aggravation_text)
+
+
+    data["penalty"] = penalty
+    data["security_measure"] = security
+
+    required_keys = [
+        "act_description",
+        "legal_qualification",
+        "victim",
+        "time_period",
+        "means_of_commission",
+        "injury_severity",
+        "penalty",
+        "security_measure",
+        "number_of_victims",
+        "repetition",
+        "previous_conviction",
+        "mitigating_factors",
+        "aggravating_factors"
+    ]
+
+    for key in required_keys:
+        data.setdefault(key, "")
+
+    return data

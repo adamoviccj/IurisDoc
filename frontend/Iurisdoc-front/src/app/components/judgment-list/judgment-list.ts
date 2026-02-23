@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -18,6 +18,7 @@ import { MatAnchor } from '@angular/material/button';
 import { JudgmentListItem } from '../../models/judgment.model';
 import { JudgmentService } from '../../services/judgment-service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-judgment-list',
@@ -44,6 +45,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
   styleUrl: './judgment-list.css',
 })
 export class JudgmentList implements OnInit {
+  @ViewChild(CdkVirtualScrollViewport)
+  viewport!: CdkVirtualScrollViewport;
 
   judgments: JudgmentListItem[] = [];
   filteredJudgments: JudgmentListItem[] = [];
@@ -64,7 +67,10 @@ export class JudgmentList implements OnInit {
   years: string[] = [];
   legalQualifications: string[] = [];
 
-  constructor(private judgmentService: JudgmentService) {}
+  constructor(
+    private judgmentService: JudgmentService,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadJudgments();
@@ -76,15 +82,27 @@ export class JudgmentList implements OnInit {
 
     this.judgmentService.getAllJudgments().subscribe({
       next: (response) => {
+
         this.judgments = response.judgments ?? [];
+
         this.extractFilterOptions();
         this.applyFilters();
+
         this.loading = false;
+
+        // ⭐ KLJUČNO ZA VIRTUAL SCROLL
+        this.cdRef.detectChanges();
+
+        if (this.viewport) {
+          this.viewport.checkViewportSize();
+        }
       },
       error: (err) => {
         console.error(err);
         this.error = 'Greška pri učitavanju presuda.';
         this.loading = false;
+
+        this.cdRef.detectChanges();
       }
     });
   }
@@ -144,6 +162,13 @@ export class JudgmentList implements OnInit {
 
     this.filteredJudgments = filtered;
     this.pageIndex = 0;
+
+    // ⭐ OBAVEZNO nakon promene liste
+    this.cdRef.detectChanges();
+
+    if (this.viewport) {
+      this.viewport.checkViewportSize();
+    }
   }
 
   clearFilters(): void {

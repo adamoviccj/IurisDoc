@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
@@ -7,12 +7,13 @@ import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 
 import { LawResponse, Chapter, Article, Reference } from '../../models/law.model';
 import { LawService } from '../../services/law-service';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 
 interface LawNode {
@@ -27,7 +28,7 @@ interface LawNode {
   selector: 'app-law-display',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     MatTreeModule,
     MatProgressSpinnerModule,
     MatIconModule,
@@ -47,9 +48,6 @@ export class LawDisplay implements OnInit, OnDestroy {
   law: LawResponse | null = null;
   loading = true;
 
-  error: string | null = null;
-  connectionError = false;
-
   selectedChapter: Chapter | null = null;
   selectedArticle: Article | null = null;
 
@@ -58,7 +56,10 @@ export class LawDisplay implements OnInit, OnDestroy {
 
   private subs: Subscription[] = [];
 
-  constructor(public lawService: LawService) {}
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    public lawService: LawService
+  ) {}
 
   ngOnInit(): void {
     this.loadLaw();
@@ -79,28 +80,34 @@ export class LawDisplay implements OnInit, OnDestroy {
   // =========================
 
   loadLaw(): void {
-  this.lawService.getLaw(this.LAW_ID).subscribe(law => {
+    this.lawService.getLaw(this.LAW_ID).subscribe(law => {
 
-    law.chapters.forEach(ch =>
-      ch.articles.forEach(a =>
-        a.content.forEach(p =>
-          (p as any).parts = this.splitParagraphWithReferences(p)
+      // priprema teksta
+      law.chapters.forEach(ch =>
+        ch.articles.forEach(a =>
+          a.content.forEach(p =>
+            (p as any).parts = this.splitParagraphWithReferences(p)
+          )
         )
-      )
-    );
+      );
 
-    this.law = law;
-    this.lawService.setCurrentLaw(law);
-    this.buildTree(law);
+      this.law = law;
+      this.lawService.setCurrentLaw(law);
 
-    // ⭐ PRIKAŽI SAMO PRVO POGLAVLJE / ČLAN
-    this.selectedChapter = law.chapters[0] ?? null;
-    this.selectedArticle = law.chapters[0]?.articles[0] ?? null;
+      // ⭐ VAŽNO — reset datasource za MatTree
+      this.dataSource = new MatTreeNestedDataSource<LawNode>();
+      this.buildTree(law);
 
-    // dozvoli browseru da renderuje
-    setTimeout(() => this.loading = false);
-  });
-}
+      // inicijalni prikaz
+      this.selectedChapter = law.chapters[0] ?? null;
+      this.selectedArticle = law.chapters[0]?.articles[0] ?? null;
+
+      this.loading = false;
+
+      // ⭐ forsiraj render
+      this.cdRef.detectChanges();
+    });
+  }
 
   // =========================
   // TREE
@@ -129,7 +136,6 @@ export class LawDisplay implements OnInit, OnDestroy {
       this.selectedChapter = node.data;
       this.selectedArticle = null;
       this.lawService.setCurrentChapter(node.data);
-      this.lawService.setCurrentArticle(null);
       return;
     }
 
@@ -152,63 +158,54 @@ export class LawDisplay implements OnInit, OnDestroy {
 
   navigateToReference(ref: Reference) {
 
-  if (!this.law) return;
+    if (!this.law) return;
 
-  const id = ref.target.replace('#', '').trim();
+    const id = ref.target.replace('#', '').trim();
 
-  console.log('Navigating to:', id);
+    let el = document.getElementById(id);
 
-  // 1️⃣ pokušaj direktno u DOM-u
-  let el = document.getElementById(id);
+    if (el) {
+      this.highlight(el);
+      return;
+    }
 
-  if (el) {
-    this.highlight(el);
-    return;
-  }
+    for (const ch of this.law.chapters) {
+      for (const art of ch.articles) {
 
-  // 2️⃣ možda je referenca na član
-  for (const ch of this.law.chapters) {
-    for (const art of ch.articles) {
+        if (art.id === id) {
+          this.selectedChapter = ch;
+          this.selectedArticle = art;
 
-      if (art.id === id) {
+          this.lawService.setCurrentChapter(ch);
+          this.lawService.setCurrentArticle(art);
 
-        this.selectedChapter = ch;
-        this.selectedArticle = art;
+          setTimeout(() => {
+            const el2 = document.getElementById(id);
+            if (el2) this.highlight(el2);
+          });
 
-        this.lawService.setCurrentChapter(ch);
-        this.lawService.setCurrentArticle(art);
+          return;
+        }
 
-        setTimeout(() => {
-          const el2 = document.getElementById(id);
-          if (el2) this.highlight(el2);
-        }, 100);
+        const para = art.content.find(p => p.id === id);
 
-        return;
-      }
+        if (para) {
+          this.selectedChapter = ch;
+          this.selectedArticle = art;
 
-      // 3️⃣ referenca na stav
-      const para = art.content.find(p => p.id === id);
+          this.lawService.setCurrentChapter(ch);
+          this.lawService.setCurrentArticle(art);
 
-      if (para) {
+          setTimeout(() => {
+            const el3 = document.getElementById(id);
+            if (el3) this.highlight(el3);
+          });
 
-        this.selectedChapter = ch;
-        this.selectedArticle = art;
-
-        this.lawService.setCurrentChapter(ch);
-        this.lawService.setCurrentArticle(art);
-
-        setTimeout(() => {
-          const el3 = document.getElementById(id);
-          if (el3) this.highlight(el3);
-        }, 100);
-
-        return;
+          return;
+        }
       }
     }
   }
-
-  console.warn('Reference target not found:', id);
-}
 
   // =========================
   // HELPERS
@@ -221,36 +218,34 @@ export class LawDisplay implements OnInit, OnDestroy {
 
   highlight(el: HTMLElement) {
 
-  el.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center'
-  });
+    el.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
 
-  el.classList.add('referenced-paragraph-highlight');
+    el.classList.add('referenced-paragraph-highlight');
 
-  // highlightuj i član kontekst
-  const article = el.closest('.article-block');
-  if (article) {
-    article.classList.add('referenced-article-context');
+    const article = el.closest('.article-block');
+    if (article) {
+      article.classList.add('referenced-article-context');
+
+      setTimeout(() =>
+        article.classList.remove('referenced-article-context'),
+        2500
+      );
+    }
 
     setTimeout(() =>
-      article.classList.remove('referenced-article-context'),
+      el.classList.remove('referenced-paragraph-highlight'),
       2500
     );
   }
-
-  setTimeout(() =>
-    el.classList.remove('referenced-paragraph-highlight'),
-    2500
-  );
-}
 
   // =========================
   // TEXT WITH REFERENCES
   // =========================
 
   splitParagraphWithReferences(p: any) {
-    console.log('Splitting paragraph:', p.text, 'with refs:', p.references);
 
     if (!p.references?.length)
       return [{ text: p.text, ref: null }];

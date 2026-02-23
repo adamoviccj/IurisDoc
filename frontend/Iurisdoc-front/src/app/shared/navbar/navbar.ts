@@ -40,11 +40,11 @@ export class Navbar {
   }
 
   navItems = [
-    { label: 'Home', path: '/', icon: 'home' },
-    { label: 'Laws', path: '/laws', icon: 'description' },
-    { label: 'Judgments', path: '/judgments', icon: 'gavel' },
-    { label: 'About', path: '/about', icon: 'info' },
-    { label: 'Contact', path: '/contact', icon: 'contact_mail' }
+    { label: 'Početna', path: '/', icon: 'home' },
+    { label: 'Zakoni', path: '/laws', icon: 'description' },
+    { label: 'Presude', path: '/judgments', icon: 'gavel' },
+    { label: 'O nama', path: '/about', icon: 'info' },
+    { label: 'Kontakt', path: '/contact', icon: 'contact_mail' }
   ];
 
 

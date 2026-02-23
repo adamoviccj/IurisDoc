@@ -1,16 +1,15 @@
-<p>navbar works!</p>
 <mat-toolbar 
   class="navbar" 
   [class.scrolled]="isScrolled"
   color="primary">
   
-  <!-- Logo/Brand -->
+  <!-- Logo/Brend -->
   <div class="navbar-brand" routerLink="/">
     <mat-icon class="brand-icon">balance</mat-icon>
     <span class="brand-name">IurisDoc</span>
   </div>
 
-  <!-- Desktop Navigation Links -->
+  <!-- Desktop navigacija -->
   <div class="nav-links desktop-nav">
     @for (item of navItems; track item.path) {
       <a 
@@ -25,13 +24,13 @@
     }
   </div>
 
-  <!-- Desktop Action Buttons -->
+  <!-- Desktop dugmad akcija -->
   <div class="nav-actions desktop-actions">
-    <button mat-icon-button aria-label="Search">
+    <button mat-icon-button aria-label="Pretraga">
       <mat-icon>search</mat-icon>
     </button>
     
-    <button mat-icon-button aria-label="Notifications">
+    <button mat-icon-button aria-label="Obavještenja">
       <mat-icon>notifications</mat-icon>
     </button>
     
@@ -40,23 +39,23 @@
     </button>
 
     <button mat-raised-button color="accent" class="cta-btn">
-      Get Started
+      Započni
     </button>
   </div>
 
-  <!-- Mobile Menu Button -->
+  <!-- Dugme za mobilni meni -->
   <button 
     class="mobile-menu-btn" 
     mat-icon-button 
     (click)="toggleMobileMenu()"
-    aria-label="Toggle menu">
+    aria-label="Otvori meni">
     <mat-icon>{{isMobileMenuOpen ? 'close' : 'menu'}}</mat-icon>
   </button>
 </mat-toolbar>
 
-<!-- Mobile Menu Drawer -->
+<!-- Mobilni meni -->
 <div class="mobile-menu" [class.open]="isMobileMenuOpen">
-  <!-- Mobile Navigation Links -->
+  <!-- Linkovi -->
   <div class="mobile-nav-links">
     @for (item of navItems; track item.path) {
       <a 
@@ -71,49 +70,49 @@
     
     <mat-divider></mat-divider>
     
-    <!-- Mobile Actions -->
+    <!-- Mobilne akcije -->
     <a mat-list-item (click)="closeMobileMenu()">
       <mat-icon>search</mat-icon>
-      <span>Search</span>
+      <span>Pretraga</span>
     </a>
     
     <a mat-list-item (click)="closeMobileMenu()">
       <mat-icon>notifications</mat-icon>
-      <span>Notifications</span>
+      <span>Obavještenja</span>
     </a>
     
     <a mat-list-item (click)="closeMobileMenu()">
       <mat-icon>settings</mat-icon>
-      <span>Settings</span>
+      <span>Podešavanja</span>
     </a>
     
     <button mat-raised-button color="accent" class="mobile-cta" (click)="closeMobileMenu()">
-      Get Started
+      Započni
     </button>
   </div>
 </div>
 
-<!-- Profile Menu -->
+<!-- Profil meni -->
 <mat-menu #profileMenu="matMenu" class="profile-menu">
   <button mat-menu-item>
     <mat-icon>account_circle</mat-icon>
-    <span>Profile</span>
+    <span>Profil</span>
   </button>
   
   <button mat-menu-item>
     <mat-icon>settings</mat-icon>
-    <span>Settings</span>
+    <span>Podešavanja</span>
   </button>
   
   <button mat-menu-item>
     <mat-icon>help</mat-icon>
-    <span>Help</span>
+    <span>Pomoć</span>
   </button>
   
   <mat-divider></mat-divider>
   
   <button mat-menu-item>
     <mat-icon>logout</mat-icon>
-    <span>Logout</span>
+    <span>Odjava</span>
   </button>
 </mat-menu>

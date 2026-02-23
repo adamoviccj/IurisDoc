@@ -82,14 +82,16 @@
     </mat-card>
 
     <!-- Lista presuda -->
-    <cdk-virtual-scroll-viewport
+<cdk-virtual-scroll-viewport
   itemSize="260"
   class="viewport"
+  minBufferPx="800"
+  maxBufferPx="1200"
 >
 
   <div
     class="judgment-card-wrapper"
-    *cdkVirtualFor="let judgment of filteredJudgments;"
+    *cdkVirtualFor="let judgment of filteredJudgments"
   >
 
     <mat-card class="judgment-card"

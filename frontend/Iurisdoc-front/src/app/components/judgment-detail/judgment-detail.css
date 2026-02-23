@@ -84,9 +84,18 @@
 }
 
 /* Tabs */
+/* 🔥 POPRAVKA ZA MATERIAL TABS BUG */
+.mat-mdc-tab-body-wrapper {
+  overflow: visible !important;
+}
+
+.mat-mdc-tab-body-content {
+  overflow: visible !important;
+}
+
+/* sprečava collapse visine */
 .detail-tabs {
-  background: transparent;
-  margin-top: 24px;
+  min-height: 300px;
 }
 
 .tab-content {

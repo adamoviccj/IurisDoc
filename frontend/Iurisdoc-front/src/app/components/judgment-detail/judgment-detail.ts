@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -16,6 +16,10 @@ import { JudgmentService } from '../../services/judgment-service';
 import { Paragraph } from '../../models/law.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LawReferenceDialog } from '../law-reference-dialog/law-reference-dialog';
+import { ChangeDetectorRef } from '@angular/core';
+
+import { Subject, EMPTY } from 'rxjs';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-judgment-detail',
@@ -39,45 +43,92 @@ import { LawReferenceDialog } from '../law-reference-dialog/law-reference-dialog
   templateUrl: './judgment-detail.html',
   styleUrl: './judgment-detail.css',
 })
-export class JudgmentDetail implements OnInit {
+export class JudgmentDetail implements OnInit, OnDestroy {
+
   judgment: Judgment | null = null;
   loading = true;
   error: string | null = null;
-
   activeTab = 0;
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
     private judgmentService: JudgmentService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cdr: ChangeDetectorRef
   ) {}
 
-
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      if (params['caseId']) {
-        this.loadJudgment(params['caseId']);
-      }
-    });
+
+    console.log('🚨 [JudgmentDetail] ngOnInit pokrenut');
+
+    this.route.paramMap
+      .pipe(
+        takeUntil(this.destroy$),
+
+        tap(params => {
+          console.log('🚨 [Router] paramMap promenjen:', params);
+        }),
+
+        switchMap(params => {
+          const caseId = params.get('caseId');
+
+          console.log('🚨 [Router] caseId iz URL-a:', caseId);
+
+          if (!caseId) {
+            console.warn('🚨 [Router] caseId NE POSTOJI');
+            return EMPTY;
+          }
+
+          console.log('🚨 [Service] Pozivam getJudgment sa ID:', caseId);
+
+          this.loading = true;
+          this.error = null;
+          this.judgment = null;
+
+          return this.judgmentService.getJudgment(caseId).pipe(
+            tap(response => {
+              console.log('🚨 [Service] Odgovor sa servera:', response);
+            })
+          );
+        })
+      )
+      .subscribe({
+        next: judgment => {
+          console.log('🚨 [Subscribe] Dobijen judgment:', judgment);
+
+          this.judgment = { ...judgment };
+          this.loading = false;
+          this.activeTab = 0;
+          this.cdr.detectChanges();
+
+          console.log('🚨 [State] UI ažuriran - detectChanges pozvan');
+        },
+
+        error: err => {
+          console.error('🚨 [ERROR] Greška pri učitavanju:', err);
+
+          this.error = 'Došlo je do greške prilikom učitavanja presude.';
+          this.loading = false;
+        },
+
+        complete: () => {
+          console.log('🚨 [Subscribe] Stream završen');
+        }
+      });
   }
 
-  loadJudgment(caseId: string): void {
-    this.loading = true;
-    this.error = null;
+  ngOnDestroy(): void {
+    console.log('🚨 [JudgmentDetail] ngOnDestroy — komponenta se uništava');
 
-    this.judgmentService.getJudgment(caseId).subscribe({
-      next: (judgment) => {
-        this.judgment = judgment;
-        this.loading = false;
-      },
-      error: (err) => {
-        this.error = 'Došlo je do greške prilikom učitavanja presude.';
-        this.loading = false;
-      }
-    });
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   formatDate(dateStr: string): string {
+    console.log('🚨 formatDate pozvan sa:', dateStr);
+
     return new Date(dateStr).toLocaleDateString('sr-RS', {
       year: '2-digit',
       month: '2-digit',
@@ -86,39 +137,39 @@ export class JudgmentDetail implements OnInit {
   }
 
   splitParagraphWithReferences(paragraph: Paragraph): any[] {
-    if (!paragraph.references || paragraph.references.length === 0) {
+    console.log('🚨 splitParagraphWithReferences:', paragraph?.id);
+
+    if (!paragraph.references?.length) {
       return [{ text: paragraph.text, isRef: false }];
     }
 
     const parts: any[] = [];
-    let remainingText = paragraph.text;
     let lastIndex = 0;
 
     for (const ref of paragraph.references) {
-      const refText = ref.text;
-      const refIndex = remainingText.indexOf(refText, lastIndex);
+      const index = paragraph.text.indexOf(ref.text, lastIndex);
 
-      if (refIndex !== -1) {
-        if (refIndex > lastIndex) {
+      if (index !== -1) {
+        if (index > lastIndex) {
           parts.push({
-            text: remainingText.substring(lastIndex, refIndex),
+            text: paragraph.text.substring(lastIndex, index),
             isRef: false
           });
         }
 
         parts.push({
-          text: refText,
+          text: ref.text,
           isRef: true,
-          ref: ref
-          });
+          ref
+        });
 
-        lastIndex = refIndex + refText.length;
+        lastIndex = index + ref.text.length;
       }
     }
 
-    if (lastIndex < remainingText.length) {
+    if (lastIndex < paragraph.text.length) {
       parts.push({
-        text: remainingText.substring(lastIndex),
+        text: paragraph.text.substring(lastIndex),
         isRef: false
       });
     }
@@ -127,34 +178,39 @@ export class JudgmentDetail implements OnInit {
   }
 
   getSeverityColor(severity: string): string {
+    console.log('🚨 getSeverityColor:', severity);
+
     switch (severity?.toLowerCase()) {
-      case 'teška':
-        return '#c62828'; // Red
-      case 'laka':
-        return '#2e7d32';
-      default:
-        return 'primary';
+      case 'teška': return 'warn';
+      case 'laka': return 'primary';
+      default: return '';
     }
   }
 
   printJudgment(): void {
+    console.log('🚨 printJudgment klik');
     window.print();
   }
 
   openReference(ref: any): void {
-
-    const lawName = this.detectLawFromTarget(ref.target);
+    console.log('🚨 openReference:', ref);
 
     this.dialog.open(LawReferenceDialog, {
       width: '900px',
       data: {
-        lawName: lawName,
+        lawName: this.detectLawFromTarget(ref.target),
         target: ref.target
       }
     });
   }
 
   detectLawFromTarget(target: string): string {
+    console.log('🚨 detectLawFromTarget:', target);
     return 'law';
   }
+
+  trackParagraph(index: number, item: any): any {
+    return item.id;
+  }
+
 }

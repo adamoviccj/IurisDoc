@@ -1,6 +1,5 @@
 package cbr;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import connector.CsvConnector;
@@ -8,15 +7,14 @@ import es.ucm.fdi.gaia.jcolibri.casebase.LinealCaseBase;
 import es.ucm.fdi.gaia.jcolibri.cbraplications.StandardCBRApplication;
 import es.ucm.fdi.gaia.jcolibri.cbrcore.*;
 import es.ucm.fdi.gaia.jcolibri.exception.ExecutionException;
-//import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNScoringMethod;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.NNConfig;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
-import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.*;
+import es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.EqualsStringIgnoreCase;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.RetrievalResult;
 import es.ucm.fdi.gaia.jcolibri.method.retrieve.selection.SelectCases;
 import model.CaseDescription;
-import similarity.TabularSimilarity;
+import similarity.StringLevenshteinSimilarity;
 
 public class CbrApplication implements StandardCBRApplication {
 
@@ -33,36 +31,38 @@ public class CbrApplication implements StandardCBRApplication {
 		simConfig = new NNConfig();
 		simConfig.setDescriptionSimFunction(new Average());
 
-		// STRING ATRIBUTI
-		simConfig.addMapping(new Attribute("legalQualification", CaseDescription.class),
+		StringLevenshteinSimilarity stringSim = new StringLevenshteinSimilarity();
+
+
+
+		simConfig.addMapping(new Attribute("legalQualification", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("legalQualification", CaseDescription.class), 3.0);
+
+		simConfig.addMapping(new Attribute("meansOfCommission", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("meansOfCommission", CaseDescription.class), 2.0);
+
+		simConfig.addMapping(new Attribute("injurySeverity", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("injurySeverity", CaseDescription.class), 2.0);
+
+		simConfig.addMapping(new Attribute("repetition", CaseDescription.class),
 				new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("repetition", CaseDescription.class), 2.0);
 
-		simConfig.addMapping(new Attribute("meansOfCommission", CaseDescription.class),
+		simConfig.addMapping(new Attribute("previousConviction", CaseDescription.class),
 				new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("previousConviction", CaseDescription.class), 2.0);
 
-		simConfig.addMapping(new Attribute("victim", CaseDescription.class),
+		simConfig.addMapping(new Attribute("numberOfVictims", CaseDescription.class),
 				new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("numberOfVictims", CaseDescription.class), 1.5);
 
-		simConfig.addMapping(new Attribute("securityMeasure", CaseDescription.class),
-				new EqualsStringIgnoreCase());
+		simConfig.addMapping(new Attribute("mitigatingFactors", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("mitigatingFactors", CaseDescription.class), 1.5);
 
-		// INJURY (prilagođena sličnost)
-		TabularSimilarity injurySim =
-				new TabularSimilarity(Arrays.asList("nema tjelesne povrede", "laka", "teska"));
+		simConfig.addMapping(new Attribute("aggravatingFactors", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("aggravatingFactors", CaseDescription.class), 1.5);
 
-		injurySim.setSimilarity("laka", "teska", 0.5);
-		injurySim.setSimilarity("nema tjelesne povrede", "laka", 0.6);
 
-		simConfig.addMapping(
-				new Attribute("injurySeverity", CaseDescription.class),
-				injurySim);
-
-		// PENALTY i TIME
-		simConfig.addMapping(new Attribute("penalty", CaseDescription.class),
-				new EqualsStringIgnoreCase());
-
-		simConfig.addMapping(new Attribute("timePeriod", CaseDescription.class),
-				new Equal());
 	}
 
 	@Override
@@ -75,15 +75,22 @@ public class CbrApplication implements StandardCBRApplication {
 	public void cycle(CBRQuery query) throws ExecutionException {
 
 		Collection<RetrievalResult> results =
-				NNScoringMethod.evaluateSimilarity(caseBase.getCases(), query, simConfig);
+				NNScoringMethod.evaluateSimilarity(
+						caseBase.getCases(),
+						query,
+						simConfig);
 
 		results = SelectCases.selectTopKRR(results, 5);
 
-		System.out.println("Najbliži slučajevi:");
+		System.out.println("\n==============================");
+		System.out.println("      NAJBLIZI SLUČAJEVI");
+		System.out.println("==============================");
 
-		for (RetrievalResult rr : results)
-			System.out.println(rr.get_case().getDescription()
-					+ " -> similarity: " + rr.getEval());
+		for (RetrievalResult rr : results) {
+			System.out.println(rr.get_case().getDescription());
+			System.out.println("Sličnost: " + String.format("%.4f", rr.getEval()));
+			System.out.println("----------------------------------");
+		}
 	}
 
 	@Override
@@ -95,21 +102,19 @@ public class CbrApplication implements StandardCBRApplication {
 		app.configure();
 		app.preCycle();
 
-		CaseDescription queryDesc = new CaseDescription();
+		CaseDescription query = new CaseDescription();
 
-		queryDesc.setCaseId("QUERY-1");
+		query.setCaseId("QUERY-1");
+		query.setLegalQualification("nasilje u porodici ili u porodičnoj zajednici");
+		query.setMeansOfCommission("nožem");
+		query.setInjurySeverity("lake tjelesne povrede");
+		query.setRepetition("više puta");
+		query.setPreviousConviction("ne");
+		query.setNumberOfVictims("3");
 
-		queryDesc.setLegalQualification("nasilje u porodici ili u porodičnoj zajednici");
-		queryDesc.setMeansOfCommission("prijetnje");
-		queryDesc.setInjurySeverity("nema tjelesne povrede");
-		queryDesc.setPenalty("uslovna osuda");
-		queryDesc.setSecurityMeasure("");
-		queryDesc.setVictim("P. D.");
-		queryDesc.setTimePeriod("05.06.2022–05.02.2024");
+		CBRQuery cbrQuery = new CBRQuery();
+		cbrQuery.setDescription(query);
 
-		CBRQuery query = new CBRQuery();
-		query.setDescription(queryDesc);
-
-		app.cycle(query);
+		app.cycle(cbrQuery);
 	}
 }

@@ -35,8 +35,8 @@ if __name__ == "__main__":
     # )
 
 
-    extract_text_from_pdf("../data/cases/article_221/K_90_2024.pdf")
-    convert_case_to_akoma_ntoso('../data/cases/article_221/K_90_2024.txt', '../data/cases/article_221/K_90_2024_akn.xml', 'article_221')
+    # extract_text_from_pdf("../data/cases/article_221/K_90_2024.pdf")
+    # convert_case_to_akoma_ntoso('../data/cases/article_221/K_90_2024.txt', '../data/cases/article_221/K_90_2024_akn.xml', 'article_221')
 
 
   

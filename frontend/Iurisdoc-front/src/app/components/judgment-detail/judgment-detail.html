@@ -1,0 +1,155 @@
+<div class="judgment-detail-container">
+
+  <!-- Loading -->
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Učitavanje presude...</p>
+  </div>
+
+  <!-- Error -->
+  <div class="error-container" *ngIf="error">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <h3>Greška</h3>
+    <p>{{error}}</p>
+
+    <button mat-raised-button color="primary" routerLink="/judgments">
+      <mat-icon>arrow_back</mat-icon>
+      Nazad na listu
+    </button>
+  </div>
+
+  <!-- Content -->
+  <div class="judgment-content" *ngIf="judgment && !loading && !error">
+
+    <!-- Header -->
+    <div class="detail-header">
+
+      <button mat-icon-button routerLink="/judgments">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <div class="header-title">
+        <h1 class="case-title">{{judgment.metadata.case_id}}</h1>
+
+        <div class="case-metadata">
+          <span>{{judgment.metadata.court}}</span>
+          <span>{{formatDate(judgment.metadata.decision_date)}}</span>
+        </div>
+      </div>
+
+      <button mat-icon-button (click)="printJudgment()">
+        <mat-icon>print</mat-icon>
+      </button>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- 🔥 STABILNI TABS -->
+    <mat-tab-group
+      dynamicHeight
+      animationDuration="0ms"
+      [(selectedIndex)]="activeTab"
+      class="detail-tabs"
+    >
+
+      <!-- Pregled -->
+      <mat-tab label="Pregled">
+
+        <div class="tab-content">
+
+          <mat-card class="info-card">
+
+            <mat-card-header>
+              <mat-icon mat-card-avatar>info</mat-icon>
+              <mat-card-title>Osnovne informacije</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+
+              <div class="info-grid">
+
+                <div class="info-item">
+                  <span class="info-label">Okrivljeni:</span>
+                  <span class="info-value">{{judgment.metadata.accused}}</span>
+                </div>
+
+                <div class="info-item">
+                  <span class="info-label">Sudija:</span>
+                  <span class="info-value">{{judgment.metadata.judge}}</span>
+                </div>
+
+                <div class="info-item">
+                  <span class="info-label">Zapisničar:</span>
+                  <span class="info-value">{{judgment.metadata.clerk}}</span>
+                </div>
+
+              </div>
+
+            </mat-card-content>
+
+          </mat-card>
+
+        </div>
+
+      </mat-tab>
+
+      <!-- Tekst -->
+      <mat-tab label="Tekst presude">
+
+        <div class="tab-content full-text">
+
+          <mat-card class="text-card">
+
+            <mat-card-header>
+              <mat-icon mat-card-avatar>description</mat-icon>
+              <mat-card-title>Celokupan tekst presude</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+
+              <div class="judgment-text">
+
+                <div
+                  *ngFor="let paragraph of judgment.text; let i = index; trackBy: trackParagraph"
+                  class="paragraph"
+                >
+
+                  <div class="paragraph-number">{{i + 1}}.</div>
+
+                  <div class="paragraph-content">
+
+                    <ng-container
+                      *ngFor="let part of splitParagraphWithReferences(paragraph)"
+                    >
+
+                      <span *ngIf="!part.isRef">{{part.text}}</span>
+
+                      <a
+                        *ngIf="part.isRef"
+                        class="reference-link"
+                        (click)="openReference(part.ref)"
+                      >
+                        {{part.ref.text}}
+                      </a>
+
+                    </ng-container>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </mat-card-content>
+
+          </mat-card>
+
+        </div>
+
+      </mat-tab>
+
+    </mat-tab-group>
+
+  </div>
+</div>

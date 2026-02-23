@@ -1,0 +1,10 @@
+.main-content {
+  margin-top: 70px;
+  min-height: calc(100vh - 70px);
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-top: 70px;
+  }
+}

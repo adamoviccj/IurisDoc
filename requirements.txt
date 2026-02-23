@@ -4,3 +4,8 @@ pytesseract
 Pillow
 pdf2image
 pandas
+fastapi
+uvicorn
+beautifulsoup4
+requests
+lxml

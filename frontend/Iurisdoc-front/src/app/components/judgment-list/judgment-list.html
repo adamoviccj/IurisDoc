@@ -1,0 +1,151 @@
+<div class="judgment-list-container">
+  <!-- Zaglavlje -->
+  <div class="list-header">
+    <h1 class="page-title">Presude</h1>
+    <p class="page-subtitle">Pregled svih sudskih presuda</p>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Učitavanje presuda...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-container" *ngIf="error">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <h3>Greška</h3>
+    <p>{{error}}</p>
+    <button mat-raised-button color="primary" (click)="loadJudgments()">
+      <mat-icon>refresh</mat-icon>
+      Pokušaj ponovo
+    </button>
+  </div>
+
+  <!-- Content -->
+  <div class="list-content" *ngIf="!loading && !error">
+    <!-- Filteri -->
+    <mat-card class="filters-card">
+      <mat-card-content>
+        <div class="filters-grid">
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Pretraga</mat-label>
+            <input matInput [(ngModel)]="searchTerm" (input)="applyFilters()" 
+                   placeholder="Broj predmeta, okrivljeni, opis...">
+            <mat-icon matPrefix>search</mat-icon>
+            <button *ngIf="searchTerm" matSuffix mat-icon-button (click)="searchTerm=''; applyFilters()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Sud</mat-label>
+            <mat-select [(value)]="selectedCourt" (selectionChange)="applyFilters()">
+              <mat-option value="">Svi sudovi</mat-option>
+              <mat-option *ngFor="let court of courts" [value]="court">
+                {{court}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Godina</mat-label>
+            <mat-select [(value)]="selectedYear" (selectionChange)="applyFilters()">
+              <mat-option value="">Sve godine</mat-option>
+              <mat-option *ngFor="let year of years" [value]="year">
+                {{year}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Pravna kvalifikacija</mat-label>
+            <mat-select [(value)]="selectedLegalQualification" (selectionChange)="applyFilters()">
+              <mat-option value="">Sve</mat-option>
+              <mat-option *ngFor="let qual of legalQualifications" [value]="qual">
+                {{qual}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="filters-actions" *ngIf="searchTerm || selectedCourt || selectedYear || selectedLegalQualification">
+          <button mat-stroked-button color="accent" class="clear-filters-btn" (click)="clearFilters()">
+            <mat-icon>clear_all</mat-icon>
+            <span class="btn-text">Obriši filtere</span>
+          </button>
+          <span class="results-count">
+            Prikazano {{filteredJudgments.length}} od {{judgments.length}} presuda
+          </span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Lista presuda -->
+    <cdk-virtual-scroll-viewport
+  itemSize="260"
+  class="viewport"
+>
+
+  <div
+    class="judgment-card-wrapper"
+    *cdkVirtualFor="let judgment of filteredJudgments;"
+  >
+
+    <mat-card class="judgment-card"
+              [routerLink]="['/judgment', judgment.case_id]">
+
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="card-icon">gavel</mat-icon>
+        <mat-card-title>{{judgment.case_id}}</mat-card-title>
+        <mat-card-subtitle>
+          {{judgment.court}} • {{formatDate(judgment.decision_date)}}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="judgment-summary">
+
+          <div class="summary-row">
+            <span class="summary-label">Okrivljeni:</span>
+            <span class="summary-value">{{judgment.accused}}</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Krivično delo:</span>
+            <span class="summary-value">{{judgment.legal_qualification}}</span>
+          </div>
+
+          <div class="summary-row" *ngIf="judgment.victim">
+            <span class="summary-label">Žrtva:</span>
+            <span class="summary-value">{{judgment.victim}}</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Kazna:</span>
+            <span class="summary-value penalty">
+              {{judgment.penalty || 'Nije navedeno'}}
+            </span>
+          </div>
+
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</cdk-virtual-scroll-viewport>
+
+    <!-- No results -->
+    <div class="no-results" *ngIf="filteredJudgments.length === 0">
+      <mat-icon>search_off</mat-icon>
+      <h3>Nema rezultata</h3>
+      <p>Nijedna presuda ne odgovara zadatim filterima.</p>
+      <button mat-stroked-button color="accent" class="clear-filters-btn" (click)="clearFilters()">
+        <mat-icon>clear_all</mat-icon>
+        <span class="btn-text">Obriši filtere</span>
+      </button>
+    </div>
+  </div>
+</div>

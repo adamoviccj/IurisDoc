@@ -1,0 +1,188 @@
+<div class="law-display-container">
+
+  <!-- LOADING -->
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading legal document...</p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="law-content" *ngIf="law && !loading">
+
+    <!-- HEADER -->
+    <div class="law-toolbar">
+      <div class="law-title-section">
+        <h1 class="law-title">{{law.title}}</h1>
+
+        <div class="law-metadata">
+          <span class="law-source">
+            <mat-icon>source</mat-icon>
+            {{law.source}}
+          </span>
+
+          <span class="law-date">
+            <mat-icon>event</mat-icon>
+            {{law.date | date:'longDate'}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="main-content-area">
+
+      <!-- SIDEBAR TREE -->
+      <div class="navigation-sidebar">
+
+        <div class="sidebar-header">
+          <h3>Struktura</h3>
+
+          <button mat-icon-button (click)="treeControl.expandAll()">
+            <mat-icon>unfold_more</mat-icon>
+          </button>
+
+          <button mat-icon-button (click)="treeControl.collapseAll()">
+            <mat-icon>unfold_less</mat-icon>
+          </button>
+        </div>
+
+        <mat-tree [dataSource]="dataSource"
+                  [treeControl]="treeControl"
+                  class="law-tree">
+
+          <!-- LEAF NODE -->
+          <mat-tree-node *matTreeNodeDef="let node"
+                         matTreeNodeToggle
+                         (click)="selectNode(node)">
+
+            <button mat-icon-button disabled></button>
+
+            <mat-icon *ngIf="node.type === 'article'">article</mat-icon>
+            <mat-icon *ngIf="node.type === 'chapter'">folder</mat-icon>
+
+            {{node.name}}
+          </mat-tree-node>
+
+          <!-- PARENT NODE -->
+          <mat-tree-node *matTreeNodeDef="let node; when: hasChild"
+                         matTreeNodeToggle
+                         (click)="selectNode(node)">
+
+            <button mat-icon-button matTreeNodeToggle>
+              <mat-icon>
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+
+            <mat-icon>folder</mat-icon>
+            {{node.name}}
+          </mat-tree-node>
+
+        </mat-tree>
+      </div>
+
+      <!-- DOCUMENT CONTENT -->
+      <div class="document-content">
+
+  <ng-container *ngIf="selectedChapter as chapter">
+
+    <div class="chapter-block active-chapter">
+
+      <h2>
+        Poglavlje {{chapter.num}} — {{chapter.title}}
+      </h2>
+
+     
+
+      <div class="articles-container">
+
+  <!-- AKO JE IZABRAN KONKRETAN ČLAN -->
+  <ng-container *ngIf="selectedArticle; else allArticles">
+
+    <div class="article-block active-article"
+         [id]="selectedArticle.id">
+
+      <h3>{{ selectedArticle.num }}</h3>
+
+      <div class="article-content">
+
+        <div *ngFor="let paragraph of selectedArticle.content"
+             class="paragraph-block"
+             [id]="paragraph.id">
+
+          <p>
+            <ng-container *ngFor="let part of paragraph.parts">
+
+              <span *ngIf="!part.ref">
+                {{ part.text }}
+              </span>
+
+              <button
+                *ngIf="part.ref"
+                class="reference-link"
+                (click)="navigateToReference(part.ref)">
+                {{ part.text }}
+              </button>
+
+            </ng-container>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+  <!-- AKO NIJE IZABRAN ČLAN — PRIKAŽI CELO POGLAVLJE -->
+  <ng-template #allArticles>
+
+    <div *ngFor="let article of chapter.articles"
+         class="article-block"
+         [id]="article.id">
+
+      <h3>{{ article.num }}</h3>
+
+      <div class="article-content">
+
+        <div *ngFor="let paragraph of article.content"
+             class="paragraph-block"
+             [id]="paragraph.id">
+
+          <p>
+            <ng-container *ngFor="let part of paragraph.parts">
+
+              <span *ngIf="!part.ref">
+                {{ part.text }}
+              </span>
+
+              <button
+                *ngIf="part.ref"
+                class="reference-link"
+                (click)="navigateToReference(part.ref)">
+                {{ part.text }}
+              </button>
+
+            </ng-container>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-template>
+
+</div>
+
+    </div>
+
+  </ng-container>
+
+</div>
+
+  </div>
+</div>

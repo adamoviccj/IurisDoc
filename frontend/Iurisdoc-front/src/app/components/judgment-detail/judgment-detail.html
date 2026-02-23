@@ -1,0 +1,187 @@
+<div class="judgment-detail-container">
+  <!-- Loading State -->
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Učitavanje presude...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-container" *ngIf="error">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <h3>Greška</h3>
+    <p>{{error}}</p>
+    <button mat-raised-button color="primary" routerLink="/judgments">
+      <mat-icon>arrow_back</mat-icon>
+      Nazad na listu
+    </button>
+  </div>
+
+  <!-- Judgment Content -->
+  <div class="judgment-content" *ngIf="judgment && !loading && !error">
+    <!-- Header with navigation -->
+    <div class="detail-header">
+      <button mat-icon-button routerLink="/judgments" matTooltip="Nazad na listu">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      
+      <div class="header-title">
+        <h1 class="case-title">{{judgment.metadata.case_id}}</h1>
+        <div class="case-metadata">
+          <span class="court">{{judgment.metadata.court}}</span>
+          <span class="date">{{formatDate(judgment.metadata.decision_date)}}</span>
+        </div>
+      </div>
+
+      <button mat-icon-button (click)="printJudgment()" matTooltip="Štampaj">
+        <mat-icon>print</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Tabs for different views -->
+    <mat-tab-group [(selectedIndex)]="activeTab" class="detail-tabs">
+      <!-- Overview Tab -->
+      <mat-tab label="Pregled">
+        <div class="tab-content">
+          <!-- Basic Info Card -->
+          <mat-card class="info-card">
+            <mat-card-header>
+              <mat-icon mat-card-avatar>info</mat-icon>
+              <mat-card-title>Osnovne informacije</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="info-grid">
+                <div class="info-item">
+                  <span class="info-label">Okrivljeni:</span>
+                  <span class="info-value">{{judgment.metadata.accused}}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Sudija:</span>
+                  <span class="info-value">{{judgment.metadata.judge}}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Zapisničar:</span>
+                  <span class="info-value">{{judgment.metadata.clerk}}</span>
+                </div>
+                <div class="info-item" *ngIf="judgment.metadata.victim">
+                  <span class="info-label">Žrtva:</span>
+                  <span class="info-value">{{judgment.metadata.victim}}</span>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Legal Info Card -->
+          <mat-card class="info-card">
+            <mat-card-header>
+              <mat-icon mat-card-avatar>gavel</mat-icon>
+              <mat-card-title>Pravne informacije</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="info-grid">
+                <div class="info-item full-width">
+                  <span class="info-label">Opis dela:</span>
+                  <p class="info-text">{{judgment.metadata.act_description}}</p>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Pravna kvalifikacija:</span>
+                  <mat-chip-set>
+                    <mat-chip color="primary" selected>
+                      {{judgment.metadata.legal_qualification}}
+                    </mat-chip>
+                  </mat-chip-set>
+                </div>
+                <div class="info-item" *ngIf="judgment.metadata.time_period">
+                  <span class="info-label">Vremenski period:</span>
+                  <span class="info-value">{{judgment.metadata.time_period}}</span>
+                </div>
+                <div class="info-item" *ngIf="judgment.metadata.means_of_commission">
+                  <span class="info-label">Način izvršenja:</span>
+                  <span class="info-value">{{judgment.metadata.means_of_commission}}</span>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Penalty Card -->
+          <mat-card class="info-card">
+            <mat-card-header>
+              <mat-icon mat-card-avatar>balance</mat-icon>
+              <mat-card-title>Kazna</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="info-grid">
+                <div class="info-item">
+                  <span class="info-label">Izrečena kazna:</span>
+                  <span class="info-value penalty">{{judgment.metadata.penalty || 'Nije navedeno'}}</span>
+                </div>
+                <div class="info-item" *ngIf="judgment.metadata.security_measure">
+                  <span class="info-label">Mera bezbednosti:</span>
+                  <span class="info-value">{{judgment.metadata.security_measure}}</span>
+                </div>
+                <div class="info-item" *ngIf="judgment.metadata.injury_severity">
+                  <span class="info-label">Težina povrede:</span>
+                  <mat-chip-set>
+                    <mat-chip [color]="getSeverityColor(judgment.metadata.injury_severity)" selected>
+                      {{judgment.metadata.injury_severity}}
+                    </mat-chip>
+                  </mat-chip-set>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Witnesses Card -->
+          <mat-card class="info-card" *ngIf="judgment.metadata.witnesses?.length">
+            <mat-card-header>
+              <mat-icon mat-card-avatar>people</mat-icon>
+              <mat-card-title>Svedoci</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="witnesses-list">
+                <mat-chip-set>
+                  <mat-chip *ngFor="let witness of judgment.metadata.witnesses" class="witness-chip">
+                    {{witness}}
+                  </mat-chip>
+                </mat-chip-set>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-tab>
+
+      <!-- Full Text Tab -->
+      <mat-tab label="Tekst presude">
+        <div class="tab-content full-text">
+          <mat-card class="text-card">
+            <mat-card-header>
+              <mat-icon mat-card-avatar>description</mat-icon>
+              <mat-card-title>Celokupan tekst presude</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="judgment-text">
+                <div *ngFor="let paragraph of judgment.text; let i = index" 
+                     class="paragraph"
+                     [id]="'para-' + paragraph.id">
+                  <div class="paragraph-number">{{i + 1}}.</div>
+                  <div class="paragraph-content">
+                    <ng-container *ngFor="let part of splitParagraphWithReferences(paragraph)">
+                      <span *ngIf="!part.isRef">{{part.text}}</span>
+                      <a *ngIf="part.isRef" 
+                         class="reference-link" 
+                         (click)="openReference(part.ref)"
+                         [matTooltip]="'Referenca: ' + part.ref.target">
+                        {{part.ref.text}}
+                      </a>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

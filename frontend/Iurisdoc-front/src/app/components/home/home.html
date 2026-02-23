@@ -1,0 +1,399 @@
+<!-- Hero Section - Academic/Professional Tone -->
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="academic-badge">
+        <mat-icon>school</mat-icon>
+        <span>Legal Informatics 2025/2026 · Research Project</span>
+      </div>
+      
+      <h1 class="hero-title">
+        Legal Decision Support System
+        <span class="highlight">for the Judiciary</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        An advanced AI-powered platform integrating Akoma Ntoso, LegalRuleML, 
+        and NLP-based case reasoning to assist judges in legal research, 
+        precedent analysis, and evidence-based decision making.
+      </p>
+      
+      <div class="hero-cta">
+        <button mat-raised-button color="primary" class="cta-primary">
+          <mat-icon>science</mat-icon>
+          Access Research Demo
+        </button>
+        <button mat-stroked-button class="cta-secondary" (click)="scrollToSection('methodology')">
+          <mat-icon>menu_book</mat-icon>
+          View Methodology
+        </button>
+      </div>
+      
+      <!-- Institutional Badges -->
+      <div class="institutional-badges">
+        <div class="badge-item">
+          <mat-icon>verified</mat-icon>
+          <span>Peer-Reviewed</span>
+        </div>
+        <div class="badge-item">
+          <mat-icon>gavel</mat-icon>
+          <span>Judicial Validation</span>
+        </div>
+        <div class="badge-item">
+          <mat-icon>policy</mat-icon>
+          <span>GDPR Compliant</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hero-image">
+      <mat-card class="system-preview">
+        <mat-card-header>
+          <mat-chip-set>
+            <mat-chip>Akoma Ntoso v3.0</mat-chip>
+            <mat-chip>LegalRuleML</mat-chip>
+            <mat-chip>NLP Engine</mat-chip>
+          </mat-chip-set>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <div class="preview-window">
+            <div class="preview-header">
+              <span class="preview-title">Case Analysis: Müller v. Germany</span>
+              <span class="preview-confidence">95% relevance</span>
+            </div>
+            
+            <div class="preview-content">
+              <div class="preview-section">
+                <span class="section-label">Ratio Decidendi:</span>
+                <p class="section-text">The court held that blanket data retention violates Art. 8 ECHR...</p>
+              </div>
+              
+              <div class="preview-section">
+                <span class="section-label">Applicable Rules (LegalRuleML):</span>
+                <div class="rule-item">
+                  <span class="rule-deontic">Obligation</span>
+                  <span>Art. 8(2) ECHR - Necessity in democratic society</span>
+                </div>
+                <div class="rule-item">
+                  <span class="rule-deontic">Permission</span>
+                  <span>Limited data processing for national security</span>
+                </div>
+              </div>
+              
+              <div class="preview-section">
+                <span class="section-label">Similar Precedents (NLP):</span>
+                <ul class="precedent-list">
+                  <li>Digital Rights Ireland (C-293/12) · 92% similarity</li>
+                  <li>Tele2 Sverige (C-203/15) · 88% similarity</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat-item" *ngFor="let stat of stats" 
+         [matTooltip]="stat.tooltip" matTooltipPosition="above">
+      <mat-icon [style.color]="'#3f51b5'">{{stat.icon}}</mat-icon>
+      <div class="stat-info">
+        <span class="stat-value">{{stat.value}}</span>
+        <span class="stat-label">{{stat.label}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Methodology Section -->
+<section id="methodology" class="methodology-section">
+  <div class="section-header">
+    <h2 class="section-title">Research Methodology</h2>
+    <p class="section-subtitle">Multi-layered approach combining legal standards and AI</p>
+  </div>
+  
+  <div class="methodology-grid">
+    <!-- Akoma Ntoso Card -->
+    <mat-card class="methodology-card">
+      <div class="card-header" style="border-left-color: #1a237e">
+        <mat-icon class="card-icon">layers</mat-icon>
+        <h3>Layer 1: Document Structuring</h3>
+      </div>
+      <mat-card-content>
+        <p class="methodology-desc">Akoma Ntoso 3.0 for standardized legal document representation</p>
+        <mat-progress-bar mode="determinate" value="100" class="progress-complete"></mat-progress-bar>
+        <div class="methodology-details">
+          <span><mat-icon>check_circle</mat-icon> FRBR Metadata</span>
+          <span><mat-icon>check_circle</mat-icon> Hierarchical Structure</span>
+          <span><mat-icon>check_circle</mat-icon> Reference Resolution</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    
+    <!-- LegalRuleML Card -->
+    <mat-card class="methodology-card">
+      <div class="card-header" style="border-left-color: #4a148c">
+        <mat-icon class="card-icon">rule_folder</mat-icon>
+        <h3>Layer 2: Rule Formalization</h3>
+      </div>
+      <mat-card-content>
+        <p class="methodology-desc">LegalRuleML 1.0 for deontic logic and temporal rules</p>
+        <mat-progress-bar mode="determinate" value="95" class="progress-high"></mat-progress-bar>
+        <div class="methodology-details">
+          <span><mat-icon>check_circle</mat-icon> Obligation/Permission</span>
+          <span><mat-icon>check_circle</mat-icon> Temporal Constraints</span>
+          <span><mat-icon>pending</mat-icon> Conflict Resolution</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    
+    <!-- NLP Card -->
+    <mat-card class="methodology-card">
+      <div class="card-header" style="border-left-color: #004d40">
+        <mat-icon class="card-icon">psychology</mat-icon>
+        <h3>Layer 3: Semantic Analysis</h3>
+      </div>
+      <mat-card-content>
+        <p class="methodology-desc">LegalBERT and transformer models for legal NLP</p>
+        <mat-progress-bar mode="determinate" value="85" class="progress-medium"></mat-progress-bar>
+        <div class="methodology-details">
+          <span><mat-icon>check_circle</mat-icon> Entity Recognition</span>
+          <span><mat-icon>pending</mat-icon> Argument Mining</span>
+          <span><mat-icon>pending</mat-icon> Ratio Extraction</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<!-- Core Features Section -->
+<section class="features-section">
+  <div class="section-header">
+    <h2 class="section-title">System Architecture</h2>
+    <p class="section-subtitle">Integrated components for comprehensive legal analysis</p>
+  </div>
+  
+  <div class="features-grid">
+    <mat-card class="feature-card" *ngFor="let feature of features">
+      <mat-card-header>
+        <div class="feature-icon-wrapper" [style.background]="feature.color + '15'">
+          <mat-icon [style.color]="feature.color">{{feature.icon}}</mat-icon>
+        </div>
+        <mat-card-title>{{feature.title}}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <p class="feature-description">{{feature.description}}</p>
+        
+        <mat-divider></mat-divider>
+        
+        <div class="feature-standards">
+          <span class="standards-label">Standards:</span>
+          <mat-chip-set>
+            <mat-chip *ngFor="let standard of feature.standards" [style.background]="feature.color + '10'">
+              {{standard}}
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+        
+        <div class="feature-benefits">
+          <div class="benefit-item" *ngFor="let benefit of feature.benefits">
+            <mat-icon class="benefit-icon" [style.color]="feature.color">chevron_right</mat-icon>
+            <span>{{benefit}}</span>
+          </div>
+        </div>
+      </mat-card-content>
+      
+      <mat-card-actions>
+        <button mat-button [style.color]="feature.color">
+          Technical Specifications
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</section>
+
+<!-- Legal Domains & Recent Precedents -->
+<section class="research-section">
+  <div class="section-header">
+    <h2 class="section-title">Legal Knowledge Base</h2>
+    <p class="section-subtitle">Curated precedents across multiple jurisdictions</p>
+  </div>
+  
+  <div class="research-grid">
+    <!-- Domains Column -->
+    <mat-card class="domains-card">
+      <mat-card-header>
+        <mat-icon class="section-icon">account_tree</mat-icon>
+        <mat-card-title>Legal Domains</mat-card-title>
+        <mat-card-subtitle>Indexed cases by area of law</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <div class="domain-list">
+          <div class="domain-item" *ngFor="let domain of domains">
+            <div class="domain-info">
+              <mat-icon>{{domain.icon}}</mat-icon>
+              <span>{{domain.name}}</span>
+            </div>
+            <div class="domain-stats">
+              <span class="case-count">{{domain.cases | number}}</span>
+              <span class="case-label">cases</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    
+    <!-- Recent Precedents Column -->
+    <mat-card class="precedents-card">
+      <mat-card-header>
+        <mat-icon class="section-icon">history</mat-icon>
+        <mat-card-title>Recent Precedents</mat-card-title>
+        <mat-card-subtitle>Latest additions to knowledge base</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <div class="precedent-list">
+          <div class="precedent-item" *ngFor="let precedent of recentPrecedents">
+            <div class="precedent-header">
+              <span class="case-name">{{precedent.case}}</span>
+              <mat-chip class="relevance-chip" [style.background]="'#e8eaf6'" [style.color]="'#1a237e'">
+                {{precedent.relevance * 100}}% match
+              </mat-chip>
+            </div>
+            <span class="citation">{{precedent.citation}}</span>
+            <span class="court">{{precedent.court}} · {{precedent.date}}</span>
+            <p class="summary">{{precedent.summary}}</p>
+            <div class="tags">
+              <mat-chip *ngFor="let tag of precedent.tags" class="tag-chip">
+                {{tag}}
+              </mat-chip>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<!-- Publications & Research Output -->
+<section class="publications-section">
+  <div class="section-header">
+    <h2 class="section-title">Research Output</h2>
+    <p class="section-subtitle">Peer-reviewed publications and citations</p>
+  </div>
+  
+  <div class="publications-grid">
+    <mat-card class="publication-card" *ngFor="let pub of publications">
+      <mat-card-header>
+        <mat-icon class="pub-icon">description</mat-icon>
+        <mat-card-title>{{pub.title}}</mat-card-title>
+        <mat-card-subtitle>{{pub.authors}}</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <p class="journal">{{pub.journal}} · {{pub.year}}</p>
+        <div class="citation-badge">
+          <mat-icon>format_quote</mat-icon>
+          <span>{{pub.citations}} citations</span>
+        </div>
+      </mat-card-content>
+      
+      <mat-card-actions>
+        <button mat-button>
+          <mat-icon>download</mat-icon>
+          Download PDF
+        </button>
+        <button mat-button>
+          <mat-icon>link</mat-icon>
+          Cite
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</section>
+
+<!-- Partners Section -->
+<section class="partners-section">
+  <div class="section-header">
+    <h2 class="section-title">Institutional Partners</h2>
+    <p class="section-subtitle">Collaborating with leading legal informatics institutions</p>
+  </div>
+  
+  <div class="partners-grid">
+    <div class="partner-item" *ngFor="let partner of partners">
+      <div class="partner-logo-placeholder">
+        <mat-icon>account_balance</mat-icon>
+      </div>
+      <div class="partner-info">
+        <span class="partner-name">{{partner.name}}</span>
+        <span class="partner-type">{{partner.type}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="section-header">
+    <h2 class="section-title">Technical FAQ</h2>
+    <p class="section-subtitle">Answers to common questions about the system</p>
+  </div>
+  
+  <div class="faq-grid">
+    <mat-card class="faq-card" *ngFor="let faq of faqs; let i = index">
+      <mat-card-header>
+        <span class="faq-number">0{{i+1}}</span>
+        <mat-card-title>{{faq.question}}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <p>{{faq.answer}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <mat-card class="cta-card">
+    <mat-card-content>
+      <h2 class="cta-title">Request Research Access</h2>
+      <p class="cta-description">
+        The system is available for judicial researchers and legal informatics 
+        scholars. Validation studies are currently underway with partner courts.
+      </p>
+      
+      <div class="cta-actions">
+        <button mat-raised-button color="primary" class="cta-button">
+          <mat-icon>assignment_turned_in</mat-icon>
+          Submit Research Proposal
+        </button>
+        <button mat-stroked-button class="cta-button secondary">
+          <mat-icon>menu_book</mat-icon>
+          Download Whitepaper
+        </button>
+      </div>
+      
+      <div class="cta-features">
+        <div class="cta-feature-item">
+          <mat-icon>verified</mat-icon>
+          <span>Peer-reviewed methodology</span>
+        </div>
+        <div class="cta-feature-item">
+          <mat-icon>security</mat-icon>
+          <span>Secure judicial access</span>
+        </div>
+        <div class="cta-feature-item">
+          <mat-icon>update</mat-icon>
+          <span>Quarterly updates</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

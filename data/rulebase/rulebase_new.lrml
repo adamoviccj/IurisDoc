@@ -31,36 +31,6 @@
       </ruleml:Rule>
     </lrml:PrescriptiveStatement>
 
-    <lrml:PrescriptiveStatement key="ps220_1_neg">
-      <ruleml:Rule key=":rule220_1_neg" closure="universal" strength="defeasible">
-        <ruleml:if>
-          <ruleml:And>
-            <ruleml:Atom>
-              <ruleml:Rel iri="lc:uses_gross_violence"/>
-              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-            </ruleml:Atom>
-            <ruleml:Atom>
-              <ruleml:Rel iri="lc:violates_integrity"/>
-              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-              <ruleml:Data xsi:type="xs:string">family_member</ruleml:Data>
-            </ruleml:Atom>
-            <ruleml:Atom>
-              <ruleml:Rel iri="lc:uses_weapon"/>
-              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-            </ruleml:Atom>
-          </ruleml:And>
-        </ruleml:if>
-        <ruleml:then>
-          <ruleml:Negation>
-            <ruleml:Atom>
-            <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
-            <ruleml:Var type=":defendant">Defendant</ruleml:Var>
-          </ruleml:Atom>
-          </ruleml:Negation>
-        </ruleml:then>
-      </ruleml:Rule>
-    </lrml:PrescriptiveStatement>
-
     <lrml:PrescriptiveStatement key="ps220_2">
       <ruleml:Rule key=":rule220_2" closure="universal" strength="defeasible">
         <ruleml:if>
@@ -76,35 +46,14 @@
           </ruleml:And>
         </ruleml:if>
         <ruleml:then>
-          <ruleml:Atom>
+          <!-- <ruleml:Atom>
             <ruleml:Rel>is_guilty_of_family_violence_lv2</ruleml:Rel>
             <ruleml:Var type=":defendant">Defendant</ruleml:Var>
-          </ruleml:Atom>
-        </ruleml:then>
-      </ruleml:Rule>
-    </lrml:PrescriptiveStatement>
-
-    <lrml:PrescriptiveStatement key="ps220_2_neg">
-      <ruleml:Rule key=":rule220_2_neg" closure="universal" strength="defeasible">
-        <ruleml:if>
-          <ruleml:And>
-            <ruleml:Atom>
-              <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
-              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
-            </ruleml:Atom>
-            <ruleml:Not>
-              <ruleml:Atom>
-                <ruleml:Rel iri="lc:uses_weapon"/>
-                <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-              </ruleml:Atom>
-            </ruleml:Not>
-          </ruleml:And>
-        </ruleml:if>
-        <ruleml:then>
+          </ruleml:Atom> -->
           <ruleml:Negation>
             <ruleml:Atom>
-              <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
-              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+                <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
+                <ruleml:Var type=":defendant">Defendant</ruleml:Var>
             </ruleml:Atom>
           </ruleml:Negation>
         </ruleml:then>
@@ -132,10 +81,22 @@
           </ruleml:And>
         </ruleml:if>
         <ruleml:then>
-          <ruleml:Atom>
+          <!-- <ruleml:Atom>
             <ruleml:Rel>is_guilty_of_family_violence_lv3</ruleml:Rel>
             <ruleml:Var type=":defendant">Defendant</ruleml:Var>
-          </ruleml:Atom>
+          </ruleml:Atom> -->
+          <ruleml:Negation>
+            <ruleml:Atom>
+                <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
+                <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+          <ruleml:Negation>
+            <ruleml:Atom>
+                <ruleml:Rel>is_guilty_of_family_violence_lv2</ruleml:Rel>
+                <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+
         </ruleml:then>
       </ruleml:Rule>
     </lrml:PrescriptiveStatement>
@@ -280,22 +241,20 @@
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_2_min"/><lrml:toPrescriptiveStatement keyref="#ps220_2"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_2_max"/><lrml:toPrescriptiveStatement keyref="#ps220_2"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_3_min"/><lrml:toPrescriptiveStatement keyref="#ps220_3"/></lrml:Reparation></lrml:ReparationStatement>
-    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_3_max"/><lrml:toPrescriptiveStatement keyref="#ps220_3"/></lrml:Reparation></lrml:ReparationStatement> -->
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_3_max"/><lrml:toPrescriptiveStatement keyref="#ps220_3"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_4_min"/><lrml:toPrescriptiveStatement keyref="#ps220_4"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_4_max"/><lrml:toPrescriptiveStatement keyref="#ps220_4"/></lrml:Reparation></lrml:ReparationStatement>
-    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_5"/><lrml:toPrescriptiveStatement keyref="#ps220_5"/></lrml:Reparation></lrml:ReparationStatement> -->
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_5"/><lrml:toPrescriptiveStatement keyref="#ps220_5"/></lrml:Reparation></lrml:ReparationStatement>
 
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen221_1"/><lrml:toPrescriptiveStatement keyref="#ps221_1"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen221_3_min"/><lrml:toPrescriptiveStatement keyref="#ps221_3"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen221_3_max"/><lrml:toPrescriptiveStatement keyref="#ps221_3"/></lrml:Reparation></lrml:ReparationStatement>
 
-    <lrml:OverrideStatement><lrml:Override under="#ps220_1_neg" over="#ps220_1"/></lrml:OverrideStatement>
-    <!-- <lrml:OverrideStatement><lrml:Override under="#ps220_1_neg" over="#ps220_2"/></lrml:OverrideStatement> -->
-    <!-- <lrml:OverrideStatement><lrml:Override under="#ps220_1" over="#ps220_2_neg"/></lrml:OverrideStatement>
-    <lrml:OverrideStatement><lrml:Override under="#ps220_1_neg" over="#ps220_3"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_1" over="#ps220_2"/></lrml:OverrideStatement>
     <lrml:OverrideStatement><lrml:Override under="#ps220_2" over="#ps220_3"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_3" over="#ps220_4"/></lrml:OverrideStatement>
 
-    <lrml:OverrideStatement><lrml:Override under="#ps221_1" over="#ps221_3"/></lrml:OverrideStatement> -->
+    <lrml:OverrideStatement><lrml:Override under="#ps221_1" over="#ps221_3"/></lrml:OverrideStatement>
 
   </lrml:Statements>
 </lrml:LegalRuleML>

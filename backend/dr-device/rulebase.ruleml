@@ -50,6 +50,62 @@
                </slot>
             </Atom>
          </head>
+         <superior>
+            <Ind uri="rule220_1_neg"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_1_neg">rule220_1_neg</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:violates_integrity"/>
+                     <Data xsi:type="xs:string">family_member</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv1</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
       </Implies>
       <Implies ruletype="defeasiblerule">
          <oid>
@@ -88,9 +144,37 @@
                </slot>
             </Atom>
          </head>
-         <superior>
-            <Ind uri="rule220_1"/>
-         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_2_neg">rule220_2_neg</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv1</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv1</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
       </Implies>
       <Implies ruletype="defeasiblerule">
          <oid>
@@ -140,9 +224,6 @@
                </slot>
             </Atom>
          </head>
-         <superior>
-            <Ind uri="rule220_2"/>
-         </superior>
       </Implies>
       <Implies ruletype="defeasiblerule">
          <oid>
@@ -181,9 +262,6 @@
                </slot>
             </Atom>
          </head>
-         <superior>
-            <Ind uri="rule220_3"/>
-         </superior>
       </Implies>
       <Implies ruletype="defeasiblerule">
          <oid>
@@ -296,9 +374,6 @@
                </slot>
             </Atom>
          </head>
-         <superior>
-            <Ind uri="rule221_1"/>
-         </superior>
       </Implies>
       <Implies ruletype="defeasiblerule">
          <oid>

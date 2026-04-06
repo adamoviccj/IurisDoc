@@ -4,7 +4,7 @@
 		(export-proof proof.ruleml)
 		
 (defeasiblerule rule220_1
-		 
+		(declare (superior rule220_1_neg )) 
 	(lc:case 
 		(
 		 lc:defendant ?Defendant)
@@ -24,8 +24,35 @@
 	) 
 ) 
 	
+(defeasiblerule rule220_1_neg
+		 
+	(lc:case 
+		(
+		 lc:defendant ?Defendant)
+	)  
+	(lc:case 
+		(
+		 lc:defendant ?Defendant)
+	
+		(
+		 lc:violates_integrity "family_member")
+	)  
+	(lc:case 
+		(
+		 lc:defendant ?Defendant)
+	) 
+  => 
+	
+		(not  
+	(is_guilty_of_family_violence_lv1 
+		(
+		 defendant ?Defendant)
+	) )
+	
+) 
+	
 (defeasiblerule rule220_2
-		(declare (superior rule220_1 )) 
+		 
 	(is_guilty_of_family_violence_lv1 
 		(
 		 defendant ?Defendant)
@@ -42,8 +69,24 @@
 	) 
 ) 
 	
+(defeasiblerule rule220_2_neg
+		 
+	(is_guilty_of_family_violence_lv1 
+		(
+		 defendant ?Defendant)
+	) 
+  => 
+	
+		(not  
+	(is_guilty_of_family_violence_lv1 
+		(
+		 defendant ?Defendant)
+	) )
+	
+) 
+	
 (defeasiblerule rule220_3
-		(declare (superior rule220_2 )) 
+		 
 	(is_guilty_of_family_violence_lv1 
 		(
 		 defendant ?Defendant)
@@ -57,7 +100,7 @@
 ) 
 	
 (defeasiblerule rule220_4
-		(declare (superior rule220_3 )) 
+		 
 	(is_guilty_of_family_violence_lv1 
 		(
 		 defendant ?Defendant)
@@ -111,7 +154,7 @@
 ) 
 	
 (defeasiblerule rule221_3
-		(declare (superior rule221_1 )) 
+		 
 	(is_guilty_of_nonpayment_of_support_lv1 
 		(
 		 defendant ?Defendant)

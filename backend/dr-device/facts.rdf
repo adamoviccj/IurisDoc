@@ -8,7 +8,7 @@
 
   <!-- ===== PROPERTIES ===== -->
 
-  <rdf:Property rdf:about="http://example.org/lc#defendant">
+  <!-- <rdf:Property rdf:about="http://example.org/lc#defendant">
     <rdfs:domain rdf:resource="http://example.org/lc#case"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </rdf:Property>
@@ -20,7 +20,7 @@
   <rdf:Property rdf:about="http://example.org/lc#causes_death"/>
   <rdf:Property rdf:about="http://example.org/lc#violates_protection_measures"/>
   <rdf:Property rdf:about="http://example.org/lc#fails_to_provide_support"/>
-  <rdf:Property rdf:about="http://example.org/lc#causes_serious_consequences"/>
+  <rdf:Property rdf:about="http://example.org/lc#causes_serious_consequences"/> -->
 
   <!-- ===== CASE INSTANCE ===== -->
 
@@ -32,16 +32,16 @@
     <!-- Family violence chain -->
     <lc:uses_gross_violence>true</lc:uses_gross_violence>
     <lc:violates_integrity>family_member</lc:violates_integrity>
-    <lc:uses_weapon>true</lc:uses_weapon>
-    <lc:causes_serious_injury>true</lc:causes_serious_injury>
-    <lc:causes_death>true</lc:causes_death>
+    <!-- <lc:uses_weapon>false</lc:uses_weapon>
+    <lc:causes_serious_injury>false</lc:causes_serious_injury>
+    <lc:causes_death>false</lc:causes_death> -->
 
     <!-- Protection measures -->
-    <lc:violates_protection_measures>true</lc:violates_protection_measures>
+    <!-- <lc:violates_protection_measures>false</lc:violates_protection_measures> -->
 
     <!-- Support offense -->
-    <lc:fails_to_provide_support>court_order</lc:fails_to_provide_support>
-    <lc:causes_serious_consequences>true</lc:causes_serious_consequences>
+    <!-- <lc:fails_to_provide_support>no_court_order</lc:fails_to_provide_support> -->
+    <!-- <lc:causes_serious_consequences>false</lc:causes_serious_consequences> -->
 
   </lc:case>
 

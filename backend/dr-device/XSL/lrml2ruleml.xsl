@@ -17,8 +17,7 @@
         <RuleML>
             <xsl:attribute name="proof">proof.ruleml</xsl:attribute>
             <xsl:attribute name="rdf_export">export.rdf</xsl:attribute>
-            <xsl:attribute name="rdf_export_classes">is_guilty_of_family_violence_lv1 is_guilty_of_family_violence_lv2 min_imprisonment max_imprisonment
-</xsl:attribute>
+            <xsl:attribute name="rdf_export_classes">is_guilty_of_family_violence_lv1 min_imprisonment max_imprisonment is_guilty_of_family_violence_lv2 to_pay is_guilty_of_family_violence_lv3 is_guilty_of_family_violence_lv4 is_guilty_of_violating_measures is_guilty_of_nonpayment_of_support_lv1 is_guilty_of_nonpayment_of_support_lv2</xsl:attribute>
             <xsl:attribute name="rdf_import">&quot;facts.rdf&quot;</xsl:attribute>
             <xsl:apply-templates select="lrml:Statements"/>
         </RuleML>

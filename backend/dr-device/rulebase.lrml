@@ -14,11 +14,12 @@
             <ruleml:Atom>
               <ruleml:Rel iri="lc:uses_gross_violence"/>
               <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
             </ruleml:Atom>
             <ruleml:Atom>
               <ruleml:Rel iri="lc:violates_integrity"/>
               <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-              <ruleml:Data xsi:type="xs:string">family_member</ruleml:Data>
+              <ruleml:Data xsi:type="xs:string">family_member_yes</ruleml:Data>
             </ruleml:Atom>
           </ruleml:And>
         </ruleml:if>
@@ -31,47 +32,26 @@
       </ruleml:Rule>
     </lrml:PrescriptiveStatement>
 
-    <lrml:PrescriptiveStatement key="ps220_1_neg">
-      <ruleml:Rule key=":rule220_1_neg" closure="universal" strength="defeasible">
-        <ruleml:if>
-          <ruleml:And>
-            <ruleml:Atom>
-              <ruleml:Rel iri="lc:uses_gross_violence"/>
-              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-            </ruleml:Atom>
-            <ruleml:Atom>
-              <ruleml:Rel iri="lc:violates_integrity"/>
-              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-              <ruleml:Data xsi:type="xs:string">family_member</ruleml:Data>
-            </ruleml:Atom>
-            <ruleml:Atom>
-              <ruleml:Rel iri="lc:uses_weapon"/>
-              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-            </ruleml:Atom>
-          </ruleml:And>
-        </ruleml:if>
-        <ruleml:then>
-          <ruleml:Negation>
-            <ruleml:Atom>
-            <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
-            <ruleml:Var type=":defendant">Defendant</ruleml:Var>
-          </ruleml:Atom>
-          </ruleml:Negation>
-        </ruleml:then>
-      </ruleml:Rule>
-    </lrml:PrescriptiveStatement>
 
     <lrml:PrescriptiveStatement key="ps220_2">
       <ruleml:Rule key=":rule220_2" closure="universal" strength="defeasible">
         <ruleml:if>
           <ruleml:And>
             <ruleml:Atom>
-              <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
-              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+              <ruleml:Rel iri="lc:uses_gross_violence"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:violates_integrity"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">family_member_yes</ruleml:Data>
             </ruleml:Atom>
             <ruleml:Atom>
               <ruleml:Rel iri="lc:uses_weapon"/>
               <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+			        <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
             </ruleml:Atom>
           </ruleml:And>
         </ruleml:if>
@@ -89,15 +69,9 @@
         <ruleml:if>
           <ruleml:And>
             <ruleml:Atom>
-              <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
+              <ruleml:Rel>is_guilty_of_family_violence_lv2</ruleml:Rel>
               <ruleml:Var type=":defendant">Defendant</ruleml:Var>
             </ruleml:Atom>
-            <ruleml:Not>
-              <ruleml:Atom>
-                <ruleml:Rel iri="lc:uses_weapon"/>
-                <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-              </ruleml:Atom>
-            </ruleml:Not>
           </ruleml:And>
         </ruleml:if>
         <ruleml:then>
@@ -111,24 +85,30 @@
       </ruleml:Rule>
     </lrml:PrescriptiveStatement>
 
-    <lrml:PrescriptiveStatement key="ps220_3">
-      <ruleml:Rule key=":rule220_3" closure="universal" strength="defeasible">
+    <lrml:PrescriptiveStatement key="ps220_3_a">
+      <ruleml:Rule key=":rule220_3_a" closure="universal" strength="defeasible">
         <ruleml:if>
           <ruleml:And>
             <ruleml:Atom>
-              <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
-              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+              <ruleml:Rel iri="lc:uses_gross_violence"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
             </ruleml:Atom>
-            <ruleml:Or>
-              <ruleml:Atom>
-                <ruleml:Rel iri="lc:caused_severe_bodily_harm"/>
-                <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-              </ruleml:Atom>
-              <ruleml:Atom>
-                <ruleml:Rel iri="lc:victim_is_minor"/>
-                <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-              </ruleml:Atom>
-            </ruleml:Or>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:violates_integrity"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">family_member_yes</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:uses_weapon"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+			        <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:causes_serious_injury"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
           </ruleml:And>
         </ruleml:if>
         <ruleml:then>
@@ -140,18 +120,119 @@
       </ruleml:Rule>
     </lrml:PrescriptiveStatement>
 
-    <lrml:PrescriptiveStatement key="ps220_4">
-      <ruleml:Rule key=":rule220_4" closure="universal" strength="defeasible">
+    <lrml:PrescriptiveStatement key="ps220_3_b">
+      <ruleml:Rule key=":rule220_3_b" closure="universal" strength="defeasible">
         <ruleml:if>
           <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:uses_gross_violence"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:violates_integrity"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">family_member_yes</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:uses_weapon"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+			        <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:victim_is_minor"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Atom>
+            <ruleml:Rel>is_guilty_of_family_violence_lv3</ruleml:Rel>
+            <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+          </ruleml:Atom>
+        </ruleml:then>
+      </ruleml:Rule>
+    </lrml:PrescriptiveStatement>
+
+    <lrml:PrescriptiveStatement key="ps220_3_neg_1">
+      <ruleml:Rule key=":rule220_3_neg_1" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv3</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
             <ruleml:Atom>
               <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
               <ruleml:Var type=":defendant">Defendant</ruleml:Var>
             </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+     </lrml:PrescriptiveStatement>
+
+    <lrml:PrescriptiveStatement key="ps220_3_neg_2">
+      <ruleml:Rule key=":rule220_3_neg_2" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
             <ruleml:Atom>
-              <ruleml:Rel iri="lc:caused_death"/>
-              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Rel>is_guilty_of_family_violence_lv3</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
             </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv2</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+     </lrml:PrescriptiveStatement>
+
+     <lrml:PrescriptiveStatement key="ps220_4">
+      <ruleml:Rule key=":rule220_4" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:uses_gross_violence"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:violates_integrity"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">family_member_yes</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:uses_weapon"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+			        <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:causes_death"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+			        <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Or>
+              <ruleml:Atom>
+                <ruleml:Rel iri="lc:causes_serious_injury"/>
+                <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+                <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+              </ruleml:Atom>
+              <ruleml:Atom>
+                <ruleml:Rel iri="lc:victim_is_minor"/>
+                <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+                <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+              </ruleml:Atom>
+            </ruleml:Or>
           </ruleml:And>
         </ruleml:if>
         <ruleml:then>
@@ -161,14 +242,80 @@
           </ruleml:Atom>
         </ruleml:then>
       </ruleml:Rule>
-    </lrml:PrescriptiveStatement>
+     </lrml:PrescriptiveStatement>
 
-    <lrml:PrescriptiveStatement key="ps220_5">
+     <lrml:PrescriptiveStatement key="ps220_4_neg_1">
+      <ruleml:Rule key=":rule220_4_neg_1" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv4</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+     </lrml:PrescriptiveStatement>
+
+
+     <lrml:PrescriptiveStatement key="ps220_4_neg_2">
+      <ruleml:Rule key=":rule220_4_neg_2" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv4</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv2</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+     </lrml:PrescriptiveStatement>
+
+
+     <lrml:PrescriptiveStatement key="ps220_4_neg_3">
+      <ruleml:Rule key=":rule220_4_neg_3" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv4</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv3</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+     </lrml:PrescriptiveStatement>
+
+         <lrml:PrescriptiveStatement key="ps220_5">
       <ruleml:Rule key=":rule220_5" closure="universal" strength="defeasible">
         <ruleml:if>
           <ruleml:Atom>
             <ruleml:Rel iri="lc:violates_protection_measures"/>
             <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+            <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
           </ruleml:Atom>
         </ruleml:if>
         <ruleml:then>
@@ -180,28 +327,110 @@
       </ruleml:Rule>
     </lrml:PrescriptiveStatement>
 
-    <lrml:PrescriptiveStatement key="ps221_1">
+    <lrml:PrescriptiveStatement key="ps220_5_neg_1">
+      <ruleml:Rule key=":rule220_5_neg_1" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv1</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_violating_measures</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+     </lrml:PrescriptiveStatement>
+
+
+    <lrml:PrescriptiveStatement key="ps220_5_neg_2">
+      <ruleml:Rule key=":rule220_5_neg_2" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv2</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_violating_measures</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+     </lrml:PrescriptiveStatement>
+
+    <lrml:PrescriptiveStatement key="ps220_5_neg_3">
+      <ruleml:Rule key=":rule220_5_neg_3" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv3</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_violating_measures</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+     </lrml:PrescriptiveStatement>
+
+    <lrml:PrescriptiveStatement key="ps220_5_neg_4">
+      <ruleml:Rule key=":rule220_5_neg_4" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_family_violence_lv4</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_violating_measures</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+     </lrml:PrescriptiveStatement>
+
+     <lrml:PrescriptiveStatement key="ps221_1">
       <ruleml:Rule key=":rule221_1" closure="universal" strength="defeasible">
         <ruleml:if>
           <ruleml:And>
             <ruleml:Atom>
               <ruleml:Rel iri="lc:legal_obligation_to_support"/>
               <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
             </ruleml:Atom>
             <ruleml:Atom>
               <ruleml:Rel iri="lc:duty_established_by_court_order"/>
               <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
             </ruleml:Atom>
             <ruleml:Atom>
               <ruleml:Rel iri="lc:fails_to_pay_support"/>
               <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
             </ruleml:Atom>
-            <ruleml:Not>
-              <ruleml:Atom>
-                <ruleml:Rel iri="lc:justified_reasons_for_nonpayment"/>
-                <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
-              </ruleml:Atom>
-            </ruleml:Not>
           </ruleml:And>
         </ruleml:if>
         <ruleml:then>
@@ -213,17 +442,72 @@
       </ruleml:Rule>
     </lrml:PrescriptiveStatement>
 
+
+     <lrml:PrescriptiveStatement key="ps221_1_neg">
+      <ruleml:Rule key=":rule221_1_neg" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:legal_obligation_to_support"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:duty_established_by_court_order"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:fails_to_pay_support"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+                <ruleml:Rel iri="lc:justified_reasons_for_nonpayment"/>
+                <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+                <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+              </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_nonpayment_of_support_lv1</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+    </lrml:PrescriptiveStatement>
+
     <lrml:PrescriptiveStatement key="ps221_3">
       <ruleml:Rule key=":rule221_3" closure="universal" strength="defeasible">
         <ruleml:if>
           <ruleml:And>
             <ruleml:Atom>
-              <ruleml:Rel>is_guilty_of_nonpayment_of_support_lv1</ruleml:Rel>
-              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+              <ruleml:Rel iri="lc:legal_obligation_to_support"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:duty_established_by_court_order"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:fails_to_pay_support"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
+            </ruleml:Atom>
+            <ruleml:Atom>
+              <ruleml:Rel iri="lc:justified_reasons_for_nonpayment"/>
+              <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">false</ruleml:Data>
             </ruleml:Atom>
             <ruleml:Atom>
               <ruleml:Rel iri="lc:severe_consequences_for_victim"/>
               <ruleml:Var type="lc:defendant">Defendant</ruleml:Var>
+              <ruleml:Data xsi:type="xs:string">true</ruleml:Data>
             </ruleml:Atom>
           </ruleml:And>
         </ruleml:if>
@@ -236,66 +520,232 @@
       </ruleml:Rule>
     </lrml:PrescriptiveStatement>
 
-    <lrml:PenaltyStatement key="pen220_1">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":max_imprisonment"/><ruleml:Var>Years</ruleml:Var><ruleml:Ind>2</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
+    <lrml:PrescriptiveStatement key="ps221_1_neg_3">
+      <ruleml:Rule key=":rule221_1_neg_3" closure="universal" strength="defeasible">
+        <ruleml:if>
+          <ruleml:And>
+            <ruleml:Atom>
+            <ruleml:Rel>is_guilty_of_nonpayment_of_support_lv2</ruleml:Rel>
+            <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+          </ruleml:Atom>
+          </ruleml:And>
+        </ruleml:if>
+        <ruleml:then>
+          <ruleml:Negation>
+            <ruleml:Atom>
+              <ruleml:Rel>is_guilty_of_nonpayment_of_support_lv1</ruleml:Rel>
+              <ruleml:Var type=":defendant">Defendant</ruleml:Var>
+            </ruleml:Atom>
+          </ruleml:Negation>
+        </ruleml:then>
+      </ruleml:Rule>
+    </lrml:PrescriptiveStatement>
+
+    <lrml:PenaltyStatement key="pen220_1_prison">
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":max_imprisonment"/>
+            <ruleml:Var>Years</ruleml:Var>
+            <ruleml:Ind>2</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+    </lrml:PenaltyStatement>
+
+    <lrml:PenaltyStatement key="pen220_1_fine">
+    <lrml:SuborderList>
+      <lrml:Obligation>
+        <ruleml:Atom>
+          <ruleml:Rel iri=":to_pay"/>
+          <ruleml:Var>Money</ruleml:Var>
+          <ruleml:Ind>1000</ruleml:Ind>
+        </ruleml:Atom>
+      </lrml:Obligation>
+    </lrml:SuborderList>
     </lrml:PenaltyStatement>
 
     <lrml:PenaltyStatement key="pen220_2_min">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":min_imprisonment"/><ruleml:Var>Months</ruleml:Var><ruleml:Ind>3</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
-    </lrml:PenaltyStatement>
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":min_imprisonment"/>
+            <ruleml:Var>Months</ruleml:Var>
+            <ruleml:Ind>3</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
+
+
     <lrml:PenaltyStatement key="pen220_2_max">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":max_imprisonment"/><ruleml:Var>Years</ruleml:Var><ruleml:Ind>3</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
-    </lrml:PenaltyStatement>
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":max_imprisonment"/>
+            <ruleml:Var>Years</ruleml:Var>
+            <ruleml:Ind>3</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
+
 
     <lrml:PenaltyStatement key="pen220_3_min">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":min_imprisonment"/><ruleml:Var>Years</ruleml:Var><ruleml:Ind>1</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
-    </lrml:PenaltyStatement>
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":min_imprisonment"/>
+            <ruleml:Var>Years</ruleml:Var>
+            <ruleml:Ind>1</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
+
+
     <lrml:PenaltyStatement key="pen220_3_max">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":max_imprisonment"/><ruleml:Var>Years</ruleml:Var><ruleml:Ind>5</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
-    </lrml:PenaltyStatement>
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":max_imprisonment"/>
+            <ruleml:Var>Years</ruleml:Var>
+            <ruleml:Ind>5</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
+
 
     <lrml:PenaltyStatement key="pen220_4_min">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":min_imprisonment"/><ruleml:Var>Years</ruleml:Var><ruleml:Ind>3</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
-    </lrml:PenaltyStatement>
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":min_imprisonment"/>
+            <ruleml:Var>Years</ruleml:Var>
+            <ruleml:Ind>3</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
+
+
     <lrml:PenaltyStatement key="pen220_4_max">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":max_imprisonment"/><ruleml:Var>Years</ruleml:Var><ruleml:Ind>12</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":max_imprisonment"/>
+            <ruleml:Var>Years</ruleml:Var>
+            <ruleml:Ind>12</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
+
+      <lrml:PenaltyStatement key="pen220_5_fine">
+    <lrml:SuborderList>
+      <lrml:Obligation>
+        <ruleml:Atom>
+          <ruleml:Rel iri=":to_pay"/>
+          <ruleml:Var>Money</ruleml:Var>
+          <ruleml:Ind>500</ruleml:Ind>
+        </ruleml:Atom>
+      </lrml:Obligation>
+    </lrml:SuborderList>
     </lrml:PenaltyStatement>
 
-    <lrml:PenaltyStatement key="pen220_5">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":max_imprisonment"/><ruleml:Var>Years</ruleml:Var><ruleml:Ind>1</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
+    <lrml:PenaltyStatement key="pen220_5_prison">
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":max_imprisonment"/>
+            <ruleml:Var>Years</ruleml:Var>
+            <ruleml:Ind>1</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
+
+
+      <lrml:PenaltyStatement key="pen221_1_fine">
+    <lrml:SuborderList>
+      <lrml:Obligation>
+        <ruleml:Atom>
+          <ruleml:Rel iri=":to_pay"/>
+          <ruleml:Var>Money</ruleml:Var>
+          <ruleml:Ind>300</ruleml:Ind>
+        </ruleml:Atom>
+      </lrml:Obligation>
+    </lrml:SuborderList>
     </lrml:PenaltyStatement>
 
-    <lrml:PenaltyStatement key="pen221_1">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":max_imprisonment"/><ruleml:Var>Years</ruleml:Var><ruleml:Ind>2</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
-    </lrml:PenaltyStatement>
+    <lrml:PenaltyStatement key="pen221_1_prison">
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":max_imprisonment"/>
+            <ruleml:Var>Years</ruleml:Var>
+            <ruleml:Ind>2</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
 
-    <lrml:PenaltyStatement key="pen221_3_min">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":min_imprisonment"/><ruleml:Var>Months</ruleml:Var><ruleml:Ind>6</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
-    </lrml:PenaltyStatement>
+      <lrml:PenaltyStatement key="pen221_3_min">
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":min_imprisonment"/>
+            <ruleml:Var>Months</ruleml:Var>
+            <ruleml:Ind>6</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
+
+
     <lrml:PenaltyStatement key="pen221_3_max">
-      <lrml:SuborderList><lrml:Obligation><ruleml:Atom><ruleml:Rel iri=":max_imprisonment"/><ruleml:Var>Years</ruleml:Var><ruleml:Ind>5</ruleml:Ind></ruleml:Atom></lrml:Obligation></lrml:SuborderList>
-    </lrml:PenaltyStatement>
+      <lrml:SuborderList>
+        <lrml:Obligation>
+          <ruleml:Atom>
+            <ruleml:Rel iri=":max_imprisonment"/>
+            <ruleml:Var>Years</ruleml:Var>
+            <ruleml:Ind>5</ruleml:Ind>
+          </ruleml:Atom>
+        </lrml:Obligation>
+      </lrml:SuborderList>
+      </lrml:PenaltyStatement>
 
-    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_1"/><lrml:toPrescriptiveStatement keyref="#ps220_1"/></lrml:Reparation></lrml:ReparationStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_1" over="#ps220_2_neg"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_1" over="#ps220_3_neg_1"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_1" over="#ps220_4_neg_1"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_2" over="#ps220_3_neg_2"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_2" over="#ps220_4_neg_2"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_3_a" over="#ps220_4_neg_3"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_3_b" over="#ps220_4_neg_3"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_5" over="#ps220_5_neg_1"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_5" over="#ps220_5_neg_2"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_5" over="#ps220_5_neg_3"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps220_5" over="#ps220_5_neg_4"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps221_1" over="#ps221_1_neg"/></lrml:OverrideStatement>
+    <lrml:OverrideStatement><lrml:Override under="#ps221_1" over="#ps221_1_neg_3"/></lrml:OverrideStatement>
+
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_1_fine"/><lrml:toPrescriptiveStatement keyref="#ps220_1"/></lrml:Reparation></lrml:ReparationStatement>
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_1_prison"/><lrml:toPrescriptiveStatement keyref="#ps220_1"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_2_min"/><lrml:toPrescriptiveStatement keyref="#ps220_2"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_2_max"/><lrml:toPrescriptiveStatement keyref="#ps220_2"/></lrml:Reparation></lrml:ReparationStatement>
-    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_3_min"/><lrml:toPrescriptiveStatement keyref="#ps220_3"/></lrml:Reparation></lrml:ReparationStatement>
-    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_3_max"/><lrml:toPrescriptiveStatement keyref="#ps220_3"/></lrml:Reparation></lrml:ReparationStatement> -->
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_3_min"/><lrml:toPrescriptiveStatement keyref="#ps220_3_a"/></lrml:Reparation></lrml:ReparationStatement>
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_3_max"/><lrml:toPrescriptiveStatement keyref="#ps220_3_a"/></lrml:Reparation></lrml:ReparationStatement>
+      <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_3_min"/><lrml:toPrescriptiveStatement keyref="#ps220_3_b"/></lrml:Reparation></lrml:ReparationStatement>
+      <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_3_max"/><lrml:toPrescriptiveStatement keyref="#ps220_3_b"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_4_min"/><lrml:toPrescriptiveStatement keyref="#ps220_4"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_4_max"/><lrml:toPrescriptiveStatement keyref="#ps220_4"/></lrml:Reparation></lrml:ReparationStatement>
-    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_5"/><lrml:toPrescriptiveStatement keyref="#ps220_5"/></lrml:Reparation></lrml:ReparationStatement> -->
-
-    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen221_1"/><lrml:toPrescriptiveStatement keyref="#ps221_1"/></lrml:Reparation></lrml:ReparationStatement>
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_5_fine"/><lrml:toPrescriptiveStatement keyref="#ps220_5"/></lrml:Reparation></lrml:ReparationStatement>
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen220_5_prison"/><lrml:toPrescriptiveStatement keyref="#ps220_5"/></lrml:Reparation></lrml:ReparationStatement>
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen221_1_fine"/><lrml:toPrescriptiveStatement keyref="#ps221_1"/></lrml:Reparation></lrml:ReparationStatement>
+    <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen221_1_prison"/><lrml:toPrescriptiveStatement keyref="#ps221_1"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen221_3_min"/><lrml:toPrescriptiveStatement keyref="#ps221_3"/></lrml:Reparation></lrml:ReparationStatement>
     <lrml:ReparationStatement><lrml:Reparation><lrml:appliesPenalty keyref="#pen221_3_max"/><lrml:toPrescriptiveStatement keyref="#ps221_3"/></lrml:Reparation></lrml:ReparationStatement>
-
-    <lrml:OverrideStatement><lrml:Override under="#ps220_1_neg" over="#ps220_1"/></lrml:OverrideStatement>
-    <!-- <lrml:OverrideStatement><lrml:Override under="#ps220_1_neg" over="#ps220_2"/></lrml:OverrideStatement> -->
-    <!-- <lrml:OverrideStatement><lrml:Override under="#ps220_1" over="#ps220_2_neg"/></lrml:OverrideStatement>
-    <lrml:OverrideStatement><lrml:Override under="#ps220_1_neg" over="#ps220_3"/></lrml:OverrideStatement>
-    <lrml:OverrideStatement><lrml:Override under="#ps220_2" over="#ps220_3"/></lrml:OverrideStatement>
-
-    <lrml:OverrideStatement><lrml:Override under="#ps221_1" over="#ps221_3"/></lrml:OverrideStatement> -->
 
   </lrml:Statements>
 </lrml:LegalRuleML>

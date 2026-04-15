@@ -1,0 +1,181 @@
+<div class="form-container">
+
+  <h2>Generate Facts File for DR-Device</h2>
+
+  <!-- Osnovni podaci o sudu i strankama (Material polja) -->
+  <mat-form-field appearance="fill">
+    <mat-label>Court</mat-label>
+    <input matInput [(ngModel)]="court" placeholder="npr. Osnovni sud u Cetinju">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Judge</mat-label>
+    <input matInput [(ngModel)]="judge.name" placeholder="Ime i prezime sudije">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Clerk</mat-label>
+    <input matInput [(ngModel)]="clerk.name" placeholder="Ime i prezime zapisničara">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Accused</mat-label>
+    <input matInput [(ngModel)]="accused.name" placeholder="Ime okrivljenog">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Prosecutor</mat-label>
+    <input matInput [(ngModel)]="prosecutor.name" placeholder="Ime tužioca">
+  </mat-form-field>
+
+  <!-- Victims -->
+  <h3>Oštećeni</h3>
+  <div *ngFor="let v of victims; let i = index" class="inline-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Ime oštećenog {{i+1}}</mat-label>
+      <input matInput [(ngModel)]="v.name">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button type="button" (click)="addVictim()">+ Dodaj oštećenog</button>
+
+  <!-- Lawyers -->
+  <h3>Advokati</h3>
+  <div *ngFor="let l of lawyers; let i = index" class="inline-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Ime advokata {{i+1}}</mat-label>
+      <input matInput [(ngModel)]="l.name">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button type="button" (click)="addLawyer()">+ Dodaj advokata</button>
+
+  <!-- === STRUKTURIRANE ČINJENICE === -->
+  <h3>Činjenice za krivično djelo</h3>
+
+  <div class="checkbox-grid">
+    <!-- Umesto selecta koristimo mat-checkbox za binarna pitanja -->
+    <div>
+      <mat-checkbox [(ngModel)]="usesGrossViolence">
+        Korišćenje grubog nasilja
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <mat-checkbox [(ngModel)]="usesWeapon">
+        Korišćenje oružja
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <mat-checkbox [(ngModel)]="causesSeriousInjury">
+        Prouzrokovana teška povreda
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <mat-checkbox [(ngModel)]="causesDeath">
+        Prouzrokovana smrt
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <mat-checkbox [(ngModel)]="violatesProtectionMeasures">
+        Kršenje zaštitnih mera
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <mat-checkbox [(ngModel)]="causesSeriousConsequences">
+        Ozbiljne posledice za oštećenog
+      </mat-checkbox>
+    </div>
+
+    <!-- additional flags -->
+    <div>
+      <mat-checkbox [(ngModel)]="legalObligationToSupport">
+        Postoji pravna obaveza za uzdržavanje
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <mat-checkbox [(ngModel)]="dutyEstablishedByCourtOrder">
+        Obaveza utvrđena sudskom odlukom
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <mat-checkbox [(ngModel)]="justifiedReasonsForNonpayment">
+        Postoje opravdani razlozi za neizvršenje
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <mat-checkbox [(ngModel)]="victimIsMinor">
+        Oštećeni je maloletan
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <!-- Polja sa više opcija (select) -->
+  <div class="select-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Kršenje integriteta</mat-label>
+      <mat-select [(ngModel)]="violatesIntegrity">
+        <mat-option [value]="null">-- Izaberi --</mat-option>
+        <mat-option value="family_member_yes">Član porodice</mat-option>
+        <mat-option value="other">Drugo</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Neizvršenje alimentacije</mat-label>
+      <mat-select [(ngModel)]="failsToPaySupport">
+        <mat-option [value]="null">-- Izaberi --</mat-option>
+        <mat-option value="true">Sudski nalog</mat-option>
+        <mat-option value="false">Nije primenljivo</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Slobodan tekst -->
+  <h3>Facts & Legal (slobodan tekst)</h3>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Facts</mat-label>
+    <textarea matInput [(ngModel)]="facts" rows="4"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Legal</mat-label>
+    <textarea matInput [(ngModel)]="legal" rows="4"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Context</mat-label>
+    <textarea matInput [(ngModel)]="context" rows="4"></textarea>
+  </mat-form-field>
+
+  <!-- Meta podaci -->
+  <h3>Meta podaci</h3>
+  <mat-form-field appearance="fill">
+    <mat-label>Datum generisanja</mat-label>
+    <input matInput [(ngModel)]="generationDate" placeholder="npr. 2025-02-25">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Ime suda (za potpis)</mat-label>
+    <input matInput [(ngModel)]="courtName" placeholder="npr. Osnovni sud u Cetinju">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Ime zapisničara (za potpis)</mat-label>
+    <input matInput [(ngModel)]="clerkName" placeholder="npr. Aleksandra Martinović">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Ime sudije (za potpis)</mat-label>
+    <input matInput [(ngModel)]="judgeName" placeholder="npr. Branislav Leković">
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="submitFacts()">Generate Facts File</button>
+  </div>
+</div>

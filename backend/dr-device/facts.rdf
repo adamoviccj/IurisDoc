@@ -4,45 +4,22 @@
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:lc="http://example.org/lc#">
+    xmlns:lc="http://informatika.ftn.uns.ac.rs/legal-case.rdf#">
 
-  <!-- ===== PROPERTIES ===== -->
-
-  <rdf:Property rdf:about="http://example.org/lc#defendant">
-    <rdfs:domain rdf:resource="http://example.org/lc#case"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Property>
-
-  <rdf:Property rdf:about="http://example.org/lc#uses_gross_violence"/>
-  <rdf:Property rdf:about="http://example.org/lc#violates_integrity"/>
-  <rdf:Property rdf:about="http://example.org/lc#uses_weapon"/>
-  <rdf:Property rdf:about="http://example.org/lc#causes_serious_injury"/>
-  <rdf:Property rdf:about="http://example.org/lc#causes_death"/>
-  <rdf:Property rdf:about="http://example.org/lc#violates_protection_measures"/>
-  <rdf:Property rdf:about="http://example.org/lc#fails_to_provide_support"/>
-  <rdf:Property rdf:about="http://example.org/lc#causes_serious_consequences"/>
-
-  <!-- ===== CASE INSTANCE ===== -->
-
-  <lc:case rdf:about="http://example.org/lc#case01">
-    <rdf:type rdf:resource="http://example.org/lc#case"/>
-
-    <lc:defendant>Marko M.</lc:defendant>
-
-    <!-- Family violence chain -->
-    <lc:uses_gross_violence>true</lc:uses_gross_violence>
-    <lc:violates_integrity>family_member</lc:violates_integrity>
-    <lc:uses_weapon>true</lc:uses_weapon>
-    <lc:causes_serious_injury>true</lc:causes_serious_injury>
-    <lc:causes_death>true</lc:causes_death>
-
-    <!-- Protection measures -->
-    <lc:violates_protection_measures>true</lc:violates_protection_measures>
-
-    <!-- Support offense -->
-    <lc:fails_to_provide_support>court_order</lc:fails_to_provide_support>
-    <lc:causes_serious_consequences>true</lc:causes_serious_consequences>
-
-  </lc:case>
-
+    <lc:case rdf:about="http://informatika.ftn.uns.ac.rs/legal-case.rdf#dfdxf">
+        <lc:name>dfdxf</lc:name>
+        <lc:defendant>dfdxf</lc:defendant>
+        <lc:uses_weapon>true</lc:uses_weapon>
+        <lc:uses_gross_violence>true</lc:uses_gross_violence>
+        <lc:violates_integrity>family_member_yes</lc:violates_integrity>
+        <lc:causes_serious_injury>true</lc:causes_serious_injury>
+        <lc:victim_is_minor>true</lc:victim_is_minor>
+        <lc:causes_death>true</lc:causes_death>
+        <lc:violates_protection_measures>false</lc:violates_protection_measures>
+        <lc:legal_obligation_to_support>true</lc:legal_obligation_to_support>
+        <lc:duty_established_by_court_order>true</lc:duty_established_by_court_order>
+        <lc:fails_to_pay_support>true</lc:fails_to_pay_support>
+        <lc:justified_reasons_for_nonpayment>false</lc:justified_reasons_for_nonpayment>
+        <lc:severe_consequences_for_victim>true</lc:severe_consequences_for_victim>
+    </lc:case>
 </rdf:RDF>

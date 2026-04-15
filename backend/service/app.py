@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, middleware
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import List, Optional
 from bs4 import BeautifulSoup
@@ -8,6 +9,13 @@ import requests
 import json
 import os
 import csv
+
+from facts_generator.generate_facts import FactsRequest, generate_rdf_facts
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))          
+PROJECT_ROOT = os.path.dirname(os.path.dirname(BASE_DIR))      
+DATA_CASES_PATH = os.path.join(PROJECT_ROOT, "data", "cases")
+DATA_LAWS_PATH = os.path.join(PROJECT_ROOT, "data", "laws")
 
 app = FastAPI()
 
@@ -93,7 +101,7 @@ judgments_cache: List[JudgmentListItem] = []
 judgment_full_cache: dict[str, JudgmentResponse] = {}
 
 def build_judgments_cache():
-    base_path = "../../data/cases/"
+    base_path = DATA_CASES_PATH
     items = []
     full = {}
 
@@ -143,7 +151,7 @@ def build_judgments_cache():
 
 def build_filters_cache():
 
-    base_path = "../../data/cases/"
+    base_path = DATA_CASES_PATH
 
     courts = set()
     years = set()
@@ -353,7 +361,7 @@ async def list_judgments(
 
 @app.get("/law/{file_name}", response_model=LawResponse)
 async def get_law(file_name: str):
-    path = f"../../data/laws/{file_name}.xml"
+    path = f"../data/laws/{file_name}.xml"
     return parse_akoma_ntoso(path)
 
 @app.on_event("startup")
@@ -364,6 +372,22 @@ async def startup_event():
 @app.get("/judgments/filters")
 async def get_filters():
     return filters_cache
+
+
+
+from fastapi.responses import Response
+
+@app.post("/generate-rdf")
+async def generate_rdf(request: FactsRequest):
+    
+    print("Received RDF generation request:", request.json())  # Log the incoming request data
+    rdf_content = generate_rdf_facts(request)
+    
+    return Response(
+        content=rdf_content,
+        media_type="application/rdf+xml",
+        headers={"Content-Disposition": "attachment; filename=facts.rdf"}
+    )
 
 if __name__ == "__main__":
     import uvicorn

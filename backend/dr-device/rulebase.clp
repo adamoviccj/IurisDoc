@@ -491,6 +491,9 @@
 	(to_pay 
 		(
 		 value 1000)
+	
+		(
+		 unit Money)
 	) 
 ) 
 	
@@ -505,6 +508,9 @@
 	(max_imprisonment 
 		(
 		 value 2)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -519,6 +525,9 @@
 	(min_imprisonment 
 		(
 		 value 3)
+	
+		(
+		 unit Months)
 	) 
 ) 
 	
@@ -533,6 +542,9 @@
 	(max_imprisonment 
 		(
 		 value 3)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -547,6 +559,9 @@
 	(min_imprisonment 
 		(
 		 value 1)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -561,6 +576,9 @@
 	(max_imprisonment 
 		(
 		 value 5)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -575,6 +593,9 @@
 	(min_imprisonment 
 		(
 		 value 1)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -589,6 +610,9 @@
 	(max_imprisonment 
 		(
 		 value 5)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -603,6 +627,9 @@
 	(min_imprisonment 
 		(
 		 value 3)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -617,6 +644,9 @@
 	(max_imprisonment 
 		(
 		 value 12)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -631,6 +661,9 @@
 	(to_pay 
 		(
 		 value 500)
+	
+		(
+		 unit Money)
 	) 
 ) 
 	
@@ -645,6 +678,9 @@
 	(max_imprisonment 
 		(
 		 value 1)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -659,6 +695,9 @@
 	(to_pay 
 		(
 		 value 300)
+	
+		(
+		 unit Money)
 	) 
 ) 
 	
@@ -673,6 +712,9 @@
 	(max_imprisonment 
 		(
 		 value 2)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	
@@ -687,6 +729,9 @@
 	(min_imprisonment 
 		(
 		 value 6)
+	
+		(
+		 unit Months)
 	) 
 ) 
 	
@@ -701,6 +746,9 @@
 	(max_imprisonment 
 		(
 		 value 5)
+	
+		(
+		 unit Years)
 	) 
 ) 
 	

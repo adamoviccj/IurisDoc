@@ -3,490 +3,490 @@
    (depends-on declare max_imprisonment is_guilty_of_nonpayment_of_support_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen221_3_max] ) ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( positive 1 ) ( positive-derivator pen221_3_max $? ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) ( not ( and ?gen401 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen400 & : ( >= ?gen400 1 ) ) ) ?gen394 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen396 & : ( not ( member$ pen221_3_max $?gen396 ) ) ) ) ) ) => ?gen394 <- ( max_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen221_3_max] ) ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( positive 1 ) ( positive-derivator pen221_3_max $? ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) ( not ( and ?gen401 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen400 & : ( >= ?gen400 1 ) ) ) ?gen394 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen396 & : ( not ( member$ pen221_3_max $?gen396 ) ) ) ) ) ) => ?gen394 <- ( max_imprisonment ( positive 0 ) )"))
 
 ([pen221_3_max-defeasibly] of derived-attribute-rule
    (pos-name pen221_3_max-defeasibly-gen438)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen221_3_max] ) ) ) ?gen401 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen400 & : ( >= ?gen400 1 ) ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen396 & : ( not ( member$ pen221_3_max $?gen396 ) ) ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) => ?gen394 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen221_3_max ?gen401 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen221_3_max] ) ) ) ?gen401 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen400 & : ( >= ?gen400 1 ) ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen396 & : ( not ( member$ pen221_3_max $?gen396 ) ) ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) => ?gen394 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen221_3_max ?gen401 ) )"))
 
 ([pen221_3_max-overruled-dot] of derived-attribute-rule
    (pos-name pen221_3_max-overruled-dot-gen440)
    (depends-on declare max_imprisonment is_guilty_of_nonpayment_of_support_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen221_3_max] ) ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( negative-support $?gen397 ) ( negative-overruled $?gen398 & : ( subseq-pos ( create$ pen221_3_max-overruled $?gen397 $$$ $?gen398 ) ) ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) ( not ( and ?gen401 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen400 & : ( >= ?gen400 1 ) ) ) ?gen394 <- ( max_imprisonment ( positive-defeated $?gen396 & : ( not ( member$ pen221_3_max $?gen396 ) ) ) ) ) ) => ( calc ( bind $?gen399 ( delete-member$ $?gen398 ( create$ pen221_3_max-overruled $?gen397 ) ) ) ) ?gen394 <- ( max_imprisonment ( negative-overruled $?gen399 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen221_3_max] ) ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( negative-support $?gen397 ) ( negative-overruled $?gen398 & : ( subseq-pos ( create$ pen221_3_max-overruled $?gen397 $$$ $?gen398 ) ) ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) ( not ( and ?gen401 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen400 & : ( >= ?gen400 1 ) ) ) ?gen394 <- ( max_imprisonment ( positive-defeated $?gen396 & : ( not ( member$ pen221_3_max $?gen396 ) ) ) ) ) ) => ( calc ( bind $?gen399 ( delete-member$ $?gen398 ( create$ pen221_3_max-overruled $?gen397 ) ) ) ) ?gen394 <- ( max_imprisonment ( negative-overruled $?gen399 ) )"))
 
 ([pen221_3_max-overruled] of derived-attribute-rule
    (pos-name pen221_3_max-overruled-gen442)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen221_3_max] ) ) ) ?gen401 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen400 & : ( >= ?gen400 1 ) ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( negative-support $?gen397 ) ( negative-overruled $?gen398 & : ( not ( subseq-pos ( create$ pen221_3_max-overruled $?gen397 $$$ $?gen398 ) ) ) ) ( positive-defeated $?gen396 & : ( not ( member$ pen221_3_max $?gen396 ) ) ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) => ( calc ( bind $?gen399 ( create$ pen221_3_max-overruled $?gen397 $?gen398 ) ) ) ?gen394 <- ( max_imprisonment ( negative-overruled $?gen399 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen221_3_max] ) ) ) ?gen401 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen400 & : ( >= ?gen400 1 ) ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( negative-support $?gen397 ) ( negative-overruled $?gen398 & : ( not ( subseq-pos ( create$ pen221_3_max-overruled $?gen397 $$$ $?gen398 ) ) ) ) ( positive-defeated $?gen396 & : ( not ( member$ pen221_3_max $?gen396 ) ) ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) => ( calc ( bind $?gen399 ( create$ pen221_3_max-overruled $?gen397 $?gen398 ) ) ) ?gen394 <- ( max_imprisonment ( negative-overruled $?gen399 ) )"))
 
 ([pen221_3_max-support] of derived-attribute-rule
    (pos-name pen221_3_max-support-gen444)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen221_3_max] ) ) ) ?gen393 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( positive-support $?gen396 & : ( not ( subseq-pos ( create$ pen221_3_max ?gen393 $$$ $?gen396 ) ) ) ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) => ( calc ( bind $?gen399 ( create$ pen221_3_max ?gen393 $?gen396 ) ) ) ?gen394 <- ( max_imprisonment ( positive-support $?gen399 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen221_3_max] ) ) ) ?gen393 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) ?gen394 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( positive-support $?gen396 & : ( not ( subseq-pos ( create$ pen221_3_max ?gen393 $$$ $?gen396 ) ) ) ) ) ( test ( eq ( class ?gen394 ) max_imprisonment ) ) => ( calc ( bind $?gen399 ( create$ pen221_3_max ?gen393 $?gen396 ) ) ) ?gen394 <- ( max_imprisonment ( positive-support $?gen399 ) )"))
 
 ([pen221_3_min-defeasibly-dot] of derived-attribute-rule
    (pos-name pen221_3_min-defeasibly-dot-gen446)
    (depends-on declare min_imprisonment is_guilty_of_nonpayment_of_support_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen221_3_min] ) ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( positive 1 ) ( positive-derivator pen221_3_min $? ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) ( not ( and ?gen392 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen391 & : ( >= ?gen391 1 ) ) ) ?gen385 <- ( min_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen387 & : ( not ( member$ pen221_3_min $?gen387 ) ) ) ) ) ) => ?gen385 <- ( min_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen221_3_min] ) ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( unit Months ) ( positive 1 ) ( positive-derivator pen221_3_min $? ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) ( not ( and ?gen392 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen391 & : ( >= ?gen391 1 ) ) ) ?gen385 <- ( min_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen387 & : ( not ( member$ pen221_3_min $?gen387 ) ) ) ) ) ) => ?gen385 <- ( min_imprisonment ( positive 0 ) )"))
 
 ([pen221_3_min-defeasibly] of derived-attribute-rule
    (pos-name pen221_3_min-defeasibly-gen448)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen221_3_min] ) ) ) ?gen392 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen391 & : ( >= ?gen391 1 ) ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen387 & : ( not ( member$ pen221_3_min $?gen387 ) ) ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) => ?gen385 <- ( min_imprisonment ( positive 1 ) ( positive-derivator pen221_3_min ?gen392 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen221_3_min] ) ) ) ?gen392 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen391 & : ( >= ?gen391 1 ) ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( unit Months ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen387 & : ( not ( member$ pen221_3_min $?gen387 ) ) ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) => ?gen385 <- ( min_imprisonment ( positive 1 ) ( positive-derivator pen221_3_min ?gen392 ) )"))
 
 ([pen221_3_min-overruled-dot] of derived-attribute-rule
    (pos-name pen221_3_min-overruled-dot-gen450)
    (depends-on declare min_imprisonment is_guilty_of_nonpayment_of_support_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen221_3_min] ) ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( negative-support $?gen388 ) ( negative-overruled $?gen389 & : ( subseq-pos ( create$ pen221_3_min-overruled $?gen388 $$$ $?gen389 ) ) ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) ( not ( and ?gen392 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen391 & : ( >= ?gen391 1 ) ) ) ?gen385 <- ( min_imprisonment ( positive-defeated $?gen387 & : ( not ( member$ pen221_3_min $?gen387 ) ) ) ) ) ) => ( calc ( bind $?gen390 ( delete-member$ $?gen389 ( create$ pen221_3_min-overruled $?gen388 ) ) ) ) ?gen385 <- ( min_imprisonment ( negative-overruled $?gen390 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen221_3_min] ) ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( unit Months ) ( negative-support $?gen388 ) ( negative-overruled $?gen389 & : ( subseq-pos ( create$ pen221_3_min-overruled $?gen388 $$$ $?gen389 ) ) ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) ( not ( and ?gen392 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen391 & : ( >= ?gen391 1 ) ) ) ?gen385 <- ( min_imprisonment ( positive-defeated $?gen387 & : ( not ( member$ pen221_3_min $?gen387 ) ) ) ) ) ) => ( calc ( bind $?gen390 ( delete-member$ $?gen389 ( create$ pen221_3_min-overruled $?gen388 ) ) ) ) ?gen385 <- ( min_imprisonment ( negative-overruled $?gen390 ) )"))
 
 ([pen221_3_min-overruled] of derived-attribute-rule
    (pos-name pen221_3_min-overruled-gen452)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen221_3_min] ) ) ) ?gen392 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen391 & : ( >= ?gen391 1 ) ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( negative-support $?gen388 ) ( negative-overruled $?gen389 & : ( not ( subseq-pos ( create$ pen221_3_min-overruled $?gen388 $$$ $?gen389 ) ) ) ) ( positive-defeated $?gen387 & : ( not ( member$ pen221_3_min $?gen387 ) ) ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) => ( calc ( bind $?gen390 ( create$ pen221_3_min-overruled $?gen388 $?gen389 ) ) ) ?gen385 <- ( min_imprisonment ( negative-overruled $?gen390 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen221_3_min] ) ) ) ?gen392 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ( positive ?gen391 & : ( >= ?gen391 1 ) ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( unit Months ) ( negative-support $?gen388 ) ( negative-overruled $?gen389 & : ( not ( subseq-pos ( create$ pen221_3_min-overruled $?gen388 $$$ $?gen389 ) ) ) ) ( positive-defeated $?gen387 & : ( not ( member$ pen221_3_min $?gen387 ) ) ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) => ( calc ( bind $?gen390 ( create$ pen221_3_min-overruled $?gen388 $?gen389 ) ) ) ?gen385 <- ( min_imprisonment ( negative-overruled $?gen390 ) )"))
 
 ([pen221_3_min-support] of derived-attribute-rule
    (pos-name pen221_3_min-support-gen454)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen221_3_min] ) ) ) ?gen384 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( positive-support $?gen387 & : ( not ( subseq-pos ( create$ pen221_3_min ?gen384 $$$ $?gen387 ) ) ) ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) => ( calc ( bind $?gen390 ( create$ pen221_3_min ?gen384 $?gen387 ) ) ) ?gen385 <- ( min_imprisonment ( positive-support $?gen390 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen221_3_min] ) ) ) ?gen384 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) ?gen385 <- ( min_imprisonment ( value 6 ) ( unit Months ) ( positive-support $?gen387 & : ( not ( subseq-pos ( create$ pen221_3_min ?gen384 $$$ $?gen387 ) ) ) ) ) ( test ( eq ( class ?gen385 ) min_imprisonment ) ) => ( calc ( bind $?gen390 ( create$ pen221_3_min ?gen384 $?gen387 ) ) ) ?gen385 <- ( min_imprisonment ( positive-support $?gen390 ) )"))
 
 ([pen221_1_prison-defeasibly-dot] of derived-attribute-rule
    (pos-name pen221_1_prison-defeasibly-dot-gen456)
    (depends-on declare max_imprisonment is_guilty_of_nonpayment_of_support_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen221_1_prison] ) ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( positive 1 ) ( positive-derivator pen221_1_prison $? ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) ( not ( and ?gen383 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen382 & : ( >= ?gen382 1 ) ) ) ?gen376 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen378 & : ( not ( member$ pen221_1_prison $?gen378 ) ) ) ) ) ) => ?gen376 <- ( max_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen221_1_prison] ) ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( positive 1 ) ( positive-derivator pen221_1_prison $? ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) ( not ( and ?gen383 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen382 & : ( >= ?gen382 1 ) ) ) ?gen376 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen378 & : ( not ( member$ pen221_1_prison $?gen378 ) ) ) ) ) ) => ?gen376 <- ( max_imprisonment ( positive 0 ) )"))
 
 ([pen221_1_prison-defeasibly] of derived-attribute-rule
    (pos-name pen221_1_prison-defeasibly-gen458)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen221_1_prison] ) ) ) ?gen383 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen382 & : ( >= ?gen382 1 ) ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen378 & : ( not ( member$ pen221_1_prison $?gen378 ) ) ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) => ?gen376 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen221_1_prison ?gen383 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen221_1_prison] ) ) ) ?gen383 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen382 & : ( >= ?gen382 1 ) ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen378 & : ( not ( member$ pen221_1_prison $?gen378 ) ) ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) => ?gen376 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen221_1_prison ?gen383 ) )"))
 
 ([pen221_1_prison-overruled-dot] of derived-attribute-rule
    (pos-name pen221_1_prison-overruled-dot-gen460)
    (depends-on declare max_imprisonment is_guilty_of_nonpayment_of_support_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen221_1_prison] ) ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( negative-support $?gen379 ) ( negative-overruled $?gen380 & : ( subseq-pos ( create$ pen221_1_prison-overruled $?gen379 $$$ $?gen380 ) ) ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) ( not ( and ?gen383 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen382 & : ( >= ?gen382 1 ) ) ) ?gen376 <- ( max_imprisonment ( positive-defeated $?gen378 & : ( not ( member$ pen221_1_prison $?gen378 ) ) ) ) ) ) => ( calc ( bind $?gen381 ( delete-member$ $?gen380 ( create$ pen221_1_prison-overruled $?gen379 ) ) ) ) ?gen376 <- ( max_imprisonment ( negative-overruled $?gen381 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen221_1_prison] ) ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( negative-support $?gen379 ) ( negative-overruled $?gen380 & : ( subseq-pos ( create$ pen221_1_prison-overruled $?gen379 $$$ $?gen380 ) ) ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) ( not ( and ?gen383 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen382 & : ( >= ?gen382 1 ) ) ) ?gen376 <- ( max_imprisonment ( positive-defeated $?gen378 & : ( not ( member$ pen221_1_prison $?gen378 ) ) ) ) ) ) => ( calc ( bind $?gen381 ( delete-member$ $?gen380 ( create$ pen221_1_prison-overruled $?gen379 ) ) ) ) ?gen376 <- ( max_imprisonment ( negative-overruled $?gen381 ) )"))
 
 ([pen221_1_prison-overruled] of derived-attribute-rule
    (pos-name pen221_1_prison-overruled-gen462)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen221_1_prison] ) ) ) ?gen383 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen382 & : ( >= ?gen382 1 ) ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( negative-support $?gen379 ) ( negative-overruled $?gen380 & : ( not ( subseq-pos ( create$ pen221_1_prison-overruled $?gen379 $$$ $?gen380 ) ) ) ) ( positive-defeated $?gen378 & : ( not ( member$ pen221_1_prison $?gen378 ) ) ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) => ( calc ( bind $?gen381 ( create$ pen221_1_prison-overruled $?gen379 $?gen380 ) ) ) ?gen376 <- ( max_imprisonment ( negative-overruled $?gen381 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen221_1_prison] ) ) ) ?gen383 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen382 & : ( >= ?gen382 1 ) ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( negative-support $?gen379 ) ( negative-overruled $?gen380 & : ( not ( subseq-pos ( create$ pen221_1_prison-overruled $?gen379 $$$ $?gen380 ) ) ) ) ( positive-defeated $?gen378 & : ( not ( member$ pen221_1_prison $?gen378 ) ) ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) => ( calc ( bind $?gen381 ( create$ pen221_1_prison-overruled $?gen379 $?gen380 ) ) ) ?gen376 <- ( max_imprisonment ( negative-overruled $?gen381 ) )"))
 
 ([pen221_1_prison-support] of derived-attribute-rule
    (pos-name pen221_1_prison-support-gen464)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen221_1_prison] ) ) ) ?gen375 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( positive-support $?gen378 & : ( not ( subseq-pos ( create$ pen221_1_prison ?gen375 $$$ $?gen378 ) ) ) ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) => ( calc ( bind $?gen381 ( create$ pen221_1_prison ?gen375 $?gen378 ) ) ) ?gen376 <- ( max_imprisonment ( positive-support $?gen381 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen221_1_prison] ) ) ) ?gen375 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) ?gen376 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( positive-support $?gen378 & : ( not ( subseq-pos ( create$ pen221_1_prison ?gen375 $$$ $?gen378 ) ) ) ) ) ( test ( eq ( class ?gen376 ) max_imprisonment ) ) => ( calc ( bind $?gen381 ( create$ pen221_1_prison ?gen375 $?gen378 ) ) ) ?gen376 <- ( max_imprisonment ( positive-support $?gen381 ) )"))
 
 ([pen221_1_fine-defeasibly-dot] of derived-attribute-rule
    (pos-name pen221_1_fine-defeasibly-dot-gen466)
    (depends-on declare to_pay is_guilty_of_nonpayment_of_support_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen221_1_fine] ) ) ) ?gen367 <- ( to_pay ( value 300 ) ( positive 1 ) ( positive-derivator pen221_1_fine $? ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) ( not ( and ?gen374 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen373 & : ( >= ?gen373 1 ) ) ) ?gen367 <- ( to_pay ( negative ~ 2 ) ( positive-overruled $?gen369 & : ( not ( member$ pen221_1_fine $?gen369 ) ) ) ) ) ) => ?gen367 <- ( to_pay ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen221_1_fine] ) ) ) ?gen367 <- ( to_pay ( value 300 ) ( unit Money ) ( positive 1 ) ( positive-derivator pen221_1_fine $? ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) ( not ( and ?gen374 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen373 & : ( >= ?gen373 1 ) ) ) ?gen367 <- ( to_pay ( negative ~ 2 ) ( positive-overruled $?gen369 & : ( not ( member$ pen221_1_fine $?gen369 ) ) ) ) ) ) => ?gen367 <- ( to_pay ( positive 0 ) )"))
 
 ([pen221_1_fine-defeasibly] of derived-attribute-rule
    (pos-name pen221_1_fine-defeasibly-gen468)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen221_1_fine] ) ) ) ?gen374 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen373 & : ( >= ?gen373 1 ) ) ) ?gen367 <- ( to_pay ( value 300 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen369 & : ( not ( member$ pen221_1_fine $?gen369 ) ) ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) => ?gen367 <- ( to_pay ( positive 1 ) ( positive-derivator pen221_1_fine ?gen374 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen221_1_fine] ) ) ) ?gen374 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen373 & : ( >= ?gen373 1 ) ) ) ?gen367 <- ( to_pay ( value 300 ) ( unit Money ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen369 & : ( not ( member$ pen221_1_fine $?gen369 ) ) ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) => ?gen367 <- ( to_pay ( positive 1 ) ( positive-derivator pen221_1_fine ?gen374 ) )"))
 
 ([pen221_1_fine-overruled-dot] of derived-attribute-rule
    (pos-name pen221_1_fine-overruled-dot-gen470)
    (depends-on declare to_pay is_guilty_of_nonpayment_of_support_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen221_1_fine] ) ) ) ?gen367 <- ( to_pay ( value 300 ) ( negative-support $?gen370 ) ( negative-overruled $?gen371 & : ( subseq-pos ( create$ pen221_1_fine-overruled $?gen370 $$$ $?gen371 ) ) ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) ( not ( and ?gen374 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen373 & : ( >= ?gen373 1 ) ) ) ?gen367 <- ( to_pay ( positive-defeated $?gen369 & : ( not ( member$ pen221_1_fine $?gen369 ) ) ) ) ) ) => ( calc ( bind $?gen372 ( delete-member$ $?gen371 ( create$ pen221_1_fine-overruled $?gen370 ) ) ) ) ?gen367 <- ( to_pay ( negative-overruled $?gen372 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen221_1_fine] ) ) ) ?gen367 <- ( to_pay ( value 300 ) ( unit Money ) ( negative-support $?gen370 ) ( negative-overruled $?gen371 & : ( subseq-pos ( create$ pen221_1_fine-overruled $?gen370 $$$ $?gen371 ) ) ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) ( not ( and ?gen374 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen373 & : ( >= ?gen373 1 ) ) ) ?gen367 <- ( to_pay ( positive-defeated $?gen369 & : ( not ( member$ pen221_1_fine $?gen369 ) ) ) ) ) ) => ( calc ( bind $?gen372 ( delete-member$ $?gen371 ( create$ pen221_1_fine-overruled $?gen370 ) ) ) ) ?gen367 <- ( to_pay ( negative-overruled $?gen372 ) )"))
 
 ([pen221_1_fine-overruled] of derived-attribute-rule
    (pos-name pen221_1_fine-overruled-gen472)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen221_1_fine] ) ) ) ?gen374 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen373 & : ( >= ?gen373 1 ) ) ) ?gen367 <- ( to_pay ( value 300 ) ( negative-support $?gen370 ) ( negative-overruled $?gen371 & : ( not ( subseq-pos ( create$ pen221_1_fine-overruled $?gen370 $$$ $?gen371 ) ) ) ) ( positive-defeated $?gen369 & : ( not ( member$ pen221_1_fine $?gen369 ) ) ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) => ( calc ( bind $?gen372 ( create$ pen221_1_fine-overruled $?gen370 $?gen371 ) ) ) ?gen367 <- ( to_pay ( negative-overruled $?gen372 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen221_1_fine] ) ) ) ?gen374 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ( positive ?gen373 & : ( >= ?gen373 1 ) ) ) ?gen367 <- ( to_pay ( value 300 ) ( unit Money ) ( negative-support $?gen370 ) ( negative-overruled $?gen371 & : ( not ( subseq-pos ( create$ pen221_1_fine-overruled $?gen370 $$$ $?gen371 ) ) ) ) ( positive-defeated $?gen369 & : ( not ( member$ pen221_1_fine $?gen369 ) ) ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) => ( calc ( bind $?gen372 ( create$ pen221_1_fine-overruled $?gen370 $?gen371 ) ) ) ?gen367 <- ( to_pay ( negative-overruled $?gen372 ) )"))
 
 ([pen221_1_fine-support] of derived-attribute-rule
    (pos-name pen221_1_fine-support-gen474)
    (depends-on declare is_guilty_of_nonpayment_of_support_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen221_1_fine] ) ) ) ?gen366 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) ?gen367 <- ( to_pay ( value 300 ) ( positive-support $?gen369 & : ( not ( subseq-pos ( create$ pen221_1_fine ?gen366 $$$ $?gen369 ) ) ) ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) => ( calc ( bind $?gen372 ( create$ pen221_1_fine ?gen366 $?gen369 ) ) ) ?gen367 <- ( to_pay ( positive-support $?gen372 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen221_1_fine] ) ) ) ?gen366 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) ?gen367 <- ( to_pay ( value 300 ) ( unit Money ) ( positive-support $?gen369 & : ( not ( subseq-pos ( create$ pen221_1_fine ?gen366 $$$ $?gen369 ) ) ) ) ) ( test ( eq ( class ?gen367 ) to_pay ) ) => ( calc ( bind $?gen372 ( create$ pen221_1_fine ?gen366 $?gen369 ) ) ) ?gen367 <- ( to_pay ( positive-support $?gen372 ) )"))
 
 ([pen220_5_prison-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_5_prison-defeasibly-dot-gen476)
    (depends-on declare max_imprisonment is_guilty_of_violating_measures max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_5_prison] ) ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( positive 1 ) ( positive-derivator pen220_5_prison $? ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) ( not ( and ?gen365 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen364 & : ( >= ?gen364 1 ) ) ) ?gen358 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen360 & : ( not ( member$ pen220_5_prison $?gen360 ) ) ) ) ) ) => ?gen358 <- ( max_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_5_prison] ) ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( unit Years ) ( positive 1 ) ( positive-derivator pen220_5_prison $? ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) ( not ( and ?gen365 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen364 & : ( >= ?gen364 1 ) ) ) ?gen358 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen360 & : ( not ( member$ pen220_5_prison $?gen360 ) ) ) ) ) ) => ?gen358 <- ( max_imprisonment ( positive 0 ) )"))
 
 ([pen220_5_prison-defeasibly] of derived-attribute-rule
    (pos-name pen220_5_prison-defeasibly-gen478)
    (depends-on declare is_guilty_of_violating_measures max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_5_prison] ) ) ) ?gen365 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen364 & : ( >= ?gen364 1 ) ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen360 & : ( not ( member$ pen220_5_prison $?gen360 ) ) ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) => ?gen358 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_5_prison ?gen365 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_5_prison] ) ) ) ?gen365 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen364 & : ( >= ?gen364 1 ) ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( unit Years ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen360 & : ( not ( member$ pen220_5_prison $?gen360 ) ) ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) => ?gen358 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_5_prison ?gen365 ) )"))
 
 ([pen220_5_prison-overruled-dot] of derived-attribute-rule
    (pos-name pen220_5_prison-overruled-dot-gen480)
    (depends-on declare max_imprisonment is_guilty_of_violating_measures max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_5_prison] ) ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( negative-support $?gen361 ) ( negative-overruled $?gen362 & : ( subseq-pos ( create$ pen220_5_prison-overruled $?gen361 $$$ $?gen362 ) ) ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) ( not ( and ?gen365 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen364 & : ( >= ?gen364 1 ) ) ) ?gen358 <- ( max_imprisonment ( positive-defeated $?gen360 & : ( not ( member$ pen220_5_prison $?gen360 ) ) ) ) ) ) => ( calc ( bind $?gen363 ( delete-member$ $?gen362 ( create$ pen220_5_prison-overruled $?gen361 ) ) ) ) ?gen358 <- ( max_imprisonment ( negative-overruled $?gen363 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_5_prison] ) ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( unit Years ) ( negative-support $?gen361 ) ( negative-overruled $?gen362 & : ( subseq-pos ( create$ pen220_5_prison-overruled $?gen361 $$$ $?gen362 ) ) ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) ( not ( and ?gen365 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen364 & : ( >= ?gen364 1 ) ) ) ?gen358 <- ( max_imprisonment ( positive-defeated $?gen360 & : ( not ( member$ pen220_5_prison $?gen360 ) ) ) ) ) ) => ( calc ( bind $?gen363 ( delete-member$ $?gen362 ( create$ pen220_5_prison-overruled $?gen361 ) ) ) ) ?gen358 <- ( max_imprisonment ( negative-overruled $?gen363 ) )"))
 
 ([pen220_5_prison-overruled] of derived-attribute-rule
    (pos-name pen220_5_prison-overruled-gen482)
    (depends-on declare is_guilty_of_violating_measures max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_5_prison] ) ) ) ?gen365 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen364 & : ( >= ?gen364 1 ) ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( negative-support $?gen361 ) ( negative-overruled $?gen362 & : ( not ( subseq-pos ( create$ pen220_5_prison-overruled $?gen361 $$$ $?gen362 ) ) ) ) ( positive-defeated $?gen360 & : ( not ( member$ pen220_5_prison $?gen360 ) ) ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) => ( calc ( bind $?gen363 ( create$ pen220_5_prison-overruled $?gen361 $?gen362 ) ) ) ?gen358 <- ( max_imprisonment ( negative-overruled $?gen363 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_5_prison] ) ) ) ?gen365 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen364 & : ( >= ?gen364 1 ) ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( unit Years ) ( negative-support $?gen361 ) ( negative-overruled $?gen362 & : ( not ( subseq-pos ( create$ pen220_5_prison-overruled $?gen361 $$$ $?gen362 ) ) ) ) ( positive-defeated $?gen360 & : ( not ( member$ pen220_5_prison $?gen360 ) ) ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) => ( calc ( bind $?gen363 ( create$ pen220_5_prison-overruled $?gen361 $?gen362 ) ) ) ?gen358 <- ( max_imprisonment ( negative-overruled $?gen363 ) )"))
 
 ([pen220_5_prison-support] of derived-attribute-rule
    (pos-name pen220_5_prison-support-gen484)
    (depends-on declare is_guilty_of_violating_measures max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_5_prison] ) ) ) ?gen357 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( positive-support $?gen360 & : ( not ( subseq-pos ( create$ pen220_5_prison ?gen357 $$$ $?gen360 ) ) ) ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) => ( calc ( bind $?gen363 ( create$ pen220_5_prison ?gen357 $?gen360 ) ) ) ?gen358 <- ( max_imprisonment ( positive-support $?gen363 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_5_prison] ) ) ) ?gen357 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) ?gen358 <- ( max_imprisonment ( value 1 ) ( unit Years ) ( positive-support $?gen360 & : ( not ( subseq-pos ( create$ pen220_5_prison ?gen357 $$$ $?gen360 ) ) ) ) ) ( test ( eq ( class ?gen358 ) max_imprisonment ) ) => ( calc ( bind $?gen363 ( create$ pen220_5_prison ?gen357 $?gen360 ) ) ) ?gen358 <- ( max_imprisonment ( positive-support $?gen363 ) )"))
 
 ([pen220_5_fine-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_5_fine-defeasibly-dot-gen486)
    (depends-on declare to_pay is_guilty_of_violating_measures to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_5_fine] ) ) ) ?gen349 <- ( to_pay ( value 500 ) ( positive 1 ) ( positive-derivator pen220_5_fine $? ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) ( not ( and ?gen356 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen355 & : ( >= ?gen355 1 ) ) ) ?gen349 <- ( to_pay ( negative ~ 2 ) ( positive-overruled $?gen351 & : ( not ( member$ pen220_5_fine $?gen351 ) ) ) ) ) ) => ?gen349 <- ( to_pay ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_5_fine] ) ) ) ?gen349 <- ( to_pay ( value 500 ) ( unit Money ) ( positive 1 ) ( positive-derivator pen220_5_fine $? ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) ( not ( and ?gen356 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen355 & : ( >= ?gen355 1 ) ) ) ?gen349 <- ( to_pay ( negative ~ 2 ) ( positive-overruled $?gen351 & : ( not ( member$ pen220_5_fine $?gen351 ) ) ) ) ) ) => ?gen349 <- ( to_pay ( positive 0 ) )"))
 
 ([pen220_5_fine-defeasibly] of derived-attribute-rule
    (pos-name pen220_5_fine-defeasibly-gen488)
    (depends-on declare is_guilty_of_violating_measures to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_5_fine] ) ) ) ?gen356 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen355 & : ( >= ?gen355 1 ) ) ) ?gen349 <- ( to_pay ( value 500 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen351 & : ( not ( member$ pen220_5_fine $?gen351 ) ) ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) => ?gen349 <- ( to_pay ( positive 1 ) ( positive-derivator pen220_5_fine ?gen356 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_5_fine] ) ) ) ?gen356 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen355 & : ( >= ?gen355 1 ) ) ) ?gen349 <- ( to_pay ( value 500 ) ( unit Money ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen351 & : ( not ( member$ pen220_5_fine $?gen351 ) ) ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) => ?gen349 <- ( to_pay ( positive 1 ) ( positive-derivator pen220_5_fine ?gen356 ) )"))
 
 ([pen220_5_fine-overruled-dot] of derived-attribute-rule
    (pos-name pen220_5_fine-overruled-dot-gen490)
    (depends-on declare to_pay is_guilty_of_violating_measures to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_5_fine] ) ) ) ?gen349 <- ( to_pay ( value 500 ) ( negative-support $?gen352 ) ( negative-overruled $?gen353 & : ( subseq-pos ( create$ pen220_5_fine-overruled $?gen352 $$$ $?gen353 ) ) ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) ( not ( and ?gen356 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen355 & : ( >= ?gen355 1 ) ) ) ?gen349 <- ( to_pay ( positive-defeated $?gen351 & : ( not ( member$ pen220_5_fine $?gen351 ) ) ) ) ) ) => ( calc ( bind $?gen354 ( delete-member$ $?gen353 ( create$ pen220_5_fine-overruled $?gen352 ) ) ) ) ?gen349 <- ( to_pay ( negative-overruled $?gen354 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_5_fine] ) ) ) ?gen349 <- ( to_pay ( value 500 ) ( unit Money ) ( negative-support $?gen352 ) ( negative-overruled $?gen353 & : ( subseq-pos ( create$ pen220_5_fine-overruled $?gen352 $$$ $?gen353 ) ) ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) ( not ( and ?gen356 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen355 & : ( >= ?gen355 1 ) ) ) ?gen349 <- ( to_pay ( positive-defeated $?gen351 & : ( not ( member$ pen220_5_fine $?gen351 ) ) ) ) ) ) => ( calc ( bind $?gen354 ( delete-member$ $?gen353 ( create$ pen220_5_fine-overruled $?gen352 ) ) ) ) ?gen349 <- ( to_pay ( negative-overruled $?gen354 ) )"))
 
 ([pen220_5_fine-overruled] of derived-attribute-rule
    (pos-name pen220_5_fine-overruled-gen492)
    (depends-on declare is_guilty_of_violating_measures to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_5_fine] ) ) ) ?gen356 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen355 & : ( >= ?gen355 1 ) ) ) ?gen349 <- ( to_pay ( value 500 ) ( negative-support $?gen352 ) ( negative-overruled $?gen353 & : ( not ( subseq-pos ( create$ pen220_5_fine-overruled $?gen352 $$$ $?gen353 ) ) ) ) ( positive-defeated $?gen351 & : ( not ( member$ pen220_5_fine $?gen351 ) ) ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) => ( calc ( bind $?gen354 ( create$ pen220_5_fine-overruled $?gen352 $?gen353 ) ) ) ?gen349 <- ( to_pay ( negative-overruled $?gen354 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_5_fine] ) ) ) ?gen356 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ( positive ?gen355 & : ( >= ?gen355 1 ) ) ) ?gen349 <- ( to_pay ( value 500 ) ( unit Money ) ( negative-support $?gen352 ) ( negative-overruled $?gen353 & : ( not ( subseq-pos ( create$ pen220_5_fine-overruled $?gen352 $$$ $?gen353 ) ) ) ) ( positive-defeated $?gen351 & : ( not ( member$ pen220_5_fine $?gen351 ) ) ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) => ( calc ( bind $?gen354 ( create$ pen220_5_fine-overruled $?gen352 $?gen353 ) ) ) ?gen349 <- ( to_pay ( negative-overruled $?gen354 ) )"))
 
 ([pen220_5_fine-support] of derived-attribute-rule
    (pos-name pen220_5_fine-support-gen494)
    (depends-on declare is_guilty_of_violating_measures to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_5_fine] ) ) ) ?gen348 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) ?gen349 <- ( to_pay ( value 500 ) ( positive-support $?gen351 & : ( not ( subseq-pos ( create$ pen220_5_fine ?gen348 $$$ $?gen351 ) ) ) ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) => ( calc ( bind $?gen354 ( create$ pen220_5_fine ?gen348 $?gen351 ) ) ) ?gen349 <- ( to_pay ( positive-support $?gen354 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_5_fine] ) ) ) ?gen348 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) ?gen349 <- ( to_pay ( value 500 ) ( unit Money ) ( positive-support $?gen351 & : ( not ( subseq-pos ( create$ pen220_5_fine ?gen348 $$$ $?gen351 ) ) ) ) ) ( test ( eq ( class ?gen349 ) to_pay ) ) => ( calc ( bind $?gen354 ( create$ pen220_5_fine ?gen348 $?gen351 ) ) ) ?gen349 <- ( to_pay ( positive-support $?gen354 ) )"))
 
 ([pen220_4_max-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_4_max-defeasibly-dot-gen496)
    (depends-on declare max_imprisonment is_guilty_of_family_violence_lv4 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_4_max] ) ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( positive 1 ) ( positive-derivator pen220_4_max $? ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) ( not ( and ?gen347 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen346 & : ( >= ?gen346 1 ) ) ) ?gen340 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen342 & : ( not ( member$ pen220_4_max $?gen342 ) ) ) ) ) ) => ?gen340 <- ( max_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_4_max] ) ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( unit Years ) ( positive 1 ) ( positive-derivator pen220_4_max $? ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) ( not ( and ?gen347 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen346 & : ( >= ?gen346 1 ) ) ) ?gen340 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen342 & : ( not ( member$ pen220_4_max $?gen342 ) ) ) ) ) ) => ?gen340 <- ( max_imprisonment ( positive 0 ) )"))
 
 ([pen220_4_max-defeasibly] of derived-attribute-rule
    (pos-name pen220_4_max-defeasibly-gen498)
    (depends-on declare is_guilty_of_family_violence_lv4 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_4_max] ) ) ) ?gen347 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen346 & : ( >= ?gen346 1 ) ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen342 & : ( not ( member$ pen220_4_max $?gen342 ) ) ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) => ?gen340 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_4_max ?gen347 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_4_max] ) ) ) ?gen347 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen346 & : ( >= ?gen346 1 ) ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( unit Years ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen342 & : ( not ( member$ pen220_4_max $?gen342 ) ) ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) => ?gen340 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_4_max ?gen347 ) )"))
 
 ([pen220_4_max-overruled-dot] of derived-attribute-rule
    (pos-name pen220_4_max-overruled-dot-gen500)
    (depends-on declare max_imprisonment is_guilty_of_family_violence_lv4 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_4_max] ) ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( negative-support $?gen343 ) ( negative-overruled $?gen344 & : ( subseq-pos ( create$ pen220_4_max-overruled $?gen343 $$$ $?gen344 ) ) ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) ( not ( and ?gen347 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen346 & : ( >= ?gen346 1 ) ) ) ?gen340 <- ( max_imprisonment ( positive-defeated $?gen342 & : ( not ( member$ pen220_4_max $?gen342 ) ) ) ) ) ) => ( calc ( bind $?gen345 ( delete-member$ $?gen344 ( create$ pen220_4_max-overruled $?gen343 ) ) ) ) ?gen340 <- ( max_imprisonment ( negative-overruled $?gen345 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_4_max] ) ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( unit Years ) ( negative-support $?gen343 ) ( negative-overruled $?gen344 & : ( subseq-pos ( create$ pen220_4_max-overruled $?gen343 $$$ $?gen344 ) ) ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) ( not ( and ?gen347 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen346 & : ( >= ?gen346 1 ) ) ) ?gen340 <- ( max_imprisonment ( positive-defeated $?gen342 & : ( not ( member$ pen220_4_max $?gen342 ) ) ) ) ) ) => ( calc ( bind $?gen345 ( delete-member$ $?gen344 ( create$ pen220_4_max-overruled $?gen343 ) ) ) ) ?gen340 <- ( max_imprisonment ( negative-overruled $?gen345 ) )"))
 
 ([pen220_4_max-overruled] of derived-attribute-rule
    (pos-name pen220_4_max-overruled-gen502)
    (depends-on declare is_guilty_of_family_violence_lv4 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_4_max] ) ) ) ?gen347 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen346 & : ( >= ?gen346 1 ) ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( negative-support $?gen343 ) ( negative-overruled $?gen344 & : ( not ( subseq-pos ( create$ pen220_4_max-overruled $?gen343 $$$ $?gen344 ) ) ) ) ( positive-defeated $?gen342 & : ( not ( member$ pen220_4_max $?gen342 ) ) ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) => ( calc ( bind $?gen345 ( create$ pen220_4_max-overruled $?gen343 $?gen344 ) ) ) ?gen340 <- ( max_imprisonment ( negative-overruled $?gen345 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_4_max] ) ) ) ?gen347 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen346 & : ( >= ?gen346 1 ) ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( unit Years ) ( negative-support $?gen343 ) ( negative-overruled $?gen344 & : ( not ( subseq-pos ( create$ pen220_4_max-overruled $?gen343 $$$ $?gen344 ) ) ) ) ( positive-defeated $?gen342 & : ( not ( member$ pen220_4_max $?gen342 ) ) ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) => ( calc ( bind $?gen345 ( create$ pen220_4_max-overruled $?gen343 $?gen344 ) ) ) ?gen340 <- ( max_imprisonment ( negative-overruled $?gen345 ) )"))
 
 ([pen220_4_max-support] of derived-attribute-rule
    (pos-name pen220_4_max-support-gen504)
    (depends-on declare is_guilty_of_family_violence_lv4 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_4_max] ) ) ) ?gen339 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( positive-support $?gen342 & : ( not ( subseq-pos ( create$ pen220_4_max ?gen339 $$$ $?gen342 ) ) ) ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) => ( calc ( bind $?gen345 ( create$ pen220_4_max ?gen339 $?gen342 ) ) ) ?gen340 <- ( max_imprisonment ( positive-support $?gen345 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_4_max] ) ) ) ?gen339 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) ?gen340 <- ( max_imprisonment ( value 12 ) ( unit Years ) ( positive-support $?gen342 & : ( not ( subseq-pos ( create$ pen220_4_max ?gen339 $$$ $?gen342 ) ) ) ) ) ( test ( eq ( class ?gen340 ) max_imprisonment ) ) => ( calc ( bind $?gen345 ( create$ pen220_4_max ?gen339 $?gen342 ) ) ) ?gen340 <- ( max_imprisonment ( positive-support $?gen345 ) )"))
 
 ([pen220_4_min-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_4_min-defeasibly-dot-gen506)
    (depends-on declare min_imprisonment is_guilty_of_family_violence_lv4 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_4_min] ) ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( positive 1 ) ( positive-derivator pen220_4_min $? ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) ( not ( and ?gen338 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen337 & : ( >= ?gen337 1 ) ) ) ?gen331 <- ( min_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen333 & : ( not ( member$ pen220_4_min $?gen333 ) ) ) ) ) ) => ?gen331 <- ( min_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_4_min] ) ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( unit Years ) ( positive 1 ) ( positive-derivator pen220_4_min $? ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) ( not ( and ?gen338 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen337 & : ( >= ?gen337 1 ) ) ) ?gen331 <- ( min_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen333 & : ( not ( member$ pen220_4_min $?gen333 ) ) ) ) ) ) => ?gen331 <- ( min_imprisonment ( positive 0 ) )"))
 
 ([pen220_4_min-defeasibly] of derived-attribute-rule
    (pos-name pen220_4_min-defeasibly-gen508)
    (depends-on declare is_guilty_of_family_violence_lv4 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_4_min] ) ) ) ?gen338 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen337 & : ( >= ?gen337 1 ) ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen333 & : ( not ( member$ pen220_4_min $?gen333 ) ) ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) => ?gen331 <- ( min_imprisonment ( positive 1 ) ( positive-derivator pen220_4_min ?gen338 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_4_min] ) ) ) ?gen338 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen337 & : ( >= ?gen337 1 ) ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( unit Years ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen333 & : ( not ( member$ pen220_4_min $?gen333 ) ) ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) => ?gen331 <- ( min_imprisonment ( positive 1 ) ( positive-derivator pen220_4_min ?gen338 ) )"))
 
 ([pen220_4_min-overruled-dot] of derived-attribute-rule
    (pos-name pen220_4_min-overruled-dot-gen510)
    (depends-on declare min_imprisonment is_guilty_of_family_violence_lv4 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_4_min] ) ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( negative-support $?gen334 ) ( negative-overruled $?gen335 & : ( subseq-pos ( create$ pen220_4_min-overruled $?gen334 $$$ $?gen335 ) ) ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) ( not ( and ?gen338 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen337 & : ( >= ?gen337 1 ) ) ) ?gen331 <- ( min_imprisonment ( positive-defeated $?gen333 & : ( not ( member$ pen220_4_min $?gen333 ) ) ) ) ) ) => ( calc ( bind $?gen336 ( delete-member$ $?gen335 ( create$ pen220_4_min-overruled $?gen334 ) ) ) ) ?gen331 <- ( min_imprisonment ( negative-overruled $?gen336 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_4_min] ) ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( unit Years ) ( negative-support $?gen334 ) ( negative-overruled $?gen335 & : ( subseq-pos ( create$ pen220_4_min-overruled $?gen334 $$$ $?gen335 ) ) ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) ( not ( and ?gen338 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen337 & : ( >= ?gen337 1 ) ) ) ?gen331 <- ( min_imprisonment ( positive-defeated $?gen333 & : ( not ( member$ pen220_4_min $?gen333 ) ) ) ) ) ) => ( calc ( bind $?gen336 ( delete-member$ $?gen335 ( create$ pen220_4_min-overruled $?gen334 ) ) ) ) ?gen331 <- ( min_imprisonment ( negative-overruled $?gen336 ) )"))
 
 ([pen220_4_min-overruled] of derived-attribute-rule
    (pos-name pen220_4_min-overruled-gen512)
    (depends-on declare is_guilty_of_family_violence_lv4 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_4_min] ) ) ) ?gen338 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen337 & : ( >= ?gen337 1 ) ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( negative-support $?gen334 ) ( negative-overruled $?gen335 & : ( not ( subseq-pos ( create$ pen220_4_min-overruled $?gen334 $$$ $?gen335 ) ) ) ) ( positive-defeated $?gen333 & : ( not ( member$ pen220_4_min $?gen333 ) ) ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) => ( calc ( bind $?gen336 ( create$ pen220_4_min-overruled $?gen334 $?gen335 ) ) ) ?gen331 <- ( min_imprisonment ( negative-overruled $?gen336 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_4_min] ) ) ) ?gen338 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ( positive ?gen337 & : ( >= ?gen337 1 ) ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( unit Years ) ( negative-support $?gen334 ) ( negative-overruled $?gen335 & : ( not ( subseq-pos ( create$ pen220_4_min-overruled $?gen334 $$$ $?gen335 ) ) ) ) ( positive-defeated $?gen333 & : ( not ( member$ pen220_4_min $?gen333 ) ) ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) => ( calc ( bind $?gen336 ( create$ pen220_4_min-overruled $?gen334 $?gen335 ) ) ) ?gen331 <- ( min_imprisonment ( negative-overruled $?gen336 ) )"))
 
 ([pen220_4_min-support] of derived-attribute-rule
    (pos-name pen220_4_min-support-gen514)
    (depends-on declare is_guilty_of_family_violence_lv4 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_4_min] ) ) ) ?gen330 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( positive-support $?gen333 & : ( not ( subseq-pos ( create$ pen220_4_min ?gen330 $$$ $?gen333 ) ) ) ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) => ( calc ( bind $?gen336 ( create$ pen220_4_min ?gen330 $?gen333 ) ) ) ?gen331 <- ( min_imprisonment ( positive-support $?gen336 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_4_min] ) ) ) ?gen330 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) ?gen331 <- ( min_imprisonment ( value 3 ) ( unit Years ) ( positive-support $?gen333 & : ( not ( subseq-pos ( create$ pen220_4_min ?gen330 $$$ $?gen333 ) ) ) ) ) ( test ( eq ( class ?gen331 ) min_imprisonment ) ) => ( calc ( bind $?gen336 ( create$ pen220_4_min ?gen330 $?gen333 ) ) ) ?gen331 <- ( min_imprisonment ( positive-support $?gen336 ) )"))
 
 ([pen220_3_max-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_3_max-defeasibly-dot-gen536)
    (depends-on declare max_imprisonment is_guilty_of_family_violence_lv3 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_3_max] ) ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( positive 1 ) ( positive-derivator pen220_3_max $? ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) ( not ( and ?gen311 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen310 & : ( >= ?gen310 1 ) ) ) ?gen304 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen306 & : ( not ( member$ pen220_3_max $?gen306 ) ) ) ) ) ) => ?gen304 <- ( max_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_3_max] ) ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( positive 1 ) ( positive-derivator pen220_3_max $? ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) ( not ( and ?gen311 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen310 & : ( >= ?gen310 1 ) ) ) ?gen304 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen306 & : ( not ( member$ pen220_3_max $?gen306 ) ) ) ) ) ) => ?gen304 <- ( max_imprisonment ( positive 0 ) )"))
 
 ([pen220_3_max-defeasibly] of derived-attribute-rule
    (pos-name pen220_3_max-defeasibly-gen538)
    (depends-on declare is_guilty_of_family_violence_lv3 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_3_max] ) ) ) ?gen311 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen310 & : ( >= ?gen310 1 ) ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen306 & : ( not ( member$ pen220_3_max $?gen306 ) ) ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) => ?gen304 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_3_max ?gen311 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_3_max] ) ) ) ?gen311 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen310 & : ( >= ?gen310 1 ) ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen306 & : ( not ( member$ pen220_3_max $?gen306 ) ) ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) => ?gen304 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_3_max ?gen311 ) )"))
 
 ([pen220_3_max-overruled-dot] of derived-attribute-rule
    (pos-name pen220_3_max-overruled-dot-gen540)
    (depends-on declare max_imprisonment is_guilty_of_family_violence_lv3 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_3_max] ) ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( negative-support $?gen307 ) ( negative-overruled $?gen308 & : ( subseq-pos ( create$ pen220_3_max-overruled $?gen307 $$$ $?gen308 ) ) ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) ( not ( and ?gen311 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen310 & : ( >= ?gen310 1 ) ) ) ?gen304 <- ( max_imprisonment ( positive-defeated $?gen306 & : ( not ( member$ pen220_3_max $?gen306 ) ) ) ) ) ) => ( calc ( bind $?gen309 ( delete-member$ $?gen308 ( create$ pen220_3_max-overruled $?gen307 ) ) ) ) ?gen304 <- ( max_imprisonment ( negative-overruled $?gen309 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_3_max] ) ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( negative-support $?gen307 ) ( negative-overruled $?gen308 & : ( subseq-pos ( create$ pen220_3_max-overruled $?gen307 $$$ $?gen308 ) ) ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) ( not ( and ?gen311 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen310 & : ( >= ?gen310 1 ) ) ) ?gen304 <- ( max_imprisonment ( positive-defeated $?gen306 & : ( not ( member$ pen220_3_max $?gen306 ) ) ) ) ) ) => ( calc ( bind $?gen309 ( delete-member$ $?gen308 ( create$ pen220_3_max-overruled $?gen307 ) ) ) ) ?gen304 <- ( max_imprisonment ( negative-overruled $?gen309 ) )"))
 
 ([pen220_3_max-overruled] of derived-attribute-rule
    (pos-name pen220_3_max-overruled-gen542)
    (depends-on declare is_guilty_of_family_violence_lv3 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_3_max] ) ) ) ?gen311 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen310 & : ( >= ?gen310 1 ) ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( negative-support $?gen307 ) ( negative-overruled $?gen308 & : ( not ( subseq-pos ( create$ pen220_3_max-overruled $?gen307 $$$ $?gen308 ) ) ) ) ( positive-defeated $?gen306 & : ( not ( member$ pen220_3_max $?gen306 ) ) ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) => ( calc ( bind $?gen309 ( create$ pen220_3_max-overruled $?gen307 $?gen308 ) ) ) ?gen304 <- ( max_imprisonment ( negative-overruled $?gen309 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_3_max] ) ) ) ?gen311 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen310 & : ( >= ?gen310 1 ) ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( negative-support $?gen307 ) ( negative-overruled $?gen308 & : ( not ( subseq-pos ( create$ pen220_3_max-overruled $?gen307 $$$ $?gen308 ) ) ) ) ( positive-defeated $?gen306 & : ( not ( member$ pen220_3_max $?gen306 ) ) ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) => ( calc ( bind $?gen309 ( create$ pen220_3_max-overruled $?gen307 $?gen308 ) ) ) ?gen304 <- ( max_imprisonment ( negative-overruled $?gen309 ) )"))
 
 ([pen220_3_max-support] of derived-attribute-rule
    (pos-name pen220_3_max-support-gen544)
    (depends-on declare is_guilty_of_family_violence_lv3 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_3_max] ) ) ) ?gen303 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( positive-support $?gen306 & : ( not ( subseq-pos ( create$ pen220_3_max ?gen303 $$$ $?gen306 ) ) ) ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) => ( calc ( bind $?gen309 ( create$ pen220_3_max ?gen303 $?gen306 ) ) ) ?gen304 <- ( max_imprisonment ( positive-support $?gen309 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_3_max] ) ) ) ?gen303 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) ?gen304 <- ( max_imprisonment ( value 5 ) ( unit Years ) ( positive-support $?gen306 & : ( not ( subseq-pos ( create$ pen220_3_max ?gen303 $$$ $?gen306 ) ) ) ) ) ( test ( eq ( class ?gen304 ) max_imprisonment ) ) => ( calc ( bind $?gen309 ( create$ pen220_3_max ?gen303 $?gen306 ) ) ) ?gen304 <- ( max_imprisonment ( positive-support $?gen309 ) )"))
 
 ([pen220_3_min-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_3_min-defeasibly-dot-gen546)
    (depends-on declare min_imprisonment is_guilty_of_family_violence_lv3 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_3_min] ) ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( positive 1 ) ( positive-derivator pen220_3_min $? ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) ( not ( and ?gen302 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen301 & : ( >= ?gen301 1 ) ) ) ?gen295 <- ( min_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen297 & : ( not ( member$ pen220_3_min $?gen297 ) ) ) ) ) ) => ?gen295 <- ( min_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_3_min] ) ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( unit Years ) ( positive 1 ) ( positive-derivator pen220_3_min $? ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) ( not ( and ?gen302 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen301 & : ( >= ?gen301 1 ) ) ) ?gen295 <- ( min_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen297 & : ( not ( member$ pen220_3_min $?gen297 ) ) ) ) ) ) => ?gen295 <- ( min_imprisonment ( positive 0 ) )"))
 
 ([pen220_3_min-defeasibly] of derived-attribute-rule
    (pos-name pen220_3_min-defeasibly-gen548)
    (depends-on declare is_guilty_of_family_violence_lv3 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_3_min] ) ) ) ?gen302 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen301 & : ( >= ?gen301 1 ) ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen297 & : ( not ( member$ pen220_3_min $?gen297 ) ) ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) => ?gen295 <- ( min_imprisonment ( positive 1 ) ( positive-derivator pen220_3_min ?gen302 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_3_min] ) ) ) ?gen302 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen301 & : ( >= ?gen301 1 ) ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( unit Years ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen297 & : ( not ( member$ pen220_3_min $?gen297 ) ) ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) => ?gen295 <- ( min_imprisonment ( positive 1 ) ( positive-derivator pen220_3_min ?gen302 ) )"))
 
 ([pen220_3_min-overruled-dot] of derived-attribute-rule
    (pos-name pen220_3_min-overruled-dot-gen550)
    (depends-on declare min_imprisonment is_guilty_of_family_violence_lv3 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_3_min] ) ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( negative-support $?gen298 ) ( negative-overruled $?gen299 & : ( subseq-pos ( create$ pen220_3_min-overruled $?gen298 $$$ $?gen299 ) ) ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) ( not ( and ?gen302 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen301 & : ( >= ?gen301 1 ) ) ) ?gen295 <- ( min_imprisonment ( positive-defeated $?gen297 & : ( not ( member$ pen220_3_min $?gen297 ) ) ) ) ) ) => ( calc ( bind $?gen300 ( delete-member$ $?gen299 ( create$ pen220_3_min-overruled $?gen298 ) ) ) ) ?gen295 <- ( min_imprisonment ( negative-overruled $?gen300 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_3_min] ) ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( unit Years ) ( negative-support $?gen298 ) ( negative-overruled $?gen299 & : ( subseq-pos ( create$ pen220_3_min-overruled $?gen298 $$$ $?gen299 ) ) ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) ( not ( and ?gen302 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen301 & : ( >= ?gen301 1 ) ) ) ?gen295 <- ( min_imprisonment ( positive-defeated $?gen297 & : ( not ( member$ pen220_3_min $?gen297 ) ) ) ) ) ) => ( calc ( bind $?gen300 ( delete-member$ $?gen299 ( create$ pen220_3_min-overruled $?gen298 ) ) ) ) ?gen295 <- ( min_imprisonment ( negative-overruled $?gen300 ) )"))
 
 ([pen220_3_min-overruled] of derived-attribute-rule
    (pos-name pen220_3_min-overruled-gen552)
    (depends-on declare is_guilty_of_family_violence_lv3 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_3_min] ) ) ) ?gen302 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen301 & : ( >= ?gen301 1 ) ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( negative-support $?gen298 ) ( negative-overruled $?gen299 & : ( not ( subseq-pos ( create$ pen220_3_min-overruled $?gen298 $$$ $?gen299 ) ) ) ) ( positive-defeated $?gen297 & : ( not ( member$ pen220_3_min $?gen297 ) ) ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) => ( calc ( bind $?gen300 ( create$ pen220_3_min-overruled $?gen298 $?gen299 ) ) ) ?gen295 <- ( min_imprisonment ( negative-overruled $?gen300 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_3_min] ) ) ) ?gen302 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ( positive ?gen301 & : ( >= ?gen301 1 ) ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( unit Years ) ( negative-support $?gen298 ) ( negative-overruled $?gen299 & : ( not ( subseq-pos ( create$ pen220_3_min-overruled $?gen298 $$$ $?gen299 ) ) ) ) ( positive-defeated $?gen297 & : ( not ( member$ pen220_3_min $?gen297 ) ) ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) => ( calc ( bind $?gen300 ( create$ pen220_3_min-overruled $?gen298 $?gen299 ) ) ) ?gen295 <- ( min_imprisonment ( negative-overruled $?gen300 ) )"))
 
 ([pen220_3_min-support] of derived-attribute-rule
    (pos-name pen220_3_min-support-gen554)
    (depends-on declare is_guilty_of_family_violence_lv3 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_3_min] ) ) ) ?gen294 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( positive-support $?gen297 & : ( not ( subseq-pos ( create$ pen220_3_min ?gen294 $$$ $?gen297 ) ) ) ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) => ( calc ( bind $?gen300 ( create$ pen220_3_min ?gen294 $?gen297 ) ) ) ?gen295 <- ( min_imprisonment ( positive-support $?gen300 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_3_min] ) ) ) ?gen294 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) ?gen295 <- ( min_imprisonment ( value 1 ) ( unit Years ) ( positive-support $?gen297 & : ( not ( subseq-pos ( create$ pen220_3_min ?gen294 $$$ $?gen297 ) ) ) ) ) ( test ( eq ( class ?gen295 ) min_imprisonment ) ) => ( calc ( bind $?gen300 ( create$ pen220_3_min ?gen294 $?gen297 ) ) ) ?gen295 <- ( min_imprisonment ( positive-support $?gen300 ) )"))
 
 ([pen220_2_max-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_2_max-defeasibly-dot-gen556)
    (depends-on declare max_imprisonment is_guilty_of_family_violence_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_2_max] ) ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( positive 1 ) ( positive-derivator pen220_2_max $? ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) ( not ( and ?gen293 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen292 & : ( >= ?gen292 1 ) ) ) ?gen286 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen288 & : ( not ( member$ pen220_2_max $?gen288 ) ) ) ) ) ) => ?gen286 <- ( max_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_2_max] ) ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( unit Years ) ( positive 1 ) ( positive-derivator pen220_2_max $? ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) ( not ( and ?gen293 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen292 & : ( >= ?gen292 1 ) ) ) ?gen286 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen288 & : ( not ( member$ pen220_2_max $?gen288 ) ) ) ) ) ) => ?gen286 <- ( max_imprisonment ( positive 0 ) )"))
 
 ([pen220_2_max-defeasibly] of derived-attribute-rule
    (pos-name pen220_2_max-defeasibly-gen558)
    (depends-on declare is_guilty_of_family_violence_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_2_max] ) ) ) ?gen293 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen292 & : ( >= ?gen292 1 ) ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen288 & : ( not ( member$ pen220_2_max $?gen288 ) ) ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) => ?gen286 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_2_max ?gen293 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_2_max] ) ) ) ?gen293 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen292 & : ( >= ?gen292 1 ) ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( unit Years ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen288 & : ( not ( member$ pen220_2_max $?gen288 ) ) ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) => ?gen286 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_2_max ?gen293 ) )"))
 
 ([pen220_2_max-overruled-dot] of derived-attribute-rule
    (pos-name pen220_2_max-overruled-dot-gen560)
    (depends-on declare max_imprisonment is_guilty_of_family_violence_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_2_max] ) ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( negative-support $?gen289 ) ( negative-overruled $?gen290 & : ( subseq-pos ( create$ pen220_2_max-overruled $?gen289 $$$ $?gen290 ) ) ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) ( not ( and ?gen293 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen292 & : ( >= ?gen292 1 ) ) ) ?gen286 <- ( max_imprisonment ( positive-defeated $?gen288 & : ( not ( member$ pen220_2_max $?gen288 ) ) ) ) ) ) => ( calc ( bind $?gen291 ( delete-member$ $?gen290 ( create$ pen220_2_max-overruled $?gen289 ) ) ) ) ?gen286 <- ( max_imprisonment ( negative-overruled $?gen291 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_2_max] ) ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( unit Years ) ( negative-support $?gen289 ) ( negative-overruled $?gen290 & : ( subseq-pos ( create$ pen220_2_max-overruled $?gen289 $$$ $?gen290 ) ) ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) ( not ( and ?gen293 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen292 & : ( >= ?gen292 1 ) ) ) ?gen286 <- ( max_imprisonment ( positive-defeated $?gen288 & : ( not ( member$ pen220_2_max $?gen288 ) ) ) ) ) ) => ( calc ( bind $?gen291 ( delete-member$ $?gen290 ( create$ pen220_2_max-overruled $?gen289 ) ) ) ) ?gen286 <- ( max_imprisonment ( negative-overruled $?gen291 ) )"))
 
 ([pen220_2_max-overruled] of derived-attribute-rule
    (pos-name pen220_2_max-overruled-gen562)
    (depends-on declare is_guilty_of_family_violence_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_2_max] ) ) ) ?gen293 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen292 & : ( >= ?gen292 1 ) ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( negative-support $?gen289 ) ( negative-overruled $?gen290 & : ( not ( subseq-pos ( create$ pen220_2_max-overruled $?gen289 $$$ $?gen290 ) ) ) ) ( positive-defeated $?gen288 & : ( not ( member$ pen220_2_max $?gen288 ) ) ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) => ( calc ( bind $?gen291 ( create$ pen220_2_max-overruled $?gen289 $?gen290 ) ) ) ?gen286 <- ( max_imprisonment ( negative-overruled $?gen291 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_2_max] ) ) ) ?gen293 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen292 & : ( >= ?gen292 1 ) ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( unit Years ) ( negative-support $?gen289 ) ( negative-overruled $?gen290 & : ( not ( subseq-pos ( create$ pen220_2_max-overruled $?gen289 $$$ $?gen290 ) ) ) ) ( positive-defeated $?gen288 & : ( not ( member$ pen220_2_max $?gen288 ) ) ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) => ( calc ( bind $?gen291 ( create$ pen220_2_max-overruled $?gen289 $?gen290 ) ) ) ?gen286 <- ( max_imprisonment ( negative-overruled $?gen291 ) )"))
 
 ([pen220_2_max-support] of derived-attribute-rule
    (pos-name pen220_2_max-support-gen564)
    (depends-on declare is_guilty_of_family_violence_lv2 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_2_max] ) ) ) ?gen285 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( positive-support $?gen288 & : ( not ( subseq-pos ( create$ pen220_2_max ?gen285 $$$ $?gen288 ) ) ) ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) => ( calc ( bind $?gen291 ( create$ pen220_2_max ?gen285 $?gen288 ) ) ) ?gen286 <- ( max_imprisonment ( positive-support $?gen291 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_2_max] ) ) ) ?gen285 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) ?gen286 <- ( max_imprisonment ( value 3 ) ( unit Years ) ( positive-support $?gen288 & : ( not ( subseq-pos ( create$ pen220_2_max ?gen285 $$$ $?gen288 ) ) ) ) ) ( test ( eq ( class ?gen286 ) max_imprisonment ) ) => ( calc ( bind $?gen291 ( create$ pen220_2_max ?gen285 $?gen288 ) ) ) ?gen286 <- ( max_imprisonment ( positive-support $?gen291 ) )"))
 
 ([pen220_2_min-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_2_min-defeasibly-dot-gen566)
    (depends-on declare min_imprisonment is_guilty_of_family_violence_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_2_min] ) ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( positive 1 ) ( positive-derivator pen220_2_min $? ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) ( not ( and ?gen284 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen283 & : ( >= ?gen283 1 ) ) ) ?gen277 <- ( min_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen279 & : ( not ( member$ pen220_2_min $?gen279 ) ) ) ) ) ) => ?gen277 <- ( min_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_2_min] ) ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( unit Months ) ( positive 1 ) ( positive-derivator pen220_2_min $? ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) ( not ( and ?gen284 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen283 & : ( >= ?gen283 1 ) ) ) ?gen277 <- ( min_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen279 & : ( not ( member$ pen220_2_min $?gen279 ) ) ) ) ) ) => ?gen277 <- ( min_imprisonment ( positive 0 ) )"))
 
 ([pen220_2_min-defeasibly] of derived-attribute-rule
    (pos-name pen220_2_min-defeasibly-gen568)
    (depends-on declare is_guilty_of_family_violence_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_2_min] ) ) ) ?gen284 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen283 & : ( >= ?gen283 1 ) ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen279 & : ( not ( member$ pen220_2_min $?gen279 ) ) ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) => ?gen277 <- ( min_imprisonment ( positive 1 ) ( positive-derivator pen220_2_min ?gen284 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_2_min] ) ) ) ?gen284 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen283 & : ( >= ?gen283 1 ) ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( unit Months ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen279 & : ( not ( member$ pen220_2_min $?gen279 ) ) ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) => ?gen277 <- ( min_imprisonment ( positive 1 ) ( positive-derivator pen220_2_min ?gen284 ) )"))
 
 ([pen220_2_min-overruled-dot] of derived-attribute-rule
    (pos-name pen220_2_min-overruled-dot-gen570)
    (depends-on declare min_imprisonment is_guilty_of_family_violence_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_2_min] ) ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( negative-support $?gen280 ) ( negative-overruled $?gen281 & : ( subseq-pos ( create$ pen220_2_min-overruled $?gen280 $$$ $?gen281 ) ) ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) ( not ( and ?gen284 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen283 & : ( >= ?gen283 1 ) ) ) ?gen277 <- ( min_imprisonment ( positive-defeated $?gen279 & : ( not ( member$ pen220_2_min $?gen279 ) ) ) ) ) ) => ( calc ( bind $?gen282 ( delete-member$ $?gen281 ( create$ pen220_2_min-overruled $?gen280 ) ) ) ) ?gen277 <- ( min_imprisonment ( negative-overruled $?gen282 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_2_min] ) ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( unit Months ) ( negative-support $?gen280 ) ( negative-overruled $?gen281 & : ( subseq-pos ( create$ pen220_2_min-overruled $?gen280 $$$ $?gen281 ) ) ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) ( not ( and ?gen284 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen283 & : ( >= ?gen283 1 ) ) ) ?gen277 <- ( min_imprisonment ( positive-defeated $?gen279 & : ( not ( member$ pen220_2_min $?gen279 ) ) ) ) ) ) => ( calc ( bind $?gen282 ( delete-member$ $?gen281 ( create$ pen220_2_min-overruled $?gen280 ) ) ) ) ?gen277 <- ( min_imprisonment ( negative-overruled $?gen282 ) )"))
 
 ([pen220_2_min-overruled] of derived-attribute-rule
    (pos-name pen220_2_min-overruled-gen572)
    (depends-on declare is_guilty_of_family_violence_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_2_min] ) ) ) ?gen284 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen283 & : ( >= ?gen283 1 ) ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( negative-support $?gen280 ) ( negative-overruled $?gen281 & : ( not ( subseq-pos ( create$ pen220_2_min-overruled $?gen280 $$$ $?gen281 ) ) ) ) ( positive-defeated $?gen279 & : ( not ( member$ pen220_2_min $?gen279 ) ) ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) => ( calc ( bind $?gen282 ( create$ pen220_2_min-overruled $?gen280 $?gen281 ) ) ) ?gen277 <- ( min_imprisonment ( negative-overruled $?gen282 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_2_min] ) ) ) ?gen284 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ( positive ?gen283 & : ( >= ?gen283 1 ) ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( unit Months ) ( negative-support $?gen280 ) ( negative-overruled $?gen281 & : ( not ( subseq-pos ( create$ pen220_2_min-overruled $?gen280 $$$ $?gen281 ) ) ) ) ( positive-defeated $?gen279 & : ( not ( member$ pen220_2_min $?gen279 ) ) ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) => ( calc ( bind $?gen282 ( create$ pen220_2_min-overruled $?gen280 $?gen281 ) ) ) ?gen277 <- ( min_imprisonment ( negative-overruled $?gen282 ) )"))
 
 ([pen220_2_min-support] of derived-attribute-rule
    (pos-name pen220_2_min-support-gen574)
    (depends-on declare is_guilty_of_family_violence_lv2 min_imprisonment)
    (implies min_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_2_min] ) ) ) ?gen276 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( positive-support $?gen279 & : ( not ( subseq-pos ( create$ pen220_2_min ?gen276 $$$ $?gen279 ) ) ) ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) => ( calc ( bind $?gen282 ( create$ pen220_2_min ?gen276 $?gen279 ) ) ) ?gen277 <- ( min_imprisonment ( positive-support $?gen282 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_2_min] ) ) ) ?gen276 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) ?gen277 <- ( min_imprisonment ( value 3 ) ( unit Months ) ( positive-support $?gen279 & : ( not ( subseq-pos ( create$ pen220_2_min ?gen276 $$$ $?gen279 ) ) ) ) ) ( test ( eq ( class ?gen277 ) min_imprisonment ) ) => ( calc ( bind $?gen282 ( create$ pen220_2_min ?gen276 $?gen279 ) ) ) ?gen277 <- ( min_imprisonment ( positive-support $?gen282 ) )"))
 
 ([pen220_1_prison-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_1_prison-defeasibly-dot-gen576)
    (depends-on declare max_imprisonment is_guilty_of_family_violence_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_1_prison] ) ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( positive 1 ) ( positive-derivator pen220_1_prison $? ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) ( not ( and ?gen275 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen274 & : ( >= ?gen274 1 ) ) ) ?gen268 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen270 & : ( not ( member$ pen220_1_prison $?gen270 ) ) ) ) ) ) => ?gen268 <- ( max_imprisonment ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_1_prison] ) ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( positive 1 ) ( positive-derivator pen220_1_prison $? ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) ( not ( and ?gen275 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen274 & : ( >= ?gen274 1 ) ) ) ?gen268 <- ( max_imprisonment ( negative ~ 2 ) ( positive-overruled $?gen270 & : ( not ( member$ pen220_1_prison $?gen270 ) ) ) ) ) ) => ?gen268 <- ( max_imprisonment ( positive 0 ) )"))
 
 ([pen220_1_prison-defeasibly] of derived-attribute-rule
    (pos-name pen220_1_prison-defeasibly-gen578)
    (depends-on declare is_guilty_of_family_violence_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_1_prison] ) ) ) ?gen275 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen274 & : ( >= ?gen274 1 ) ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen270 & : ( not ( member$ pen220_1_prison $?gen270 ) ) ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) => ?gen268 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_1_prison ?gen275 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_1_prison] ) ) ) ?gen275 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen274 & : ( >= ?gen274 1 ) ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen270 & : ( not ( member$ pen220_1_prison $?gen270 ) ) ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) => ?gen268 <- ( max_imprisonment ( positive 1 ) ( positive-derivator pen220_1_prison ?gen275 ) )"))
 
 ([pen220_1_prison-overruled-dot] of derived-attribute-rule
    (pos-name pen220_1_prison-overruled-dot-gen580)
    (depends-on declare max_imprisonment is_guilty_of_family_violence_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_1_prison] ) ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( negative-support $?gen271 ) ( negative-overruled $?gen272 & : ( subseq-pos ( create$ pen220_1_prison-overruled $?gen271 $$$ $?gen272 ) ) ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) ( not ( and ?gen275 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen274 & : ( >= ?gen274 1 ) ) ) ?gen268 <- ( max_imprisonment ( positive-defeated $?gen270 & : ( not ( member$ pen220_1_prison $?gen270 ) ) ) ) ) ) => ( calc ( bind $?gen273 ( delete-member$ $?gen272 ( create$ pen220_1_prison-overruled $?gen271 ) ) ) ) ?gen268 <- ( max_imprisonment ( negative-overruled $?gen273 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_1_prison] ) ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( negative-support $?gen271 ) ( negative-overruled $?gen272 & : ( subseq-pos ( create$ pen220_1_prison-overruled $?gen271 $$$ $?gen272 ) ) ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) ( not ( and ?gen275 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen274 & : ( >= ?gen274 1 ) ) ) ?gen268 <- ( max_imprisonment ( positive-defeated $?gen270 & : ( not ( member$ pen220_1_prison $?gen270 ) ) ) ) ) ) => ( calc ( bind $?gen273 ( delete-member$ $?gen272 ( create$ pen220_1_prison-overruled $?gen271 ) ) ) ) ?gen268 <- ( max_imprisonment ( negative-overruled $?gen273 ) )"))
 
 ([pen220_1_prison-overruled] of derived-attribute-rule
    (pos-name pen220_1_prison-overruled-gen582)
    (depends-on declare is_guilty_of_family_violence_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_1_prison] ) ) ) ?gen275 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen274 & : ( >= ?gen274 1 ) ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( negative-support $?gen271 ) ( negative-overruled $?gen272 & : ( not ( subseq-pos ( create$ pen220_1_prison-overruled $?gen271 $$$ $?gen272 ) ) ) ) ( positive-defeated $?gen270 & : ( not ( member$ pen220_1_prison $?gen270 ) ) ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) => ( calc ( bind $?gen273 ( create$ pen220_1_prison-overruled $?gen271 $?gen272 ) ) ) ?gen268 <- ( max_imprisonment ( negative-overruled $?gen273 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_1_prison] ) ) ) ?gen275 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen274 & : ( >= ?gen274 1 ) ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( negative-support $?gen271 ) ( negative-overruled $?gen272 & : ( not ( subseq-pos ( create$ pen220_1_prison-overruled $?gen271 $$$ $?gen272 ) ) ) ) ( positive-defeated $?gen270 & : ( not ( member$ pen220_1_prison $?gen270 ) ) ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) => ( calc ( bind $?gen273 ( create$ pen220_1_prison-overruled $?gen271 $?gen272 ) ) ) ?gen268 <- ( max_imprisonment ( negative-overruled $?gen273 ) )"))
 
 ([pen220_1_prison-support] of derived-attribute-rule
    (pos-name pen220_1_prison-support-gen584)
    (depends-on declare is_guilty_of_family_violence_lv1 max_imprisonment)
    (implies max_imprisonment)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_1_prison] ) ) ) ?gen267 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( positive-support $?gen270 & : ( not ( subseq-pos ( create$ pen220_1_prison ?gen267 $$$ $?gen270 ) ) ) ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) => ( calc ( bind $?gen273 ( create$ pen220_1_prison ?gen267 $?gen270 ) ) ) ?gen268 <- ( max_imprisonment ( positive-support $?gen273 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_1_prison] ) ) ) ?gen267 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) ?gen268 <- ( max_imprisonment ( value 2 ) ( unit Years ) ( positive-support $?gen270 & : ( not ( subseq-pos ( create$ pen220_1_prison ?gen267 $$$ $?gen270 ) ) ) ) ) ( test ( eq ( class ?gen268 ) max_imprisonment ) ) => ( calc ( bind $?gen273 ( create$ pen220_1_prison ?gen267 $?gen270 ) ) ) ?gen268 <- ( max_imprisonment ( positive-support $?gen273 ) )"))
 
 ([pen220_1_fine-defeasibly-dot] of derived-attribute-rule
    (pos-name pen220_1_fine-defeasibly-dot-gen586)
    (depends-on declare to_pay is_guilty_of_family_violence_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_1_fine] ) ) ) ?gen259 <- ( to_pay ( value 1000 ) ( positive 1 ) ( positive-derivator pen220_1_fine $? ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) ( not ( and ?gen266 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen265 & : ( >= ?gen265 1 ) ) ) ?gen259 <- ( to_pay ( negative ~ 2 ) ( positive-overruled $?gen261 & : ( not ( member$ pen220_1_fine $?gen261 ) ) ) ) ) ) => ?gen259 <- ( to_pay ( positive 0 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -1 [pen220_1_fine] ) ) ) ?gen259 <- ( to_pay ( value 1000 ) ( unit Money ) ( positive 1 ) ( positive-derivator pen220_1_fine $? ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) ( not ( and ?gen266 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen265 & : ( >= ?gen265 1 ) ) ) ?gen259 <- ( to_pay ( negative ~ 2 ) ( positive-overruled $?gen261 & : ( not ( member$ pen220_1_fine $?gen261 ) ) ) ) ) ) => ?gen259 <- ( to_pay ( positive 0 ) )"))
 
 ([pen220_1_fine-defeasibly] of derived-attribute-rule
    (pos-name pen220_1_fine-defeasibly-gen588)
    (depends-on declare is_guilty_of_family_violence_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_1_fine] ) ) ) ?gen266 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen265 & : ( >= ?gen265 1 ) ) ) ?gen259 <- ( to_pay ( value 1000 ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen261 & : ( not ( member$ pen220_1_fine $?gen261 ) ) ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) => ?gen259 <- ( to_pay ( positive 1 ) ( positive-derivator pen220_1_fine ?gen266 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 1 [pen220_1_fine] ) ) ) ?gen266 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen265 & : ( >= ?gen265 1 ) ) ) ?gen259 <- ( to_pay ( value 1000 ) ( unit Money ) ( positive 0 ) ( negative ~ 2 ) ( positive-overruled $?gen261 & : ( not ( member$ pen220_1_fine $?gen261 ) ) ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) => ?gen259 <- ( to_pay ( positive 1 ) ( positive-derivator pen220_1_fine ?gen266 ) )"))
 
 ([pen220_1_fine-overruled-dot] of derived-attribute-rule
    (pos-name pen220_1_fine-overruled-dot-gen590)
    (depends-on declare to_pay is_guilty_of_family_violence_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_1_fine] ) ) ) ?gen259 <- ( to_pay ( value 1000 ) ( negative-support $?gen262 ) ( negative-overruled $?gen263 & : ( subseq-pos ( create$ pen220_1_fine-overruled $?gen262 $$$ $?gen263 ) ) ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) ( not ( and ?gen266 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen265 & : ( >= ?gen265 1 ) ) ) ?gen259 <- ( to_pay ( positive-defeated $?gen261 & : ( not ( member$ pen220_1_fine $?gen261 ) ) ) ) ) ) => ( calc ( bind $?gen264 ( delete-member$ $?gen263 ( create$ pen220_1_fine-overruled $?gen262 ) ) ) ) ?gen259 <- ( to_pay ( negative-overruled $?gen264 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority -2 [pen220_1_fine] ) ) ) ?gen259 <- ( to_pay ( value 1000 ) ( unit Money ) ( negative-support $?gen262 ) ( negative-overruled $?gen263 & : ( subseq-pos ( create$ pen220_1_fine-overruled $?gen262 $$$ $?gen263 ) ) ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) ( not ( and ?gen266 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen265 & : ( >= ?gen265 1 ) ) ) ?gen259 <- ( to_pay ( positive-defeated $?gen261 & : ( not ( member$ pen220_1_fine $?gen261 ) ) ) ) ) ) => ( calc ( bind $?gen264 ( delete-member$ $?gen263 ( create$ pen220_1_fine-overruled $?gen262 ) ) ) ) ?gen259 <- ( to_pay ( negative-overruled $?gen264 ) )"))
 
 ([pen220_1_fine-overruled] of derived-attribute-rule
    (pos-name pen220_1_fine-overruled-gen592)
    (depends-on declare is_guilty_of_family_violence_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_1_fine] ) ) ) ?gen266 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen265 & : ( >= ?gen265 1 ) ) ) ?gen259 <- ( to_pay ( value 1000 ) ( negative-support $?gen262 ) ( negative-overruled $?gen263 & : ( not ( subseq-pos ( create$ pen220_1_fine-overruled $?gen262 $$$ $?gen263 ) ) ) ) ( positive-defeated $?gen261 & : ( not ( member$ pen220_1_fine $?gen261 ) ) ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) => ( calc ( bind $?gen264 ( create$ pen220_1_fine-overruled $?gen262 $?gen263 ) ) ) ?gen259 <- ( to_pay ( negative-overruled $?gen264 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 2 [pen220_1_fine] ) ) ) ?gen266 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ( positive ?gen265 & : ( >= ?gen265 1 ) ) ) ?gen259 <- ( to_pay ( value 1000 ) ( unit Money ) ( negative-support $?gen262 ) ( negative-overruled $?gen263 & : ( not ( subseq-pos ( create$ pen220_1_fine-overruled $?gen262 $$$ $?gen263 ) ) ) ) ( positive-defeated $?gen261 & : ( not ( member$ pen220_1_fine $?gen261 ) ) ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) => ( calc ( bind $?gen264 ( create$ pen220_1_fine-overruled $?gen262 $?gen263 ) ) ) ?gen259 <- ( to_pay ( negative-overruled $?gen264 ) )"))
 
 ([pen220_1_fine-support] of derived-attribute-rule
    (pos-name pen220_1_fine-support-gen594)
    (depends-on declare is_guilty_of_family_violence_lv1 to_pay)
    (implies to_pay)
    (del-name nil)
-   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_1_fine] ) ) ) ?gen258 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) ?gen259 <- ( to_pay ( value 1000 ) ( positive-support $?gen261 & : ( not ( subseq-pos ( create$ pen220_1_fine ?gen258 $$$ $?gen261 ) ) ) ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) => ( calc ( bind $?gen264 ( create$ pen220_1_fine ?gen258 $?gen261 ) ) ) ?gen259 <- ( to_pay ( positive-support $?gen264 ) )"))
+   (derived-attribute-rule "( declare ( priority ( calc-defeasible-priority 5 [pen220_1_fine] ) ) ) ?gen258 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) ?gen259 <- ( to_pay ( value 1000 ) ( unit Money ) ( positive-support $?gen261 & : ( not ( subseq-pos ( create$ pen220_1_fine ?gen258 $$$ $?gen261 ) ) ) ) ) ( test ( eq ( class ?gen259 ) to_pay ) ) => ( calc ( bind $?gen264 ( create$ pen220_1_fine ?gen258 $?gen261 ) ) ) ?gen259 <- ( to_pay ( positive-support $?gen264 ) )"))
 
 ([rule221_1_neg_3-defeated-dot] of derived-attribute-rule
    (pos-name rule221_1_neg_3-defeated-dot-gen596)
@@ -1360,112 +1360,112 @@
    (pos-name pen221_3_max-deductive-gen435)
    (depends-on is_guilty_of_nonpayment_of_support_lv2 max_imprisonment)
    (implies max_imprisonment)
-   (deductive-rule "?gen393 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 5 ) ) ) => ( max_imprisonment ( value 5 ) )")
-   (production-rule "( defrule pen221_3_max-deductive-gen435 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen393 ) ( is-a is_guilty_of_nonpayment_of_support_lv2 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 5 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 5 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 5 ) ) ) ( make-instance ?oid of max_imprisonment ( value 5 ) ) )")
+   (deductive-rule "?gen393 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 5 ) ( unit Years ) ) ) => ( max_imprisonment ( value 5 ) ( unit Years ) )")
+   (production-rule "( defrule pen221_3_max-deductive-gen435 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen393 ) ( is-a is_guilty_of_nonpayment_of_support_lv2 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 5 ) ( unit Years ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 5 Years ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 5 Years ) ) ) ( make-instance ?oid of max_imprisonment ( value 5 ) ( unit Years ) ) )")
    (derived-class max_imprisonment))
 
 ([pen221_3_min-deductive] of ntm-deductive-rule
    (pos-name pen221_3_min-deductive-gen434)
    (depends-on is_guilty_of_nonpayment_of_support_lv2 min_imprisonment)
    (implies min_imprisonment)
-   (deductive-rule "?gen384 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) ( not ( min_imprisonment ( value 6 ) ) ) => ( min_imprisonment ( value 6 ) )")
-   (production-rule "( defrule pen221_3_min-deductive-gen434 ( declare ( salience ( calc-salience min_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen384 ) ( is-a is_guilty_of_nonpayment_of_support_lv2 ) ( defendant ?Defendant ) ) ( not ( object ( is-a min_imprisonment ) ( value 6 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat min_imprisonment 6 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat min_imprisonment 6 ) ) ) ( make-instance ?oid of min_imprisonment ( value 6 ) ) )")
+   (deductive-rule "?gen384 <- ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) ( not ( min_imprisonment ( value 6 ) ( unit Months ) ) ) => ( min_imprisonment ( value 6 ) ( unit Months ) )")
+   (production-rule "( defrule pen221_3_min-deductive-gen434 ( declare ( salience ( calc-salience min_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen384 ) ( is-a is_guilty_of_nonpayment_of_support_lv2 ) ( defendant ?Defendant ) ) ( not ( object ( is-a min_imprisonment ) ( value 6 ) ( unit Months ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat min_imprisonment 6 Months ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat min_imprisonment 6 Months ) ) ) ( make-instance ?oid of min_imprisonment ( value 6 ) ( unit Months ) ) )")
    (derived-class min_imprisonment))
 
 ([pen221_1_prison-deductive] of ntm-deductive-rule
    (pos-name pen221_1_prison-deductive-gen433)
    (depends-on is_guilty_of_nonpayment_of_support_lv1 max_imprisonment)
    (implies max_imprisonment)
-   (deductive-rule "?gen375 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 2 ) ) ) => ( max_imprisonment ( value 2 ) )")
-   (production-rule "( defrule pen221_1_prison-deductive-gen433 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen375 ) ( is-a is_guilty_of_nonpayment_of_support_lv1 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 2 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 2 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 2 ) ) ) ( make-instance ?oid of max_imprisonment ( value 2 ) ) )")
+   (deductive-rule "?gen375 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 2 ) ( unit Years ) ) ) => ( max_imprisonment ( value 2 ) ( unit Years ) )")
+   (production-rule "( defrule pen221_1_prison-deductive-gen433 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen375 ) ( is-a is_guilty_of_nonpayment_of_support_lv1 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 2 ) ( unit Years ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 2 Years ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 2 Years ) ) ) ( make-instance ?oid of max_imprisonment ( value 2 ) ( unit Years ) ) )")
    (derived-class max_imprisonment))
 
 ([pen221_1_fine-deductive] of ntm-deductive-rule
    (pos-name pen221_1_fine-deductive-gen432)
    (depends-on is_guilty_of_nonpayment_of_support_lv1 to_pay)
    (implies to_pay)
-   (deductive-rule "?gen366 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) ( not ( to_pay ( value 300 ) ) ) => ( to_pay ( value 300 ) )")
-   (production-rule "( defrule pen221_1_fine-deductive-gen432 ( declare ( salience ( calc-salience to_pay ) ) ) ( run-deductive-rules ) ( object ( name ?gen366 ) ( is-a is_guilty_of_nonpayment_of_support_lv1 ) ( defendant ?Defendant ) ) ( not ( object ( is-a to_pay ) ( value 300 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat to_pay 300 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat to_pay 300 ) ) ) ( make-instance ?oid of to_pay ( value 300 ) ) )")
+   (deductive-rule "?gen366 <- ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) ( not ( to_pay ( value 300 ) ( unit Money ) ) ) => ( to_pay ( value 300 ) ( unit Money ) )")
+   (production-rule "( defrule pen221_1_fine-deductive-gen432 ( declare ( salience ( calc-salience to_pay ) ) ) ( run-deductive-rules ) ( object ( name ?gen366 ) ( is-a is_guilty_of_nonpayment_of_support_lv1 ) ( defendant ?Defendant ) ) ( not ( object ( is-a to_pay ) ( value 300 ) ( unit Money ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat to_pay 300 Money ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat to_pay 300 Money ) ) ) ( make-instance ?oid of to_pay ( value 300 ) ( unit Money ) ) )")
    (derived-class to_pay))
 
 ([pen220_5_prison-deductive] of ntm-deductive-rule
    (pos-name pen220_5_prison-deductive-gen431)
    (depends-on is_guilty_of_violating_measures max_imprisonment)
    (implies max_imprisonment)
-   (deductive-rule "?gen357 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 1 ) ) ) => ( max_imprisonment ( value 1 ) )")
-   (production-rule "( defrule pen220_5_prison-deductive-gen431 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen357 ) ( is-a is_guilty_of_violating_measures ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 1 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 1 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 1 ) ) ) ( make-instance ?oid of max_imprisonment ( value 1 ) ) )")
+   (deductive-rule "?gen357 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 1 ) ( unit Years ) ) ) => ( max_imprisonment ( value 1 ) ( unit Years ) )")
+   (production-rule "( defrule pen220_5_prison-deductive-gen431 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen357 ) ( is-a is_guilty_of_violating_measures ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 1 ) ( unit Years ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 1 Years ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 1 Years ) ) ) ( make-instance ?oid of max_imprisonment ( value 1 ) ( unit Years ) ) )")
    (derived-class max_imprisonment))
 
 ([pen220_5_fine-deductive] of ntm-deductive-rule
    (pos-name pen220_5_fine-deductive-gen430)
    (depends-on is_guilty_of_violating_measures to_pay)
    (implies to_pay)
-   (deductive-rule "?gen348 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) ( not ( to_pay ( value 500 ) ) ) => ( to_pay ( value 500 ) )")
-   (production-rule "( defrule pen220_5_fine-deductive-gen430 ( declare ( salience ( calc-salience to_pay ) ) ) ( run-deductive-rules ) ( object ( name ?gen348 ) ( is-a is_guilty_of_violating_measures ) ( defendant ?Defendant ) ) ( not ( object ( is-a to_pay ) ( value 500 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat to_pay 500 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat to_pay 500 ) ) ) ( make-instance ?oid of to_pay ( value 500 ) ) )")
+   (deductive-rule "?gen348 <- ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) ( not ( to_pay ( value 500 ) ( unit Money ) ) ) => ( to_pay ( value 500 ) ( unit Money ) )")
+   (production-rule "( defrule pen220_5_fine-deductive-gen430 ( declare ( salience ( calc-salience to_pay ) ) ) ( run-deductive-rules ) ( object ( name ?gen348 ) ( is-a is_guilty_of_violating_measures ) ( defendant ?Defendant ) ) ( not ( object ( is-a to_pay ) ( value 500 ) ( unit Money ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat to_pay 500 Money ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat to_pay 500 Money ) ) ) ( make-instance ?oid of to_pay ( value 500 ) ( unit Money ) ) )")
    (derived-class to_pay))
 
 ([pen220_4_max-deductive] of ntm-deductive-rule
    (pos-name pen220_4_max-deductive-gen429)
    (depends-on is_guilty_of_family_violence_lv4 max_imprisonment)
    (implies max_imprisonment)
-   (deductive-rule "?gen339 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 12 ) ) ) => ( max_imprisonment ( value 12 ) )")
-   (production-rule "( defrule pen220_4_max-deductive-gen429 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen339 ) ( is-a is_guilty_of_family_violence_lv4 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 12 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 12 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 12 ) ) ) ( make-instance ?oid of max_imprisonment ( value 12 ) ) )")
+   (deductive-rule "?gen339 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 12 ) ( unit Years ) ) ) => ( max_imprisonment ( value 12 ) ( unit Years ) )")
+   (production-rule "( defrule pen220_4_max-deductive-gen429 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen339 ) ( is-a is_guilty_of_family_violence_lv4 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 12 ) ( unit Years ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 12 Years ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 12 Years ) ) ) ( make-instance ?oid of max_imprisonment ( value 12 ) ( unit Years ) ) )")
    (derived-class max_imprisonment))
 
 ([pen220_4_min-deductive] of ntm-deductive-rule
    (pos-name pen220_4_min-deductive-gen428)
    (depends-on is_guilty_of_family_violence_lv4 min_imprisonment)
    (implies min_imprisonment)
-   (deductive-rule "?gen330 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) ( not ( min_imprisonment ( value 3 ) ) ) => ( min_imprisonment ( value 3 ) )")
-   (production-rule "( defrule pen220_4_min-deductive-gen428 ( declare ( salience ( calc-salience min_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen330 ) ( is-a is_guilty_of_family_violence_lv4 ) ( defendant ?Defendant ) ) ( not ( object ( is-a min_imprisonment ) ( value 3 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat min_imprisonment 3 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat min_imprisonment 3 ) ) ) ( make-instance ?oid of min_imprisonment ( value 3 ) ) )")
+   (deductive-rule "?gen330 <- ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) ( not ( min_imprisonment ( value 3 ) ( unit Years ) ) ) => ( min_imprisonment ( value 3 ) ( unit Years ) )")
+   (production-rule "( defrule pen220_4_min-deductive-gen428 ( declare ( salience ( calc-salience min_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen330 ) ( is-a is_guilty_of_family_violence_lv4 ) ( defendant ?Defendant ) ) ( not ( object ( is-a min_imprisonment ) ( value 3 ) ( unit Years ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat min_imprisonment 3 Years ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat min_imprisonment 3 Years ) ) ) ( make-instance ?oid of min_imprisonment ( value 3 ) ( unit Years ) ) )")
    (derived-class min_imprisonment))
 
 ([pen220_3_max-deductive] of ntm-deductive-rule
    (pos-name pen220_3_max-deductive-gen427)
    (depends-on is_guilty_of_family_violence_lv3 max_imprisonment)
    (implies max_imprisonment)
-   (deductive-rule "?gen303 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 5 ) ) ) => ( max_imprisonment ( value 5 ) )")
-   (production-rule "( defrule pen220_3_max-deductive-gen427 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen303 ) ( is-a is_guilty_of_family_violence_lv3 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 5 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 5 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 5 ) ) ) ( make-instance ?oid of max_imprisonment ( value 5 ) ) )")
+   (deductive-rule "?gen303 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 5 ) ( unit Years ) ) ) => ( max_imprisonment ( value 5 ) ( unit Years ) )")
+   (production-rule "( defrule pen220_3_max-deductive-gen427 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen303 ) ( is-a is_guilty_of_family_violence_lv3 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 5 ) ( unit Years ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 5 Years ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 5 Years ) ) ) ( make-instance ?oid of max_imprisonment ( value 5 ) ( unit Years ) ) )")
    (derived-class max_imprisonment))
 
 ([pen220_3_min-deductive] of ntm-deductive-rule
    (pos-name pen220_3_min-deductive-gen426)
    (depends-on is_guilty_of_family_violence_lv3 min_imprisonment)
    (implies min_imprisonment)
-   (deductive-rule "?gen294 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) ( not ( min_imprisonment ( value 1 ) ) ) => ( min_imprisonment ( value 1 ) )")
-   (production-rule "( defrule pen220_3_min-deductive-gen426 ( declare ( salience ( calc-salience min_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen294 ) ( is-a is_guilty_of_family_violence_lv3 ) ( defendant ?Defendant ) ) ( not ( object ( is-a min_imprisonment ) ( value 1 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat min_imprisonment 1 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat min_imprisonment 1 ) ) ) ( make-instance ?oid of min_imprisonment ( value 1 ) ) )")
+   (deductive-rule "?gen294 <- ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) ( not ( min_imprisonment ( value 1 ) ( unit Years ) ) ) => ( min_imprisonment ( value 1 ) ( unit Years ) )")
+   (production-rule "( defrule pen220_3_min-deductive-gen426 ( declare ( salience ( calc-salience min_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen294 ) ( is-a is_guilty_of_family_violence_lv3 ) ( defendant ?Defendant ) ) ( not ( object ( is-a min_imprisonment ) ( value 1 ) ( unit Years ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat min_imprisonment 1 Years ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat min_imprisonment 1 Years ) ) ) ( make-instance ?oid of min_imprisonment ( value 1 ) ( unit Years ) ) )")
    (derived-class min_imprisonment))
 
 ([pen220_2_max-deductive] of ntm-deductive-rule
    (pos-name pen220_2_max-deductive-gen425)
    (depends-on is_guilty_of_family_violence_lv2 max_imprisonment)
    (implies max_imprisonment)
-   (deductive-rule "?gen285 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 3 ) ) ) => ( max_imprisonment ( value 3 ) )")
-   (production-rule "( defrule pen220_2_max-deductive-gen425 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen285 ) ( is-a is_guilty_of_family_violence_lv2 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 3 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 3 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 3 ) ) ) ( make-instance ?oid of max_imprisonment ( value 3 ) ) )")
+   (deductive-rule "?gen285 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 3 ) ( unit Years ) ) ) => ( max_imprisonment ( value 3 ) ( unit Years ) )")
+   (production-rule "( defrule pen220_2_max-deductive-gen425 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen285 ) ( is-a is_guilty_of_family_violence_lv2 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 3 ) ( unit Years ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 3 Years ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 3 Years ) ) ) ( make-instance ?oid of max_imprisonment ( value 3 ) ( unit Years ) ) )")
    (derived-class max_imprisonment))
 
 ([pen220_2_min-deductive] of ntm-deductive-rule
    (pos-name pen220_2_min-deductive-gen424)
    (depends-on is_guilty_of_family_violence_lv2 min_imprisonment)
    (implies min_imprisonment)
-   (deductive-rule "?gen276 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) ( not ( min_imprisonment ( value 3 ) ) ) => ( min_imprisonment ( value 3 ) )")
-   (production-rule "( defrule pen220_2_min-deductive-gen424 ( declare ( salience ( calc-salience min_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen276 ) ( is-a is_guilty_of_family_violence_lv2 ) ( defendant ?Defendant ) ) ( not ( object ( is-a min_imprisonment ) ( value 3 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat min_imprisonment 3 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat min_imprisonment 3 ) ) ) ( make-instance ?oid of min_imprisonment ( value 3 ) ) )")
+   (deductive-rule "?gen276 <- ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) ( not ( min_imprisonment ( value 3 ) ( unit Months ) ) ) => ( min_imprisonment ( value 3 ) ( unit Months ) )")
+   (production-rule "( defrule pen220_2_min-deductive-gen424 ( declare ( salience ( calc-salience min_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen276 ) ( is-a is_guilty_of_family_violence_lv2 ) ( defendant ?Defendant ) ) ( not ( object ( is-a min_imprisonment ) ( value 3 ) ( unit Months ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat min_imprisonment 3 Months ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat min_imprisonment 3 Months ) ) ) ( make-instance ?oid of min_imprisonment ( value 3 ) ( unit Months ) ) )")
    (derived-class min_imprisonment))
 
 ([pen220_1_prison-deductive] of ntm-deductive-rule
    (pos-name pen220_1_prison-deductive-gen423)
    (depends-on is_guilty_of_family_violence_lv1 max_imprisonment)
    (implies max_imprisonment)
-   (deductive-rule "?gen267 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 2 ) ) ) => ( max_imprisonment ( value 2 ) )")
-   (production-rule "( defrule pen220_1_prison-deductive-gen423 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen267 ) ( is-a is_guilty_of_family_violence_lv1 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 2 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 2 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 2 ) ) ) ( make-instance ?oid of max_imprisonment ( value 2 ) ) )")
+   (deductive-rule "?gen267 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) ( not ( max_imprisonment ( value 2 ) ( unit Years ) ) ) => ( max_imprisonment ( value 2 ) ( unit Years ) )")
+   (production-rule "( defrule pen220_1_prison-deductive-gen423 ( declare ( salience ( calc-salience max_imprisonment ) ) ) ( run-deductive-rules ) ( object ( name ?gen267 ) ( is-a is_guilty_of_family_violence_lv1 ) ( defendant ?Defendant ) ) ( not ( object ( is-a max_imprisonment ) ( value 2 ) ( unit Years ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat max_imprisonment 2 Years ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat max_imprisonment 2 Years ) ) ) ( make-instance ?oid of max_imprisonment ( value 2 ) ( unit Years ) ) )")
    (derived-class max_imprisonment))
 
 ([pen220_1_fine-deductive] of ntm-deductive-rule
    (pos-name pen220_1_fine-deductive-gen422)
    (depends-on is_guilty_of_family_violence_lv1 to_pay)
    (implies to_pay)
-   (deductive-rule "?gen258 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) ( not ( to_pay ( value 1000 ) ) ) => ( to_pay ( value 1000 ) )")
-   (production-rule "( defrule pen220_1_fine-deductive-gen422 ( declare ( salience ( calc-salience to_pay ) ) ) ( run-deductive-rules ) ( object ( name ?gen258 ) ( is-a is_guilty_of_family_violence_lv1 ) ( defendant ?Defendant ) ) ( not ( object ( is-a to_pay ) ( value 1000 ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat to_pay 1000 ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat to_pay 1000 ) ) ) ( make-instance ?oid of to_pay ( value 1000 ) ) )")
+   (deductive-rule "?gen258 <- ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) ( not ( to_pay ( value 1000 ) ( unit Money ) ) ) => ( to_pay ( value 1000 ) ( unit Money ) )")
+   (production-rule "( defrule pen220_1_fine-deductive-gen422 ( declare ( salience ( calc-salience to_pay ) ) ) ( run-deductive-rules ) ( object ( name ?gen258 ) ( is-a is_guilty_of_family_violence_lv1 ) ( defendant ?Defendant ) ) ( not ( object ( is-a to_pay ) ( value 1000 ) ( unit Money ) ) ) ( test ( not ( instance-existp ( symbol-to-instance-name ( sym-cat to_pay 1000 Money ) ) ) ) ) => ( bind ?oid ( symbol-to-instance-name ( sym-cat to_pay 1000 Money ) ) ) ( make-instance ?oid of to_pay ( value 1000 ) ( unit Money ) ) )")
    (derived-class to_pay))
 
 ([rule221_1_neg_3-deductive] of ntm-deductive-rule

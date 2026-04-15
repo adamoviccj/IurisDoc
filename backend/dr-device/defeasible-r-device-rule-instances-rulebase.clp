@@ -280,7 +280,7 @@
 
 ([pen220_1_fine] of defeasible-rule
    (rule-name pen220_1_fine)
-   (original-rule "pen220_1_fine ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) => ( to_pay ( value 1000 ) )")
+   (original-rule "pen220_1_fine ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) => ( to_pay ( value 1000 ) ( unit Money ) )")
    (condition-classes)
    (conclusion-class to_pay)
    (negated no)
@@ -294,7 +294,7 @@
 
 ([pen220_1_prison] of defeasible-rule
    (rule-name pen220_1_prison)
-   (original-rule "pen220_1_prison ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 2 ) )")
+   (original-rule "pen220_1_prison ( is_guilty_of_family_violence_lv1 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 2 ) ( unit Years ) )")
    (condition-classes)
    (conclusion-class max_imprisonment)
    (negated no)
@@ -308,7 +308,7 @@
 
 ([pen220_2_min] of defeasible-rule
    (rule-name pen220_2_min)
-   (original-rule "pen220_2_min ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) => ( min_imprisonment ( value 3 ) )")
+   (original-rule "pen220_2_min ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) => ( min_imprisonment ( value 3 ) ( unit Months ) )")
    (condition-classes)
    (conclusion-class min_imprisonment)
    (negated no)
@@ -322,7 +322,7 @@
 
 ([pen220_2_max] of defeasible-rule
    (rule-name pen220_2_max)
-   (original-rule "pen220_2_max ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 3 ) )")
+   (original-rule "pen220_2_max ( is_guilty_of_family_violence_lv2 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 3 ) ( unit Years ) )")
    (condition-classes)
    (conclusion-class max_imprisonment)
    (negated no)
@@ -336,7 +336,7 @@
 
 ([pen220_3_min] of defeasible-rule
    (rule-name pen220_3_min)
-   (original-rule "pen220_3_min ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) => ( min_imprisonment ( value 1 ) )")
+   (original-rule "pen220_3_min ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) => ( min_imprisonment ( value 1 ) ( unit Years ) )")
    (condition-classes)
    (conclusion-class min_imprisonment)
    (negated no)
@@ -350,7 +350,7 @@
 
 ([pen220_3_max] of defeasible-rule
    (rule-name pen220_3_max)
-   (original-rule "pen220_3_max ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 5 ) )")
+   (original-rule "pen220_3_max ( is_guilty_of_family_violence_lv3 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 5 ) ( unit Years ) )")
    (condition-classes)
    (conclusion-class max_imprisonment)
    (negated no)
@@ -364,7 +364,7 @@
 
 ([pen220_4_min] of defeasible-rule
    (rule-name pen220_4_min)
-   (original-rule "pen220_4_min ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) => ( min_imprisonment ( value 3 ) )")
+   (original-rule "pen220_4_min ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) => ( min_imprisonment ( value 3 ) ( unit Years ) )")
    (condition-classes)
    (conclusion-class min_imprisonment)
    (negated no)
@@ -378,7 +378,7 @@
 
 ([pen220_4_max] of defeasible-rule
    (rule-name pen220_4_max)
-   (original-rule "pen220_4_max ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 12 ) )")
+   (original-rule "pen220_4_max ( is_guilty_of_family_violence_lv4 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 12 ) ( unit Years ) )")
    (condition-classes)
    (conclusion-class max_imprisonment)
    (negated no)
@@ -392,7 +392,7 @@
 
 ([pen220_5_fine] of defeasible-rule
    (rule-name pen220_5_fine)
-   (original-rule "pen220_5_fine ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) => ( to_pay ( value 500 ) )")
+   (original-rule "pen220_5_fine ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) => ( to_pay ( value 500 ) ( unit Money ) )")
    (condition-classes)
    (conclusion-class to_pay)
    (negated no)
@@ -406,7 +406,7 @@
 
 ([pen220_5_prison] of defeasible-rule
    (rule-name pen220_5_prison)
-   (original-rule "pen220_5_prison ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) => ( max_imprisonment ( value 1 ) )")
+   (original-rule "pen220_5_prison ( is_guilty_of_violating_measures ( defendant ?Defendant ) ) => ( max_imprisonment ( value 1 ) ( unit Years ) )")
    (condition-classes)
    (conclusion-class max_imprisonment)
    (negated no)
@@ -420,7 +420,7 @@
 
 ([pen221_1_fine] of defeasible-rule
    (rule-name pen221_1_fine)
-   (original-rule "pen221_1_fine ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) => ( to_pay ( value 300 ) )")
+   (original-rule "pen221_1_fine ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) => ( to_pay ( value 300 ) ( unit Money ) )")
    (condition-classes)
    (conclusion-class to_pay)
    (negated no)
@@ -434,7 +434,7 @@
 
 ([pen221_1_prison] of defeasible-rule
    (rule-name pen221_1_prison)
-   (original-rule "pen221_1_prison ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 2 ) )")
+   (original-rule "pen221_1_prison ( is_guilty_of_nonpayment_of_support_lv1 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 2 ) ( unit Years ) )")
    (condition-classes)
    (conclusion-class max_imprisonment)
    (negated no)
@@ -448,7 +448,7 @@
 
 ([pen221_3_min] of defeasible-rule
    (rule-name pen221_3_min)
-   (original-rule "pen221_3_min ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) => ( min_imprisonment ( value 6 ) )")
+   (original-rule "pen221_3_min ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) => ( min_imprisonment ( value 6 ) ( unit Months ) )")
    (condition-classes)
    (conclusion-class min_imprisonment)
    (negated no)
@@ -462,7 +462,7 @@
 
 ([pen221_3_max] of defeasible-rule
    (rule-name pen221_3_max)
-   (original-rule "pen221_3_max ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 5 ) )")
+   (original-rule "pen221_3_max ( is_guilty_of_nonpayment_of_support_lv2 ( defendant ?Defendant ) ) => ( max_imprisonment ( value 5 ) ( unit Years ) )")
    (condition-classes)
    (conclusion-class max_imprisonment)
    (negated no)

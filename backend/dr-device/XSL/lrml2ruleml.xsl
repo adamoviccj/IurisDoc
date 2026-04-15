@@ -230,6 +230,10 @@
                             <Ind uri="value"/>
                             <Data xsi:type="xs:integer"><xsl:value-of select="//lrml:PenaltyStatement[@key=$penaltyKey]//ruleml:Ind"/></Data>
                         </slot>
+                        <slot>
+                            <Ind uri="unit"/>
+                            <Data><xsl:value-of select="//lrml:PenaltyStatement[@key=$penaltyKey]//ruleml:Var"/></Data>
+                        </slot>
                     </Atom>
                 </head>
             </Implies>

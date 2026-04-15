@@ -361,7 +361,7 @@ async def list_judgments(
 
 @app.get("/law/{file_name}", response_model=LawResponse)
 async def get_law(file_name: str):
-    path = f"../../data/laws/{file_name}.xml"
+    path = f"../data/laws/{file_name}.xml"
     return parse_akoma_ntoso(path)
 
 @app.on_event("startup")
@@ -380,7 +380,9 @@ from fastapi.responses import Response
 @app.post("/generate-rdf")
 async def generate_rdf(request: FactsRequest):
     
+    print("Received RDF generation request:", request.json())  # Log the incoming request data
     rdf_content = generate_rdf_facts(request)
+    
     return Response(
         content=rdf_content,
         media_type="application/rdf+xml",

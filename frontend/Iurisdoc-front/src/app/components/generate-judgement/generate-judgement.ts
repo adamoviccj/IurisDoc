@@ -63,20 +63,20 @@ export class GenerateJudgement {
   judgeName = '';
 
   // Strukturirane činjenice za rulebase
-  usesGrossViolence: boolean | null = null;
-  violatesIntegrity: 'family_member' | 'other' | null = null;
-  usesWeapon: boolean | null = null;
-  causesSeriousInjury: boolean | null = null;
-  causesDeath: boolean | null = null;
-  violatesProtectionMeasures: boolean | null = null;
-  failsToProvideSupport: 'court_order' | 'none' | null = null;
-  causesSeriousConsequences: boolean | null = null;
+  usesGrossViolence: string | null = null;
+  violatesIntegrity: 'family_member_yes' | 'family_member_no' | 'other' | null = null;
+  usesWeapon: string | null = null;
+  causesSeriousInjury: string | null = null;
+  causesDeath: string | null = null;
+  violatesProtectionMeasures: string | null = null;
+  failsToPaySupport: 'true' | 'false' | null = null;
+  causesSeriousConsequences: string | null = null;
 
   // additional structured flags needed by rulebase
-  legalObligationToSupport: boolean | null = null;
-  dutyEstablishedByCourtOrder: boolean | null = null;
-  justifiedReasonsForNonpayment: boolean | null = null;
-  victimIsMinor: boolean | null = null;
+  legalObligationToSupport: string | null = null;
+  dutyEstablishedByCourtOrder: string | null = null;
+  justifiedReasonsForNonpayment: string | null = null;
+  victimIsMinor: string | null = null;
 
   // Metode za dodavanje više unosa
   addVictim() { this.victims.push({ id: '', name: '' }); }
@@ -88,39 +88,43 @@ export class GenerateJudgement {
   constructor(private http: HttpClient) {}
 
   submitFacts() {
-  const payload = {
-    defendant: this.accused.name,
-    usesGrossViolence: this.usesGrossViolence,
-    violatesIntegrity: this.violatesIntegrity,
-    usesWeapon: this.usesWeapon,
-    causesSevereBodilyHarm: this.causesSeriousInjury,          // map to backend name
-    causesDeath: this.causesDeath,
-    violatesProtectionMeasures: this.violatesProtectionMeasures,
-    failsToProvideSupport: this.failsToProvideSupport,
-    severeConsequencesForVictim: this.causesSeriousConsequences,
-    legalObligationToSupport: this.legalObligationToSupport,
-    dutyEstablishedByCourtOrder: this.dutyEstablishedByCourtOrder,
-    justifiedReasonsForNonpayment: this.justifiedReasonsForNonpayment,
-    victimIsMinor: this.victimIsMinor,
 
-    court: this.court,
-    judge: this.judge.name,
-    clerk: this.clerk.name,
-    accused: this.accused.name,
-    prosecutor: this.prosecutor.name,
+  const payload = {
+    defendant: String(this.accused.name),
+    usesGrossViolence: String(this.usesGrossViolence ?? 'false'),
+    violatesIntegrity: String(this.violatesIntegrity === 'family_member_yes' ? 'family_member_yes' : 'family_member_no'),
+    usesWeapon: String(this.usesWeapon ?? 'false'),
+    causesSeriousInjury: String(this.causesSeriousInjury ?? 'false'),
+    causesDeath: String(this.causesDeath ?? 'false'),
+    violatesProtectionMeasures: String(this.violatesProtectionMeasures ?? 'false'),
+    failsToPaySupport: String(this.failsToPaySupport ?? 'false'),
+    severeConsequencesForVictim: String(this.causesSeriousConsequences ?? 'false'),
+    legalObligationToSupport: String(this.legalObligationToSupport ?? 'false'),
+    dutyEstablishedByCourtOrder: String(this.dutyEstablishedByCourtOrder ?? 'false'),
+    justifiedReasonsForNonpayment: String(this.justifiedReasonsForNonpayment ?? 'false'),
+    victimIsMinor: String(this.victimIsMinor ?? 'false'),
+
+    court: String(this.court),
+    judge: String(this.judge.name),
+    clerk: String(this.clerk.name),
+    accused: String(this.accused.name),
+    prosecutor: String(this.prosecutor.name),
     victims: this.victims,
     lawyers: this.lawyers,
-    facts_text: this.facts,
-    legal_text: this.legal,
-    context_text: this.context,
-    generation_date: this.generationDate,
-    court_name: this.courtName,
-    clerk_name: this.clerkName,
-    judge_name: this.judgeName
+    facts_text: String(this.facts),
+    legal_text: String(this.legal),
+    context_text: String(this.context),
+    generation_date: String(this.generationDate),
+    court_name: String(this.courtName),
+    clerk_name: String(this.clerkName),
+    judge_name: String(this.judgeName)
   };
+
+  console.log('Submitting facts with payload:', payload); // logujemo payload pre slanja
 
   this.http.post('http://localhost:8000/generate-rdf', payload, { responseType: 'blob' }).subscribe({
     next: (response: Blob) => {
+      console.log(payload); // logujemo payload da proverimo šta se šalje
       // automatsko preuzimanje RDF fajla
       const url = window.URL.createObjectURL(response);
       const a = document.createElement('a');

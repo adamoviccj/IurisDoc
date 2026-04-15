@@ -121,17 +121,17 @@
       <mat-label>Kršenje integriteta</mat-label>
       <mat-select [(ngModel)]="violatesIntegrity">
         <mat-option [value]="null">-- Izaberi --</mat-option>
-        <mat-option value="family_member">Član porodice</mat-option>
+        <mat-option value="family_member_yes">Član porodice</mat-option>
         <mat-option value="other">Drugo</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Neizvršenje alimentacije</mat-label>
-      <mat-select [(ngModel)]="failsToProvideSupport">
+      <mat-select [(ngModel)]="failsToPaySupport">
         <mat-option [value]="null">-- Izaberi --</mat-option>
-        <mat-option value="court_order">Sudski nalog</mat-option>
-        <mat-option value="none">Nije primenljivo</mat-option>
+        <mat-option value="true">Sudski nalog</mat-option>
+        <mat-option value="false">Nije primenljivo</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

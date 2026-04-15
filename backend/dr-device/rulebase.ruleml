@@ -1011,6 +1011,10 @@
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">1000</Data>
                </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Money</Data>
+               </slot>
             </Atom>
          </head>
       </Implies>
@@ -1037,6 +1041,10 @@
                <slot>
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">2</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
                </slot>
             </Atom>
          </head>
@@ -1065,6 +1073,10 @@
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">3</Data>
                </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Months</Data>
+               </slot>
             </Atom>
          </head>
       </Implies>
@@ -1092,59 +1104,9 @@
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">3</Data>
                </slot>
-            </Atom>
-         </head>
-      </Implies>
-      <Implies ruletype="defeasiblerule">
-         <oid>
-            <Ind uri="pen220_3_min">pen220_3_min</Ind>
-         </oid>
-         <body>
-            <Atom>
-               <op>
-                  <Rel>is_guilty_of_family_violence_lv3</Rel>
-               </op>
                <slot>
-                  <Ind uri="defendant"/>
-                  <Var>Defendant</Var>
-               </slot>
-            </Atom>
-         </body>
-         <head>
-            <Atom>
-               <op>
-                  <Rel>min_imprisonment</Rel>
-               </op>
-               <slot>
-                  <Ind uri="value"/>
-                  <Data xsi:type="xs:integer">1</Data>
-               </slot>
-            </Atom>
-         </head>
-      </Implies>
-      <Implies ruletype="defeasiblerule">
-         <oid>
-            <Ind uri="pen220_3_max">pen220_3_max</Ind>
-         </oid>
-         <body>
-            <Atom>
-               <op>
-                  <Rel>is_guilty_of_family_violence_lv3</Rel>
-               </op>
-               <slot>
-                  <Ind uri="defendant"/>
-                  <Var>Defendant</Var>
-               </slot>
-            </Atom>
-         </body>
-         <head>
-            <Atom>
-               <op>
-                  <Rel>max_imprisonment</Rel>
-               </op>
-               <slot>
-                  <Ind uri="value"/>
-                  <Data xsi:type="xs:integer">5</Data>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
                </slot>
             </Atom>
          </head>
@@ -1173,6 +1135,10 @@
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">1</Data>
                </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
             </Atom>
          </head>
       </Implies>
@@ -1199,6 +1165,72 @@
                <slot>
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">5</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_3_min">pen220_3_min</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv3</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>min_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">1</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_3_max">pen220_3_max</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv3</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>max_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">5</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
                </slot>
             </Atom>
          </head>
@@ -1227,6 +1259,10 @@
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">3</Data>
                </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
             </Atom>
          </head>
       </Implies>
@@ -1253,6 +1289,10 @@
                <slot>
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">12</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
                </slot>
             </Atom>
          </head>
@@ -1281,6 +1321,10 @@
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">500</Data>
                </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Money</Data>
+               </slot>
             </Atom>
          </head>
       </Implies>
@@ -1307,6 +1351,10 @@
                <slot>
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">1</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
                </slot>
             </Atom>
          </head>
@@ -1335,6 +1383,10 @@
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">300</Data>
                </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Money</Data>
+               </slot>
             </Atom>
          </head>
       </Implies>
@@ -1361,6 +1413,10 @@
                <slot>
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">2</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
                </slot>
             </Atom>
          </head>
@@ -1389,6 +1445,10 @@
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">6</Data>
                </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Months</Data>
+               </slot>
             </Atom>
          </head>
       </Implies>
@@ -1415,6 +1475,10 @@
                <slot>
                   <Ind uri="value"/>
                   <Data xsi:type="xs:integer">5</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
                </slot>
             </Atom>
          </head>

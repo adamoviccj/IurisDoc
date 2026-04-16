@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
         "./backend/facts_generator"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

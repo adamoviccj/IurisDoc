@@ -29,25 +29,41 @@ public class CsvConnector implements Connector {
 
 							String[] values = reader.readNext();
 
-							if (values != null && values.length >= 20) {
-
+							// Očekujemo da su kolone u CSV-u po redosledu kao u CaseDescription klasi
+							// Prilagodi broj kolona prema broju polja
+							if (values != null && values.length >= 30) {
 								CBRCase cbrCase = new CBRCase();
 								CaseDescription cd = new CaseDescription();
 
-								cd.setActDescription(values[0]);
-								cd.setLegalQualification(values[1]);
-								cd.setVictim(values[2]);
-								cd.setTimePeriod(values[3]);
-								cd.setMeansOfCommission(values[4]);
-								cd.setInjurySeverity(values[5]);
-								cd.setNumberOfVictims(values[6]);
-								cd.setRepetition(values[7]);
-								cd.setPreviousConviction(values[8]);
-								cd.setMitigatingFactors(values[9]);
-								cd.setAggravatingFactors(values[10]);
-								cd.setPenalty(values[11]);
-								cd.setSecurityMeasure(values[12]);
-								cd.setCaseId(values[13]);
+								int i = 0;
+								cd.setCaseId(values[i++]);
+								cd.setLegalQualification(values[i++]);
+								cd.setVictim(values[i++]);
+								cd.setMeansOfCommission(values[i++]);
+								cd.setInjurySeverity(values[i++]);
+								cd.setNumberOfVictims(values[i++]);
+								cd.setRepetition(values[i++]);
+								cd.setPreviousConviction(values[i++]);
+								cd.setMitigatingFactors(values[i++]);
+								cd.setAggravatingFactors(values[i++]);
+								cd.setVerdictType(values[i++]);
+								cd.setCourt(values[i++]);
+								cd.setJudge(values[i++]);
+								cd.setClerk(values[i++]);
+								cd.setAccused(values[i++]);
+								cd.setDecisionDate(values[i++]);
+								cd.setUsesWeapon(values[i++]);
+								cd.setUsesGrossViolence(values[i++]);
+								cd.setViolatesIntegrity(values[i++]);
+								cd.setCausesSeriousInjury(values[i++]);
+								cd.setVictimIsMinor(values[i++]);
+								cd.setCausesDeath(values[i++]);
+								cd.setViolatesProtectionMeasures(values[i++]);
+								cd.setLegalObligationToSupport(values[i++]);
+								cd.setDutyEstablishedByCourtOrder(values[i++]);
+								cd.setFailsToPaySupport(values[i++]);
+								cd.setJustifiedReasonsForNonpayment(values[i++]);
+								cd.setSevereConsequencesForVictim(values[i++]);
 
 								cbrCase.setDescription(cd);
 								cases.add(cbrCase);
@@ -66,9 +82,24 @@ public class CsvConnector implements Connector {
 		return cases;
 	}
 
-	@Override public void close() {}
-	@Override public void deleteCases(Collection<CBRCase> cases) {}
-	@Override public void storeCases(Collection<CBRCase> cases) {}
-	@Override public Collection<CBRCase> retrieveSomeCases(CaseBaseFilter filter) { return null; }
-	@Override public void initFromXMLfile(java.net.URL url) {}
+	@Override
+	public void close() {
+	}
+
+	@Override
+	public void deleteCases(Collection<CBRCase> cases) {
+	}
+
+	@Override
+	public void storeCases(Collection<CBRCase> cases) {
+	}
+
+	@Override
+	public Collection<CBRCase> retrieveSomeCases(CaseBaseFilter filter) {
+		return null;
+	}
+
+	@Override
+	public void initFromXMLfile(java.net.URL url) {
+	}
 }

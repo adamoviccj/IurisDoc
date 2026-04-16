@@ -33,35 +33,65 @@ public class CbrApplication implements StandardCBRApplication {
 
 		StringLevenshteinSimilarity stringSim = new StringLevenshteinSimilarity();
 
-
-
 		simConfig.addMapping(new Attribute("legalQualification", CaseDescription.class), stringSim);
 		simConfig.setWeight(new Attribute("legalQualification", CaseDescription.class), 3.0);
-
+		simConfig.addMapping(new Attribute("victim", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("victim", CaseDescription.class), 1.0);
 		simConfig.addMapping(new Attribute("meansOfCommission", CaseDescription.class), stringSim);
 		simConfig.setWeight(new Attribute("meansOfCommission", CaseDescription.class), 2.0);
-
 		simConfig.addMapping(new Attribute("injurySeverity", CaseDescription.class), stringSim);
 		simConfig.setWeight(new Attribute("injurySeverity", CaseDescription.class), 2.0);
-
-		simConfig.addMapping(new Attribute("repetition", CaseDescription.class),
-				new EqualsStringIgnoreCase());
-		simConfig.setWeight(new Attribute("repetition", CaseDescription.class), 2.0);
-
-		simConfig.addMapping(new Attribute("previousConviction", CaseDescription.class),
-				new EqualsStringIgnoreCase());
-		simConfig.setWeight(new Attribute("previousConviction", CaseDescription.class), 2.0);
-
-		simConfig.addMapping(new Attribute("numberOfVictims", CaseDescription.class),
-				new EqualsStringIgnoreCase());
+		simConfig.addMapping(new Attribute("numberOfVictims", CaseDescription.class), new EqualsStringIgnoreCase());
 		simConfig.setWeight(new Attribute("numberOfVictims", CaseDescription.class), 1.5);
-
+		simConfig.addMapping(new Attribute("repetition", CaseDescription.class), new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("repetition", CaseDescription.class), 2.0);
+		simConfig.addMapping(new Attribute("previousConviction", CaseDescription.class), new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("previousConviction", CaseDescription.class), 2.0);
+		simConfig.addMapping(new Attribute("verdictType", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("verdictType", CaseDescription.class), 1.0);
 		simConfig.addMapping(new Attribute("mitigatingFactors", CaseDescription.class), stringSim);
 		simConfig.setWeight(new Attribute("mitigatingFactors", CaseDescription.class), 1.5);
-
 		simConfig.addMapping(new Attribute("aggravatingFactors", CaseDescription.class), stringSim);
 		simConfig.setWeight(new Attribute("aggravatingFactors", CaseDescription.class), 1.5);
-
+		simConfig.addMapping(new Attribute("court", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("court", CaseDescription.class), 0.5);
+		simConfig.addMapping(new Attribute("judge", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("judge", CaseDescription.class), 0.5);
+		simConfig.addMapping(new Attribute("clerk", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("clerk", CaseDescription.class), 0.5);
+		simConfig.addMapping(new Attribute("accused", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("accused", CaseDescription.class), 0.5);
+		simConfig.addMapping(new Attribute("decisionDate", CaseDescription.class), stringSim);
+		simConfig.setWeight(new Attribute("decisionDate", CaseDescription.class), 0.5);
+		simConfig.addMapping(new Attribute("usesWeapon", CaseDescription.class), new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("usesWeapon", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("usesGrossViolence", CaseDescription.class), new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("usesGrossViolence", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("violatesIntegrity", CaseDescription.class), new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("violatesIntegrity", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("causesSeriousInjury", CaseDescription.class), new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("causesSeriousInjury", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("victimIsMinor", CaseDescription.class), new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("victimIsMinor", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("causesDeath", CaseDescription.class), new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("causesDeath", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("violatesProtectionMeasures", CaseDescription.class),
+				new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("violatesProtectionMeasures", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("legalObligationToSupport", CaseDescription.class),
+				new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("legalObligationToSupport", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("dutyEstablishedByCourtOrder", CaseDescription.class),
+				new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("dutyEstablishedByCourtOrder", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("failsToPaySupport", CaseDescription.class), new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("failsToPaySupport", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("justifiedReasonsForNonpayment", CaseDescription.class),
+				new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("justifiedReasonsForNonpayment", CaseDescription.class), 1.0);
+		simConfig.addMapping(new Attribute("severeConsequencesForVictim", CaseDescription.class),
+				new EqualsStringIgnoreCase());
+		simConfig.setWeight(new Attribute("severeConsequencesForVictim", CaseDescription.class), 1.0);
 
 	}
 
@@ -74,11 +104,10 @@ public class CbrApplication implements StandardCBRApplication {
 	@Override
 	public void cycle(CBRQuery query) throws ExecutionException {
 
-		Collection<RetrievalResult> results =
-				NNScoringMethod.evaluateSimilarity(
-						caseBase.getCases(),
-						query,
-						simConfig);
+		Collection<RetrievalResult> results = NNScoringMethod.evaluateSimilarity(
+				caseBase.getCases(),
+				query,
+				simConfig);
 
 		results = SelectCases.selectTopKRR(results, 5);
 
@@ -94,7 +123,8 @@ public class CbrApplication implements StandardCBRApplication {
 	}
 
 	@Override
-	public void postCycle() {}
+	public void postCycle() {
+	}
 
 	public static void main(String[] args) throws Exception {
 
@@ -103,14 +133,34 @@ public class CbrApplication implements StandardCBRApplication {
 		app.preCycle();
 
 		CaseDescription query = new CaseDescription();
-
 		query.setCaseId("QUERY-1");
 		query.setLegalQualification("nasilje u porodici ili u porodičnoj zajednici");
+		query.setVictim("");
 		query.setMeansOfCommission("nožem");
 		query.setInjurySeverity("lake tjelesne povrede");
+		query.setNumberOfVictims("3");
 		query.setRepetition("više puta");
 		query.setPreviousConviction("ne");
-		query.setNumberOfVictims("3");
+		query.setMitigatingFactors("");
+		query.setAggravatingFactors("");
+		query.setVerdictType("");
+		query.setCourt("");
+		query.setJudge("");
+		query.setClerk("");
+		query.setAccused("");
+		query.setDecisionDate("");
+		query.setUsesWeapon("");
+		query.setUsesGrossViolence("");
+		query.setViolatesIntegrity("");
+		query.setCausesSeriousInjury("");
+		query.setVictimIsMinor("");
+		query.setCausesDeath("");
+		query.setViolatesProtectionMeasures("");
+		query.setLegalObligationToSupport("");
+		query.setDutyEstablishedByCourtOrder("");
+		query.setFailsToPaySupport("");
+		query.setJustifiedReasonsForNonpayment("");
+		query.setSevereConsequencesForVictim("");
 
 		CBRQuery cbrQuery = new CBRQuery();
 		cbrQuery.setDescription(query);

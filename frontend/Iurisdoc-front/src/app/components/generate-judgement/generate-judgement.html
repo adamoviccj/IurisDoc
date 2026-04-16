@@ -36,7 +36,12 @@
       <input matInput [(ngModel)]="v.name">
     </mat-form-field>
   </div>
-  <button mat-raised-button type="button" (click)="addVictim()">+ Dodaj oštećenog</button>
+  <button mat-raised-button type="button" (click)="addVictim()">
+    <span style="display: inline-flex; align-items: center; gap: 4px;">
+    <mat-icon>person_add</mat-icon>
+     Dodaj oštećenog
+    </span>
+  </button>
 
   <!-- Lawyers -->
   <h3>Advokati</h3>
@@ -46,7 +51,12 @@
       <input matInput [(ngModel)]="l.name">
     </mat-form-field>
   </div>
-  <button mat-raised-button type="button" (click)="addLawyer()">+ Dodaj advokata</button>
+  <button mat-raised-button type="button" (click)="addLawyer()">
+    <span style="display: inline-flex; align-items: center; gap: 4px;">
+      <mat-icon>person_add</mat-icon>
+      Dodaj advokata
+    </span>
+  </button>
 
   <!-- === STRUKTURIRANE ČINJENICE === -->
   <h3>Činjenice za krivično djelo</h3>
@@ -84,12 +94,22 @@
     </div>
 
     <div>
-      <mat-checkbox [(ngModel)]="causesSeriousConsequences">
+      <mat-checkbox [(ngModel)]="severeConsequencesForVictim">
         Ozbiljne posledice za oštećenog
       </mat-checkbox>
     </div>
 
     <!-- additional flags -->
+    <div>
+      <mat-checkbox [(ngModel)]="previousConviction">
+        Ranija osuđivanost
+      </mat-checkbox>
+    </div>
+    <div>
+      <mat-checkbox [(ngModel)]="repetition">
+        Ponavljanje krivičnog dela
+      </mat-checkbox>
+    </div>
     <div>
       <mat-checkbox [(ngModel)]="legalObligationToSupport">
         Postoji pravna obaveza za uzdržavanje
@@ -137,7 +157,7 @@
   </div>
 
   <!-- Slobodan tekst -->
-  <h3>Facts & Legal (slobodan tekst)</h3>
+  <!-- <h3>Facts & Legal (slobodan tekst)</h3>
   <mat-form-field appearance="fill" class="full-width">
     <mat-label>Facts</mat-label>
     <textarea matInput [(ngModel)]="facts" rows="4"></textarea>
@@ -151,16 +171,18 @@
   <mat-form-field appearance="fill" class="full-width">
     <mat-label>Context</mat-label>
     <textarea matInput [(ngModel)]="context" rows="4"></textarea>
-  </mat-form-field>
+  </mat-form-field> -->
 
   <!-- Meta podaci -->
   <h3>Meta podaci</h3>
   <mat-form-field appearance="fill">
     <mat-label>Datum generisanja</mat-label>
-    <input matInput [(ngModel)]="generationDate" placeholder="npr. 2025-02-25">
+    <input matInput [matDatepicker]="picker" [(ngModel)]="generationDate" placeholder="Izaberi datum">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <!-- <mat-form-field appearance="fill">
     <mat-label>Ime suda (za potpis)</mat-label>
     <input matInput [(ngModel)]="courtName" placeholder="npr. Osnovni sud u Cetinju">
   </mat-form-field>
@@ -173,9 +195,14 @@
   <mat-form-field appearance="fill">
     <mat-label>Ime sudije (za potpis)</mat-label>
     <input matInput [(ngModel)]="judgeName" placeholder="npr. Branislav Leković">
-  </mat-form-field>
+  </mat-form-field> -->
 
   <div class="actions">
-    <button mat-raised-button color="primary" (click)="submitFacts()">Generate Facts File</button>
+    <button type="submit" mat-raised-button color="accent" style="font-size:1.1em;font-weight:bold;box-shadow:0 2px 8px #1976d2b3;background:linear-gradient(90deg,#1976d2 60%,#64b5f6 100%);color:#fff;" (click)="submitFacts()">
+      <span style="display:inline-flex;align-items:center;gap:8px;">
+        <mat-icon>file_download</mat-icon>
+        Generate Facts File
+      </span>
+    </button>
   </div>
 </div>

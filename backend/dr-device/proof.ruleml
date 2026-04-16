@@ -23,7 +23,7 @@
 <Ind uri='&proof-export;proof2'>proof2</Ind>
 </oid>
 <Literal>
-<RDF_resource uri='is_guilty_of_family_violence_lv4dfdxf'/>
+<RDF_resource uri='is_guilty_of_family_violence_lv4dfdf'/>
 </Literal>
 <Defeasible_Proof>
 <supportive_rule>
@@ -32,48 +32,48 @@
 <defeasible_body_grounds>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
@@ -93,24 +93,24 @@
 <defeasible_body_grounds>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
@@ -144,7 +144,7 @@
 <Ind uri='&proof-export;proof4'>proof4</Ind>
 </oid>
 <Literal>
-<RDF_resource uri='is_guilty_of_nonpayment_of_support_lv2dfdxf'/>
+<RDF_resource uri='is_guilty_of_nonpayment_of_support_lv2dfdf'/>
 </Literal>
 <Defeasible_Proof>
 <supportive_rule>
@@ -153,60 +153,60 @@
 <defeasible_body_grounds>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
@@ -302,36 +302,36 @@
 <defeasible_body_grounds>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
@@ -370,48 +370,48 @@
 <defeasible_body_grounds>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
@@ -439,48 +439,48 @@
 <defeasible_body_grounds>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
@@ -513,6 +513,20 @@
 <Blocked>
 <Blocked_Defeasible_rule>
 <rule_ref rule='&rulebase;rule220_5'/>
+<defeasible_body_grounds>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;dfdf'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;dfdf'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+</defeasible_body_grounds>
 <Attacked_by_Superior>
 <rule_ref rule='&rulebase;rule220_5_neg_4'/>
 <defeasible_body_grounds>
@@ -546,36 +560,36 @@
 <defeasible_body_grounds>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;dfdxf'/>
+<RDF_resource uri='&lc;dfdf'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>

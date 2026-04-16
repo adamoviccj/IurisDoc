@@ -9,6 +9,7 @@ import requests
 import json
 import os
 import csv
+import subprocess
 
 from facts_generator.generate_facts import FactsRequest, generate_rdf_facts
 
@@ -375,19 +376,28 @@ async def get_filters():
 
 
 
-from fastapi.responses import Response
+
+
+from fastapi.responses import JSONResponse
 
 @app.post("/generate-rdf")
 async def generate_rdf(request: FactsRequest):
-    
-    print("Received RDF generation request:", request.json())  # Log the incoming request data
+    print("Received RDF generation request:", request.json())
     rdf_content = generate_rdf_facts(request)
-    
-    return Response(
-        content=rdf_content,
-        media_type="application/rdf+xml",
-        headers={"Content-Disposition": "attachment; filename=facts.rdf"}
-    )
+
+    dr_device_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dr-device")
+
+    try:
+        subprocess.run(["cmd", "/c", "clean.bat"], cwd=dr_device_dir, check=True)
+        subprocess.run(["cmd", "/c", "start.bat"], cwd=dr_device_dir, check=True)
+        status = "success"
+        message = "RDF generated and DR-Device scripts executed."
+    except Exception as e:
+        print("Error running DR-Device scripts:", e)
+        status = "error"
+        message = f"RDF generated, but error running DR-Device scripts: {e}"
+
+    return JSONResponse(content={"status": status, "message": message})
 
 if __name__ == "__main__":
     import uvicorn

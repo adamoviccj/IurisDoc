@@ -6,16 +6,16 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:lc="http://informatika.ftn.uns.ac.rs/legal-case.rdf#">
 
-    <lc:case rdf:about="http://informatika.ftn.uns.ac.rs/legal-case.rdf#dfdxf">
-        <lc:name>dfdxf</lc:name>
-        <lc:defendant>dfdxf</lc:defendant>
+    <lc:case rdf:about="http://informatika.ftn.uns.ac.rs/legal-case.rdf#dfdf">
+        <lc:name>dfdf</lc:name>
+        <lc:defendant>dfdf</lc:defendant>
         <lc:uses_weapon>true</lc:uses_weapon>
         <lc:uses_gross_violence>true</lc:uses_gross_violence>
         <lc:violates_integrity>family_member_yes</lc:violates_integrity>
         <lc:causes_serious_injury>true</lc:causes_serious_injury>
         <lc:victim_is_minor>true</lc:victim_is_minor>
         <lc:causes_death>true</lc:causes_death>
-        <lc:violates_protection_measures>false</lc:violates_protection_measures>
+        <lc:violates_protection_measures>true</lc:violates_protection_measures>
         <lc:legal_obligation_to_support>true</lc:legal_obligation_to_support>
         <lc:duty_established_by_court_order>true</lc:duty_established_by_court_order>
         <lc:fails_to_pay_support>true</lc:fails_to_pay_support>

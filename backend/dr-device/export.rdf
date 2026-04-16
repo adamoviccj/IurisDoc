@@ -119,7 +119,7 @@
 </rdf:Property>
 
 <export:is_guilty_of_family_violence_lv1 rdf:about='&export;is_guilty_of_family_violence_lv11'>
-     <export:defendant>dfdxf</export:defendant>
+     <export:defendant>dfdf</export:defendant>
      <defeasible:truthStatus>defeasibly-proven-negative</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof1</defeasible:proof>
 </export:is_guilty_of_family_violence_lv1>
@@ -153,37 +153,37 @@
 </export:max_imprisonment>
 
 <export:is_guilty_of_family_violence_lv2 rdf:about='&export;is_guilty_of_family_violence_lv21'>
-     <export:defendant>dfdxf</export:defendant>
+     <export:defendant>dfdf</export:defendant>
      <defeasible:truthStatus>defeasibly-proven-negative</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof8</defeasible:proof>
 </export:is_guilty_of_family_violence_lv2>
 
 <export:is_guilty_of_family_violence_lv3 rdf:about='&export;is_guilty_of_family_violence_lv31'>
-     <export:defendant>dfdxf</export:defendant>
+     <export:defendant>dfdf</export:defendant>
      <defeasible:truthStatus>defeasibly-proven-negative</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof9</defeasible:proof>
 </export:is_guilty_of_family_violence_lv3>
 
 <export:is_guilty_of_family_violence_lv4 rdf:about='&export;is_guilty_of_family_violence_lv41'>
-     <export:defendant>dfdxf</export:defendant>
+     <export:defendant>dfdf</export:defendant>
      <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof2</defeasible:proof>
 </export:is_guilty_of_family_violence_lv4>
 
 <export:is_guilty_of_violating_measures rdf:about='&export;is_guilty_of_violating_measures1'>
-     <export:defendant>dfdxf</export:defendant>
+     <export:defendant>dfdf</export:defendant>
      <defeasible:truthStatus>defeasibly-proven-negative</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof10</defeasible:proof>
 </export:is_guilty_of_violating_measures>
 
 <export:is_guilty_of_nonpayment_of_support_lv1 rdf:about='&export;is_guilty_of_nonpayment_of_support_lv11'>
-     <export:defendant>dfdxf</export:defendant>
+     <export:defendant>dfdf</export:defendant>
      <defeasible:truthStatus>defeasibly-proven-negative</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof11</defeasible:proof>
 </export:is_guilty_of_nonpayment_of_support_lv1>
 
 <export:is_guilty_of_nonpayment_of_support_lv2 rdf:about='&export;is_guilty_of_nonpayment_of_support_lv21'>
-     <export:defendant>dfdxf</export:defendant>
+     <export:defendant>dfdf</export:defendant>
      <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof4</defeasible:proof>
 </export:is_guilty_of_nonpayment_of_support_lv2>

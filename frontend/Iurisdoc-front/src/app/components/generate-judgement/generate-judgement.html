@@ -206,3 +206,43 @@
     </button>
   </div>
 </div>
+
+<div *ngIf="showResults" class="results-container" style="margin-top: 30px; padding: 20px; border: 2px solid #6c757d; border-radius: 8px; background-color: #fff;">
+  
+  <h2 style="color: #2c3e50;">Rezultati analize</h2>
+  
+  <div class="verdict-prediction" style="margin-bottom: 20px;">
+    <strong>Zaključak DR-Device (Logičko zaključivanje):</strong> 
+    <span style="color: #e74c3c; font-size: 1.2em;"> {{ drDeviceResult }} </span>
+  </div>
+
+  <hr>
+
+  <h3>Slične presude (JColibri - CBR)</h3>
+  <p>Na osnovu vašeg unosa, pronađeni su sledeći slični slučajevi iz sudske prakse:</p>
+
+  <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Broj predmeta</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Pravna kvalifikacija</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Sličnost (%)</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Akcija</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let case of similarCases">
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ case.caseId }}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ case.legalQualification }}</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">{{ (case.similarity * 100).toFixed(2) }}%</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">
+          <button mat-raised-button color="primary" (click)="selectFinalCase(case)">Odaberi</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="similarCases.length === 0">
+    Nije pronađena nijedna slična presuda u bazi.
+  </div>
+</div>

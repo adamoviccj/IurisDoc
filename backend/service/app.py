@@ -380,24 +380,136 @@ async def get_filters():
 
 from fastapi.responses import JSONResponse
 
+# @app.post("/generate-rdf")
+# async def generate_rdf(request: FactsRequest):
+#     print("Received RDF generation request:", request.json())
+#     rdf_content = generate_rdf_facts(request)
+
+#     dr_device_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dr-device")
+
+#     try:
+#         subprocess.run(["cmd", "/c", "clean.bat"], cwd=dr_device_dir, check=True)
+#         subprocess.run(["cmd", "/c", "start.bat"], cwd=dr_device_dir, check=True)
+#         status = "success"
+#         message = "RDF generated and DR-Device scripts executed."
+#     except Exception as e:
+#         print("Error running DR-Device scripts:", e)
+#         status = "error"
+#         message = f"RDF generated, but error running DR-Device scripts: {e}"
+
+#     return JSONResponse(content={"status": status, "message": message})
+
+import rdflib
+import requests
+import os
+import subprocess
+from fastapi.responses import JSONResponse
+
 @app.post("/generate-rdf")
 async def generate_rdf(request: FactsRequest):
-    print("Received RDF generation request:", request.json())
+    # Konvertujemo request u rečnik
+    req_dict = request.dict()
+    print("Received RDF generation request:", json.dumps(req_dict, indent=2))
+    
+    # 1. Generisanje facts.rdf
     rdf_content = generate_rdf_facts(request)
 
     dr_device_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dr-device")
+    export_path = os.path.join(dr_device_dir, "export.rdf")
 
+    # 2. i 3. Izvršavanje DR-Device
     try:
         subprocess.run(["cmd", "/c", "clean.bat"], cwd=dr_device_dir, check=True)
         subprocess.run(["cmd", "/c", "start.bat"], cwd=dr_device_dir, check=True)
-        status = "success"
-        message = "RDF generated and DR-Device scripts executed."
     except Exception as e:
         print("Error running DR-Device scripts:", e)
-        status = "error"
-        message = f"RDF generated, but error running DR-Device scripts: {e}"
+        return JSONResponse(status_code=500, content={"status": "error", "message": f"Greška DR-Device: {e}"})
 
-    return JSONResponse(content={"status": status, "message": message})
+    # --- KORAK 4: Čitanje rezultata DR-Device ---
+    verdict_type = "Nije specifikovano"
+    try:
+        if os.path.exists(export_path):
+            print(f"DEBUG: Učitavam DR-Device rezultat iz {export_path}")
+            g = rdflib.Graph()
+            g.parse(export_path)
+            DEFEASIBLE = rdflib.Namespace("http://lpis.csd.auth.gr/systems/dr-device/defeasible.rdfs#")
+            RDF = rdflib.Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+            proven_positive = DEFEASIBLE['defeasibly-proven-positive']
+            
+            for s, p, o in g.triples((None, DEFEASIBLE.truthStatus, proven_positive)):
+                for _, _, type_uri in g.triples((s, RDF.type, None)):
+                    class_name = str(type_uri).split('#')[-1]
+                    if class_name.startswith("is_guilty"):
+                        verdict_type = class_name
+                        break
+            print(f"DEBUG: DR-Device je dokazao: {verdict_type}")
+    except Exception as e:
+        print(f"Greška pri parsiranju export.rdf: {e}")
+
+    # --- KORAK 5: Priprema za Javu (USKLAĐENO SA CbrApplication.java i simConfig) ---
+    
+    # Prvo odredi pravnu kvalifikaciju na osnovu DR-Device rezultata
+    mapping = {
+        "is_guilty_of_family_violence_lv4": "cl. 297 st. 3 KZ",
+        "is_guilty_of_family_violence_lv1": "cl. 289 st. 3 KZ"
+    }
+    # Ako DR-Device ne nađe ništa, stavi podrazumevanu vrednost koja postoji u CSV bazi
+    mapped_val = mapping.get(verdict_type, "cl. 289 st. 3 KZ")
+
+    # Pripremi listu oštećenih kao string
+    victims_list = req_dict.get("victims", [])
+    victims_string = ", ".join([v.get("name", "") for v in victims_list if v.get("name")])
+
+    # Sastavi payload sa SVIM poljima koja Java očekuje
+    colibri_payload = {
+        "caseId": "QUERY-FACTS",
+        "legalQualification": mapped_val,
+        "victim": victims_string,
+        "meansOfCommission": req_dict.get("facts_text", ""),
+        "injurySeverity": "teska" if req_dict.get("causesSeriousInjury") == "true" else "laka",
+        "numberOfVictims": str(req_dict.get("numberOfVictims", "1")),
+        "repetition": str(req_dict.get("repetition", "false")),
+        "previousConviction": str(req_dict.get("previousConviction", "false")),
+        "verdictType": "osudjujuca", # DR-Device je rekao "is_guilty"
+        "mitigatingFactors": "", # Možeš dodati ako imaš polje na frontu
+        "aggravatingFactors": "", 
+        "court": req_dict.get("court", ""),
+        "judge": req_dict.get("judge", ""),
+        "clerk": req_dict.get("clerk", ""),
+        "accused": req_dict.get("accused", req_dict.get("defendant", "")),
+        "decisionDate": "", 
+        "usesWeapon": str(req_dict.get("usesWeapon", "false")),
+        "usesGrossViolence": str(req_dict.get("usesGrossViolence", "false")),
+        "violatesIntegrity": str(req_dict.get("violatesIntegrity", "family_member_no")),
+        "causesSeriousInjury": str(req_dict.get("causesSeriousInjury", "false")),
+        "victimIsMinor": str(req_dict.get("victimIsMinor", "false")),
+        "causesDeath": str(req_dict.get("causesDeath", "false")),
+        "violatesProtectionMeasures": str(req_dict.get("violatesProtectionMeasures", "false")),
+        "legalObligationToSupport": str(req_dict.get("legalObligationToSupport", "false")),
+        "dutyEstablishedByCourtOrder": str(req_dict.get("dutyEstablishedByCourtOrder", "false")),
+        "failsToPaySupport": str(req_dict.get("failsToPaySupport", "false")),
+        "justifiedReasonsForNonpayment": str(req_dict.get("justifiedReasonsForNonpayment", "false")),
+        "severeConsequencesForVictim": str(req_dict.get("severeConsequencesForVictim", "false"))
+    }
+
+    # --- KORAK 6: Pozivanje Jave ---
+    try:
+        print(f"DEBUG: Šaljem payload Javi na http://localhost:8080/api/cbr/recommend")
+        java_response = requests.post("http://localhost:8080/api/cbr/recommend", json=colibri_payload, timeout=10)
+        
+        print(f"DEBUG: Java status kod: {java_response.status_code}")
+        java_response.raise_for_status()
+        similar_cases = java_response.json()
+    except Exception as e:
+        print(f"DEBUG: Greška pri komunikaciji sa Javom: {e}")
+        similar_cases = []
+
+    return {
+        "status": "success",
+        "dr_device_result": verdict_type,
+        "similar_cases": similar_cases,
+        "message": "Uspešno izvršeno."
+    }
 
 if __name__ == "__main__":
     import uvicorn

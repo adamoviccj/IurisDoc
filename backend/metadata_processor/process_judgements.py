@@ -130,53 +130,39 @@ def extract_data_with_llm(texts):
 
     Vrati ISKLJUČIVO validan JSON. Ne dodaj nikakav tekst van JSON-a.
 
-    PRAVILA:
-    - Sva polja moraju imati vrednost.
-    - NI JEDNO polje ne sme biti prazno ("").
-    - Ne zaključuj i ne interpretiraj izvan onoga što je eksplicitno napisano u tekstu.
-    - Ako informacija ne postoji u tekstu, koristi podrazumevanu vrednost.
-    - Za sva BOOLEAN polja koristi isključivo "da" ili "ne".
-    - DEFAULT pravilo za boolean polja: "ne" (ako nije eksplicitno navedeno "da").
+    PRAVILA ZA BOOLEAN POLJA (VEOMA VAŽNO):
+    - Za sva polja koja su tipa boolean, koristi isključivo male stringove "true" ili "false" (NE "da"/"ne", NE True/False sa velikim slovom).
+    - Polje "violatesIntegrity" mora imati vrijednost "family_member_yes" ako je žrtva član porodice, inače "family_member_no".
+    - Ako informacija ne postoji, podrazumijevana vrijednost je "false".
 
     TEKSTUALNI SEGMENTI:
-    1. ČINJENIČNI OPIS:
-    {texts.get('facts_text', '')}
+    ... (tvoji segmenti ostaju isti) ...
 
-    2. PRAVNI OPIS I KRIVICA:
-    {texts.get('legal_text', '')}
-
-    3. KOMPLETNO OBRAZLOŽENJE (uključujući odluku):
-    {texts.get('motivation_text', '')}
-
-    ZAHTJEVANI PODACI (vrati kao JSON objekat sa navedenim ključevima):
+    ZAHTJEVANI PODACI:
 
     {{
-        "legalQualification": "Naziv krivičnog djela (npr. 'Nasilje u porodici'). Ako nije jasno, vrati 'Nepoznato'.",
-        "meansOfCommission": "Sredstvo ili način izvršenja (1-5 riječi, npr. 'fizičkom silom', 'prijetnjom'). Ako nije navedeno, vrati 'Nepoznato'.",
-        
-        "injurySeverity": "Dozvoljene vrijednosti: 'laka tjelesna povreda', 'teška tjelesna povreda', 'nema tjelesne povrede'. Ako nije navedeno, vrati 'nepoznato'.",
-        "numberOfVictims": "Broj oštećenih lica (npr. '1', '2'). Ako nije jasno, vrati '0'.",
-        "repetition": "Dozvoljene vrijednosti: 'jednom', 'više puta'. Ako nije navedeno, vrati 'jednom'.",
-        
-        "previousConviction": "da ili ne",
-        
-        "mitigatingFactors": "Lista olakšavajućih okolnosti odvojena zarezom. Ako nema, vrati 'nema'.",
-        "aggravatingFactors": "Lista otežavajućih okolnosti odvojena zarezom. Ako nema, vrati 'nema'.",
-        
-        "verdictType": "Dozvoljene vrijednosti: 'osuđujuća', 'oslobađajuća', 'odbijajuća'. Ako nije jasno, vrati 'nepoznato'.",
+        "legalQualification": "Koristi tačan naziv iz KZ (npr. 'cl. 297 st. 3 KZ' ili 'cl. 289 st. 3 KZ').",
+        "meansOfCommission": "Sredstvo (npr. 'prijetnja', 'fizička sila').",
+        "injurySeverity": "Dozvoljene vrijednosti: 'laka', 'teska', 'lake,teske', 'nema'.",
+        "numberOfVictims": "Broj (npr. '1').",
+        "repetition": "true ili false",
+        "previousConviction": "true ili false",
+        "mitigatingFactors": "npr. 'neosuđivanost'",
+        "aggravatingFactors": "npr. 'povrat'",
+        "verdictType": "osudjujuca",
 
-        "usesWeapon": "da ili ne",
-        "usesGrossViolence": "da ili ne",
-        "violatesIntegrity": "da ili ne",
-        "causesSeriousInjury": "da ili ne",
-        "victimIsMinor": "da ili ne",
-        "causesDeath": "da ili ne",
-        "violatesProtectionMeasures": "da ili ne",
-        "legalObligationToSupport": "da ili ne",
-        "dutyEstablishedByCourtOrder": "da ili ne",
-        "failsToPaySupport": "da ili ne",
-        "justifiedReasonsForNonpayment": "da ili ne",
-        "severeConsequencesForVictim": "da ili ne"
+        "usesWeapon": "true ili false",
+        "usesGrossViolence": "true ili false",
+        "violatesIntegrity": "family_member_yes ili family_member_no",
+        "causesSeriousInjury": "true ili false",
+        "victimIsMinor": "true ili false",
+        "causesDeath": "true ili false",
+        "violatesProtectionMeasures": "true ili false",
+        "legalObligationToSupport": "true ili false",
+        "dutyEstablishedByCourtOrder": "true ili false",
+        "failsToPaySupport": "true ili false",
+        "justifiedReasonsForNonpayment": "true ili false",
+        "severeConsequencesForVictim": "true ili false"
     }}
     """
     try:

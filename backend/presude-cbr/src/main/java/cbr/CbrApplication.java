@@ -1,6 +1,6 @@
 package cbr;
 
-import java.util.Collection;
+import java.util.*;
 
 import connector.CsvConnector;
 import es.ucm.fdi.gaia.jcolibri.casebase.LinealCaseBase;
@@ -33,7 +33,7 @@ public class CbrApplication implements StandardCBRApplication {
 
 		StringLevenshteinSimilarity stringSim = new StringLevenshteinSimilarity();
 
-		simConfig.addMapping(new Attribute("legalQualification", CaseDescription.class), stringSim);
+		simConfig.addMapping(new Attribute("legalQualification", CaseDescription.class), new EqualsStringIgnoreCase());
 		simConfig.setWeight(new Attribute("legalQualification", CaseDescription.class), 3.0);
 		simConfig.addMapping(new Attribute("victim", CaseDescription.class), stringSim);
 		simConfig.setWeight(new Attribute("victim", CaseDescription.class), 1.0);
@@ -92,6 +92,7 @@ public class CbrApplication implements StandardCBRApplication {
 		simConfig.addMapping(new Attribute("severeConsequencesForVictim", CaseDescription.class),
 				new EqualsStringIgnoreCase());
 		simConfig.setWeight(new Attribute("severeConsequencesForVictim", CaseDescription.class), 1.0);
+
 
 	}
 
@@ -166,5 +167,36 @@ public class CbrApplication implements StandardCBRApplication {
 		cbrQuery.setDescription(query);
 
 		app.cycle(cbrQuery);
+	}
+	public List<Map<String, Object>> executeRetrieval(CBRQuery query) throws ExecutionException {
+		// 1. Izvrši bodovanje sličnosti
+		Collection<RetrievalResult> results = NNScoringMethod.evaluateSimilarity(
+				caseBase.getCases(),
+				query,
+				simConfig);
+
+		// DEBUG PRINT: Vidi koliki su rezultati pre selekcije
+		System.out.println("Poređenje završeno. Rezultati:");
+		for (RetrievalResult rr : results) {
+			CaseDescription cd = (CaseDescription) rr.get_case().getDescription();
+			System.out.println("Presuda: " + cd.getCaseId() + " | Sličnost: " + rr.getEval());
+		}
+
+		// 2. Selektuj top 5 rezultata
+		results = SelectCases.selectTopKRR(results, 5);
+
+		// 3. Pretvori u JSON odgovor
+		List<Map<String, Object>> response = new ArrayList<>();
+		for (RetrievalResult rr : results) {
+			CaseDescription cd = (CaseDescription) rr.get_case().getDescription();
+			Map<String, Object> item = new HashMap<>();
+			item.put("caseId", cd.getCaseId());
+			item.put("legalQualification", cd.getLegalQualification());
+			item.put("similarity", rr.getEval());
+			item.put("court", cd.getCourt());
+			item.put("verdictType", cd.getVerdictType());
+			response.add(item);
+		}
+		return response;
 	}
 }

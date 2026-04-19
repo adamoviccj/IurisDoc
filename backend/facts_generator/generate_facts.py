@@ -5,7 +5,12 @@ import os
 
 
 class FactsRequest(BaseModel):
-    defendant: str
+    court: Optional[str] = ""
+    defendant: Optional[str] = ""
+    judge: Optional[str] = ""
+    clerk: Optional[str] = ""
+    facts_text: Optional[str] = ""
+    numberOfVictims: Optional[int] = 0
     # these field names use snake_case to match the RDF and rulebase
     usesGrossViolence: Optional[str] = None
     violatesIntegrity: Optional[str] = None  # e.g. "family_member_no"

@@ -14,6 +14,8 @@ public class StringLevenshteinSimilarity implements LocalSimilarityFunction {
 
         String s1 = value1.toString().toLowerCase().trim();
         String s2 = value2.toString().toLowerCase().trim();
+        // U StringLevenshteinSimilarity.java
+        if (s1.isEmpty() || s2.isEmpty()) return 0.0; // Ako je bilo šta prazno, neka bude 0 sličnosti
 
         if (s1.equals(s2))
             return 1.0;

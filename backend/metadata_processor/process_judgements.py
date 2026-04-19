@@ -1,5 +1,3 @@
-# process_judgments.py
-
 import os
 import json
 import xml.etree.ElementTree as ET
@@ -10,252 +8,131 @@ from dotenv import load_dotenv
 import openai
 
 # --- 1. KONFIGURACIJA ---
-# Učitavanje okruženja (očekuje .env fajl u istom folderu kao i skripta)
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-if not OPENAI_API_KEY:
-    raise ValueError("OPENAI_API_KEY nije postavljen. Kreirajte .env fajl.")
-
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 OPENAI_MODEL = "gpt-4o"
-
-# Akoma Ntoso Namespace
 NS = {"akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"}
 
-
-# --- 2. POMOĆNE FUNKCIJE ZA PARSIRANJE XML-a ---
+# --- 2. POMOĆNE FUNKCIJE ---
 
 def get_full_text(element):
-    """Pomoćna funkcija za sigurno izvlačenje kompletnog teksta iz XML elementa."""
-    if element is None:
-        return ""
+    if element is None: return ""
     return " ".join("".join(p.itertext()).strip() for p in element.findall(".//akn:p", NS))
 
+def extract_legal_qualification_regex(root):
+    """
+    Pretražuje i izreku o krivici i pravnu motivaciju jer se u XML-u 
+    članovi često nalaze u 'sec.motivation.legal'.
+    """
+    # Liste sekcija koje redom proveravamo
+    sections_to_check = [
+        root.find(".//akn:article[@eId='sec.decision.guilt']", NS),
+        root.find(".//akn:section[@eId='sec.motivation.legal']", NS)
+    ]
+    
+    # Poboljšan Regex: hvata "čl.", "člana", "st.", "stav", "stava", "u vezi sa"
+    pattern = r"čl\.?\s*(\d+)\s*(?:st\.?|stava?)\s*(\d+)(?:\s*(?:u vezi sa|u vezi|i)\s*(?:st\.?|stava?)\s*(\d+))?"
+
+    for section in sections_to_check:
+        if section is not None:
+            text = " ".join(section.itertext()).replace('\n', ' ')
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                clan = match.group(1)
+                st1 = match.group(2)
+                st2 = match.group(3)
+                if st2:
+                    return f"čl. {clan} st. {st1} u vezi st. {st2}"
+                return f"čl. {clan} st. {st1}"
+    
+    return "" # Ako ne nađe, vraća prazno, pa ćemo u main-u sprečiti LLM da izmišlja
+
 def extract_text_sections(root):
-    """Izvlači ključne tekstualne cjeline iz presude za dalju analizu."""
     sections = {}
+    f_sec = root.find(".//akn:section[@eId='sec.motivation.facts']", NS)
+    sections['facts_text'] = get_full_text(f_sec)
     
-    # Činjenični opis (za većinu LLM ekstrakcija)
-    facts_section = root.find(".//akn:section[@eId='sec.motivation.facts']", NS)
-    sections['facts_text'] = get_full_text(facts_section)
-
-    # Pravni opis + dio o krivici (za pravnu kvalifikaciju)
-    legal_section = root.find(".//akn:section[@eId='sec.motivation.legal']", NS)
-    guilt_section = root.find(".//akn:article[@eId='sec.decision.guilt']", NS)
-    sections['legal_text'] = get_full_text(legal_section) + " " + get_full_text(guilt_section)
-
-    # Kompletan tekst obrazloženja (za otežavajuće/olakšavajuće okolnosti)
-    motivation_section = root.find(".//akn:motivation", NS)
-    sections['motivation_text'] = get_full_text(motivation_section)
-
-    # Tekst o sankciji (za kaznu i mjeru bezbjednosti)
-    sanction_section = root.find(".//akn:article[@eId='sec.decision.sanction']", NS)
-    sanction_text = get_full_text(sanction_section)
+    l_sec = root.find(".//akn:section[@eId='sec.motivation.legal']", NS)
+    g_sec = root.find(".//akn:article[@eId='sec.decision.guilt']", NS)
+    sections['legal_text'] = get_full_text(l_sec) + " " + get_full_text(g_sec)
     
-    parts = re.split(r"\bMJERA BEZBIJEDNOSTI\b", sanction_text, flags=re.IGNORECASE)
-    sections['penalty'] = parts[0].strip()
-    sections['security_measure'] = ("MJERA BEZBIJEDNOSTI " + parts[1].strip()) if len(parts) > 1 else ""
-    
+    m_sec = root.find(".//akn:motivation", NS)
+    sections['motivation_text'] = get_full_text(m_sec)
     return sections
 
-def extract_metadata(root):
-    """Izvlači strukturirane metapodatke (sud, sudija, datumi...) iz XML zaglavlja."""
-    metadata = {}
+def extract_data_with_llm(texts, extracted_legal):
+    """
+    Prosleđujemo već izvučeni 'extracted_legal' da LLM ne bi halucinirao 123.
+    """
+    context = f"ČINJENICE: {texts['facts_text']}\nPRAVNI DEO: {texts['legal_text']}"
     
-    # Case ID
-    judgment = root.find(".//akn:judgment", NS)
-    metadata["caseId"] = judgment.attrib.get("eId", "").replace("judgment.", "") if judgment is not None else ""
-
-    # Sud
-    court = root.find(".//akn:TLCOrganization", NS)
-    metadata["court"] = court.attrib.get("showAs", "") if court is not None else ""
-
-    # Sudija
-    judge_ref = root.find(".//akn:judge", NS)
-    if judge_ref is not None:
-        ref_id = judge_ref.attrib.get("refersTo", "").replace("#", "")
-        person = root.find(f".//akn:TLCPerson[@eId='{ref_id}']", NS)
-        metadata["judge"] = person.attrib.get("showAs", "") if person is not None else ""
-    else:
-        metadata["judge"] = ""
-
-    # Zapisničar
-    clerk_ref = root.find(".//akn:clerk", NS)
-    if clerk_ref is not None:
-        ref_id = clerk_ref.attrib.get("refersTo", "").replace("#", "")
-        person = root.find(f".//akn:TLCPerson[@eId='{ref_id}']", NS)
-        metadata["clerk"] = person.attrib.get("showAs", "") if person is not None else ""
-    else:
-        metadata["clerk"] = ""
-
-    # Optuženi
-    accused = root.find(".//akn:party[@role='accused']", NS)
-    metadata["accused"] = accused.text.strip() if accused is not None and accused.text else ""
-
-    # Datum odluke
-    date_element = root.find(".//akn:FRBRExpression/akn:FRBRdate", NS)
-    metadata["decisionDate"] = date_element.attrib.get("date", "") if date_element is not None else ""
-
-    # Svjedoci (spojeni u jedan string)
-    witnesses = [w.text.strip() for w in root.findall(".//akn:party[@role='witness']", NS) if w.text and w.text.strip()]
-    metadata["witnesses"] = "; ".join(witnesses)
-
-    return metadata
-
-def extract_victim_with_regex(facts_text, root):
-    """Izvlači ime oštećenog koristeći prvo <ref> tag, a zatim Regex."""
-    ref = root.find(".//akn:section[@eId='sec.motivation.facts']//akn:ref", NS)
-    if ref is not None and ref.text:
-        return ref.text.strip()
-
-    m = re.search(
-        r"(oštećen[auo]?\s+[A-ZČĆŠĐŽ]\.\s*[A-ZČĆŠĐŽ]\.|"
-        r"člana porodice\s+[A-ZČĆŠĐŽ][a-zčćđšž]+\s+[A-ZČĆŠĐŽ][a-zčćđšž]+)",
-        facts_text
-    )
-    return m.group(1) if m else ""
-
-
-# --- 3. EKSTRAKCIJA PODATAKA POMOĆU LLM-a (JEDAN POZIV) ---
-
-def extract_data_with_llm(texts):
-    """
-    Objedinjuje sve ekstrakcije zasnovane na analizi teksta u jedan API poziv
-    kako bi se optimizovao proces i troškovi.
-    """
-    if not texts.get('facts_text', '').strip() and not texts.get('legal_text', '').strip():
-        return {}
     prompt = f"""
-    Ti si ekspert za analizu krivičnih presuda u Crnoj Gori. Tvoj zadatak je da iz dostavljenih tekstova izvučeš precizne i strukturirane podatke.
+    Analiziraj tekst presude i vrati JSON. 
+    ZAKONSKA KVALIFIKACIJA JE VEĆ UTVRĐENA KAO: {extracted_legal if extracted_legal else "Nepoznato"}.
+    U JSON-u pod 'legalQualification' obavezno stavi tu vrednost. Ne izmišljaj članove.
 
-    Vrati ISKLJUČIVO validan JSON. Ne dodaj nikakav tekst van JSON-a.
+    TEKST: {context}
+    
+    JSON format:
+       {{
+       legalQualification": "{extracted_legal}",
+        "meansOfCommission": "Sredstvo (npr. 'prijetnja', 'fizička sila').",
+        "injurySeverity": "Dozvoljene vrijednosti: 'laka', 'teska', 'lake,teske', 'nema'.",
+        "numberOfVictims": "Broj (npr. '1').",
+        "repetition": "true ili false",
+        "previousConviction": "true ili false",
+        "mitigatingFactors": "npr. 'neosuđivanost'",
+        "aggravatingFactors": "npr. 'povrat'",
+        "verdictType": "osudjujuca",
 
-    PRAVILA:
-    - Sva polja moraju imati vrednost.
-    - NI JEDNO polje ne sme biti prazno ("").
-    - Ne zaključuj i ne interpretiraj izvan onoga što je eksplicitno napisano u tekstu.
-    - Ako informacija ne postoji u tekstu, koristi podrazumevanu vrednost.
-    - Za sva BOOLEAN polja koristi isključivo "da" ili "ne".
-    - DEFAULT pravilo za boolean polja: "ne" (ako nije eksplicitno navedeno "da").
-
-    TEKSTUALNI SEGMENTI:
-    1. ČINJENIČNI OPIS:
-    {texts.get('facts_text', '')}
-
-    2. PRAVNI OPIS I KRIVICA:
-    {texts.get('legal_text', '')}
-
-    3. KOMPLETNO OBRAZLOŽENJE (uključujući odluku):
-    {texts.get('motivation_text', '')}
-
-    ZAHTJEVANI PODACI (vrati kao JSON objekat sa navedenim ključevima):
-
-    {{
-        "legalQualification": "Naziv krivičnog djela (npr. 'Nasilje u porodici'). Ako nije jasno, vrati 'Nepoznato'.",
-        "meansOfCommission": "Sredstvo ili način izvršenja (1-5 riječi, npr. 'fizičkom silom', 'prijetnjom'). Ako nije navedeno, vrati 'Nepoznato'.",
-        
-        "injurySeverity": "Dozvoljene vrijednosti: 'laka tjelesna povreda', 'teška tjelesna povreda', 'nema tjelesne povrede'. Ako nije navedeno, vrati 'nepoznato'.",
-        "numberOfVictims": "Broj oštećenih lica (npr. '1', '2'). Ako nije jasno, vrati '0'.",
-        "repetition": "Dozvoljene vrijednosti: 'jednom', 'više puta'. Ako nije navedeno, vrati 'jednom'.",
-        
-        "previousConviction": "da ili ne",
-        
-        "mitigatingFactors": "Lista olakšavajućih okolnosti odvojena zarezom. Ako nema, vrati 'nema'.",
-        "aggravatingFactors": "Lista otežavajućih okolnosti odvojena zarezom. Ako nema, vrati 'nema'.",
-        
-        "verdictType": "Dozvoljene vrijednosti: 'osuđujuća', 'oslobađajuća', 'odbijajuća'. Ako nije jasno, vrati 'nepoznato'.",
-
-        "usesWeapon": "da ili ne",
-        "usesGrossViolence": "da ili ne",
-        "violatesIntegrity": "da ili ne",
-        "causesSeriousInjury": "da ili ne",
-        "victimIsMinor": "da ili ne",
-        "causesDeath": "da ili ne",
-        "violatesProtectionMeasures": "da ili ne",
-        "legalObligationToSupport": "da ili ne",
-        "dutyEstablishedByCourtOrder": "da ili ne",
-        "failsToPaySupport": "da ili ne",
-        "justifiedReasonsForNonpayment": "da ili ne",
-        "severeConsequencesForVictim": "da ili ne"
+        "usesWeapon": "true ili false",
+        "usesGrossViolence": "true ili false",
+        "violatesIntegrity": "family_member_yes ili family_member_no",
+        "causesSeriousInjury": "true ili false",
+        "victimIsMinor": "true ili false",
+        "causesDeath": "true ili false",
+        "violatesProtectionMeasures": "true ili false",
+        "legalObligationToSupport": "true ili false",
+        "dutyEstablishedByCourtOrder": "true ili false",
+        "failsToPaySupport": "true ili false",
+        "justifiedReasonsForNonpayment": "true ili false",
+        "severeConsequencesForVictim": "true ili false"
     }}
     """
-    try:
-        response = client.chat.completions.create(
-            model=OPENAI_MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0,
-            response_format={"type": "json_object"}
-        )
-        return json.loads(response.choices[0].message.content)
-    except Exception as e:
-        print(f"  Greška prilikom poziva LLM-a: {e}")
-        return {}
+    response = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"}
+    )
+    return json.loads(response.choices[0].message.content)
 
-
-# --- 4. GLAVNA LOGIKA OBRADE ---
+# --- 3. MAIN ---
 
 def process_xml_file(xml_path, output_path):
-    """
-    Kompletna obrada jednog XML fajla: parsiranje, ekstrakcija svih polja i upis u CSV.
-    """
-    print(f"-> Obrada fajla: {os.path.basename(xml_path)}")
-    try:
-        tree = ET.parse(xml_path)
-        root = tree.getroot()
-        
-        # Korak 1: Ekstrahuj sve dostupne podatke
-        final_data = {}
-        
-        # Metapodaci direktno iz XML-a
-        final_data.update(extract_metadata(root))
-
-        # Tekstualni segmenti iz XML-a
-        texts = extract_text_sections(root)
-        final_data["penalty"] = texts.get('penalty', '')
-        final_data["security_measure"] = texts.get('security_measure', '')
-
-        # Oštećeni (kombinacija XML + Regex)
-        final_data["victim"] = extract_victim_with_regex(texts['facts_text'], root)
-        
-        # Svi ostali podaci putem jednog LLM poziva
-        llm_extracted_data = extract_data_with_llm(texts)
-        final_data.update(llm_extracted_data)
-
-        # Korak 2: Definisanje redosleda kolona prema CaseDescription.java
-        csv_columns = [
-            "caseId", "legalQualification", "victim", "meansOfCommission", "injurySeverity",
-            "numberOfVictims", "repetition", "previousConviction", "mitigatingFactors",
-            "aggravatingFactors", "verdictType", "court", "judge", "clerk", "accused",
-            "decisionDate", "witnesses",
-            # Polja iz "facts.rdf" sekcije
-            "usesWeapon", "usesGrossViolence", "violatesIntegrity", "causesSeriousInjury",
-            "victimIsMinor", "causesDeath", "violatesProtectionMeasures", "legalObligationToSupport",
-            "dutyEstablishedByCourtOrder", "failsToPaySupport", "justifiedReasonsForNonpayment",
-            "severeConsequencesForVictim"
-            # Polja koja nisu u CaseDescription, ali su korisna (mogu se zakomentarisati)
-            # "penalty", "security_measure"
-        ]
-
-        # Osiguravamo da sva polja postoje u finalnom rječniku da ne bi došlo do greške
-        for col in csv_columns:
-            final_data.setdefault(col, "")
-            
-        # Korak 3: Upis u CSV fajl
-        # Kreiranje izlaznog direktorijuma ako ne postoji
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        with open(output_path, 'w', newline='', encoding='utf-8') as csvfile:
-            # Koristimo semicolon kao separator radi bolje kompatibilnosti sa Excelom
-            writer = csv.DictWriter(csvfile, fieldnames=csv_columns, delimiter=';')
-            writer.writeheader()
-            
-            # Pripremamo red za upis, uzimajući samo kolone koje su nam potrebne
-            row_to_write = {key: final_data[key] for key in csv_columns}
-            writer.writerow(row_to_write)
-            
-        print(f"  ✔ CSV uspješno kreiran: {os.path.basename(output_path)}")
-
-    except Exception as e:
-        print(f"  ❌ Greška prilikom obrade fajla {os.path.basename(xml_path)}: {e}")
+    print(f"Obrađujem: {os.path.basename(xml_path)}")
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+    
+    # 1. Prvo Regex (pouzdanije)
+    legal_qual = extract_legal_qualification_regex(root)
+    
+    # 2. Tekstovi za LLM
+    texts = extract_text_sections(root)
+    
+    # 3. LLM (sada zna koji je član izvučen i neće izmišljati 123)
+    final_data = extract_data_with_llm(texts, legal_qual)
+    
+    # Dodajemo ostale metapodatke
+    final_data["caseId"] = root.find(".//akn:judgment", NS).attrib.get("eId", "")
+    
+    # Upis u CSV
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=final_data.keys(), delimiter=';')
+        writer.writeheader()
+        writer.writerow(final_data)
 
 def main():
     """
@@ -307,6 +184,7 @@ def main():
             process_xml_file(xml_file, output_csv_path)
             
     print("\n--- Obrada završena. ---")
+
 
 if __name__ == "__main__":
     main()

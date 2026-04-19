@@ -119,7 +119,7 @@
 </rdf:Property>
 
 <export:is_guilty_of_family_violence_lv1 rdf:about='&export;is_guilty_of_family_violence_lv11'>
-     <export:defendant>Dejan Aleksic</export:defendant>
+     <export:defendant>Filip Filipovic</export:defendant>
      <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof1</defeasible:proof>
 </export:is_guilty_of_family_violence_lv1>
@@ -139,7 +139,7 @@
 </export:to_pay>
 
 <export:is_guilty_of_violating_measures rdf:about='&export;is_guilty_of_violating_measures1'>
-     <export:defendant>Dejan Aleksic</export:defendant>
+     <export:defendant>Filip Filipovic</export:defendant>
      <defeasible:truthStatus>defeasibly-proven-negative</defeasible:truthStatus>
      <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof4</defeasible:proof>
 </export:is_guilty_of_violating_measures>

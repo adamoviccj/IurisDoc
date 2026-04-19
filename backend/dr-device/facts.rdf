@@ -6,9 +6,9 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:lc="http://informatika.ftn.uns.ac.rs/legal-case.rdf#">
 
-    <lc:case rdf:about="http://informatika.ftn.uns.ac.rs/legal-case.rdf#Dejan_Aleksic">
-        <lc:name>Dejan Aleksic</lc:name>
-        <lc:defendant>Dejan Aleksic</lc:defendant>
+    <lc:case rdf:about="http://informatika.ftn.uns.ac.rs/legal-case.rdf#Filip_Filipovic">
+        <lc:name>Filip Filipovic</lc:name>
+        <lc:defendant>Filip Filipovic</lc:defendant>
         <lc:uses_weapon>false</lc:uses_weapon>
         <lc:uses_gross_violence>true</lc:uses_gross_violence>
         <lc:violates_integrity>family_member_yes</lc:violates_integrity>

@@ -40,29 +40,29 @@
                          showAs="Osnovni sud u Cetinju"/>
 
         <!-- SUDIJA -->
-        <TLCPerson eId="person.nikolaMatic"
-                   id="person.nikolaMatic"
-                   showAs="Nikola Matić"/>
+        <TLCPerson eId="person.petarPetrovic"
+                   id="person.petarPetrovic"
+                   showAs="Petar Petrović"/>
 
         <!-- ZAPISNIČAR -->
-        <TLCPerson eId="person.natasaAndric"
-                   id="person.natasaAndric"
-                   showAs="Nataša Andrić"/>
+        <TLCPerson eId="person.anaNikolic"
+                   id="person.anaNikolic"
+                   showAs="Ana Nikolić"/>
 
         <!-- OKRIVLJENI -->
-        <TLCPerson eId="person.dejanAleksic"
-                   id="person.dejanAleksic"
-                   showAs="Dejan Aleksić"/>
+        <TLCPerson eId="person.markoMarkovic"
+                   id="person.markoMarkovic"
+                   showAs="Marko Marković"/>
 
         <!-- TUŽILAC -->
-        <TLCPerson eId="person.anaJovic"
-                   id="person.anaJovic"
-                   showAs="Ana Jović"/>
+        <TLCPerson eId="person.milicaAleksic"
+                   id="person.milicaAleksic"
+                   showAs="Milica Aleksić"/>
 
         <!-- OŠTEĆENA -->
-        <TLCPerson eId="person.milicaNikodijevic"
-                   id="person.milicaNikodijevic"
-                   showAs="Milica Nikodijević"/>
+        <TLCPerson eId="person.jovanaArsic"
+                   id="person.jovanaArsic"
+                   showAs="Jovana Arsić"/>
 
         <!-- PROPISI -->
         <TLCLaw eId="law.KZCG"
@@ -85,25 +85,25 @@
 
         <panel eId="panel.composition">
           <judge eId="panel.j1"
-                 refersTo="#person.nikolaMatic"
+                 refersTo="#person.petarPetrovic"
                  role="singleJudge"/>
           <clerk eId="panel.c1"
-                 refersTo="#person.natasaAndric"/>
+                 refersTo="#person.anaNikolic"/>
         </panel>
 
         <p eId="sec.introduction.p1">
           <ref href="#org.osnovniSudCetinje">Osnovni sud u Cetinju</ref>,
-          sudija <ref href="#person.nikolaMatic">Nikola Matić</ref>,
+          sudija <ref href="#person.petarPetrovic">Petar Petrović</ref>,
           uz učešće zapisničarke
-          <ref href="#person.natasaAndric">Nataše Andrić</ref>,
+          <ref href="#person.anaNikolic">Ane Nikolić</ref>,
           u krivičnom predmetu protiv
           <party eId="party.accused"
-                 refersTo="#person.dejanAleksic"
-                 role="accused">Dejana Aleksića</party>,
+                 refersTo="#person.markoMarkovic"
+                 role="accused">Marka Markovića</party>,
           po optužnom predlogu ODT,
           u prisustvu zastupnice optužbe
           <party eId="party.prosecutor"
-                 refersTo="#person.anaJovic"
+                 refersTo="#person.milicaAleksic"
                  role="prosecutor"/>,
           dana 18.04.2026. godine donio je:
         </p>
@@ -116,7 +116,7 @@
         <article eId="sec.decision.guilt">
           <heading>Okrivljeni</heading>
           <p eId="sec.decision.guilt.p1">
-            <ref href="#person.dejanAleksic">Dejan Aleksić</ref> oglašava se krivim
+            <ref href="#person.markoMarkovic">Marko Marković</ref> oglašava se krivim
             zbog krivičnog djela
             nasilje u porodici iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
             <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
@@ -161,11 +161,11 @@
         </p>
         <p eId="sec.signature.p2">
           Zapisničarka:
-          <ref href="#person.natasaAndric"/>
+          <ref href="#person.anaNikolic"/>
         </p>
         <p eId="sec.signature.p3">
           Sudija:
-          <ref href="#person.nikolaMatic"/>
+          <ref href="#person.petarPetrovic"/>
         </p>
       </conclusions>
 

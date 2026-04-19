@@ -48,9 +48,12 @@ def merge_csv_files(output_filename="presude.csv"):
                 orig_case_id = row.get('caseId', '')
                 # Ukloni 'judgment.' ako postoji
                 if orig_case_id.startswith('judgment.'):
-                    row['caseId'] = orig_case_id[len('judgment.'):]
+                    cleaned_case_id = orig_case_id[len('judgment.'):]
                 else:
-                    row['caseId'] = orig_case_id
+                    cleaned_case_id = orig_case_id
+                # Zameni '-' sa '_'
+                cleaned_case_id = cleaned_case_id.replace('-', '_')
+                row['caseId'] = cleaned_case_id
                 all_rows.append(row)
 
     if not all_rows or not fieldnames:

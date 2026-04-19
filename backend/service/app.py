@@ -622,7 +622,7 @@ async def save_judgment(judgment: FinalJudgment):
             gen_date = data_dict['metadata'].get('generationDate', '')
             godina = str(gen_date)[:4] if gen_date else "2026"
 
-        file_base = f"K-{broj}-{godina}"
+        file_base = f"K_{broj}_{godina}"
         print(f"[save-judgment] Generisano ime fajla: {file_base}")
 
         # 2. Određivanje putanje za čuvanje na osnovu pravne kvalifikacije

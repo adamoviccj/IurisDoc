@@ -20,24 +20,24 @@
 <defeasible_body_grounds>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;Dejan_Aleksic'/>
+<RDF_resource uri='&lc;Filip_Filipovic'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;Dejan_Aleksic'/>
+<RDF_resource uri='&lc;Filip_Filipovic'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>
 </Definitely_Proved>
 <Definitely_Proved>
 <Literal>
-<RDF_resource uri='&lc;Dejan_Aleksic'/>
+<RDF_resource uri='&lc;Filip_Filipovic'/>
 </Literal>
 <Definite_Proof>
 <strict_clause>
 <Fact>
-<RDF_resource uri='&lc;Dejan_Aleksic'/>
+<RDF_resource uri='&lc;Filip_Filipovic'/>
 </Fact>
 </strict_clause>
 </Definite_Proof>

@@ -1,0 +1,91 @@
+{
+    "metadata": {
+        "court": "gdg",
+        "generationDate": "2026-04-18T22:00:00.000Z",
+        "judge": "dgdef",
+        "clerk": "degde",
+        "accused": "defde",
+        "prosecutor": "ergde",
+        "victims": [
+            {
+                "id": "",
+                "name": "rgdrg"
+            }
+        ],
+        "lawyers": [
+            {
+                "id": "",
+                "name": "rdgfdrg"
+            }
+        ]
+    },
+    "facts": {
+        "usesGrossViolence": true,
+        "violatesIntegrity": "family_member_yes",
+        "usesWeapon": false,
+        "causesSeriousInjury": false,
+        "causesDeath": false,
+        "violatesProtectionMeasures": false,
+        "failsToPaySupport": "false",
+        "severeConsequencesForVictim": false,
+        "previousConviction": false,
+        "repetition": false,
+        "legalObligationToSupport": false,
+        "dutyEstablishedByCourtOrder": false,
+        "justifiedReasonsForNonpayment": false,
+        "victimIsMinor": false
+    },
+    "analysis": {
+        "logicResults": [
+            "is_guilty_of_family_violence_lv1"
+        ],
+        "appliedArticles": [
+            "čl. 220 st. 1 KZ"
+        ],
+        "similarCasesFound": [
+            {
+                "legalQualification": "čl. 220 st. 1",
+                "similarity": 0.4921875,
+                "caseId": "K-40-2024",
+                "verdictType": "osudjujuca",
+                "court": null
+            },
+            {
+                "legalQualification": "čl. 220 st. 1",
+                "similarity": 0.4921875,
+                "caseId": "K-40-2024",
+                "verdictType": "osudjujuca",
+                "court": null
+            },
+            {
+                "legalQualification": "čl. 220 st. 1",
+                "similarity": 0.4609375,
+                "caseId": "K-16-2025",
+                "verdictType": "osudjujuca",
+                "court": null
+            },
+            {
+                "legalQualification": "čl. 220 st. 1",
+                "similarity": 0.4609375,
+                "caseId": "K-76-2024",
+                "verdictType": "osudjujuca",
+                "court": null
+            },
+            {
+                "legalQualification": "čl. 220 st. 1",
+                "similarity": 0.4609375,
+                "caseId": "K-91-2024",
+                "verdictType": "osudjujuca",
+                "court": null
+            }
+        ]
+    },
+    "decision": {
+        "isAcquittal": false,
+        "penalty": {
+            "type": "zatvorska",
+            "value": 1.0,
+            "unit": "Years"
+        }
+    }
+}

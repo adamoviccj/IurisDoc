@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-329-2026"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudCetinje">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-cetinje/K-329-2026"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-cetinje/K-329-2026"/>
+          <FRBRdate date="2026-04-18" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudCetinje" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-cetinje/K-329-2026/2026-04-18@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-cetinje/K-329-2026/2026-04-18"/>
+          <FRBRdate date="2026-04-18" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-cetinje/K-329-2026/2026-04-18.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-cetinje/K-329-2026/2026-04-18.xml"/>
+          <FRBRdate date="2026-04-18" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudCetinje">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudCetinje"
+                         id="org.osnovniSudCetinje"
+                         showAs="Osnovni sud u Cetinju"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.nikolaMatic"
+                   id="person.nikolaMatic"
+                   showAs="Nikola Matić"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.natasaAndric"
+                   id="person.natasaAndric"
+                   showAs="Nataša Andrić"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.dejanAleksic"
+                   id="person.dejanAleksic"
+                   showAs="Dejan Aleksić"/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.anaJovic"
+                   id="person.anaJovic"
+                   showAs="Ana Jović"/>
+
+        <!-- OŠTEĆENA -->
+        <TLCPerson eId="person.milicaNikodijevic"
+                   id="person.milicaNikodijevic"
+                   showAs="Milica Nikodijević"/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.nikolaMatic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.natasaAndric"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudCetinje">Osnovni sud u Cetinju</ref>,
+          sudija <ref href="#person.nikolaMatic">Nikola Matić</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.natasaAndric">Nataše Andrić</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.dejanAleksic"
+                 role="accused">Dejana Aleksića</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnice optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.anaJovic"
+                 role="prosecutor"/>,
+          dana 18.04.2026. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.dejanAleksic">Dejan Aleksić</ref> oglašava se krivim
+            zbog krivičnog djela
+            nasilje u porodici iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se kazna zatvora u trajanju od 1 godine.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da okrivljeni primjenom grubog nasilja
+            narušio tjelesni ili duševni integritet člana svoje porodice.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnog djela iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Kao olakšavajuće okolnosti sud je cijenio
+            raniju neosuđivanost i porodične prilike.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U CETINJU
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.natasaAndric"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.nikolaMatic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

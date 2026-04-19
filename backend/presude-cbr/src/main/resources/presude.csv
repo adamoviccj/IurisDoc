@@ -1,12 +1,24 @@
-caseId;legalQualification;victim;meansOfCommission;injurySeverity;numberOfVictims;repetition;previousConviction;mitigatingFactors;aggravatingFactors;verdictType;court;judge;clerk;accused;decisionDate;witnesses;usesWeapon;usesGrossViolence;violatesIntegrity;causesSeriousInjury;victimIsMinor;causesDeath;violatesProtectionMeasures;legalObligationToSupport;dutyEstablishedByCourtOrder;failsToPaySupport;justifiedReasonsForNonpayment;severeConsequencesForVictim
-0;cl. 297 st. 3 KZ;;;lake,teske;1;ne;ne;;;osudjujuca;Osnovni sud u Podgorici;Zeljka Jovovic;N.N.;Dz. P.;2018;;false;false;family_member_no;true;false;false;false;false;false;false;false;false
-1;cl. 289 st. 3 KZ;;;lake;1;ne;ne;;;osudjujuca;Osnovni sud u Beranama;Dragan Dasic;N.N.;D.V.;2018;;false;false;family_member_no;false;false;false;false;false;false;false;false;false
-2;cl. 297 st. 3 KZ;;;teske;1;ne;ne;;;osudjujuca;Osnovni sud u Rozajama;Milosav Zekic;N.N.;E. K.;2018;;false;false;family_member_no;true;false;false;false;false;false;false;false;false
-3;cl. 289 st. 3 KZ;;;lake;1;ne;ne;;;osudjujuca;Osnovni sud u Rozajama;Camic Zahit;N.N.;M. K.;2018;;false;false;family_member_no;false;false;false;false;false;false;false;false;false
-4;cl. 297 st. 3 KZ;;;teske;1;ne;ne;;;osudjujuca;Osnovni sud u Cetinju;Jelena Perovic;N.N.;T. R.;2018;;false;false;family_member_no;true;false;false;false;false;false;false;false;false
-5;cl. 297 st. 3 KZ;;;lake,teske;1;ne;ne;;;osudjujuca;Osnovni sud u Rozajama;Camic Zahit;N.N.;F. F.;2018;;false;false;family_member_no;true;false;false;false;false;false;false;false;false
-6;cl. 289 st. 3 KZ;;;lake;1;ne;ne;;;osudjujuca;Osnovni sud u Podgorici;Zeljka Jovovic;N.N.;N. N.;2018;;false;false;family_member_no;false;false;false;false;false;false;false;false;false
-7;cl. 289 st. 3 KZ;;;lake;1;ne;ne;;;osudjujuca;Osnovni sud u Niksicu;Igor Djurickovic;N.N.;R. M.;2018;;false;false;family_member_no;false;false;false;false;false;false;false;false;false
-8;cl. 289 st. 3 KZ;;;lake;1;ne;ne;;;osudjujuca;Osnovni sud u Niksicu;Vukota Vujacic;N.N.;O. M.;2018;;false;false;family_member_no;false;false;false;false;false;false;false;false;false
-9;cl. 289 st. 3 KZ;;;lake;1;ne;ne;;;osudjujuca;Osnovni sud u Cetinju;Marija Cupic;N.N.;V. D.;2018;;false;false;family_member_no;false;false;false;false;false;false;false;false;false
-10;cl. 289 st. 3 KZ;;;lake;1;ne;ne;;;osudjujuca;Osnovni sud u Kotoru;Momirka Tesic;N.N.;S. R.;2018;;false;false;family_member_no;false;false;false;false;false;false;false;false;false
+legalQualification;meansOfCommission;injurySeverity;numberOfVictims;repetition;previousConviction;mitigatingFactors;aggravatingFactors;verdictType;usesWeapon;usesGrossViolence;violatesIntegrity;causesSeriousInjury;victimIsMinor;causesDeath;violatesProtectionMeasures;legalObligationToSupport;dutyEstablishedByCourtOrder;failsToPaySupport;justifiedReasonsForNonpayment;severeConsequencesForVictim;caseId
+čl. 220 st. 1;fizička sila;laka;2;true;false;neosuđivanost;nema;osudjujuca;false;true;family_member_yes;false;false;false;false;false;false;false;false;false;K-107-2024
+čl. 220 st. 4 u vezi st. 1;upaljač;laka;1;false;false;neosuđivanost;;osudjujuca;false;false;family_member_yes;false;false;false;false;false;false;false;false;false;K-11-2025
+čl. 221 st. 1;nema;nema;1;false;false;nema;nema;osudjujuca;false;false;family_member_yes;false;true;false;false;true;true;true;false;false;K-12-2024
+čl. 221 st. 1;nema;nema;1;true;false;neosuđivanost;nema;osudjujuca;false;false;family_member_yes;false;false;false;false;true;true;true;false;false;K-130-2024
+čl. 221 st. 1;nema;nema;1;false;false;neosuđivanost;nema;osudjujuca;false;false;family_member_yes;false;true;false;false;true;true;true;false;false;K-13-2024
+čl. 221 st. 1;nema;nema;2;false;false;neosuđivanost;nema;osudjujuca;false;false;family_member_yes;false;true;false;false;true;true;true;false;false;K-145-2024
+čl. 221 st. 1;nema;nema;3;true;false;neosuđivanost;nema;osudjujuca;false;false;family_member_yes;false;true;false;false;true;true;true;false;false;K-148-2024
+čl. 220 st. 1;prijetnja, fizička sila;nema;2;true;false;neosuđivanost;;osudjujuca;false;false;family_member_yes;false;false;false;false;false;false;false;false;false;K-149-2024
+čl. 221 st. 1;nema;nema;2;true;false;nema;nema;osudjujuca;false;false;family_member_yes;false;true;false;false;true;true;true;false;false;K-166-2024
+čl. 220 st. 1;prijetnja;nema;1;false;false;neosuđivanost;;osudjujuca;false;false;family_member_yes;false;false;false;false;false;false;false;false;true;K-16-2025
+čl. 220 st. 3 u vezi st. 1;prijetnja;nema;1;false;false;neosuđivanost;;osudjujuca;false;false;family_member_yes;false;false;false;false;false;false;false;false;false;K-1-2025
+čl. 220 st. 4 u vezi st. 1;prijetnja;nema;1;false;false;neosuđivanost;;osudjujuca;false;false;family_member_yes;false;false;false;false;false;false;false;false;false;K-216-2024
+čl. 221 st. 1;nema;nema;4;true;false;nema;nema;osudjujuca;false;false;family_member_yes;false;true;false;false;true;true;true;false;false;K-24-2024
+čl. 221 st. 1;nema;nema;2;true;false;neosuđivanost;nema;osudjujuca;false;false;family_member_yes;false;true;false;false;true;true;true;false;false;K-36-2024
+čl. 221 st. 1;nema;nema;2;true;false;neosuđivanost;nema;osudjujuca;false;false;family_member_yes;false;true;false;false;true;true;true;false;false;K-38-2024
+čl. 220 st. 1;prijetnja;nema;1;false;false;neosuđivanost;;osudjujuca;false;true;family_member_yes;false;false;false;false;false;false;false;false;false;K-40-2024
+čl. 220 st. 1;prijetnja;laka;1;false;false;neosuđivanost;;osudjujuca;false;false;family_member_yes;false;false;false;false;false;false;false;false;false;K-76-2024
+čl. 168 st. 2 u vezi st. 1;prijetnja;nema;2;false;false;neosuđivanost;;osudjujuca;false;false;family_member_no;false;false;false;false;false;false;false;false;false;K-90-2024
+čl. 220 st. 1;vrijeđanje ljudskog dostojanstva;nema;1;false;false;neosuđivanost;;osudjujuca;false;false;family_member_yes;false;false;false;false;false;false;false;false;false;K-91-2024
+čl. 220 st. 1;prijetnja, fizička sila;nema;2;true;false;neosuđivanost;povrat;osudjujuca;true;false;family_member_yes;false;false;false;true;false;true;false;false;false;K-92-2024
+čl. 220 st. 1 KZ;;laka;1;false;false;;;osudjujuca;false;true;family_member_yes;false;false;false;false;false;false;false;false;false;K-329-2026
+čl. 220 st. 1 KZ;;laka;1;false;false;;;osudjujuca;false;true;family_member_yes;false;false;false;false;false;false;false;false;false;K-741-2026
+čl. 220 st. 1 KZ;;laka;1;false;false;;;osudjujuca;false;true;family_member_yes;false;false;false;false;false;false;false;false;false;K-974-2026

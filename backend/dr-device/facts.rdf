@@ -6,15 +6,15 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:lc="http://informatika.ftn.uns.ac.rs/legal-case.rdf#">
 
-    <lc:case rdf:about="http://informatika.ftn.uns.ac.rs/legal-case.rdf#Mile_Milic">
-        <lc:name>Mile Milic</lc:name>
-        <lc:defendant>Mile Milic</lc:defendant>
-        <lc:uses_weapon>true</lc:uses_weapon>
+    <lc:case rdf:about="http://informatika.ftn.uns.ac.rs/legal-case.rdf#Dejan_Aleksic">
+        <lc:name>Dejan Aleksic</lc:name>
+        <lc:defendant>Dejan Aleksic</lc:defendant>
+        <lc:uses_weapon>false</lc:uses_weapon>
         <lc:uses_gross_violence>true</lc:uses_gross_violence>
         <lc:violates_integrity>family_member_yes</lc:violates_integrity>
         <lc:causes_serious_injury>false</lc:causes_serious_injury>
         <lc:victim_is_minor>false</lc:victim_is_minor>
-        <lc:causes_death>true</lc:causes_death>
+        <lc:causes_death>false</lc:causes_death>
         <lc:violates_protection_measures>false</lc:violates_protection_measures>
         <lc:legal_obligation_to_support>false</lc:legal_obligation_to_support>
         <lc:duty_established_by_court_order>false</lc:duty_established_by_court_order>

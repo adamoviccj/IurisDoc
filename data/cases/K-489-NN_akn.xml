@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-73-2026"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.gdg">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/gdg/K-73-2026"/>
+          <FRBRuri value="/me/judgment/gdg/K-73-2026"/>
+          <FRBRdate date="2026-04-18" name="generation"/>
+          <FRBRauthor href="#org.gdg" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/gdg/K-73-2026/2026-04-18@sr"/>
+          <FRBRuri value="/me/judgment/gdg/K-73-2026/2026-04-18"/>
+          <FRBRdate date="2026-04-18" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/gdg/K-73-2026/2026-04-18.xml"/>
+          <FRBRuri value="/me/judgment/gdg/K-73-2026/2026-04-18.xml"/>
+          <FRBRdate date="2026-04-18" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.gdg">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.gdg"
+                         id="org.gdg"
+                         showAs="GDG"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.dgdef"
+                   id="person.dgdef"
+                   showAs="dgdef"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.degde"
+                   id="person.degde"
+                   showAs="degde"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.defde"
+                   id="person.defde"
+                   showAs="defde"/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.ergde"
+                   id="person.ergde"
+                   showAs="ergde"/>
+
+        <!-- OŠTEĆENA -->
+        <TLCPerson eId="person.rgdrg"
+                   id="person.rgdrg"
+                   showAs="rgdrg"/>
+
+        <!-- ADVOKAT -->
+        <TLCPerson eId="person.rdgfdrg"
+                   id="person.rdgfdrg"
+                   showAs="rdgfdrg"/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.dgdef"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.degde"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.gdg">GDG</ref>,
+          sudija <ref href="#person.dgdef">dgdef</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.degde">degde</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.defde"
+                 role="accused">defde</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnice optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.ergde"
+                 role="prosecutor"/>,
+          dana 18.04.2026. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.defde">defde</ref> oglašava se krivim
+            zbog krivičnog djela
+            nasilje u porodici iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se kazna zatvora u trajanju od 1 godine.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da okrivljeni primjenom grubog nasilja
+            narušio tjelesni ili duševni integritet člana svoje porodice.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnog djela iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Kao olakšavajuće okolnosti sud je cijenio
+            raniju neosuđivanost.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          GDG
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.degde"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.dgdef"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

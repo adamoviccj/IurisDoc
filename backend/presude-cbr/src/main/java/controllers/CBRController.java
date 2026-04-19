@@ -16,7 +16,7 @@ public class CBRController {
         CaseDescription queryDesc = new CaseDescription();
 
         // Popunjavanje polja iz JSON-a
-        queryDesc.setCaseId("QUERY_TEMP");
+        queryDesc.setCaseId(getString(payload, "caseId"));
         queryDesc.setCourt(getString(payload, "court"));
         queryDesc.setAccused(getString(payload, "accused"));
         queryDesc.setLegalQualification(getString(payload, "legalQualification"));
@@ -46,7 +46,20 @@ public class CBRController {
             query.setDescription(queryDesc);
 
             // SADA POZIVAMO NOVU METODU KOJA VRAĆA LISTU
-            return app.executeRetrieval(query);
+            List<Map<String, Object>> results = app.executeRetrieval(query);
+            // Postprocesiranje caseId
+            for (Map<String, Object> caseMap : results) {
+                if (caseMap.containsKey("caseId")) {
+                    String cid = String.valueOf(caseMap.get("caseId"));
+                    if (cid.startsWith("judgment.")) {
+                        caseMap.put("caseId", cid.substring("judgment.".length()));
+                    }
+                } else if (caseMap.containsKey("caseId_clean")) {
+                    String cid = String.valueOf(caseMap.get("caseId_clean"));
+                    caseMap.put("caseId", cid);
+                }
+            }
+            return results;
 
         } catch (Exception e) {
             e.printStackTrace();

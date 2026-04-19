@@ -247,3 +247,9 @@ e2e/*.map
 
 venv2/
 venv/
+
+backend/.env
+backend/presude-cbr/.classpath
+backend/presude-cbr/.project
+backend/presude-cbr/.settings/
+backend/presude-cbr/.idea/

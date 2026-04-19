@@ -33,7 +33,7 @@ public class CbrApplication implements StandardCBRApplication {
 
 		StringLevenshteinSimilarity stringSim = new StringLevenshteinSimilarity();
 
-		simConfig.addMapping(new Attribute("legalQualification", CaseDescription.class), stringSim);
+		simConfig.addMapping(new Attribute("legalQualification", CaseDescription.class), new EqualsStringIgnoreCase());
 		simConfig.setWeight(new Attribute("legalQualification", CaseDescription.class), 3.0);
 		simConfig.addMapping(new Attribute("victim", CaseDescription.class), stringSim);
 		simConfig.setWeight(new Attribute("victim", CaseDescription.class), 1.0);

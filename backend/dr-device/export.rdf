@@ -118,30 +118,4 @@
      <rdfs:domain rdf:resource='&export;is_guilty_of_nonpayment_of_support_lv2'/>
 </rdf:Property>
 
-<export:is_guilty_of_family_violence_lv1 rdf:about='&export;is_guilty_of_family_violence_lv11'>
-     <export:defendant>Filip Filipovic</export:defendant>
-     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
-     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof1</defeasible:proof>
-</export:is_guilty_of_family_violence_lv1>
-
-<export:max_imprisonment rdf:about='&export;max_imprisonment1'>
-     <export:value>2</export:value>
-     <export:unit>Years</export:unit>
-     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
-     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof2</defeasible:proof>
-</export:max_imprisonment>
-
-<export:to_pay rdf:about='&export;to_pay1'>
-     <export:value>1000</export:value>
-     <export:unit>Money</export:unit>
-     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
-     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof3</defeasible:proof>
-</export:to_pay>
-
-<export:is_guilty_of_violating_measures rdf:about='&export;is_guilty_of_violating_measures1'>
-     <export:defendant>Filip Filipovic</export:defendant>
-     <defeasible:truthStatus>defeasibly-proven-negative</defeasible:truthStatus>
-     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof4</defeasible:proof>
-</export:is_guilty_of_violating_measures>
-
 </rdf:RDF>

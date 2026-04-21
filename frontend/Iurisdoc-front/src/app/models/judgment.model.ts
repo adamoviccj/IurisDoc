@@ -25,6 +25,7 @@ export interface Judgment {
 
 export interface JudgmentListResponse {
     judgments: JudgmentListItem[];
+    total: number;
 }
 
 export interface JudgmentListItem {

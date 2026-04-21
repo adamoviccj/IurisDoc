@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -45,6 +45,7 @@ interface Law {
   styleUrls: ['./generate-judgement.css']
 })
 export class GenerateJudgement {
+  @Output() judgmentCreated = new EventEmitter<void>();
   // Polja za izbor kazne (Sudija popunjava nakon analize)
   acquittal: boolean | null = null;
   penaltyType: 'zatvorska' | 'novcana' | '' = '';
@@ -116,6 +117,9 @@ export class GenerateJudgement {
 
   submitFacts() {
     this.loading = true;
+
+    const victimsString = this.victims.map(v => v.name).filter(name => !!name).join(', ');
+
     const payload = {
       defendant: String(this.accused.name),
       usesGrossViolence: String(this.usesGrossViolence),
@@ -137,6 +141,7 @@ export class GenerateJudgement {
       clerk: String(this.clerk.name),
       accused: String(this.accused.name),
       prosecutor: String(this.prosecutor.name),
+      victim: victimsString,
       victims: this.victims,
       lawyers: this.lawyers,
       facts_text: String(this.facts),
@@ -268,6 +273,7 @@ export class GenerateJudgement {
       next: (response) => {
         this.loading = false;
         alert('Presuda je uspešno sačuvana!');
+        this.judgmentCreated.emit(); // Obavesti roditelja da je presuda kreirana
       },
       error: (err) => {
         this.loading = false;

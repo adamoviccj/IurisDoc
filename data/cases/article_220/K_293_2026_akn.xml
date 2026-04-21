@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-73-2026"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudBudva">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-budva/K-73-2026"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-budva/K-73-2026"/>
+          <FRBRdate date="2026-04-20" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudBudva" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-budva/K-73-2026/2026-04-20@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-budva/K-73-2026/2026-04-20"/>
+          <FRBRdate date="2026-04-20" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-budva/K-73-2026/2026-04-20.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-budva/K-73-2026/2026-04-20.xml"/>
+          <FRBRdate date="2026-04-20" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudBudva">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudBudva"
+                         id="org.osnovniSudBudva"
+                         showAs="Osnovni sud u Budvi"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.andrijaNikolic"
+                   id="person.andrijaNikolic"
+                   showAs="Andrija Nikolić"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.milicaZivkovic"
+                   id="person.milicaZivkovic"
+                   showAs="Milica Živković"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.aleksaAleksic"
+                   id="person.aleksaAleksic"
+                   showAs="Aleksa Aleksić"/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.miloradAksentijevic"
+                   id="person.miloradAksentijevic"
+                   showAs="Milorad Aksentijević"/>
+
+        <!-- OŠTEĆENA -->
+        <TLCPerson eId="person.anaMarkovic"
+                   id="person.anaMarkovic"
+                   showAs="Ana Marković"/>
+
+        <!-- ADVOKAT -->
+        <TLCPerson eId="person.nikolaPetrovic"
+                   id="person.nikolaPetrovic"
+                   showAs="Nikola Petrović"/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.andrijaNikolic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.milicaZivkovic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudBudva">Osnovni sud u Budvi</ref>,
+          sudija <ref href="#person.andrijaNikolic">Andrija Nikolić</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.milicaZivkovic">Milice Živković</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.aleksaAleksic"
+                 role="accused">Aleksa Aleksić</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnika optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.miloradAksentijevic"
+                 role="prosecutor"/>,
+          dana 20.04.2026. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.aleksaAleksic">Aleksa Aleksić</ref> oglašava se krivim
+            zbog krivičnog djela
+            nasilje u porodici iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se kazna zatvora u trajanju od 1 godine.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da okrivljeni primjenom grubog nasilja
+            narušio tjelesni ili duševni integritet člana svoje porodice
+            <ref href="#person.anaMarkovic">Ane Marković</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnog djela iz <ref href="#art_220__para_1">čl. 220 st. 1</ref>
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U BUDVI
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.milicaZivkovic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.andrijaNikolic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

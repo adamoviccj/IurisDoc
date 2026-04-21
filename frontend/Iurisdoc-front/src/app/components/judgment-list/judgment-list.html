@@ -75,72 +75,65 @@
             <span class="btn-text">Obriši filtere</span>
           </button>
           <span class="results-count">
-            Prikazano {{filteredJudgments.length}} od {{judgments.length}} presuda
+            Prikazano {{judgments.length}} od {{totalJudgments}} presuda
           </span>
         </div>
       </mat-card-content>
     </mat-card>
 
-    <!-- Lista presuda -->
-<cdk-virtual-scroll-viewport
-  itemSize="260"
-  class="viewport"
-  minBufferPx="800"
-  maxBufferPx="1200"
->
 
-  <div
-    class="judgment-card-wrapper"
-    *cdkVirtualFor="let judgment of filteredJudgments"
-  >
-
-    <mat-card class="judgment-card"
-              [routerLink]="['/judgment', judgment.case_id]">
-
-      <mat-card-header>
-        <mat-icon mat-card-avatar class="card-icon">gavel</mat-icon>
-        <mat-card-title>{{judgment.case_id}}</mat-card-title>
-        <mat-card-subtitle>
-          {{judgment.court}} • {{formatDate(judgment.decision_date)}}
-        </mat-card-subtitle>
-      </mat-card-header>
-
-      <mat-card-content>
-        <div class="judgment-summary">
-
-          <div class="summary-row">
-            <span class="summary-label">Okrivljeni:</span>
-            <span class="summary-value">{{judgment.accused}}</span>
-          </div>
-
-          <div class="summary-row">
-            <span class="summary-label">Krivično delo:</span>
-            <span class="summary-value">{{judgment.legal_qualification}}</span>
-          </div>
-
-          <div class="summary-row" *ngIf="judgment.victim">
-            <span class="summary-label">Žrtva:</span>
-            <span class="summary-value">{{judgment.victim}}</span>
-          </div>
-
-          <div class="summary-row">
-            <span class="summary-label">Kazna:</span>
-            <span class="summary-value penalty">
-              {{judgment.penalty || 'Nije navedeno'}}
-            </span>
-          </div>
-
-        </div>
-      </mat-card-content>
-
-    </mat-card>
-
-  </div>
-
-</cdk-virtual-scroll-viewport>
+    <!-- Lista presuda sa paginacijom -->
+    <div class="judgment-list-paginated">
+      <div
+        class="judgment-card-wrapper"
+        *ngFor="let judgment of paginatedJudgments"
+      >
+        <mat-card class="judgment-card"
+                  [routerLink]="['/judgment', judgment.case_id]">
+          <mat-card-header>
+            <mat-icon mat-card-avatar class="card-icon">gavel</mat-icon>
+            <mat-card-title>{{judgment.case_id}}</mat-card-title>
+            <mat-card-subtitle>
+              {{judgment.court}} • {{formatDate(judgment.decision_date)}}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="judgment-summary">
+              <div class="summary-row">
+                <span class="summary-label">Okrivljeni:</span>
+                <span class="summary-value">{{judgment.accused}}</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Krivično delo:</span>
+                <span class="summary-value">{{judgment.legal_qualification}}</span>
+              </div>
+              <div class="summary-row" *ngIf="judgment.victim">
+                <span class="summary-label">Žrtva:</span>
+                <span class="summary-value">{{judgment.victim}}</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Kazna:</span>
+                <span class="summary-value penalty">
+                  {{judgment.penalty || 'Nije navedeno'}}
+                </span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <mat-paginator
+        [length]="totalJudgments"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChange($event)"
+        aria-label="Paginacija presuda"
+        showFirstLastButtons>
+      </mat-paginator>
+    </div>
 
     <!-- No results -->
-    <div class="no-results" *ngIf="filteredJudgments.length === 0">
+    <div class="no-results" *ngIf="judgments.length === 0 && !loading">
       <mat-icon>search_off</mat-icon>
       <h3>Nema rezultata</h3>
       <p>Nijedna presuda ne odgovara zadatim filterima.</p>

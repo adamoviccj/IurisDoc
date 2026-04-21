@@ -13,8 +13,15 @@ export class JudgmentService {
 
   constructor(private http: HttpClient) {}
 
-  getAllJudgments(): Observable<JudgmentListResponse> {
-    return this.http.get<JudgmentListResponse>(`${this.apiUrl}/judgments`);
+
+  getJudgments(params: {
+    page?: number,
+    page_size?: number,
+    court?: string,
+    year?: string,
+    legal_qualification?: string
+  }): Observable<JudgmentListResponse> {
+    return this.http.get<JudgmentListResponse>(`${this.apiUrl}/judgments`, { params });
   }
 
   getJudgment(caseId: string): Observable<Judgment> {

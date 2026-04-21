@@ -1,3 +1,37 @@
+def extract_filters_from_akn(xml_path: str):
+    """
+    Ekstraktuje sud, godinu i pravnu kvalifikaciju iz Akoma Ntoso XML fajla.
+    """
+    if not os.path.exists(xml_path):
+        return None, None, None
+    with open(xml_path, 'r', encoding='utf-8') as f:
+        soup = BeautifulSoup(f.read(), 'lxml-xml')
+
+    # Sud
+    court = None
+    org = soup.find("TLCOrganization")
+    if org and org.has_attr("showAs"):
+        court = org["showAs"]
+
+    # Godina
+    year = None
+    frbrdate = soup.find("FRBRdate", {"name": "generation"})
+    if frbrdate and frbrdate.has_attr("date"):
+        year = frbrdate["date"][:4]
+
+    # Pravna kvalifikacija
+    legal_qualification = None
+    # Prvi <ref> koji sadrži "čl." i broj člana
+    ref = soup.find("ref", string=lambda t: t and "čl." in t)
+    if ref:
+        legal_qualification = ref.get_text(strip=True)
+    else:
+        # Alternativno: prvi <ref> sa href koji sadrži "art_"
+        ref = soup.find("ref", href=lambda h: h and "art_" in h)
+        if ref:
+            legal_qualification = ref.get_text(strip=True)
+
+    return court, year, legal_qualification
 import re
 
 from fastapi import FastAPI, HTTPException, middleware
@@ -130,6 +164,7 @@ def build_judgments_cache():
     items = []
     full = {}
 
+
     for folder in os.listdir(base_path):
         folder_path = os.path.join(base_path, folder)
 
@@ -137,7 +172,6 @@ def build_judgments_cache():
             continue
 
         for file in os.listdir(folder_path):
-
             if not file.endswith("_akn.xml"):
                 continue
 
@@ -145,10 +179,158 @@ def build_judgments_cache():
             xml_path = os.path.join(folder_path, file)
             csv_path = os.path.join(folder_path, f"{case_id}.csv")
 
-            if not os.path.exists(csv_path):
-                continue
+            if os.path.exists(csv_path):
+                metadata = parse_metadata(csv_path)
+            else:
+                # Ako nema CSV, koristi podatke iz XML
+                court, year, legal_qualification = extract_filters_from_akn(xml_path)
+                accused = ""
+                judge = ""
+                clerk = ""
+                penalty = ""
+                victim = ""
+                injury_severity = ""
+                witnesses = []
+                decision_date = ""
 
-            metadata = parse_metadata(csv_path)
+                # --- Ekstrakcija iz XML meta/references ---
+                from bs4 import BeautifulSoup
+                with open(xml_path, 'r', encoding='utf-8') as f:
+                    soup = BeautifulSoup(f.read(), 'lxml-xml')
+
+                # Datum odluke
+                frbrdate = soup.find('FRBRdate', {'name': 'generation'})
+                if frbrdate and frbrdate.has_attr('date'):
+                    decision_date = frbrdate['date']
+
+                # Sudija
+                judge_ref = None
+                panel_judge = soup.find('panel')
+                if panel_judge:
+                    judge_tag = panel_judge.find('judge')
+                    if judge_tag and judge_tag.has_attr('refersTo'):
+                        judge_ref = judge_tag['refersTo'].replace('#', '')
+                if judge_ref:
+                    judge_person = soup.find('TLCPerson', {'eId': judge_ref})
+                    if judge_person and judge_person.has_attr('showAs'):
+                        judge = judge_person['showAs']
+
+                # Zapisničar
+                clerk_ref = None
+                panel_clerk = panel_judge.find('clerk') if panel_judge else None
+                if panel_clerk and panel_clerk.has_attr('refersTo'):
+                    clerk_ref = panel_clerk['refersTo'].replace('#', '')
+                if clerk_ref:
+                    clerk_person = soup.find('TLCPerson', {'eId': clerk_ref})
+                    if clerk_person and clerk_person.has_attr('showAs'):
+                        clerk = clerk_person['showAs']
+
+                # Okrivljeni
+                accused_ref = None
+                party_accused = soup.find('party', {'role': 'accused'})
+                if party_accused and party_accused.has_attr('refersTo'):
+                    accused_ref = party_accused['refersTo'].replace('#', '')
+                if accused_ref:
+                    accused_person = soup.find('TLCPerson', {'eId': accused_ref})
+                    if accused_person and accused_person.has_attr('showAs'):
+                        accused = accused_person['showAs']
+
+                # Žrtva (oštećeni): traži TLCPerson koji je oštećeni
+                victim_person = None
+                # Prvo pokušaj iz <references> (oštećena osoba)
+                for tlcperson in soup.find_all('TLCPerson'):
+                    if tlcperson.has_attr('showAs') and tlcperson.has_attr('eId'):
+                        # Pronađi po imenu ili po id-u
+                        # Ako je ime u tekstu <p> sa "oštećena" ili "oštećeni"
+                        if 'oštećena' in tlcperson['showAs'].lower() or 'oštećeni' in tlcperson['showAs'].lower():
+                            victim_person = tlcperson['showAs']
+                            break
+                # Ako nije pronađeno, koristi <TLCPerson> koji je referenciran u tekstu kao oštećena
+                if not victim_person:
+                    # Pronađi <TLCPerson> koji je referenciran u tekstu <p> sa "oštećena" ili "oštećeni"
+                    for p in soup.find_all('p'):
+                        txt = p.get_text(strip=True).lower()
+                        if 'oštećena' in txt or 'oštećeni' in txt:
+                            for ref in p.find_all('ref'):
+                                href = ref.get('href')
+                                if href and href.startswith('#'):
+                                    eid = href[1:]
+                                    tlcp = soup.find('TLCPerson', {'eId': eid})
+                                    if tlcp and tlcp.has_attr('showAs'):
+                                        victim_person = tlcp['showAs']
+                                        break
+                        if victim_person:
+                            break
+                # Ako nije pronađeno, fallback heuristika iz teksta
+                if not victim_person:
+                    for p in soup.find_all('p'):
+                        txt = p.get_text(strip=True)
+                        if 'oštećena' in txt.lower() or 'oštećeni' in txt.lower():
+                            victim_person = txt
+                            break
+                if victim_person:
+                    victim = victim_person
+
+                # Kazna: pokušaj iz <decision> sekcije
+                if not penalty:
+                    decision = soup.find('decision')
+                    if decision:
+                        for ptag in decision.find_all('p'):
+                            txt = ptag.get_text(strip=True)
+                            txt_l = txt.lower()
+                            if any(kw in txt_l for kw in ["kazna", "zatvora", "novčana", "uslovna", "izriče se"]):
+                                penalty = txt
+                                break
+
+                # Fallback heuristika iz teksta
+                if not judge or not clerk or not accused or not penalty:
+                    paragraphs = parse_judgment_xml(xml_path)
+                    import re
+                    for p in paragraphs:
+                        t = p.text.lower()
+                        if not accused:
+                            if "okrivljeni su:" in t:
+                                accused = p.text.split(":", 1)[-1].strip()
+                            elif "okrivljeni:" in t:
+                                accused = p.text.split(":", 1)[-1].strip()
+                            elif "protiv" in t:
+                                idx = t.find("protiv")
+                                accused = p.text[idx+6:].split(",")[0].strip()
+                        if not penalty and any(kw in t for kw in ["kazna", "osuđuje se na", "zatvora", "novčana", "uslovna", "izriče se"]):
+                            penalty = p.text.strip()
+                        if not judge:
+                            m = re.search(r"sudija\s*:\s*(.+)", p.text, re.IGNORECASE)
+                            if m:
+                                judge = m.group(1).strip()
+                            else:
+                                m = re.search(r"predsednik veća\s*:\s*(.+)", p.text, re.IGNORECASE)
+                                if m:
+                                    judge = m.group(1).strip()
+                        if not clerk:
+                            m = re.search(r"zapisničar\s*:\s*(.+)", p.text, re.IGNORECASE)
+                            if m:
+                                clerk = m.group(1).strip()
+                        if not victim and "oštećeni" in t:
+                            victim = p.text.strip()
+
+                metadata = JudgmentMetadata(
+                    act_description="",
+                    legal_qualification=legal_qualification or "",
+                    victim=victim,
+                    time_period="",
+                    means_of_commission="",
+                    injury_severity=injury_severity,
+                    penalty=penalty,
+                    security_measure="",
+                    case_id=case_id,
+                    court=court or "",
+                    judge=judge,
+                    clerk=clerk,
+                    accused=accused,
+                    decision_date=decision_date if decision_date else ((year + "-01-01") if year else ""),
+                    witnesses=witnesses
+                )
+
             text = parse_judgment_xml(xml_path)
 
             item = JudgmentListItem(
@@ -182,6 +364,7 @@ def build_filters_cache():
     years = set()
     legal_qualifications = set()
 
+
     for folder in os.listdir(base_path):
         folder_path = os.path.join(base_path, folder)
 
@@ -189,23 +372,29 @@ def build_filters_cache():
             continue
 
         for file in os.listdir(folder_path):
-
-            if not file.endswith('.csv'):
-                continue
-
-            for file in os.listdir(folder_path):
-
-                if not file.endswith('.csv'):
-                    continue
-
+            # Prvo pokušaj iz CSV
+            if file.endswith('.csv'):
                 csv_path = os.path.join(folder_path, file)
-                metadata = parse_metadata(csv_path)
-
-                courts.add(metadata.court)
-                legal_qualifications.add(metadata.legal_qualification)
-
-                if metadata.decision_date:
-                    years.add(metadata.decision_date[:4])
+                try:
+                    metadata = parse_metadata(csv_path)
+                    if metadata.court:
+                        courts.add(metadata.court)
+                    if metadata.legal_qualification:
+                        legal_qualifications.add(metadata.legal_qualification)
+                    if metadata.decision_date:
+                        years.add(metadata.decision_date[:4])
+                except Exception:
+                    pass
+            # Ako nema CSV, pokušaj iz XML
+            elif file.endswith('_akn.xml'):
+                xml_path = os.path.join(folder_path, file)
+                court, year, legal_qualification = extract_filters_from_akn(xml_path)
+                if court:
+                    courts.add(court)
+                if year:
+                    years.add(year)
+                if legal_qualification:
+                    legal_qualifications.add(legal_qualification)
 
     filters_cache["courts"] = sorted(courts)
     filters_cache["years"] = sorted(years)
@@ -365,6 +554,23 @@ async def list_judgments(
 
     filtered = judgments_cache
 
+    # Ako je neki filter undefined ili prazan string, tretiraj ga kao None
+    court = court if court not in (None, '', 'undefined') else None
+    year = year if year not in (None, '', 'undefined') else None
+    legal_qualification = legal_qualification if legal_qualification not in (None, '', 'undefined') else None
+
+    has_filters = any([
+        court,
+        year,
+        legal_qualification
+    ])
+    # Ako nema filtera i page/page_size nisu prosleđeni (default), vrati sve
+    if not has_filters and (page is None or page == 0) and (page_size is None or page_size == 0):
+        return JudgmentListResponse(
+            judgments=filtered,
+            total=len(filtered)
+        )
+
     if court:
         filtered = [j for j in filtered if j.court == court]
 
@@ -435,13 +641,13 @@ async def generate_rdf(request: FactsRequest):
     req_dict = request.dict()
     print("Received RDF generation request:", json.dumps(req_dict, indent=2))
     
-    # 1. Generisanje facts.rdf
+    # 1. Generisanje facts.rdf (Pomoćna funkcija koju već imaš)
     rdf_content = generate_rdf_facts(request)
 
     dr_device_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dr-device")
     export_path = os.path.join(dr_device_dir, "export.rdf")
 
-    # 2. i 3. Izvršavanje DR-Device
+    # 2. i 3. Izvršavanje DR-Device skripti
     try:
         subprocess.run(["cmd", "/c", "clean.bat"], cwd=dr_device_dir, check=True)
         subprocess.run(["cmd", "/c", "start.bat"], cwd=dr_device_dir, check=True)
@@ -471,7 +677,6 @@ async def generate_rdf(request: FactsRequest):
                 if current_class == "Unknown":
                     current_class = str(s).split("#")[-1].split("/")[-1]
 
-                # Koristi puni naziv klase sa brojem
                 full_class_name = current_class
 
                 if "is_guilty" in full_class_name:
@@ -485,7 +690,6 @@ async def generate_rdf(request: FactsRequest):
                             "value": str(val_o)
                         }
 
-                        # Pronađi unit za ovu kaznu (iz triplova gde je parent s)
                         unit_found = False
                         for _, unit_p, unit_o in g.triples((s, None, None)):
                             if "unit" in str(unit_p):
@@ -493,7 +697,6 @@ async def generate_rdf(request: FactsRequest):
                                 unit_found = True
                                 break
 
-                        # Ako je novčana kazna, pokušaj da nađeš unit i iz child objekta
                         if not unit_found and ("pay" in full_class_name or "to_pay" in full_class_name):
                             for _, unit_p, unit_o in g.triples((val_o, None, None)):
                                 if "unit" in str(unit_p):
@@ -501,16 +704,15 @@ async def generate_rdf(request: FactsRequest):
                                     unit_found = True
                                     break
                             if not unit_found:
-                                penalty_entry["unit"] = "RSD"  # fallback
+                                penalty_entry["unit"] = "RSD"
 
                         extracted_penalties.append(penalty_entry)
 
     except Exception as e:
         print(f"DEBUG: Greska prilikom citanja DR-Device rezultata: {e}")
 
-    # --- KORAK 5: Priprema za Javu (USKLAĐENO SA CbrApplication.java i simConfig) ---
+    # --- KORAK 5: Priprema podataka i slanje Javi (CBR) ---
     
-    # Prvo odredi pravnu kvalifikaciju na osnovu DR-Device rezultata
     mapping = {
         "is_guilty_of_family_violence_lv1": "cl. 220 st. 1 KZ",
         "is_guilty_of_family_violence_lv2": "cl. 220 st. 2 KZ",
@@ -524,13 +726,16 @@ async def generate_rdf(request: FactsRequest):
     primary_verdict = verdict_types[0] if verdict_types else "Nije specifikovano"
     mapped_val = mapping.get(primary_verdict, "Nepoznata kvalifikacija")
 
+    # --- ISPRAVKA ZA OŠTEĆENE ---
+    # Uzimamo listu objekata žrtava iz frontenda i pretvaramo u string čitljiv za bekhend/listu
     victims_list = req_dict.get("victims", [])
     victims_string = ", ".join([v.get("name", "") for v in victims_list if v.get("name")])
+    # ----------------------------
 
     colibri_payload = {
         "caseId": "QUERY-FACTS",
         "legalQualification": mapped_val,
-        "victim": victims_string,
+        "victim": victims_string,  # Sada prosleđujemo generisani string
         "meansOfCommission": req_dict.get("facts_text", ""),
         "injurySeverity": "teska" if req_dict.get("causesSeriousInjury") == "true" else "laka",
         "numberOfVictims": str(req_dict.get("numberOfVictims", "1")),
@@ -539,13 +744,10 @@ async def generate_rdf(request: FactsRequest):
         "verdictType": "osudjujuca",
         "court": req_dict.get("court", ""),
         "judge": req_dict.get("judge", ""),
-        "accused": req_dict.get("accused", req_dict.get("defendant", "")),
-        "mitigatingFactors": "", # Možeš dodati ako imaš polje na frontu
-        "aggravatingFactors": "", 
-        "court": req_dict.get("court", ""),
-        "judge": req_dict.get("judge", ""),
         "clerk": req_dict.get("clerk", ""),
         "accused": req_dict.get("accused", req_dict.get("defendant", "")),
+        "mitigatingFactors": "", 
+        "aggravatingFactors": "", 
         "decisionDate": "", 
         "usesWeapon": str(req_dict.get("usesWeapon", "false")),
         "usesGrossViolence": str(req_dict.get("usesGrossViolence", "false")),
@@ -564,38 +766,31 @@ async def generate_rdf(request: FactsRequest):
     similar_cases = []
     try:
         java_response = requests.post("http://localhost:8080/api/cbr/recommend", json=colibri_payload, timeout=10)
-
         if java_response.status_code == 200:
             similar_cases = java_response.json()
-            print("Received similar cases from Java:", json.dumps(similar_cases, indent=2))
     except Exception as e:
         print(f"DEBUG: Java error: {e}")
 
     # Postprocesiranje caseId u similar_cases
     def clean_case_id(cid):
-        if not cid:
-            return ""
+        if not cid: return ""
         if cid.startswith("judgement."):
             return cid[len("judgement."):]
         return cid
 
     for case in similar_cases:
-        # Prvo pokušaj da pronađe caseId ili caseId_clean
         if "caseId" in case:
             case["caseId"] = clean_case_id(case["caseId"])
         elif "caseId_clean" in case:
             case["caseId"] = clean_case_id(case["caseId_clean"])
-        # Ako nema ni jedno, ne radi ništa
 
     result = {
         "status": "success",
-        "dr_device_results": verdict_types, # Vraća listu svih nađenih krivica
-        "penalties": extracted_penalties,    # Vraća listu svih nađenih kazni sa tipovima
+        "dr_device_results": verdict_types,
+        "penalties": extracted_penalties,
         "similar_cases": similar_cases,
         "message": "Uspešno izvršeno."
     }
-
-    print("RDF generation result:", json.dumps(result, indent=2))
 
     return result
 
@@ -604,7 +799,24 @@ async def save_judgment(judgment: FinalJudgment):
     try:
         print("[save-judgment] Poziv endpointa /save-judgment")
         data_dict = judgment.dict()
+        print(f"[save-judgment] Primljeni podaci: {json.dumps(data_dict, indent=2)}")
         
+        # --- ISPRAVKA ZA ŽRTVE ---
+        # Izvlačimo listu 'victims' iz metadata, spajamo imena u jedan string
+        # i dodajemo ga nazad u rečnik kao 'victim' da bi XML i CSV generatori radili
+        meta = data_dict.get('metadata', {})
+        victims_list = meta.get('victims', [])
+        
+        # Ako je frontend poslao niz, spajamo ga. Ako nije, proveravamo da li već postoji string 'victim'
+        victim_names_str = ", ".join([v.get('name', '') for v in victims_list if v.get('name')])
+        
+        if not victim_names_str:
+            victim_names_str = meta.get('victim', "") # Fallback na postojeći string ako postoji
+            
+        # Ubacujemo formatiran string nazad u metadata za XML/CSV generisanje
+        data_dict['metadata']['victim'] = victim_names_str
+        # --------------------------
+
         # 1. Priprema identifikatora i imena fajla
         case_id_raw = data_dict['metadata'].get('case_id', 'NN')
         broj = ''
@@ -618,14 +830,13 @@ async def save_judgment(judgment: FinalJudgment):
         if not broj:
             broj = str(random.randint(1, 1000))
         if not godina:
-            # Uzimamo prva 4 karaktera iz datuma generisanja ili '2026' kao fallback
             gen_date = data_dict['metadata'].get('generationDate', '')
             godina = str(gen_date)[:4] if gen_date else "2026"
 
         file_base = f"K_{broj}_{godina}"
         print(f"[save-judgment] Generisano ime fajla: {file_base}")
 
-        # 2. Određivanje putanje za čuvanje na osnovu pravne kvalifikacije
+        # 2. Određivanje putanje
         article_folder = None
         applied_articles = data_dict.get('analysis', {}).get('appliedArticles', [])
         legal_qual = data_dict.get('metadata', {}).get('legal_qualification', '')
@@ -638,37 +849,31 @@ async def save_judgment(judgment: FinalJudgment):
         save_dir = os.path.join(DATA_CASES_PATH, article_folder) if article_folder else DATA_CASES_PATH
         os.makedirs(save_dir, exist_ok=True)
 
-        # 3. Generisanje Akoma Ntoso XML-a
-        print("[save-judgment] Poziv generate_akoma_ntoso...")
+        # 3. Generisanje XML-a
         xml_content = await generate_akoma_ntoso(data_dict)
-        
         if not xml_content:
-            print("[save-judgment] Greška: XML sadržaj nije generisan.")
             return JSONResponse(status_code=400, content={"status": "error", "message": "XML generisanje nije uspelo."})
 
         xml_path = os.path.join(save_dir, f"{file_base}_akn.xml")
         with open(xml_path, "w", encoding="utf-8") as f:
             f.write(xml_content)
-        print(f"[save-judgment] XML fajl sačuvan: {xml_path}")
 
-        # 4. Generisanje CSV fajlova (Pojedinačni i zbirni presude.csv)
+        # 4. Generisanje CSV
         csv_status = "pending"
         try:
             generate_judgment_csv(data_dict, CBR_RESOURCES_PATH, file_base)
-            print(f"[save-judgment] CSV podaci ažurirani u {CBR_RESOURCES_PATH}")
             csv_status = "success"
         except Exception as e:
-            print(f"[save-judgment] Greška prilikom generisanja CSV: {e}")
+            print(f"[save-judgment] CSV greška: {e}")
             csv_status = f"error: {e}"
 
-        # 5. AŽURIRANJE MEMORIJSKOG KEŠA (Da bi se odmah videlo u aplikaciji)
+        # 5. AŽURIRANJE MEMORIJSKOG KEŠA
         try:
-            # Kreiramo metapodatke direktno iz pristiglih podataka
-            meta = data_dict.get('metadata', {})
+            # Sada koristimo victim_names_str koji smo gore napravili
             new_metadata = JudgmentMetadata(
                 act_description=meta.get('act_description', ""),
                 legal_qualification=meta.get('legal_qualification', legal_qual),
-                victim=meta.get('victim', ""),
+                victim=victim_names_str, # <--- ISPRAVLJENO
                 time_period=meta.get('time_period', ""),
                 means_of_commission=meta.get('means_of_commission', ""),
                 injury_severity="teska" if data_dict.get('facts', {}).get('causesSeriousInjury') else "laka",
@@ -683,54 +888,43 @@ async def save_judgment(judgment: FinalJudgment):
                 witnesses=meta.get('witnesses', [])
             )
 
-            # Parsiramo tekst iz XML-a (za full prikaz)
             new_text_paragraphs = parse_judgment_xml(xml_path)
 
-            # Dodajemo u listu za tabelarni prikaz
             new_list_item = JudgmentListItem(
                 case_id=file_base,
                 court=new_metadata.court,
                 legal_qualification=new_metadata.legal_qualification,
                 decision_date=new_metadata.decision_date,
                 accused=new_metadata.accused,
-                victim=new_metadata.victim,
+                victim=victim_names_str,
                 injury_severity=new_metadata.injury_severity,
                 witnesses=new_metadata.witnesses,
                 penalty=new_metadata.penalty
             )
 
             global judgments_cache, judgment_full_cache
-            # Dodajemo na početak liste da bi nova presuda bila prva
             judgments_cache.insert(0, new_list_item)
             judgment_full_cache[file_base] = JudgmentResponse(
                 metadata=new_metadata,
                 text=new_text_paragraphs
             )
             
-            # Osvežavamo i filtere (ako je novi sud ili godina)
             build_filters_cache()
-            print(f"[save-judgment] Memorijski keš uspešno ažuriran za ID: {file_base}")
+            print(f"[save-judgment] Keš osvežen, žrtve: {victim_names_str}")
 
         except Exception as e:
-            print(f"[save-judgment] Upozorenje: Fajlovi sačuvani, ali keš nije ažuriran: {e}")
+            print(f"[save-judgment] Greška pri osvežavanju keša: {e}")
 
         return JSONResponse(content={
             "status": "success",
             "message": "Presuda uspešno procesuirana i sačuvana.",
             "case_id": file_base,
-            "files": {
-                "xml": xml_path,
-                "csv_individual": os.path.join(CBR_RESOURCES_PATH, f"{file_base}.csv")
-            },
-            "csv_status": csv_status
+            "victim_saved": victim_names_str
         })
 
     except Exception as e:
         print(f"[save-judgment] KRITIČNA GREŠKA: {e}")
-        return JSONResponse(status_code=500, content={
-            "status": "error",
-            "message": f"Interna greška servera: {str(e)}"
-        })
+        return JSONResponse(status_code=500, content={"status": "error", "message": str(e)})
     
     
 if __name__ == "__main__":

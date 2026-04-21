@@ -6,5 +6,115 @@
 
 <RuleML rdf_import='"facts.rdf"' rdf_export='export.rdf' rdf_export_classes="is_guilty_of_family_violence_lv1 min_imprisonment max_imprisonment is_guilty_of_family_violence_lv2 to_pay is_guilty_of_family_violence_lv3 is_guilty_of_family_violence_lv4 is_guilty_of_violating_measures is_guilty_of_nonpayment_of_support_lv1 is_guilty_of_nonpayment_of_support_lv2" rulebase='rulebase.ruleml' xmlns="http://www.ruleml.org/0.91/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.ruleml.org/0.91/xsd http://lpis.csd.auth.gr/systems/dr-device/dr-device-0.81.xsd">
 <Grounds>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof1'>proof1</Ind>
+</oid>
+<Literal>
+<RDF_resource uri='&export;is_guilty_of_family_violence_lv11'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='&rulebase;rule220_1'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;Bogdan_Bogdanovic'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;Bogdan_Bogdanovic'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+<Definitely_Proved>
+<Literal>
+<RDF_resource uri='&lc;Bogdan_Bogdanovic'/>
+</Literal>
+<Definite_Proof>
+<strict_clause>
+<Fact>
+<RDF_resource uri='&lc;Bogdan_Bogdanovic'/>
+</Fact>
+</strict_clause>
+</Definite_Proof>
+</Definitely_Proved>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof2'>proof2</Ind>
+</oid>
+<Literal>
+<RDF_resource uri='&export;max_imprisonment1'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='&rulebase;pen220_1_prison'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof1'/>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof3'>proof3</Ind>
+</oid>
+<Literal>
+<RDF_resource uri='&export;to_pay1'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='&rulebase;pen220_1_fine'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof1'/>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
+<Defeasibly_Proved>
+<oid>
+<Ind uri='&proof-export;proof4'>proof4</Ind>
+</oid>
+<Literal>
+<neg_RDF_resource uri='&export;is_guilty_of_violating_measures1'/>
+</Literal>
+<Defeasible_Proof>
+<supportive_rule>
+<rule_ref rule='&rulebase;rule220_5_neg_1'/>
+</supportive_rule>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof1'/>
+</defeasible_body_grounds>
+<not_strongly_attacked/>
+<defeasible_attackers_blocked>
+<Blocked>
+<Blocked_Defeasible_rule>
+<rule_ref rule='&rulebase;rule220_5'/>
+<Attacked_by_Superior>
+<rule_ref rule='&rulebase;rule220_5_neg_1'/>
+<defeasible_body_grounds>
+<proof_ref proof='&proof-export;proof1'/>
+</defeasible_body_grounds>
+</Attacked_by_Superior>
+</Blocked_Defeasible_rule>
+</Blocked>
+</defeasible_attackers_blocked>
+</Defeasible_Proof>
+</Defeasibly_Proved>
 </Grounds>
 </RuleML>

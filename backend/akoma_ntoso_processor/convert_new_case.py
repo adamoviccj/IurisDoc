@@ -15,6 +15,8 @@ JUDGMENT_EXAMPLE = os.path.join(DATA_CASES_PATH, "example_case_akn.xml")
 
 async def generate_akoma_ntoso(judgment_data: dict):
     """Poziva OpenAI da generiše XML na osnovu primljenih podataka."""
+    print("[generate_akoma_ntoso] Pokrenuta funkcija za generisanje XML-a")
+    print(f"[generate_akoma_ntoso] Primljeni podaci: {json.dumps(judgment_data, indent=2)}")
     
     # Učitavanje primera za context
     try:

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <judgment eId="judgment.K-76-2024"
+            name="presuda"
+            contains="originalVersion">
+
+    <!-- ================= META ================= -->
+
+    <meta>
+      <identification source="#org.osnovniSudPodgorica">
+
+        <FRBRWork>
+          <FRBRthis value="/me/judgment/osnovni-sud-podgorica/K-76-2024"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-podgorica/K-76-2024"/>
+          <FRBRdate date="2024-03-20" name="generation"/>
+          <FRBRauthor href="#org.osnovniSudPodgorica" as="#court"/>
+          <FRBRcountry value="me"/>
+        </FRBRWork>
+
+        <FRBRExpression>
+          <FRBRthis value="/me/judgment/osnovni-sud-podgorica/K-76-2024/2024-03-20@sr"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-podgorica/K-76-2024/2024-03-20"/>
+          <FRBRdate date="2024-03-20" name="expression"/>
+          <FRBRlanguage language="sr"/>
+        </FRBRExpression>
+
+        <FRBRManifestation>
+          <FRBRthis value="/me/judgment/osnovni-sud-podgorica/K-76-2024/2024-03-20.xml"/>
+          <FRBRuri value="/me/judgment/osnovni-sud-podgorica/K-76-2024/2024-03-20.xml"/>
+          <FRBRdate date="2024-03-22" name="manifestation"/>
+        </FRBRManifestation>
+
+      </identification>
+
+      <references source="#org.osnovniSudPodgorica">
+
+        <!-- ORGAN -->
+        <TLCOrganization eId="org.osnovniSudPodgorica"
+                         id="org.osnovniSudPodgorica"
+                         showAs="Osnovni sud u Podgorici"/>
+
+        <!-- SUDIJA -->
+        <TLCPerson eId="person.larisaMijuskovicStamatovic"
+                   id="person.larisaMijuskovicStamatovic"
+                   showAs="Larisa Mijušković-Stamatović"/>
+
+        <!-- ZAPISNIČAR -->
+        <TLCPerson eId="person.marinaSekulic"
+                   id="person.marinaSekulic"
+                   showAs="Marina Sekulić"/>
+
+        <!-- OKRIVLJENI -->
+        <TLCPerson eId="person.MD"
+                   id="person.MD"
+                   showAs="M. D."/>
+
+        <!-- TUŽILAC -->
+        <TLCPerson eId="person.julijaDrincic"
+                   id="person.julijaDrincic"
+                   showAs="Julija Drinčić"/>
+
+        <!-- OŠTEĆENA -->
+        <TLCPerson eId="person.MS"
+                   id="person.MS"
+                   showAs="M. S."/>
+
+        <!-- PROPISI -->
+        <TLCLaw eId="law.KZCG"
+                id="law.KZCG"
+                showAs="Krivični zakonik Crne Gore"/>
+
+        <TLCLaw eId="law.ZKP"
+                id="law.ZKP"
+                showAs="Zakonik o krivičnom postupku"/>
+
+      </references>
+    </meta>
+
+    <!-- ================= BODY ================= -->
+
+    <body eId="body">
+
+      <header eId="header">
+        <p eId="header.p1">U IME CRNE GORE</p>
+      </header>
+
+      <!-- SASTAV SUDA -->
+      <introduction eId="sec.introduction">
+
+        <panel eId="panel.composition">
+          <judge eId="panel.j1"
+                 refersTo="#person.larisaMijuskovicStamatovic"
+                 role="singleJudge"/>
+          <clerk eId="panel.c1"
+                 refersTo="#person.marinaSekulic"/>
+        </panel>
+
+        <p eId="sec.introduction.p1">
+          <ref href="#org.osnovniSudPodgorica">Osnovni sud u Podgorici</ref>,
+          sudija <ref href="#person.larisaMijuskovicStamatovic">Larisa Mijušković-Stamatović</ref>,
+          uz učešće zapisničarke
+          <ref href="#person.marinaSekulic">Marine Sekulić</ref>,
+          u krivičnom predmetu protiv
+          <party eId="party.accused"
+                 refersTo="#person.MD"
+                 role="accused">M. D.</party>,
+          po optužnom predlogu ODT,
+          u prisustvu zastupnice optužbe
+          <party eId="party.prosecutor"
+                 refersTo="#person.julijaDrincic"
+                 role="prosecutor"/>,
+          dana 20.03.2024. godine donio je:
+        </p>
+
+      </introduction>
+
+      <!-- IZREKA -->
+      <decision eId="sec.decision">
+
+        <article eId="sec.decision.guilt">
+          <heading>Okrivljeni</heading>
+          <p eId="sec.decision.guilt.p1">
+            <ref href="#person.MD">M. D.</ref> oglašava se krivim
+            zbog krivičnog djela
+            nasilje u porodici ili u porodičnoj zajednici iz čl. 220 st. 1
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.sanction">
+          <heading>Krivična sankcija</heading>
+          <p eId="sec.decision.sanction.p1">
+            Izriče se kazna zatvora u trajanju od 8 mjeseci,
+            u koju kaznu mu se uračunava vrijeme provedeno u pritvoru
+            od 14.02.2024. godine od 18,35 časova, pa nadalje.
+          </p>
+        </article>
+
+        <article eId="sec.decision.costs">
+          <heading>Troškovi postupka</heading>
+          <p eId="sec.decision.costs.p1">
+            Okrivljeni je dužan da plati troškove postupka
+            u iznosu od 60,50 eura i sudski paušal
+            u iznosu od 40,00 eura,
+            shodno čl. 229
+            <ref href="#law.ZKP">ZKP</ref>.
+          </p>
+        </article>
+
+        <article eId="sec.decision.securityMeasure">
+          <heading>Mjera bezbjednosti</heading>
+          <p eId="sec.decision.securityMeasure.p1">
+            Sud okrivljenom, na osnovu čl. 67 st. 1 tač. 11 i čl. 77b
+            <ref href="#law.KZCG">Krivičnog zakonika Crne Gore</ref>,
+            izriče mjeru bezbjednosti udaljenje iz stana ili drugog prostora za stanovanje,
+            u kojem živi oštećena <ref href="#person.MS">M. S.</ref>,
+            koja mjera će trajati 3 mjeseca, po pravosnažnosti presude.
+          </p>
+        </article>
+
+      </decision>
+
+      <!-- OBRAZLOŽENJE -->
+      <motivation eId="sec.motivation">
+
+        <section eId="sec.motivation.facts">
+          <heading>Utvrđeno činjenično stanje</heading>
+          <p eId="sec.motivation.facts.p1">
+            Sud je utvrdio da okrivljeni dana 14. februara 2024. godine,
+            oko 08,00 časova, u porodičnoj kući na adresi u Ulici p. br...., u P.,
+            svjestan svog djela, čije je izvršenje htio i znajući da je isto zabranjeno,
+            lako tjelesno povrijedio člana porodične zajednice - oštećenu snahu
+            <ref href="#person.MS">M. S.</ref> i istoj ugrozio sigurnost prijetnjom
+            da će napasti na njen život i život njoj bliskog lica - supruga M.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.legal">
+          <heading>Pravna kvalifikacija</heading>
+          <p eId="sec.motivation.legal.p1">
+            Radnjama okrivljenog ostvarena su sva obilježja
+            krivičnog djela iz čl. 220 st. 1
+            <ref href="#law.KZCG">KZ CG</ref>.
+          </p>
+        </section>
+
+        <section eId="sec.motivation.sanction">
+          <heading>Odluka o kazni</heading>
+          <p eId="sec.motivation.sanction.p1">
+            Sud je prilikom odlučivanja o visini kazne za okrivljenog M. D.
+            imao u vidu sve okolnosti koje utiču da kazna bude veća ili manja,
+            odnosno olakšavajuće i otežavajuće okolnosti.
+          </p>
+        </section>
+
+      </motivation>
+
+      <!-- POTPIS -->
+      <conclusions eId="sec.signature">
+        <p eId="sec.signature.p1">
+          OSNOVNI SUD U PODGORICI
+        </p>
+        <p eId="sec.signature.p2">
+          Zapisničarka:
+          <ref href="#person.marinaSekulic"/>
+        </p>
+        <p eId="sec.signature.p3">
+          Sudija:
+          <ref href="#person.larisaMijuskovicStamatovic"/>
+        </p>
+      </conclusions>
+
+    </body>
+
+  </judgment>
+</akomaNtoso>

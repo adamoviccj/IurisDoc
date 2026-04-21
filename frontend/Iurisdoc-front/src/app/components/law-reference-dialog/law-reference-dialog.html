@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>{{law?.title}}</h2>
+
+    <mat-dialog-content class="law-content">
+
+      <div *ngIf="!law">Učitavanje...</div>
+
+      <div *ngIf="law">
+
+        <div *ngFor="let ch of law.chapters">
+          <h3>Glava {{ch.num}} — {{ch.title}}</h3>
+
+          <div *ngFor="let art of ch.articles">
+            <h4 id="{{art.id}}">Član {{art.num}}</h4>
+
+            <p *ngFor="let p of art.content"
+               [id]="p.id">
+              {{p.text}}
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Zatvori</button>
+    </mat-dialog-actions>

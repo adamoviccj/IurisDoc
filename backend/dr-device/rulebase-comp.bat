@@ -1,0 +1,5 @@
+(import-rdf )
+(import-rdf-files facts.rdf)
+(load-compiled-dr-device rulebase.clp)
+(go-dr-device)
+(dr-device_export_rdf rulebase.ruleml export.rdf proof.ruleml is_guilty_of_family_violence_lv1 min_imprisonment max_imprisonment is_guilty_of_family_violence_lv2 to_pay is_guilty_of_family_violence_lv3 is_guilty_of_family_violence_lv4 is_guilty_of_violating_measures is_guilty_of_nonpayment_of_support_lv1 is_guilty_of_nonpayment_of_support_lv2)

@@ -1,0 +1,1487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RuleML xmlns="http://www.ruleml.org/0.91/xsd"
+         xmlns:lc="http://ftn.uns.ac.rs/legal-case"
+         xmlns:lrml="http://docs.oasis-open.org/legalruleml/ns/v1.0/"
+         xmlns:ruleml="http://ruleml.org/spec"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         proof="proof.ruleml"
+         rdf_export="export.rdf"
+         rdf_export_classes="is_guilty_of_family_violence_lv1 min_imprisonment max_imprisonment is_guilty_of_family_violence_lv2 to_pay is_guilty_of_family_violence_lv3 is_guilty_of_family_violence_lv4 is_guilty_of_violating_measures is_guilty_of_nonpayment_of_support_lv1 is_guilty_of_nonpayment_of_support_lv2"
+         rdf_import="&#34;facts.rdf&#34;">
+   <Assert>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_1">rule220_1</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:uses_gross_violence"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:violates_integrity"/>
+                     <Data xsi:type="xs:string">family_member_yes</Data>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv1</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_2">rule220_2</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:uses_gross_violence"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:violates_integrity"/>
+                     <Data xsi:type="xs:string">family_member_yes</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:uses_weapon"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv2</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_2_neg">rule220_2_neg</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv2</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv1</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_1"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_3_a">rule220_3_a</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:uses_gross_violence"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:violates_integrity"/>
+                     <Data xsi:type="xs:string">family_member_yes</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:uses_weapon"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:causes_serious_injury"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv3</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_3_b">rule220_3_b</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:uses_gross_violence"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:violates_integrity"/>
+                     <Data xsi:type="xs:string">family_member_yes</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:uses_weapon"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:victim_is_minor"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv3</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_3_neg_1">rule220_3_neg_1</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv3</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv1</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_1"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_3_neg_2">rule220_3_neg_2</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv3</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv2</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_2"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_4">rule220_4</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:uses_gross_violence"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:violates_integrity"/>
+                     <Data xsi:type="xs:string">family_member_yes</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:uses_weapon"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:causes_death"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Or>
+                  <Atom>
+                     <op>
+                        <Rel uri="lc:case"/>
+                     </op>
+                     <slot>
+                        <Ind uri="lc:defendant"/>
+                        <Var>Defendant</Var>
+                     </slot>
+                     <slot>
+                        <Ind uri="lc:causes_serious_injury"/>
+                        <Data xsi:type="xs:string">true</Data>
+                     </slot>
+                  </Atom>
+                  <Atom>
+                     <op>
+                        <Rel uri="lc:case"/>
+                     </op>
+                     <slot>
+                        <Ind uri="lc:defendant"/>
+                        <Var>Defendant</Var>
+                     </slot>
+                     <slot>
+                        <Ind uri="lc:victim_is_minor"/>
+                        <Data xsi:type="xs:string">true</Data>
+                     </slot>
+                  </Atom>
+               </Or>
+            </And>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv4</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_4_neg_1">rule220_4_neg_1</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv4</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv1</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_1"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_4_neg_2">rule220_4_neg_2</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv4</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv2</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_2"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_4_neg_3">rule220_4_neg_3</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv4</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv3</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_3_a"/>
+         </superior>
+         <superior>
+            <Ind uri="rule220_3_b"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_5">rule220_5</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel uri="lc:case"/>
+               </op>
+               <slot>
+                  <Ind uri="lc:defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+               <slot>
+                  <Ind uri="lc:violates_protection_measures"/>
+                  <Data xsi:type="xs:string">true</Data>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_violating_measures</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_5_neg_1">rule220_5_neg_1</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv1</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_violating_measures</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_5"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_5_neg_2">rule220_5_neg_2</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv2</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_violating_measures</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_5"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_5_neg_3">rule220_5_neg_3</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv3</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_violating_measures</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_5"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule220_5_neg_4">rule220_5_neg_4</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_family_violence_lv4</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_violating_measures</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule220_5"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule221_1">rule221_1</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:legal_obligation_to_support"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:duty_established_by_court_order"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:fails_to_pay_support"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_nonpayment_of_support_lv1</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule221_1_neg">rule221_1_neg</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:legal_obligation_to_support"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:duty_established_by_court_order"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:fails_to_pay_support"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:justified_reasons_for_nonpayment"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_nonpayment_of_support_lv1</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule221_1"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule221_3">rule221_3</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:legal_obligation_to_support"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:duty_established_by_court_order"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:fails_to_pay_support"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:justified_reasons_for_nonpayment"/>
+                     <Data xsi:type="xs:string">false</Data>
+                  </slot>
+               </Atom>
+               <Atom>
+                  <op>
+                     <Rel uri="lc:case"/>
+                  </op>
+                  <slot>
+                     <Ind uri="lc:defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+                  <slot>
+                     <Ind uri="lc:severe_consequences_for_victim"/>
+                     <Data xsi:type="xs:string">true</Data>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_nonpayment_of_support_lv2</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="rule221_1_neg_3">rule221_1_neg_3</Ind>
+         </oid>
+         <body>
+            <And>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_nonpayment_of_support_lv2</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </And>
+         </body>
+         <head>
+            <Neg>
+               <Atom>
+                  <op>
+                     <Rel>is_guilty_of_nonpayment_of_support_lv1</Rel>
+                  </op>
+                  <slot>
+                     <Ind uri="defendant"/>
+                     <Var>Defendant</Var>
+                  </slot>
+               </Atom>
+            </Neg>
+         </head>
+         <superior>
+            <Ind uri="rule221_1"/>
+         </superior>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_1_fine">pen220_1_fine</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv1</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>to_pay</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">1000</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Money</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_1_prison">pen220_1_prison</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv1</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>max_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">2</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_2_min">pen220_2_min</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv2</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>min_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">3</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Months</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_2_max">pen220_2_max</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv2</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>max_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">3</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_3_min">pen220_3_min</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv3</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>min_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">1</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_3_max">pen220_3_max</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv3</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>max_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">5</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_3_min">pen220_3_min</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv3</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>min_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">1</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_3_max">pen220_3_max</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv3</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>max_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">5</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_4_min">pen220_4_min</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv4</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>min_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">3</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_4_max">pen220_4_max</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_family_violence_lv4</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>max_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">12</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_5_fine">pen220_5_fine</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_violating_measures</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>to_pay</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">500</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Money</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen220_5_prison">pen220_5_prison</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_violating_measures</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>max_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">1</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen221_1_fine">pen221_1_fine</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_nonpayment_of_support_lv1</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>to_pay</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">300</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Money</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen221_1_prison">pen221_1_prison</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_nonpayment_of_support_lv1</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>max_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">2</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen221_3_min">pen221_3_min</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_nonpayment_of_support_lv2</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>min_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">6</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Months</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+      <Implies ruletype="defeasiblerule">
+         <oid>
+            <Ind uri="pen221_3_max">pen221_3_max</Ind>
+         </oid>
+         <body>
+            <Atom>
+               <op>
+                  <Rel>is_guilty_of_nonpayment_of_support_lv2</Rel>
+               </op>
+               <slot>
+                  <Ind uri="defendant"/>
+                  <Var>Defendant</Var>
+               </slot>
+            </Atom>
+         </body>
+         <head>
+            <Atom>
+               <op>
+                  <Rel>max_imprisonment</Rel>
+               </op>
+               <slot>
+                  <Ind uri="value"/>
+                  <Data xsi:type="xs:integer">5</Data>
+               </slot>
+               <slot>
+                  <Ind uri="unit"/>
+                  <Data>Years</Data>
+               </slot>
+            </Atom>
+         </head>
+      </Implies>
+   </Assert>
+</RuleML>

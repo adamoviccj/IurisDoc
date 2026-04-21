@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+     <!ENTITY defeasible "http://lpis.csd.auth.gr/systems/dr-device/defeasible.rdfs#">
+     <!ENTITY export "http://startrek.csd.auth.gr/dr-device/export/export.rdf#"> 
+     <!ENTITY proof-export "http://startrek.csd.auth.gr/dr-device/proof/proof.ruleml#"> 
+]>
+
+<rdf:RDF
+     xmlns:rdf='&rdf;'
+     xmlns:rdfs='&rdfs;'
+     xmlns:defeasible='&defeasible;'
+     xmlns:export='&export;'
+>
+
+<rdfs:Class rdf:about='&export;is_guilty_of_family_violence_lv1'>
+     <rdfs:label rdf:resource='is_guilty_of_family_violence_lv1'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;min_imprisonment'>
+     <rdfs:label rdf:resource='min_imprisonment'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;max_imprisonment'>
+     <rdfs:label rdf:resource='max_imprisonment'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;is_guilty_of_family_violence_lv2'>
+     <rdfs:label rdf:resource='is_guilty_of_family_violence_lv2'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;to_pay'>
+     <rdfs:label rdf:resource='to_pay'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;is_guilty_of_family_violence_lv3'>
+     <rdfs:label rdf:resource='is_guilty_of_family_violence_lv3'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;is_guilty_of_family_violence_lv4'>
+     <rdfs:label rdf:resource='is_guilty_of_family_violence_lv4'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;is_guilty_of_violating_measures'>
+     <rdfs:label rdf:resource='is_guilty_of_violating_measures'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;is_guilty_of_nonpayment_of_support_lv1'>
+     <rdfs:label rdf:resource='is_guilty_of_nonpayment_of_support_lv1'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+<rdfs:Class rdf:about='&export;is_guilty_of_nonpayment_of_support_lv2'>
+     <rdfs:label rdf:resource='is_guilty_of_nonpayment_of_support_lv2'/>
+     <rdfs:subClassOf rdf:resource='&defeasible;DefeasibleObject'/>
+</rdfs:Class>
+
+
+<rdf:Property rdf:about='&export;defendant'>
+     <rdfs:domain rdf:resource='&export;is_guilty_of_family_violence_lv1'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;value'>
+     <rdfs:domain rdf:resource='&export;min_imprisonment'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;unit'>
+     <rdfs:domain rdf:resource='&export;min_imprisonment'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;value'>
+     <rdfs:domain rdf:resource='&export;max_imprisonment'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;unit'>
+     <rdfs:domain rdf:resource='&export;max_imprisonment'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;defendant'>
+     <rdfs:domain rdf:resource='&export;is_guilty_of_family_violence_lv2'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;value'>
+     <rdfs:domain rdf:resource='&export;to_pay'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;unit'>
+     <rdfs:domain rdf:resource='&export;to_pay'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;defendant'>
+     <rdfs:domain rdf:resource='&export;is_guilty_of_family_violence_lv3'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;defendant'>
+     <rdfs:domain rdf:resource='&export;is_guilty_of_family_violence_lv4'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;defendant'>
+     <rdfs:domain rdf:resource='&export;is_guilty_of_violating_measures'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;defendant'>
+     <rdfs:domain rdf:resource='&export;is_guilty_of_nonpayment_of_support_lv1'/>
+</rdf:Property>
+
+<rdf:Property rdf:about='&export;defendant'>
+     <rdfs:domain rdf:resource='&export;is_guilty_of_nonpayment_of_support_lv2'/>
+</rdf:Property>
+
+<export:is_guilty_of_family_violence_lv1 rdf:about='&export;is_guilty_of_family_violence_lv11'>
+     <export:defendant>Bogdan Bogdanovic</export:defendant>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof1</defeasible:proof>
+</export:is_guilty_of_family_violence_lv1>
+
+<export:max_imprisonment rdf:about='&export;max_imprisonment1'>
+     <export:value>2</export:value>
+     <export:unit>Years</export:unit>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof2</defeasible:proof>
+</export:max_imprisonment>
+
+<export:to_pay rdf:about='&export;to_pay1'>
+     <export:value>1000</export:value>
+     <export:unit>Money</export:unit>
+     <defeasible:truthStatus>defeasibly-proven-positive</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof3</defeasible:proof>
+</export:to_pay>
+
+<export:is_guilty_of_violating_measures rdf:about='&export;is_guilty_of_violating_measures1'>
+     <export:defendant>Bogdan Bogdanovic</export:defendant>
+     <defeasible:truthStatus>defeasibly-proven-negative</defeasible:truthStatus>
+     <defeasible:proof rdf:datatype='&xsd;anyURI'>&proof-export;proof4</defeasible:proof>
+</export:is_guilty_of_violating_measures>
+
+</rdf:RDF>
